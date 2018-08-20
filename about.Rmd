@@ -2,4 +2,52 @@
 title: "Información"
 ---
 
-More about this website.
+```{r, echo=FALSE, fig.align="center", out.width="450", out.height="150"}
+knitr::include_graphics("images/semillero.jpg")
+```
+
+## ¿Quién puede participar en el semillero?
+
+  - Cualquier estudiante de la Universidad Nacional de Colombia sede Medellín perteneciente a alguno de los siguientes programas de pregrado:
+      - Zootecnia
+      - Ingeniería Agronómica
+      - Ingeniería Forestal
+      - Ingeniería Biológica
+
+## Propósitos del semillero  
+
+  - Fomentar la discusión de temas relacionados con estadística computacional aplicada en las ciencias agrarias.
+  - Promover la formulación y ejecución de proyectos de investigación con énfasis en métodos estadísticos aplicados en las ciencias biológicas.
+  - Estimular el uso de herramientas tecnológicas que viabilicen el ejercicio académico y profesional.
+  - Impulsar la utilización de herramientas de código abierto ([software libre](https://en.wikipedia.org/wiki/Free_software)) para ejecutar análisis estadístico.
+  - Potenciar la sinergía entre tecnología, agricultura y datos; como pilar fundamental de la toma de decisiones.
+
+## Actividades del semillero
+
+  - Reuniones periódicas
+  - Discusión de temas relacionados con los siguientes tópicos:
+      - Estadística teórica
+      - Estadística computacional
+          - Software R
+          - IDE RStudio
+      - Elementos de investigación reproducible    
+      - Genética cuantitativa
+      - Mejoramiento genético animal
+      - Bioestadistica
+      - Métodos estadísticos multivariados en la agricultura
+      - Métodos estadísticos multivariados en ecología
+      - Diseño y análisis estadístico de experimentos
+  - Planeación, formulación y ejecución de proyectos de investigación
+  - Divulgación de resultados
+  - Mejoras compartidas
+
+## Horario 2018-02
+
+  - **Lugar:** por definir
+  - **Día:** por definir
+  - **Hora:** por definir
+
+## Dirección del semillero
+
+  - [Edimer David Jaramillo](https://edimer.github.io/)
+  - Luis Gabriel González Herrera

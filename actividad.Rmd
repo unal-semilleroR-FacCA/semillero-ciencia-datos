@@ -2,4 +2,28 @@
 title: "Actividades"
 ---
 
-Hello, Website!
+## Actividades 2018-02
+
+  - **Componente teórico-práctico básico:**
+      - Motivación
+      - Introducción a R y RStudio
+      - Introducción a Rmarkdown
+          - Biblioteca `Rmarkdown`
+          - Biblioteca `Knitr`
+      - Datos y estructuras básicas en R
+      - Funciones y estructuras de control en R
+      - Lectura, estructuración e integración de datos
+          - Paradigma de "tidy data"
+          - Biblioteca `tidyverse`
+          - Biblioteca `tidyr`
+          - Biblioteca `dplyr`
+      - Visualización de datos con R
+          - Biblioteca `graphics`
+          - Biblioteca `lattice`
+          - Biblioteca `ggplot2`
+          - Biblioteca `plotly`
+      - Estadísitca básica con R
+          - Estadística descriptiva
+          - Estadística inferencial
+  - **Componente práctico - casos de estudio:**
+      - Por definir...
