@@ -1,0 +1,30 @@
+body{
+  text-align: justify;
+  font-size: 18px;
+  font-family: "Times New Roman", Times, serif;
+  background-color: #ffffff;
+  border-top: 5px solid red;
+  color: black;
+}
+
+h1 {
+  color: black;
+  font-size: 55px;
+  font-family: "Times New Roman", Times, serif;
+}
+
+h2 {
+  color: black;
+  font-size: 30px;
+  font-family: "Times New Roman", Times, serif;
+}
+
+
+a {
+  color: #01954f;
+}
+
+a:hover {
+    color: #2b2b2b;
+}
+ 

@@ -1,0 +1,9 @@
+---
+title: ""
+---
+
+<center> <h2> ¡Bienvenid@ al Semillero de R para Ciencias Agrarias! </h2> </center>
+
+```{r, echo=FALSE, fig.align="center", out.width="500", out.height="250"}
+knitr::include_graphics("images/bienvenid@2.png")
+```

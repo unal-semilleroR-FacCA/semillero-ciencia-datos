@@ -1,0 +1,26 @@
+name: Semillero R - Facultad de Ciencias Agrarias
+output_dir: '.'
+navbar:
+  title: Semillero R-FacCA
+  left:
+  - text: Inicio
+    href: index.html
+  - text: Información
+    href: about.html
+  - text: Material
+    menu:
+      - text: R & RStudio
+        href: softwarer.html
+      - text: Recursos de información
+        href: recursos.html
+      - text: Actividades
+        href: actividad.html
+output:
+  html_document:
+    theme: flatly
+    highlight: kate
+    include:
+      after_body: footer.html
+    css: style.css
+    lib_dir: site_libs
+    self_contained: no      
