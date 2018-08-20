@@ -5,7 +5,7 @@ title: "Recursos de información"
 ## Sitios web
 
 Algunos recursos de información en los cuales el usuario podrá encontrar múltiples
-ayudas, ejemplos, tutoriales y ejercicios para desarrolar con `R` (y otros lenguajes de programación) son los siguientes:
+ayudas, ejemplos, tutoriales y ejercicios para desarrollar con `R` (y otros lenguajes de programación) son los siguientes:
 
 - [Stack Overflow en inglés](https://stackoverflow.com/)
 - [Stack Overflow en español](https://es.stackoverflow.com/)
