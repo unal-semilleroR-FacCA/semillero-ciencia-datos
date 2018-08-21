@@ -6,7 +6,7 @@ navbar:
   - text: Inicio
     href: index.html
   - text: Información
-    href: about.html
+    href: about.html 
   - text: Material
     menu:
       - text: R & RStudio
@@ -15,6 +15,8 @@ navbar:
         href: recursos.html
       - text: Actividades
         href: actividad.html
+      - text: Publicaciones
+        href: publicaciones.html  
       - text: Foro
         href: http://semillero-r-facca-unal-medellin.77735.n8.nabble.com/  
 output:
