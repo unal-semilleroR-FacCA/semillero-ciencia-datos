@@ -4,7 +4,7 @@ title: "R & RStudio"
 
 ## Lenguaje de programación R
 
-`R` es un lenguaje de distribución libre (bajo la licencia [GNU - *General Public Licence*](https://en.wikipedia.org/wiki/GNU)), interpretado y de gran uso en la manipulación de datos para el cómputo estadístico y gráfico. Disponible para Linux, MacOS y Windows. `R` fue creado por Ross Ihaka y Robert Gentleman a principios de los años 90 en Nueva Zelanda, y puede ser definido como una implementación del lenguaje `S`, este último desarrollado en AT&T por John Chambers, Rick Becker y Allan Wilks.
+`R` es un lenguaje de distribución libre (bajo la licencia [GPL - *General Public Licence*](https://en.wikipedia.org/wiki/GNU_General_Public_License)), interpretado y de gran uso en la manipulación de datos para el cómputo estadístico y gráfico. Disponible para Linux, MacOS y Windows. `R` fue creado por Ross Ihaka y Robert Gentleman a principios de los años 90 en Nueva Zelanda, y puede ser definido como una implementación del lenguaje `S`, este último desarrollado en AT&T por John Chambers, Rick Becker y Allan Wilks.
 
  John Chambers y Trevor Hastie en el año 1991 describen en el texto *Statistical Models in S:* 
 
