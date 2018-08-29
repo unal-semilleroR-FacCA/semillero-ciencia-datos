@@ -43,9 +43,12 @@ knitr::include_graphics("images/semillero.jpg")
 
 ## Horario 2018-02
 
-  - **Lugar:** por definir
-  - **Día:** por definir
-  - **Hora:** por definir
+  - Lunes:
+      - **Lugar:** bloque 50 - Salón 50-230.
+      - **Hora:**  6:00 a 10:00 am.
+  - Martes:
+      - **Lugar:** bloque 50 - Salón 50-323.
+      - **Hora:**  8:00 a 12:00 m.      
 
 ## Dirección del semillero
 

@@ -10,7 +10,6 @@ title: "R & RStudio"
 
 > "Buscamos que los usuarios puedan iniciar en un entorno interactivo, en el que no se vean, conscientemente, a ellos mismos como programadores. Conforme sus necesidades sean más claras y su complejidd se incremente, deberían gradualmente poder profundizar en la programación, es cuando los aspectos del lenguaje y el sistema se vuelven más importantes".
 
-
 ## R-Studio
 
 `R-Studio` es un entorno de desarrollo integrado (IDE) de fuente abierta para el lenguaje de programación `R`, que ofrece gran variedad de herramientas tecnológicas de vanguardia para la importación, administración, visualización, modelación y comunicación de la información. (Para más información consultar [RStudio](https://www.rstudio.com/)). 
