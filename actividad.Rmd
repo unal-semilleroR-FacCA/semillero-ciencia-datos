@@ -2,28 +2,40 @@
 title: "Actividades"
 ---
 
-## Actividades 2018-02
+### Temario general 2018-02
+  
+  - [0. Bienvenida](/Actividades/0_Bienvenida.html)
+  - [1. Caja de herramientas del analista de datos](/Actividades/1_Intro.html)
+  - [2. El maravilloso mundo de R](/Actividades/2_LengR.html)
+  - [3. Proceso de anális de datos (tidyverse)](/Actividades/3_Tidy.html)
+  - [4. Visualización y comunicación de resultados](/Actividades/4_Visual.html)
+  - [5. Caso práctico de interés](/Actividades/5_Caso1.html)
+  - [6. Caso práctico de interés](/Actividades/5_Caso2.html)
+  - [7. Caso práctico de interés](/Actividades/5_Caso3.html)
+  - [8. Caso práctico de interés](/Actividades/5_Caso4.html)
+  - [9. Caso práctico de interés](/Actividades/5_Caso5.html)
+  - [10. Caso práctico de interés](/Actividades/5_Caso6.html)  
+  
+### Dinámica del semillero
 
-  - **Componente teórico-práctico básico:**
-      - Motivación
-      - Introducción a R y RStudio
-      - Introducción a Rmarkdown
-          - Biblioteca `Rmarkdown`
-          - Biblioteca `Knitr`
-      - Datos y estructuras básicas en R
-      - Funciones y estructuras de control en R
-      - Lectura, estructuración e integración de datos
-          - Paradigma de "tidy data"
-          - Biblioteca `tidyverse`
-          - Biblioteca `tidyr`
-          - Biblioteca `dplyr`
-      - Visualización de datos con R
-          - Biblioteca `graphics`
-          - Biblioteca `lattice`
-          - Biblioteca `ggplot2`
-          - Biblioteca `plotly`
-      - Estadísitca básica con R
-          - Estadística descriptiva
-          - Estadística inferencial
-  - **Componente práctico - casos de estudio:**
-      - Por definir...
+  - 10 reuniones en el semestre.
+  - Con ambos grupos (lunes y martes) se abordarán los mismos temas.
+  - Componente introductorio en 4 sesiones.
+  - Componente práctico en 6 sesiones.
+  - Todas las sesiones serán asistidas por la dirección del semillero.
+  - Cada sesión contará con actividades desarrolladas por los participantes.
+  
+### Cronograma de actividades 2018-02
+
+  - **Componente Introductorio:**
+      - Lunes 03 de septiembre - Martes 04 de septiembre
+      - Lunes 10 de septiembre - Martes 11 de septiembre
+      - Lunes 24 de septiembre - Martes 25 de septiembre
+      - Lunes 01 de octubre - Martes 02 de octubre
+  - **Componente Práctico**    
+      - Lunes 08 de octubre - Martes 09 de octubre
+      - Lunes 22 de octubre - Martes 23 de octubre
+      - Lunes 29 de octubre - Martes 30 de octubre
+      - Lunes 19 de noviembre - Martes 20 de noviembre
+      - Lunes 26 de noviembre - Martes 27 de noviembre
+      - Lunes 03 de diciembre - Martes 04 de diciembre  
