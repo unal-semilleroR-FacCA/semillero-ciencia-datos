@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <title></title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="1_Caja_files/reveal.js-3.3.0.1/css/reveal.css"/>
+
+
+
+<link rel="stylesheet" href="1_Caja_files/reveal.js-3.3.0.1/css/theme/simple.css" id="theme">
+
+
+  <!-- some tweaks to reveal css -->
+  <style type="text/css">
+    .reveal h1 { font-size: 2.0em; }
+    .reveal h2 { font-size: 1.5em;  }
+    .reveal h3 { font-size: 1.25em;	}
+    .reveal h4 { font-size: 1em;	}
+
+    .reveal .slides>section,
+    .reveal .slides>section>section {
+      padding: 0px 0px;
+    }
+
+
+
+    .reveal table {
+      border-width: 1px;
+      border-spacing: 2px;
+      border-style: dotted;
+      border-color: gray;
+      border-collapse: collapse;
+      font-size: 0.7em;
+    }
+
+    .reveal table th {
+      border-width: 1px;
+      padding-left: 10px;
+      padding-right: 25px;
+      font-weight: bold;
+      border-style: dotted;
+      border-color: gray;
+    }
+
+    .reveal table td {
+      border-width: 1px;
+      padding-left: 10px;
+      padding-right: 25px;
+      border-style: dotted;
+      border-color: gray;
+    }
+
+
+  </style>
+
+    <style type="text/css">code{white-space: pre;}</style>
+
+    <link rel="stylesheet" href="estilo.css"/>
+
+<!-- Printing and PDF exports -->
+<script id="paper-css" type="application/dynamic-css">
+
+/* Default Print Stylesheet Template
+   by Rob Glazebrook of CSSnewbie.com
+   Last Updated: June 4, 2008
+
+   Feel free (nay, compelled) to edit, append, and
+   manipulate this file as you see fit. */
+
+
+@media print {
+
+	/* SECTION 1: Set default width, margin, float, and
+	   background. This prevents elements from extending
+	   beyond the edge of the printed page, and prevents
+	   unnecessary background images from printing */
+	html {
+		background: #fff;
+		width: auto;
+		height: auto;
+		overflow: visible;
+	}
+	body {
+		background: #fff;
+		font-size: 20pt;
+		width: auto;
+		height: auto;
+		border: 0;
+		margin: 0 5%;
+		padding: 0;
+		overflow: visible;
+		float: none !important;
+	}
+
+	/* SECTION 2: Remove any elements not needed in print.
+	   This would include navigation, ads, sidebars, etc. */
+	.nestedarrow,
+	.controls,
+	.fork-reveal,
+	.share-reveal,
+	.state-background,
+	.reveal .progress,
+	.reveal .backgrounds {
+		display: none !important;
+	}
+
+	/* SECTION 3: Set body font face, size, and color.
+	   Consider using a serif font for readability. */
+	body, p, td, li, div {
+		font-size: 20pt!important;
+		font-family: Georgia, "Times New Roman", Times, serif !important;
+		color: #000;
+	}
+
+	/* SECTION 4: Set heading font face, sizes, and color.
+	   Differentiate your headings from your body text.
+	   Perhaps use a large sans-serif for distinction. */
+	h1,h2,h3,h4,h5,h6 {
+		color: #000!important;
+		height: auto;
+		line-height: normal;
+		font-family: Georgia, "Times New Roman", Times, serif !important;
+		text-shadow: 0 0 0 #000 !important;
+		text-align: left;
+		letter-spacing: normal;
+	}
+	/* Need to reduce the size of the fonts for printing */
+	h1 { font-size: 28pt !important;  }
+	h2 { font-size: 24pt !important; }
+	h3 { font-size: 22pt !important; }
+	h4 { font-size: 22pt !important; font-variant: small-caps; }
+	h5 { font-size: 21pt !important; }
+	h6 { font-size: 20pt !important; font-style: italic; }
+
+	/* SECTION 5: Make hyperlinks more usable.
+	   Ensure links are underlined, and consider appending
+	   the URL to the end of the link for usability. */
+	a:link,
+	a:visited {
+		color: #000 !important;
+		font-weight: bold;
+		text-decoration: underline;
+	}
+	/*
+	.reveal a:link:after,
+	.reveal a:visited:after {
+		content: " (" attr(href) ") ";
+		color: #222 !important;
+		font-size: 90%;
+	}
+	*/
+
+
+	/* SECTION 6: more reveal.js specific additions by @skypanther */
+	ul, ol, div, p {
+		visibility: visible;
+		position: static;
+		width: auto;
+		height: auto;
+		display: block;
+		overflow: visible;
+		margin: 0;
+		text-align: left !important;
+	}
+	.reveal pre,
+	.reveal table {
+		margin-left: 0;
+		margin-right: 0;
+	}
+	.reveal pre code {
+		padding: 20px;
+		border: 1px solid #ddd;
+	}
+	.reveal blockquote {
+		margin: 20px 0;
+	}
+	.reveal .slides {
+		position: static !important;
+		width: auto !important;
+		height: auto !important;
+
+		left: 0 !important;
+		top: 0 !important;
+		margin-left: 0 !important;
+		margin-top: 0 !important;
+		padding: 0 !important;
+		zoom: 1 !important;
+
+		overflow: visible !important;
+		display: block !important;
+
+		text-align: left !important;
+		-webkit-perspective: none;
+		   -moz-perspective: none;
+		    -ms-perspective: none;
+		        perspective: none;
+
+		-webkit-perspective-origin: 50% 50%;
+		   -moz-perspective-origin: 50% 50%;
+		    -ms-perspective-origin: 50% 50%;
+		        perspective-origin: 50% 50%;
+	}
+	.reveal .slides section {
+		visibility: visible !important;
+		position: static !important;
+		width: auto !important;
+		height: auto !important;
+		display: block !important;
+		overflow: visible !important;
+
+		left: 0 !important;
+		top: 0 !important;
+		margin-left: 0 !important;
+		margin-top: 0 !important;
+		padding: 60px 20px !important;
+		z-index: auto !important;
+
+		opacity: 1 !important;
+
+		page-break-after: always !important;
+
+		-webkit-transform-style: flat !important;
+		   -moz-transform-style: flat !important;
+		    -ms-transform-style: flat !important;
+		        transform-style: flat !important;
+
+		-webkit-transform: none !important;
+		   -moz-transform: none !important;
+		    -ms-transform: none !important;
+		        transform: none !important;
+
+		-webkit-transition: none !important;
+		   -moz-transition: none !important;
+		    -ms-transition: none !important;
+		        transition: none !important;
+	}
+	.reveal .slides section.stack {
+		padding: 0 !important;
+	}
+	.reveal section:last-of-type {
+		page-break-after: avoid !important;
+	}
+	.reveal section .fragment {
+		opacity: 1 !important;
+		visibility: visible !important;
+
+		-webkit-transform: none !important;
+		   -moz-transform: none !important;
+		    -ms-transform: none !important;
+		        transform: none !important;
+	}
+	.reveal section img {
+		display: block;
+		margin: 15px 0px;
+		background: rgba(255,255,255,1);
+		border: 1px solid #666;
+		box-shadow: none;
+	}
+
+	.reveal section small {
+		font-size: 0.8em;
+	}
+
+}  
+</script>
+
+
+<script id="pdf-css" type="application/dynamic-css">
+    
+/**
+ * This stylesheet is used to print reveal.js
+ * presentations to PDF.
+ *
+ * https://github.com/hakimel/reveal.js#pdf-export
+ */
+
+* {
+	-webkit-print-color-adjust: exact;
+}
+
+body {
+	margin: 0 auto !important;
+	border: 0;
+	padding: 0;
+	float: none !important;
+	overflow: visible;
+}
+
+html {
+	width: 100%;
+	height: 100%;
+	overflow: visible;
+}
+
+/* Remove any elements not needed in print. */
+.nestedarrow,
+.reveal .controls,
+.reveal .progress,
+.reveal .playback,
+.reveal.overview,
+.fork-reveal,
+.share-reveal,
+.state-background {
+	display: none !important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	text-shadow: 0 0 0 #000 !important;
+}
+
+.reveal pre code {
+	overflow: hidden !important;
+	font-family: Courier, 'Courier New', monospace !important;
+}
+
+ul, ol, div, p {
+	visibility: visible;
+	position: static;
+	width: auto;
+	height: auto;
+	display: block;
+	overflow: visible;
+	margin: auto;
+}
+.reveal {
+	width: auto !important;
+	height: auto !important;
+	overflow: hidden !important;
+}
+.reveal .slides {
+	position: static;
+	width: 100%;
+	height: auto;
+
+	left: auto;
+	top: auto;
+	margin: 0 !important;
+	padding: 0 !important;
+
+	overflow: visible;
+	display: block;
+
+	-webkit-perspective: none;
+	   -moz-perspective: none;
+	    -ms-perspective: none;
+	        perspective: none;
+
+	-webkit-perspective-origin: 50% 50%; /* there isn't a none/auto value but 50-50 is the default */
+	   -moz-perspective-origin: 50% 50%;
+	    -ms-perspective-origin: 50% 50%;
+	        perspective-origin: 50% 50%;
+}
+
+.reveal .slides section {
+	page-break-after: always !important;
+
+	visibility: visible !important;
+	position: relative !important;
+	display: block !important;
+	position: relative !important;
+
+	margin: 0 !important;
+	padding: 0 !important;
+	box-sizing: border-box !important;
+	min-height: 1px;
+
+	opacity: 1 !important;
+
+	-webkit-transform-style: flat !important;
+	   -moz-transform-style: flat !important;
+	    -ms-transform-style: flat !important;
+	        transform-style: flat !important;
+
+	-webkit-transform: none !important;
+	   -moz-transform: none !important;
+	    -ms-transform: none !important;
+	        transform: none !important;
+}
+
+.reveal section.stack {
+	margin: 0 !important;
+	padding: 0 !important;
+	page-break-after: avoid !important;
+	height: auto !important;
+	min-height: auto !important;
+}
+
+.reveal img {
+	box-shadow: none;
+}
+
+.reveal .roll {
+	overflow: visible;
+	line-height: 1em;
+}
+
+/* Slide backgrounds are placed inside of their slide when exporting to PDF */
+.reveal section .slide-background {
+	display: block !important;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	z-index: -1;
+}
+
+/* All elements should be above the slide-background */
+.reveal section>* {
+	position: relative;
+	z-index: 1;
+}
+
+/* Display slide speaker notes when 'showNotes' is enabled */
+.reveal .speaker-notes-pdf {
+	display: block;
+	width: 100%;
+	max-height: none;
+	left: auto;
+	top: auto;
+	z-index: 100;
+}
+
+/* Display slide numbers when 'slideNumber' is enabled */
+.reveal .slide-number-pdf {
+	display: block;
+	position: absolute;
+	font-size: 14px;
+}
+
+</script>
+
+
+<script>
+var style = document.createElement( 'style' );
+style.type = 'text/css';
+var style_script_id = window.location.search.match( /print-pdf/gi ) ? 'pdf-css' : 'paper-css';
+var style_script = document.getElementById(style_script_id).text;
+style.innerHTML = style_script;
+document.getElementsByTagName('head')[0].appendChild(style);
+</script>
+
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+
+<section><section id="semillero-de-r---facca" class="titleslide slide level1" data-background="fondo1.png"><h1>Semillero de R - FacCA</h1></section></section>
+<section><section id="caja-de-herramientas-del-analista-de-datos" class="titleslide slide level1" data-background="caja2.png"><h1>1. Caja de herramientas del analista de datos</h1></section><section id="section" class="slide level2" data-background="caja2.png">
+<h2></h2>
+<ul>
+<li>Lenguaje R</li>
+<li>IDE RStudio</li>
+<li>Git</li>
+<li>Github</li>
+<li>Markdown (Rmarkdown)</li>
+</ul>
+</section></section>
+<section><section id="lenguaje-r" class="titleslide slide level1" data-background="lengR.png"><h1>Lenguaje R</h1></section><section id="caracteristicas-de-r" class="slide level2" data-background="lengR.png">
+<h2>Características de R</h2>
+<ul>
+<li>Útil para administración, gestión e integración de datos.</li>
+<li>Capacidad de graficación robusta.</li>
+<li>Comunidad dinámica de R.</li>
+<li>Sistema basado en bibliotecas.</li>
+<li><a href="https://es.wikipedia.org/wiki/Software_libre">Software libre</a></li>
+<li><a href="https://cran.r-project.org/">Descargar R.</a></li>
+</ul>
+</section><section id="gui-de-r" class="slide level2" data-background="lengR.png">
+<h2>GUI de R</h2>
+<p><img src="01-RConsole.jpg" width="670" height="550" style="display: block; margin: auto auto auto 0;" /></p>
+</section></section>
+<section><section id="rstudio" class="titleslide slide level1" data-background="lrstudio.png"><h1>RStudio</h1></section><section id="caracterisitcas-de-rstudio" class="slide level2" data-background="lrstudio.png">
+<h2>Caracterísitcas de RStudio</h2>
+<ul>
+<li>Entorno de desarrollo integrado (IDE).</li>
+<li>Interactividad.</li>
+<li>Facilita la investigación reproducible.</li>
+<li>Permite la implementación de otros lenguajes de programación.</li>
+<li>Permite control de versiones (Git).</li>
+<li><a href="https://www.rstudio.com/products/rstudio/download/">Descargar RStudio.</a></li>
+</ul>
+</section><section id="ide-rstudio" class="slide level2" data-background="lrstudio.png">
+<h2>IDE RStudio</h2>
+<p><img src="IDERS.png" width="760" height="550" style="display: block; margin: auto auto auto 0;" /></p>
+</section></section>
+<section><section id="git" class="titleslide slide level1" data-background="git2.png"><h1>Git</h1></section><section id="disenador-de-git" class="slide level2" data-background="git2.png">
+<h2>Diseñador de Git</h2>
+<p><img src="linus.jpeg" width="420" height="380" style="display: block; margin: auto auto auto 0;" /></p>
+<p><a href="https://es.wikipedia.org/wiki/Linus_Torvalds">Linus Benedict Torvalds.</a></p>
+</section><section id="que-es-control-de-versiones" class="slide level2" data-background="git2.png">
+<h2>¿Qué es control de versiones?</h2>
+<p><q>“El control de versiones es un sistema que registra cambios en un archivo o conjunto de archivos a lo largo del tiempo para que pueda recuperar versiones específicas más tarde.”</q> <a href="https://git-scm.com/book/en/v2/Getting-Started-About-Version-Control">Fuente.</a></p>
+</section><section id="que-es-git" class="slide level2" data-background="git2.png">
+<h2>¿Qué es Git?</h2>
+<p><q>“Git es un sistema de control de versiones distribuidas de código abierto y gratuito diseñado para manejar todo, desde proyectos pequeños a muy grandes, con velocidad y eficiencia.”</q> <a href="https://git-scm.com/">Fuente</a></p>
+</section><section id="control-de-versiones" class="slide level2" data-background="git2.png">
+<h2>Control de versiones</h2>
+<p><img src="git3.png" width="700" height="550" style="display: block; margin: auto auto auto 0;" /></p>
+</section><section id="bondades" class="slide level2" data-background="git2.png">
+<h2>Bondades</h2>
+<ul>
+<li><textred>Mejoras compartidas.</textred></li>
+<li>Administración de proyectos remotos (web).</li>
+<li>Control de código abierto.</li>
+<li>Disponible para todos.</li>
+</ul>
+</section><section id="descargar-e-instalar-git" class="slide level2" data-background="git2.png">
+<h2>Descargar e instalar Git</h2>
+<ul>
+<li><a href="https://git-scm.com/downloads">Descargar Git</a></li>
+<li><strong>Windows:</strong>
+<ul>
+<li>Instalar Git Bash para Windows.</li>
+<li>Ejecutar Git Bash.</li>
+</ul></li>
+</ul>
+</section></section>
+<section><section id="github" class="titleslide slide level1" data-background="github2.png"><h1>Github</h1></section><section id="que-es-github" class="slide level2" data-background="github2.png">
+<h2>¿Qué es Github?</h2>
+<p><q>“GitHub es una plataforma de desarrollo inspirada en la forma en que trabajas. Desde el código abierto hasta el del negocio, puede alojar y revisar el código, administrar proyectos y crear software junto con 28 millones de desarrolladores.”</q> <a href="https://github.com/">Fuente.</a></p>
+</section><section id="registrarse-en-github" class="slide level2" data-background="github2.png">
+<h2>Registrarse en Github</h2>
+<div class="figure" style="text-align: left">
+<img src="github_web.png" alt="https://github.com/" width="700" height="550" />
+<p class="caption">
+<a href="https://github.com/" class="uri">https://github.com/</a>
+</p>
+</div>
+</section><section id="configuracion-de-git" class="slide level2" data-background="github2.png">
+<h2>Configuración de Git</h2>
+<ul>
+<li>Configurar nombre de usuario y contraseña:</li>
+</ul>
+<pre><code>git config --global user.name &quot;Your Name Here&quot;
+git config --global user.email &quot;your_email@example.com&quot;</code></pre>
+<ul>
+<li>Verificar nombre de usuario y contraseña:</li>
+</ul>
+<pre><code>git config --list</code></pre>
+</section></section>
+<section><section id="markdown" class="titleslide slide level1" data-background="markdown2.png"><h1>Markdown</h1></section><section id="que-es-markdown" class="slide level2" data-background="markdown2.png">
+<h2>¿Qué es Markdown?</h2>
+<p><q>“Markdown es un lenguaje de marcado ligero creado por John Gruber que trata de conseguir la máxima legibilidad y facilidad de publicación tanto en su forma de entrada como de salida, inspirándose en muchas convenciones existentes para marcar mensajes de correo electrónico usando texto plano.”</q></p>
+</section><section id="elementos-basicos-de-markdown" class="slide level2" data-background="markdown2.png">
+<h2>Elementos básicos de Markdown</h2>
+</section><section id="titulos-o-encabezados" class="slide level2" data-background="markdown2.png">
+<h2>Títulos o encabezados</h2>
+<pre><code># Título 1
+
+## Título 2
+
+### Título 3</code></pre>
+</section><section id="vinetas" class="slide level2" data-background="markdown2.png">
+<h2>Viñetas</h2>
+<pre><code>  - Viñeta 1
+  - Viñeta 2
+      - Subviñeta 2.1
+  - Viñeta 3
+
+  * Viñeta 1
+  * Viñeta 2
+      * Subviñeta 2.1
+  * Viñeta 3
+  
+  + Viñeta 1
+  + Viñeta 2
+      + Subviñeta 2.1
+  + Viñeta 3  </code></pre>
+</section><section id="insertar-imagen" class="slide level2" data-background="markdown2.png">
+<h2>Insertar imagen</h2>
+<pre><code>![](imagen.png)  </code></pre>
+</section><section id="insertar-hipervinculo" class="slide level2" data-background="markdown2.png">
+<h2>Insertar hipervínculo</h2>
+<ul>
+<li><strong>Primera forma:</strong></li>
+</ul>
+<pre><code>https://es.wikipedia.org/wiki/Git </code></pre>
+<ul>
+<li><strong>Segunda forma:</strong></li>
+</ul>
+<pre><code>[Git Wikipedia](https://es.wikipedia.org/wiki/Git)  </code></pre>
+</section><section id="opciones-de-texto" class="slide level2" data-background="markdown2.png">
+<h2>Opciones de texto</h2>
+<ul>
+<li><strong>Cursiva:</strong></li>
+</ul>
+<pre><code>*Texto*
+_Texto_</code></pre>
+<ul>
+<li><strong>Negrilla:</strong></li>
+</ul>
+<pre><code>**Texto**
+__Texto__</code></pre>
+<ul>
+<li><strong>Negrilla cursiva:</strong></li>
+</ul>
+<pre><code>***Texto***
+___Texto___</code></pre>
+</section></section>
+<section><section id="actividad" class="titleslide slide level1" data-background="github2.png"><h1>Actividad</h1></section><section id="actividad-1" class="slide level2">
+<h2>Actividad 1</h2>
+<ul>
+<li>Crear cuenta en Github.</li>
+<li>Descargar e instalar Git.</li>
+<li>Instalar R.</li>
+<li>Instalar RStudio.</li>
+<li>Crear un repositorio en Github.</li>
+<li>Clonar el repsitorio a través de RStudio.</li>
+<li><textblue>Crear documento Rmarkdown.</textblue></li>
+</ul>
+</section></section>
+    </div>
+  </div>
+
+  <script src="1_Caja_files/reveal.js-3.3.0.1/lib/js/head.min.js"></script>
+  <script src="1_Caja_files/reveal.js-3.3.0.1/js/reveal.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        // Display the page number of the current slide
+        slideNumber: true,
+        // Push each slide change to the browser history
+        history: true,
+        // Vertical centering of slides
+        center: true,
+        // Opens links in an iframe preview overlay
+        previewLinks: true,
+        // Transition style
+        transition: 'slide', // none/fade/slide/convex/concave/zoom
+        // Transition style for full page slide backgrounds
+        backgroundTransition: 'default', // none/fade/slide/convex/concave/zoom
+
+
+
+        // Optional reveal.js plugins
+        dependencies: [
+        ]
+      });
+    </script>
+  <!-- dynamically load mathjax for compatibility with self-contained -->
+  <script>
+    (function () {
+      var script = document.createElement("script");
+      script.type = "text/javascript";
+      script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+      document.getElementsByTagName("head")[0].appendChild(script);
+    })();
+  </script>
+
+<script>
+  (function() {
+    if (window.jQuery) {
+      Reveal.addEventListener( 'slidechanged', function(event) {  
+        window.jQuery(event.previousSlide).trigger('hidden');
+        window.jQuery(event.currentSlide).trigger('shown');
+      });
+    }
+  })();
+</script>
+
+
+  </body>
+</html>
