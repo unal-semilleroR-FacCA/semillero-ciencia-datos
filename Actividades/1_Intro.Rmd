@@ -1,0 +1,225 @@
+---
+output: 
+  revealjs::revealjs_presentation:
+    theme: simple
+    highlight: haddock
+    center: true
+    transition: slide
+    css: estilo.css
+    self_contained: false
+    reveal_options:
+      slideNumber: true
+      previewLinks: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE,
+                      warning = FALSE,
+                      message = FALSE,
+                      error = FALSE,
+                      fig.align = "center",
+                      fig.width = 7.5,
+                      fig.height = 5.5)
+```
+
+# Semillero de R - FacCA {data-background="fondo1.png"}
+
+# 1. Caja de herramientas del analista de datos {data-background="caja2.png"}
+
+## {data-background="caja2.png"}
+
+  - Lenguaje R
+  - IDE RStudio
+  - Git
+  - Github
+  - Markdown (Rmarkdown)
+
+# Lenguaje R {data-background="lengR.png"}
+
+## Características de R {data-background="lengR.png"}
+
+  - Útil para administración, gestión e integración de datos.
+  - Capacidad de graficación robusta.
+  - Comunidad dinámica de R.
+  - Sistema basado en bibliotecas.
+  - [Software libre](https://es.wikipedia.org/wiki/Software_libre) 
+  - [Descargar R.](https://cran.r-project.org/)
+
+## GUI de R {data-background="lengR.png"}
+
+```{r, out.width="670", out.height="550", fig.align='left'}
+knitr::include_graphics("01-RConsole.jpg")
+```
+
+# RStudio {data-background="lrstudio.png"}
+
+## Caracterísitcas de RStudio {data-background="lrstudio.png"}
+
+  - Entorno de desarrollo integrado (IDE).
+  - Interactividad.
+  - Facilita la investigación reproducible.
+  - Permite la implementación de otros lenguajes de programación.
+  - Permite control de versiones (Git).
+  - [Descargar RStudio.](https://www.rstudio.com/products/rstudio/download/)
+
+## IDE RStudio {data-background="lrstudio.png"}
+
+```{r, out.width="760", out.height="550", fig.align='left'}
+knitr::include_graphics("IDERS.png")
+```
+
+# Git {data-background="git2.png"}
+
+## Diseñador de Git {data-background="git2.png"}
+
+```{r, out.width="420", out.height="380", fig.align='left'}
+knitr::include_graphics("linus.jpeg")
+```
+
+[Linus Benedict Torvalds.](https://es.wikipedia.org/wiki/Linus_Torvalds)
+
+## ¿Qué es control de versiones? {data-background="git2.png"}
+
+<q>"El control de versiones es un sistema que registra cambios en un archivo o conjunto de archivos a lo largo del tiempo para que pueda recuperar versiones específicas más tarde."</q> [Fuente.](https://git-scm.com/book/en/v2/Getting-Started-About-Version-Control)
+
+## ¿Qué es Git? {data-background="git2.png"}
+
+<q>"Git es un sistema de control de versiones distribuidas de código abierto y gratuito diseñado para manejar todo, desde proyectos pequeños a muy grandes, con velocidad y eficiencia."</q> [Fuente](https://git-scm.com/)
+
+## Control de versiones {data-background="git2.png"}
+
+```{r, out.width="700", out.height="550", fig.align='left'}
+knitr::include_graphics("git3.png")
+```
+
+## Bondades {data-background="git2.png"}
+
+  - <textred>Mejoras compartidas.</textred>
+  - Administración de proyectos remotos (web).
+  - Control de código abierto.
+  - Disponible para todos.
+
+## Descargar e instalar Git {data-background="git2.png"}
+
+  - [Descargar Git](https://git-scm.com/downloads)
+  - **Windows:**
+      - Instalar Git Bash para Windows.
+      - Ejecutar Git Bash.
+
+# Github {data-background="github2.png"}
+
+## ¿Qué es Github? {data-background="github2.png"}
+
+<q>"GitHub es una plataforma de desarrollo inspirada en la forma en que trabajas. Desde el código abierto hasta el del negocio, puede alojar y revisar el código, administrar proyectos y crear software junto con 28 millones de desarrolladores."</q> [Fuente.](https://github.com/)
+
+## Registrarse en Github {data-background="github2.png"}
+
+```{r, out.width="700", out.height="550", fig.align='left', fig.cap="https://github.com/"}
+knitr::include_graphics("github_web.png")
+```
+
+## Configuración de Git {data-background="github2.png"}
+
+  - Configurar nombre de usuario y contraseña:
+
+```
+git config --global user.name "Your Name Here"
+git config --global user.email "your_email@example.com"
+```
+
+  - Verificar nombre de usuario y contraseña:
+  
+```
+git config --list
+```
+# Markdown {data-background="markdown2.png"}
+
+## ¿Qué es Markdown? {data-background="markdown2.png"}
+
+<q>"Markdown es un lenguaje de marcado ligero creado por John Gruber que trata de conseguir la máxima legibilidad y facilidad de publicación tanto en su forma de entrada como de salida, inspirándose en muchas convenciones existentes para marcar mensajes de correo electrónico usando texto plano."</q>
+
+## Elementos básicos de Markdown {data-background="markdown2.png"}
+
+## Títulos o encabezados {data-background="markdown2.png"}
+  
+```
+# Título 1
+
+## Título 2
+
+### Título 3
+```
+
+## Viñetas {data-background="markdown2.png"}
+  
+```
+  - Viñeta 1
+  - Viñeta 2
+      - Subviñeta 2.1
+  - Viñeta 3
+
+  * Viñeta 1
+  * Viñeta 2
+      * Subviñeta 2.1
+  * Viñeta 3
+  
+  + Viñeta 1
+  + Viñeta 2
+      + Subviñeta 2.1
+  + Viñeta 3  
+```
+
+## Insertar imagen {data-background="markdown2.png"}
+
+```
+![](imagen.png)  
+```
+
+## Insertar hipervínculo {data-background="markdown2.png"}
+
+  - **Primera forma:**
+
+```
+https://es.wikipedia.org/wiki/Git 
+```
+
+  - **Segunda forma:**
+
+```
+[Git Wikipedia](https://es.wikipedia.org/wiki/Git)  
+```
+
+## Opciones de texto {data-background="markdown2.png"}
+
+  - **Cursiva:**
+
+```
+*Texto*
+_Texto_
+```
+
+  - **Negrilla:**
+
+```
+**Texto**
+__Texto__
+```
+  
+  - **Negrilla cursiva:**
+  
+```
+***Texto***
+___Texto___
+``` 
+
+# Actividad {data-background="github2.png"}
+
+## Actividad 1
+
+  - Crear cuenta en Github.
+  - Descargar e instalar Git.
+  - Instalar R.
+  - Instalar RStudio.
+  - Crear un repositorio en Github.
+  - Clonar el repsitorio a través de RStudio.
+  - <textblue>Crear documento Rmarkdown.</textblue>
