@@ -33,6 +33,7 @@ knitr::opts_chunk$set(echo = TRUE,
   - `#:` comentario.
   - `<-:` asignación.
   - `help()` o `?`: sistema de ayudas en R.
+  - `getwd():` obtener el directorio de trabajo.
   - Ejecutar código `CTRL + Enter`.
   - Limpiar consola `CTRL + L`.
 
@@ -244,8 +245,8 @@ prop.table(table(factor2)) # Frecuencia relativa
 ## Ejemplo {data-background="lengR.png"}
 
 ```{r, collapse=TRUE}
-mi.lista1 <- list(a1 = c(1, 2, 3, 4), a2 = c("Rojo", "Verde"),
-                  a3 = factor(x = c("Hombre", "Mujer", "Hombre")))
+mi.lista1 <- list(a1 = c(1, 2), a2 = c("Rojo", "Verde"),
+                  a3 = factor(x = c("Hombre", "Mujer")))
 mi.lista1
 class(mi.lista1)
 length(mi.lista1)
@@ -254,92 +255,268 @@ names(mi.lista1)
 
 ## Data frame {data-background="lengR.png"}
 
+  - Función `data.frame()` permite generar marcos de datos (bases de datos).
+  - Los marcos de datos poseen nombres, longitud y dimensión.
+  - **Características:**
+      - Permite almacenar datos de diferente tipo.
+      - Cada columna representa una variable (vector).
+      - Cada fila es una observación, registro o individuo.
+      - Todas las variables deben tener la misma longitud.
+      - Las bases de datos se pueden crear, importar o utilizar las que trae R por defecto (`data()`).
+      
+## {data-background="lengR.png"}
+
+  - La función `str()` es de gran utilidad para observar la estructura interna de un objeto (en este caso de una base de datos).
+  - El operador `$` permitirá elegir variables de la base de datos.
+  - El operador `$` también facilitará la agregación de variables.
+  - La función `head()` permite mostrar un número determinado de datos iniciales.
+  - La función `tail()` permite mostrar un número determinado de datos finales. 
+      
 ## Ejemplo {data-background="lengR.png"}
+
+```{r, collapse=TRUE}
+df1 <- data.frame(Nombre = c("Juan", "Pedro", "Laura", "Sara"),
+                  Edd = c(12, 16, 25, 30),
+                  genero = c("M", "M", "F", "F"),
+                  edad2 = c("Niño", "Joven", "Joven adulto", "Joven adulto"))
+df1
+```
+
+## {data-background="lengR.png"}
+
+```{r, collapse=TRUE}
+# Estructura interna de la base de datos
+str(df1)
+
+# Imprimir la variable edad2
+df1$edad2
+```
+
+## {data-background="lengR.png"}
+
+```{r, collapse=TRUE}
+# Dimensiones de la base de datos
+dim(df1)
+
+# Longitud de la base de datos
+length(df1)
+
+# Nombres de variables
+names(df1)
+
+# Nombres de individuos
+rownames(df1)
+```
+
+## {data-background="lengR.png"}
+
+```{r, collapse=TRUE}
+# Nueva variable con el número de hermanos
+df1$hermanos <- c(1, 0, 3, 2)
+df1
+
+# Editando los nombres de las variables
+names(df1) <- c("Nombre", "Edad", "Género", "Edad2", "Hermanos")
+head(df1, n = 1)
+tail(df1, n = 1)
+```
 
 # Coerción {data-background="lengR.png"}
 
 ## {data-background="lengR.png"}
 
-  - **implícita:**  
-  - **explícita:**  
-      - `as.numeric():`
-      - `as.integer():`
-      - `as.character():`
-      - `as.logical():`
-      - `as.complex():`
-      - `as.vector():`
-      - `as.matrix():`
-      - `as.factor():`
-      - `as.list():`
-      - `as.data.frame():`
+  - **implícita:** conversión automática.   
+  - **explícita:** conversión dirigida.  
+      - `as.numeric():` conversión a numérico.
+      - `as.integer():` conversión a entero.
+      - `as.character():` conversión a caracter.
+      - `as.logical():` conversión a lógico.
+      - `as.complex():` conversión a complejo.
+      - `as.vector():` conversión a vector.
+      - `as.matrix():` conversión a matrix.
+      - `as.factor():` conversión a factor.
+      - `as.list():` conversión a lista.
+      - `as.data.frame():` conversión a base de datos.
 
 ## Ejemplo {data-background="lengR.png"}
+
+```{r, collapse=TRUE}
+# Implícita
+coer.imp <- c(2, "Texto", TRUE)
+coer.imp
+class(coer.imp)
+
+# Explícita
+as.numeric(coer.imp)
+as.logical(coer.imp)
+df2 <- as.data.frame(mi.lista1)
+df2
+```
 
 # Subconjuntos {data-background="lengR.png"}
 
 ## {data-background="lengR.png"}
 
-  - `[]:`
-  - `[[]]:`
-  - `$:`
-  - Función `subset():`
+  - `[]:` operador para obtener subconjuntos de diferentes objetos (usualmente vectores, matrices y bases de datos).
+  - `[[]]:` operador para obtener subconjuntos de diferentes objetos (usualmente listas y bases de datos).
+  - `$:` operador que permite acceder a las variables de una lista o base de datos.
+  - Función `subset():` suconjuntos con determinadas condiciones de filtrado.
   
 ## Ejemplo {data-background="lengR.png"}
+
+```{r, collapse=TRUE}
+# Subconjuntos de vectores
+prueba <- c(2, 4, 6, 20, 50)
+prueba[1]
+prueba[3:length(prueba)]
+prueba[prueba >= 5]
+```
+
+## {data-background="lengR.png"}
+
+```{r, collapse=TRUE}
+# Subconjuntos de matrices
+prueba2 <- matrix(data = c(10, 15, 20, 50), nrow = 2, ncol = 2)
+prueba2
+prueba2[1]
+prueba2[2, 2] # Fila 2 - Columna 2
+prueba2[1, ]  # Fila 1 - Todas las columnas
+prueba2[, 1]  # Todas las filas - Columna 1
+```
+
+## {data-background="lengR.png"}
+
+```{r, collapse=TRUE}
+# Subconjuntos de listas
+mi.lista2 <- list(v1 = c(1:10), v2 = c("Hola mundo"), v3 = c(TRUE, FALSE))
+mi.lista2$v1      # Imprime la variable "v1" sin el nombre
+mi.lista2[1]      # Imprime la variable "v1" con el nombre
+mi.lista2[[1]]    # Imprime la variable "v1" sin el nombre
+mi.lista2[[1]][1] # Imprime el primer dato de la variable "v1"
+mi.lista2$v1[1]   # Imprime el primer dato de la variable "v1"
+```
+  
+## {data-background="lengR.png"}
+
+```{r, collapse=TRUE}
+# Subconjuntos de bases de datos
+df.iris <- iris
+head(df.iris, n = 3)
+df.iris$Sepal.Length[1:3]
+df.iris[[1]][1:3]
+```
   
 # Concatenar datos
 
 ## {data-background="lengR.png"}
 
-  - `cbind():`
-  - `rbind():`
+  - `cbind():` concatenar por columna.
+  - `rbind():` concatenar por fila.
 
 ## Ejemplo {data-background="lengR.png"}
+
+```{r, collapse=TRUE}
+# Base de datos
+df3 <- data.frame(Var1 = c(1:5), Var2 = c("A", "B", "C", "D", "E"))
+df3
+```
+
+## {data-background="lengR.png"}
+
+```{r, collapse=TRUE}
+# Agregando columna
+df3.1 <- cbind(df3, Var3 = c("Norte", "Sur", "Sur", "Oriente", "Sur"))
+df3.1
+```
+
+## {data-background="lengR.png"}
+
+```{r, collapse=TRUE}
+# Agregando fila
+fila.nueva <- data.frame(Var1 = 6, Var2 = "F", Var3 = "Occidente")
+df3.2 <- rbind(df3.1, fila.nueva)
+df3.2
+```
 
 # Lectura de datos
 
 ## {data-background="lengR.png"}
 
   - **Funciones:**
-      - `read.csv():`
-      - `read.csv2():`
-      - `read.table():`    
+      - `read.csv():` valores separados por comas.
+      - `read.csv2():` valores separados por punto y coma.
+      - `read.table():` valores separados por espacios en blanco.    
 
 ## Ejemplo {data-background="lengR.png"}
+
+  - [Colocaciones de crédito sector agropecuario - Colombia 2017.](https://www.datos.gov.co/Agricultura-y-Desarrollo-Rural/Colocaciones-De-Credito-Sector-Agropecuario-2017/izjc-stkw)
+
+```{r, echo=FALSE}
+creditos <- read.csv("Datos/Colocaciones_De_Credito_Sector_Agropecuario_2017.csv")
+```
+
+```{r, eval=FALSE}
+# Lectura de datos
+creditos <- read.csv("Colocaciones_De_Credito_Sector_Agropecuario_2017.csv",
+                     sep = ",", encoding = "UTF-8")
+```
+
+```{r, collapse=TRUE}
+# Base de datos
+creditos[1:5, 1:6]
+```
 
 # Escritura de datos
 
 ## {data-background="lengR.png"}
 
 - **Funciones:**
-      - `write.csv():`
-      - `write.csv2():`
-      - `write.table():`
+      - `write.csv()`
+      - `write.csv2()`
+      - `write.table()`
 
 ## Ejemplo {data-background="lengR.png"}
+
+```{r, eval=FALSE}
+write.csv(x = creditos, file = "Creditos_Agro2017.csv", row.names = FALSE)
+```
 
 # Funciones de uso común en R
 
 ## {data-background="lengR.png"}
 
-  - `help()` o `?`
-  - `str():`
-  - `class():`
-  - `names():`
-  - `colnames():`
-  - `rownames():`
-  - `summary():`
-  - `length():`
-  - `dim():`
-  - `is.na():`
-  - `is.nan():`
+  - `help()` o `?`: ayudas en R.
+  - `str():` estructura interna de un objeto.
+  - `class():` clase atómica.
+  - `names():` nombres de variables.
+  - `colnames():` nombres de columnas.
+  - `rownames():` nombres de filas.
+  - `summary():` resumen numérico.
+  - `length():` longitud.
+  - `dim():` dimensión.
+  - `is.na():` valores `NA` (no disponibles).
+  - `is.nan():` valores `NaN` (no definido).
   
-## Ejemplo {data-background="lengR.png"}
-  
-# Actividad 2
+# Actividad {data-background="lengR.png"}
+
+## Actividad 2 {data-background="lengR.png"}
+
+Con la base de datos de créditos agropecuarios usted debe realizar lo siguiente:
+
+  1. Crear un nuevo documento *Rmarkdown* con título ***"Actividad 2"*** y guardarlo.
+  2. Leer la base de datos en este documento.
+  3. ¿Qué estructura interna tiene el marco de datos?
+  4. ¿Cuál es la dimensión de la base de datos?
+  5. Crear una nueva variable llamada ***"creditos2"*** con las siguientes condiciones:
+      + Mantener las columnas `Mes`, `Tipo Productor`, `Valor inversión`, `Departamento`, `Plazo` y `Género`.
+      + Mantener filas con valor de inversión mayores a 0.
 
 ## {data-background="lengR.png"}
 
-```{r}
-head(iris, n = 8)
-```
-
+  6. Cambie los nombres de las variables de la nueva base de datos.    
+  7. Oberve la estructura interna de la nueva base de datos y de ser necesario aplique la conversión a las que considere pertinente.
+  8. ¿Existe igual número de hombres y mujeres con créditos agropecuarios para el año 2017?
+  9. ¿Cómo es la proporción de créditos para el tipo de productor?
+  10. ¿En qué mes se presenta el mayor número de créditos en Antioquia?
+  
+**Nota:** se sugiere crear el documento *.html* e incorporarlo en su perfil de github desde RStudio.  

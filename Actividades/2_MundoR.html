@@ -494,6 +494,7 @@ document.getElementsByTagName('head')[0].appendChild(style);
 <li><code>#:</code> comentario.</li>
 <li><code>&lt;-:</code> asignación.</li>
 <li><code>help()</code> o <code>?</code>: sistema de ayudas en R.</li>
+<li><code>getwd():</code> obtener el directorio de trabajo.</li>
 <li>Ejecutar código <code>CTRL + Enter</code>.</li>
 <li>Limpiar consola <code>CTRL + L</code>.</li>
 </ul>
@@ -721,17 +722,17 @@ factor2 &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class
 </ul>
 </section><section id="ejemplo-8" class="slide level2" data-background="lengR.png">
 <h2>Ejemplo</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mi.lista1 &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">a1 =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>), <span class="dt">a2 =</span> <span class="kw">c</span>(<span class="st">&quot;Rojo&quot;</span>, <span class="st">&quot;Verde&quot;</span>),
-                  <span class="dt">a3 =</span> <span class="kw">factor</span>(<span class="dt">x =</span> <span class="kw">c</span>(<span class="st">&quot;Hombre&quot;</span>, <span class="st">&quot;Mujer&quot;</span>, <span class="st">&quot;Hombre&quot;</span>)))
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mi.lista1 &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">a1 =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>), <span class="dt">a2 =</span> <span class="kw">c</span>(<span class="st">&quot;Rojo&quot;</span>, <span class="st">&quot;Verde&quot;</span>),
+                  <span class="dt">a3 =</span> <span class="kw">factor</span>(<span class="dt">x =</span> <span class="kw">c</span>(<span class="st">&quot;Hombre&quot;</span>, <span class="st">&quot;Mujer&quot;</span>)))
 mi.lista1
 ## $a1
-## [1] 1 2 3 4
+## [1] 1 2
 ## 
 ## $a2
 ## [1] &quot;Rojo&quot;  &quot;Verde&quot;
 ## 
 ## $a3
-## [1] Hombre Mujer  Hombre
+## [1] Hombre Mujer 
 ## Levels: Hombre Mujer
 <span class="kw">class</span>(mi.lista1)
 ## [1] &quot;list&quot;
@@ -741,107 +742,316 @@ mi.lista1
 ## [1] &quot;a1&quot; &quot;a2&quot; &quot;a3&quot;</code></pre></div>
 </section><section id="data-frame" class="slide level2" data-background="lengR.png">
 <h2>Data frame</h2>
-</section><section id="ejemplo-9" class="slide level2" data-background="lengR.png">
-<h2>Ejemplo</h2>
-</section></section>
-<section><section id="coercion" class="titleslide slide level1" data-background="lengR.png"><h1>Coerción</h1></section><section id="section-4" class="slide level2" data-background="lengR.png">
+<ul>
+<li>Función <code>data.frame()</code> permite generar marcos de datos (bases de datos).</li>
+<li>Los marcos de datos poseen nombres, longitud y dimensión.</li>
+<li><strong>Características:</strong>
+<ul>
+<li>Permite almacenar datos de diferente tipo.</li>
+<li>Cada columna representa una variable (vector).</li>
+<li>Cada fila es una observación, registro o individuo.</li>
+<li>Todas las variables deben tener la misma longitud.</li>
+<li>Las bases de datos se pueden crear, importar o utilizar las que trae R por defecto (<code>data()</code>).</li>
+</ul></li>
+</ul>
+</section><section id="section-4" class="slide level2" data-background="lengR.png">
 <h2></h2>
 <ul>
-<li><strong>implícita:</strong><br />
-</li>
-<li><strong>explícita:</strong>
+<li>La función <code>str()</code> es de gran utilidad para observar la estructura interna de un objeto (en este caso de una base de datos).</li>
+<li>El operador <code>$</code> permitirá elegir variables de la base de datos.</li>
+<li>El operador <code>$</code> también facilitará la agregación de variables.</li>
+<li>La función <code>head()</code> permite mostrar un número determinado de datos iniciales.</li>
+<li>La función <code>tail()</code> permite mostrar un número determinado de datos finales.</li>
+</ul>
+</section><section id="ejemplo-9" class="slide level2" data-background="lengR.png">
+<h2>Ejemplo</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df1 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">Nombre =</span> <span class="kw">c</span>(<span class="st">&quot;Juan&quot;</span>, <span class="st">&quot;Pedro&quot;</span>, <span class="st">&quot;Laura&quot;</span>, <span class="st">&quot;Sara&quot;</span>),
+                  <span class="dt">Edd =</span> <span class="kw">c</span>(<span class="dv">12</span>, <span class="dv">16</span>, <span class="dv">25</span>, <span class="dv">30</span>),
+                  <span class="dt">genero =</span> <span class="kw">c</span>(<span class="st">&quot;M&quot;</span>, <span class="st">&quot;M&quot;</span>, <span class="st">&quot;F&quot;</span>, <span class="st">&quot;F&quot;</span>),
+                  <span class="dt">edad2 =</span> <span class="kw">c</span>(<span class="st">&quot;Niño&quot;</span>, <span class="st">&quot;Joven&quot;</span>, <span class="st">&quot;Joven adulto&quot;</span>, <span class="st">&quot;Joven adulto&quot;</span>))
+df1
+##   Nombre Edd genero        edad2
+## 1   Juan  12      M         Niño
+## 2  Pedro  16      M        Joven
+## 3  Laura  25      F Joven adulto
+## 4   Sara  30      F Joven adulto</code></pre></div>
+</section><section id="section-5" class="slide level2" data-background="lengR.png">
+<h2></h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Estructura interna de la base de datos</span>
+<span class="kw">str</span>(df1)
+## &#39;data.frame&#39;:    4 obs. of  4 variables:
+##  $ Nombre: Factor w/ 4 levels &quot;Juan&quot;,&quot;Laura&quot;,..: 1 3 2 4
+##  $ Edd   : num  12 16 25 30
+##  $ genero: Factor w/ 2 levels &quot;F&quot;,&quot;M&quot;: 2 2 1 1
+##  $ edad2 : Factor w/ 3 levels &quot;Joven&quot;,&quot;Joven adulto&quot;,..: 3 1 2 2
+
+<span class="co"># Imprimir la variable edad2</span>
+df1<span class="op">$</span>edad2
+## [1] Niño         Joven        Joven adulto Joven adulto
+## Levels: Joven Joven adulto Niño</code></pre></div>
+</section><section id="section-6" class="slide level2" data-background="lengR.png">
+<h2></h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Dimensiones de la base de datos</span>
+<span class="kw">dim</span>(df1)
+## [1] 4 4
+
+<span class="co"># Longitud de la base de datos</span>
+<span class="kw">length</span>(df1)
+## [1] 4
+
+<span class="co"># Nombres de variables</span>
+<span class="kw">names</span>(df1)
+## [1] &quot;Nombre&quot; &quot;Edd&quot;    &quot;genero&quot; &quot;edad2&quot;
+
+<span class="co"># Nombres de individuos</span>
+<span class="kw">rownames</span>(df1)
+## [1] &quot;1&quot; &quot;2&quot; &quot;3&quot; &quot;4&quot;</code></pre></div>
+</section><section id="section-7" class="slide level2" data-background="lengR.png">
+<h2></h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Nueva variable con el número de hermanos</span>
+df1<span class="op">$</span>hermanos &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">3</span>, <span class="dv">2</span>)
+df1
+##   Nombre Edd genero        edad2 hermanos
+## 1   Juan  12      M         Niño        1
+## 2  Pedro  16      M        Joven        0
+## 3  Laura  25      F Joven adulto        3
+## 4   Sara  30      F Joven adulto        2
+
+<span class="co"># Editando los nombres de las variables</span>
+<span class="kw">names</span>(df1) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Nombre&quot;</span>, <span class="st">&quot;Edad&quot;</span>, <span class="st">&quot;Género&quot;</span>, <span class="st">&quot;Edad2&quot;</span>, <span class="st">&quot;Hermanos&quot;</span>)
+<span class="kw">head</span>(df1, <span class="dt">n =</span> <span class="dv">1</span>)
+##   Nombre Edad Género Edad2 Hermanos
+## 1   Juan   12      M  Niño        1
+<span class="kw">tail</span>(df1, <span class="dt">n =</span> <span class="dv">1</span>)
+##   Nombre Edad Género        Edad2 Hermanos
+## 4   Sara   30      F Joven adulto        2</code></pre></div>
+</section></section>
+<section><section id="coercion" class="titleslide slide level1" data-background="lengR.png"><h1>Coerción</h1></section><section id="section-8" class="slide level2" data-background="lengR.png">
+<h2></h2>
 <ul>
-<li><code>as.numeric():</code></li>
-<li><code>as.integer():</code></li>
-<li><code>as.character():</code></li>
-<li><code>as.logical():</code></li>
-<li><code>as.complex():</code></li>
-<li><code>as.vector():</code></li>
-<li><code>as.matrix():</code></li>
-<li><code>as.factor():</code></li>
-<li><code>as.list():</code></li>
-<li><code>as.data.frame():</code></li>
+<li><strong>implícita:</strong> conversión automática.<br />
+</li>
+<li><strong>explícita:</strong> conversión dirigida.
+<ul>
+<li><code>as.numeric():</code> conversión a numérico.</li>
+<li><code>as.integer():</code> conversión a entero.</li>
+<li><code>as.character():</code> conversión a caracter.</li>
+<li><code>as.logical():</code> conversión a lógico.</li>
+<li><code>as.complex():</code> conversión a complejo.</li>
+<li><code>as.vector():</code> conversión a vector.</li>
+<li><code>as.matrix():</code> conversión a matrix.</li>
+<li><code>as.factor():</code> conversión a factor.</li>
+<li><code>as.list():</code> conversión a lista.</li>
+<li><code>as.data.frame():</code> conversión a base de datos.</li>
 </ul></li>
 </ul>
 </section><section id="ejemplo-10" class="slide level2" data-background="lengR.png">
 <h2>Ejemplo</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Implícita</span>
+coer.imp &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">2</span>, <span class="st">&quot;Texto&quot;</span>, <span class="ot">TRUE</span>)
+coer.imp
+## [1] &quot;2&quot;     &quot;Texto&quot; &quot;TRUE&quot;
+<span class="kw">class</span>(coer.imp)
+## [1] &quot;character&quot;
+
+<span class="co"># Explícita</span>
+<span class="kw">as.numeric</span>(coer.imp)
+## [1]  2 NA NA
+<span class="kw">as.logical</span>(coer.imp)
+## [1]   NA   NA TRUE
+df2 &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(mi.lista1)
+df2
+##   a1    a2     a3
+## 1  1  Rojo Hombre
+## 2  2 Verde  Mujer</code></pre></div>
 </section></section>
-<section><section id="subconjuntos" class="titleslide slide level1" data-background="lengR.png"><h1>Subconjuntos</h1></section><section id="section-5" class="slide level2" data-background="lengR.png">
+<section><section id="subconjuntos" class="titleslide slide level1" data-background="lengR.png"><h1>Subconjuntos</h1></section><section id="section-9" class="slide level2" data-background="lengR.png">
 <h2></h2>
 <ul>
-<li><code>[]:</code></li>
-<li><code>[[]]:</code></li>
-<li><code>$:</code></li>
-<li>Función <code>subset():</code></li>
+<li><code>[]:</code> operador para obtener subconjuntos de diferentes objetos (usualmente vectores, matrices y bases de datos).</li>
+<li><code>[[]]:</code> operador para obtener subconjuntos de diferentes objetos (usualmente listas y bases de datos).</li>
+<li><code>$:</code> operador que permite acceder a las variables de una lista o base de datos.</li>
+<li>Función <code>subset():</code> suconjuntos con determinadas condiciones de filtrado.</li>
 </ul>
 </section><section id="ejemplo-11" class="slide level2" data-background="lengR.png">
 <h2>Ejemplo</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Subconjuntos de vectores</span>
+prueba &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">6</span>, <span class="dv">20</span>, <span class="dv">50</span>)
+prueba[<span class="dv">1</span>]
+## [1] 2
+prueba[<span class="dv">3</span><span class="op">:</span><span class="kw">length</span>(prueba)]
+## [1]  6 20 50
+prueba[prueba <span class="op">&gt;=</span><span class="st"> </span><span class="dv">5</span>]
+## [1]  6 20 50</code></pre></div>
+</section><section id="section-10" class="slide level2" data-background="lengR.png">
+<h2></h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Subconjuntos de matrices</span>
+prueba2 &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dt">data =</span> <span class="kw">c</span>(<span class="dv">10</span>, <span class="dv">15</span>, <span class="dv">20</span>, <span class="dv">50</span>), <span class="dt">nrow =</span> <span class="dv">2</span>, <span class="dt">ncol =</span> <span class="dv">2</span>)
+prueba2
+##      [,1] [,2]
+## [1,]   10   20
+## [2,]   15   50
+prueba2[<span class="dv">1</span>]
+## [1] 10
+prueba2[<span class="dv">2</span>, <span class="dv">2</span>] <span class="co"># Fila 2 - Columna 2</span>
+## [1] 50
+prueba2[<span class="dv">1</span>, ]  <span class="co"># Fila 1 - Todas las columnas</span>
+## [1] 10 20
+prueba2[, <span class="dv">1</span>]  <span class="co"># Todas las filas - Columna 1</span>
+## [1] 10 15</code></pre></div>
+</section><section id="section-11" class="slide level2" data-background="lengR.png">
+<h2></h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Subconjuntos de listas</span>
+mi.lista2 &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">v1 =</span> <span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>), <span class="dt">v2 =</span> <span class="kw">c</span>(<span class="st">&quot;Hola mundo&quot;</span>), <span class="dt">v3 =</span> <span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="ot">FALSE</span>))
+mi.lista2<span class="op">$</span>v1      <span class="co"># Imprime la variable &quot;v1&quot; sin el nombre</span>
+##  [1]  1  2  3  4  5  6  7  8  9 10
+mi.lista2[<span class="dv">1</span>]      <span class="co"># Imprime la variable &quot;v1&quot; con el nombre</span>
+## $v1
+##  [1]  1  2  3  4  5  6  7  8  9 10
+mi.lista2[[<span class="dv">1</span>]]    <span class="co"># Imprime la variable &quot;v1&quot; sin el nombre</span>
+##  [1]  1  2  3  4  5  6  7  8  9 10
+mi.lista2[[<span class="dv">1</span>]][<span class="dv">1</span>] <span class="co"># Imprime el primer dato de la variable &quot;v1&quot;</span>
+## [1] 1
+mi.lista2<span class="op">$</span>v1[<span class="dv">1</span>]   <span class="co"># Imprime el primer dato de la variable &quot;v1&quot;</span>
+## [1] 1</code></pre></div>
+</section><section id="section-12" class="slide level2" data-background="lengR.png">
+<h2></h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Subconjuntos de bases de datos</span>
+df.iris &lt;-<span class="st"> </span>iris
+<span class="kw">head</span>(df.iris, <span class="dt">n =</span> <span class="dv">3</span>)
+##   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+## 1          5.1         3.5          1.4         0.2  setosa
+## 2          4.9         3.0          1.4         0.2  setosa
+## 3          4.7         3.2          1.3         0.2  setosa
+df.iris<span class="op">$</span>Sepal.Length[<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>]
+## [1] 5.1 4.9 4.7
+df.iris[[<span class="dv">1</span>]][<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>]
+## [1] 5.1 4.9 4.7</code></pre></div>
 </section></section>
-<section><section id="concatenar-datos" class="titleslide slide level1"><h1>Concatenar datos</h1></section><section id="section-6" class="slide level2" data-background="lengR.png">
+<section><section id="concatenar-datos" class="titleslide slide level1"><h1>Concatenar datos</h1></section><section id="section-13" class="slide level2" data-background="lengR.png">
 <h2></h2>
 <ul>
-<li><code>cbind():</code></li>
-<li><code>rbind():</code></li>
+<li><code>cbind():</code> concatenar por columna.</li>
+<li><code>rbind():</code> concatenar por fila.</li>
 </ul>
 </section><section id="ejemplo-12" class="slide level2" data-background="lengR.png">
 <h2>Ejemplo</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Base de datos</span>
+df3 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">Var1 =</span> <span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>), <span class="dt">Var2 =</span> <span class="kw">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>, <span class="st">&quot;C&quot;</span>, <span class="st">&quot;D&quot;</span>, <span class="st">&quot;E&quot;</span>))
+df3
+##   Var1 Var2
+## 1    1    A
+## 2    2    B
+## 3    3    C
+## 4    4    D
+## 5    5    E</code></pre></div>
+</section><section id="section-14" class="slide level2" data-background="lengR.png">
+<h2></h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Agregando columna</span>
+df3.<span class="dv">1</span> &lt;-<span class="st"> </span><span class="kw">cbind</span>(df3, <span class="dt">Var3 =</span> <span class="kw">c</span>(<span class="st">&quot;Norte&quot;</span>, <span class="st">&quot;Sur&quot;</span>, <span class="st">&quot;Sur&quot;</span>, <span class="st">&quot;Oriente&quot;</span>, <span class="st">&quot;Sur&quot;</span>))
+df3.<span class="dv">1</span>
+##   Var1 Var2    Var3
+## 1    1    A   Norte
+## 2    2    B     Sur
+## 3    3    C     Sur
+## 4    4    D Oriente
+## 5    5    E     Sur</code></pre></div>
+</section><section id="section-15" class="slide level2" data-background="lengR.png">
+<h2></h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Agregando fila</span>
+fila.nueva &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">Var1 =</span> <span class="dv">6</span>, <span class="dt">Var2 =</span> <span class="st">&quot;F&quot;</span>, <span class="dt">Var3 =</span> <span class="st">&quot;Occidente&quot;</span>)
+df3.<span class="dv">2</span> &lt;-<span class="st"> </span><span class="kw">rbind</span>(df3.<span class="dv">1</span>, fila.nueva)
+df3.<span class="dv">2</span>
+##   Var1 Var2      Var3
+## 1    1    A     Norte
+## 2    2    B       Sur
+## 3    3    C       Sur
+## 4    4    D   Oriente
+## 5    5    E       Sur
+## 6    6    F Occidente</code></pre></div>
 </section></section>
-<section><section id="lectura-de-datos" class="titleslide slide level1"><h1>Lectura de datos</h1></section><section id="section-7" class="slide level2" data-background="lengR.png">
+<section><section id="lectura-de-datos" class="titleslide slide level1"><h1>Lectura de datos</h1></section><section id="section-16" class="slide level2" data-background="lengR.png">
 <h2></h2>
 <ul>
 <li><strong>Funciones:</strong>
 <ul>
-<li><code>read.csv():</code></li>
-<li><code>read.csv2():</code></li>
-<li><code>read.table():</code></li>
+<li><code>read.csv():</code> valores separados por comas.</li>
+<li><code>read.csv2():</code> valores separados por punto y coma.</li>
+<li><code>read.table():</code> valores separados por espacios en blanco.</li>
 </ul></li>
 </ul>
 </section><section id="ejemplo-13" class="slide level2" data-background="lengR.png">
 <h2>Ejemplo</h2>
+<ul>
+<li><a href="https://www.datos.gov.co/Agricultura-y-Desarrollo-Rural/Colocaciones-De-Credito-Sector-Agropecuario-2017/izjc-stkw">Colocaciones de crédito sector agropecuario - Colombia 2017.</a></li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Lectura de datos</span>
+creditos &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;Colocaciones_De_Credito_Sector_Agropecuario_2017.csv&quot;</span>,
+                     <span class="dt">sep =</span> <span class="st">&quot;,&quot;</span>, <span class="dt">encoding =</span> <span class="st">&quot;UTF-8&quot;</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Base de datos</span>
+creditos[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">6</span>]
+##    Año Mes fuente.Colocacion Tipo.Productor Valor.Inversion Colocacion
+## 1 2017   1         SUSTITUTA        MEDIANO               0    1.6e+07
+## 2 2017   1         SUSTITUTA        MEDIANO               0    1.3e+07
+## 3 2017   1         SUSTITUTA        PEQUEÑO               0    5.0e+05
+## 4 2017   1         SUSTITUTA        MEDIANO               0    2.0e+06
+## 5 2017   1         SUSTITUTA        PEQUEÑO               0    3.8e+06</code></pre></div>
 </section></section>
-<section><section id="escritura-de-datos" class="titleslide slide level1"><h1>Escritura de datos</h1></section><section id="section-8" class="slide level2" data-background="lengR.png">
+<section><section id="escritura-de-datos" class="titleslide slide level1"><h1>Escritura de datos</h1></section><section id="section-17" class="slide level2" data-background="lengR.png">
 <h2></h2>
 <ul>
 <li><strong>Funciones:</strong>
 <ul>
-<li><code>write.csv():</code></li>
-<li><code>write.csv2():</code></li>
-<li><code>write.table():</code></li>
+<li><code>write.csv()</code></li>
+<li><code>write.csv2()</code></li>
+<li><code>write.table()</code></li>
 </ul></li>
 </ul>
 </section><section id="ejemplo-14" class="slide level2" data-background="lengR.png">
 <h2>Ejemplo</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">write.csv</span>(<span class="dt">x =</span> creditos, <span class="dt">file =</span> <span class="st">&quot;Creditos_Agro2017.csv&quot;</span>, <span class="dt">row.names =</span> <span class="ot">FALSE</span>)</code></pre></div>
 </section></section>
-<section><section id="funciones-de-uso-comun-en-r" class="titleslide slide level1"><h1>Funciones de uso común en R</h1></section><section id="section-9" class="slide level2" data-background="lengR.png">
+<section><section id="funciones-de-uso-comun-en-r" class="titleslide slide level1"><h1>Funciones de uso común en R</h1></section><section id="section-18" class="slide level2" data-background="lengR.png">
 <h2></h2>
 <ul>
-<li><code>help()</code> o <code>?</code></li>
-<li><code>str():</code></li>
-<li><code>class():</code></li>
-<li><code>names():</code></li>
-<li><code>colnames():</code></li>
-<li><code>rownames():</code></li>
-<li><code>summary():</code></li>
-<li><code>length():</code></li>
-<li><code>dim():</code></li>
-<li><code>is.na():</code></li>
-<li><code>is.nan():</code></li>
+<li><code>help()</code> o <code>?</code>: ayudas en R.</li>
+<li><code>str():</code> estructura interna de un objeto.</li>
+<li><code>class():</code> clase atómica.</li>
+<li><code>names():</code> nombres de variables.</li>
+<li><code>colnames():</code> nombres de columnas.</li>
+<li><code>rownames():</code> nombres de filas.</li>
+<li><code>summary():</code> resumen numérico.</li>
+<li><code>length():</code> longitud.</li>
+<li><code>dim():</code> dimensión.</li>
+<li><code>is.na():</code> valores <code>NA</code> (no disponibles).</li>
+<li><code>is.nan():</code> valores <code>NaN</code> (no definido).</li>
 </ul>
-</section><section id="ejemplo-15" class="slide level2" data-background="lengR.png">
-<h2>Ejemplo</h2>
 </section></section>
-<section><section id="actividad-2" class="titleslide slide level1"><h1>Actividad 2</h1></section><section id="section-10" class="slide level2" data-background="lengR.png">
+<section><section id="actividad" class="titleslide slide level1" data-background="lengR.png"><h1>Actividad</h1></section><section id="actividad-2" class="slide level2" data-background="lengR.png">
+<h2>Actividad 2</h2>
+<p>Con la base de datos de créditos agropecuarios usted debe realizar lo siguiente:</p>
+<ol type="1">
+<li>Crear un nuevo documento <em>Rmarkdown</em> con título <strong><em>“Actividad 2”</em></strong> y guardarlo.</li>
+<li>Leer la base de datos en este documento.</li>
+<li>¿Qué estructura interna tiene el marco de datos?</li>
+<li>¿Cuál es la dimensión de la base de datos?</li>
+<li>Crear una nueva variable llamada <strong><em>“creditos2”</em></strong> con las siguientes condiciones:
+<ul>
+<li>Mantener las columnas <code>Mes</code>, <code>Tipo Productor</code>, <code>Valor inversión</code>, <code>Departamento</code>, <code>Plazo</code> y <code>Género</code>.</li>
+<li>Mantener filas con valor de inversión mayores a 0.</li>
+</ul></li>
+</ol>
+</section><section id="section-19" class="slide level2" data-background="lengR.png">
 <h2></h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(iris, <span class="dt">n =</span> <span class="dv">8</span>)</code></pre></div>
-<pre><code>##   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
-## 1          5.1         3.5          1.4         0.2  setosa
-## 2          4.9         3.0          1.4         0.2  setosa
-## 3          4.7         3.2          1.3         0.2  setosa
-## 4          4.6         3.1          1.5         0.2  setosa
-## 5          5.0         3.6          1.4         0.2  setosa
-## 6          5.4         3.9          1.7         0.4  setosa
-## 7          4.6         3.4          1.4         0.3  setosa
-## 8          5.0         3.4          1.5         0.2  setosa</code></pre>
+<ol start="6" type="1">
+<li>Cambie los nombres de las variables de la nueva base de datos.<br />
+</li>
+<li>Oberve la estructura interna de la nueva base de datos y de ser necesario aplique la conversión a las que considere pertinente.</li>
+<li>¿Existe igual número de hombres y mujeres con créditos agropecuarios para el año 2017?</li>
+<li>¿Cómo es la proporción de créditos para el tipo de productor?</li>
+<li>¿En qué mes se presenta el mayor número de créditos en Antioquia?</li>
+</ol>
+<p><strong>Nota:</strong> se sugiere crear el documento <em>.html</em> e incorporarlo en su perfil de github desde RStudio.</p>
 </section></section>
     </div>
   </div>
