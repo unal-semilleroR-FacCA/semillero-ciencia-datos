@@ -6,7 +6,7 @@ title: "Actividades"
   
   - [0. Bienvenida](/Actividades/0_Bienvenida.html)
   - [1. Caja de herramientas del analista de datos](/Actividades/1_Intro.html)
-  - [2. El maravilloso mundo de R](/Actividades/2_LengR.html)
+  - [2. El maravilloso mundo de R](/Actividades/2_MundoR.html)
   - [3. Proceso de anális de datos (tidyverse)](/Actividades/3_Tidy.html)
   - [4. Visualización y comunicación de resultados](/Actividades/4_Visual.html)
   - [5. Caso práctico de interés](/Actividades/5_Caso1.html)

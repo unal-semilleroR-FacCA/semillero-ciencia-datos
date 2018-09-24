@@ -1,0 +1,345 @@
+---
+output: 
+  revealjs::revealjs_presentation:
+    theme: simple
+    highlight: tango
+    center: true
+    transition: slide
+    css: estilo.css
+    self_contained: false
+    reveal_options:
+      slideNumber: true
+      previewLinks: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE,
+                      warning = FALSE,
+                      message = FALSE,
+                      error = FALSE,
+                      fig.align = "center",
+                      fig.width = 7.5,
+                      fig.height = 5.5)
+```
+
+# Semillero de R - FacCA {data-background="fondo1.png"}
+
+# El maravilloso mundo de R {data-background="lengR.png"}
+
+# Entradas básicas {data-background="lengR.png"}
+
+## {data-background="lengR.png"}
+
+  - `#:` comentario.
+  - `<-:` asignación.
+  - `help()` o `?`: sistema de ayudas en R.
+  - Ejecutar código `CTRL + Enter`.
+  - Limpiar consola `CTRL + L`.
+
+## Ejemplo {data-background="lengR.png"}
+
+```{r}
+# Este es un comentario
+dos <- 2 # Generando nueva variable "dos" que contiene el nùmero 2
+dos # Imprimir el contenido de la variable "dos"
+```
+
+# Operadores {data-background="lengR.png"}
+
+## Aritméticos {data-background="lengR.png"}
+
+  - `+`: suma.
+  - `-`: resta.
+  - `*`: multiplicación.
+  - `/`: división.
+  - `^`: potencia.
+
+## Ejemplo {data-background="lengR.png"}
+
+```{r, collapse=TRUE}
+2 + 2 # Suma
+3 - 5 # Resta
+5 * 5 # Multiplicaciòn
+5 / 5 # División
+2 ^ 2 # Potencia
+```
+
+## Comparación {data-background="lengR.png"}
+
+  - `==`: igualdad.
+  - `!=`: diferencia.
+  - `>`: mayor.
+  - `<`: menor.
+  - `>=`: mayor o igual.
+  - `<=`: menor o igual.
+  - `!`: negación.
+
+## Ejemplo {data-background="lengR.png"}
+
+```{r, collapse=TRUE}
+2 == 2 # Igualdad
+2 != 2 # Diferencia
+2 > 2  # Mayor
+2 < 2  # Menor
+2 >= 2 # Mayor o igual
+2 <= 2 # Menor o igual
+!(2 + 2) == 4 # Negación
+```
+
+## Conjunción y disyunción  {data-background="lengR.png"} 
+  
+  - `&` - `&&`: conjunción.
+  - `|` - `||`: disyunción.
+
+## Ejemplo {data-background="lengR.png"}  
+  
+```{r, collapse=TRUE}
+flores <- c(10, 2, 5)
+frutos <- c(6, 7, 3)
+
+# Conjunción
+(flores > 3) & (frutos <= 2)
+(flores > 3) && (frutos <= 2)
+```
+
+```{r, collapse=TRUE}
+# Disyunción
+(flores > 3) | (frutos <= 2)
+(flores > 3) || (frutos <= 2)
+```
+
+# Tipos de datos en R {data-background="lengR.png"}
+
+## {data-background="lengR.png"}
+
+  - **Numéricos:** `numeric`
+  - **Enteros:** `integer`
+  - **Caracteres:** `character`
+  - **Lógicos:** `logical`
+  - **Complejos:** `complex`
+  
+**Nota:** la función `class()` permite obtener la clase atómica o tipo de dato.  
+
+## Ejemplo {data-background="lengR.png"}
+
+```{r, collapse=TRUE}
+numerico <- 3.5
+entero <- 2L
+caracter <- "Semillero de R"
+logico <- TRUE
+complejo <- 1 + 2i
+```
+
+```{r, collapse=TRUE}
+class(numerico)
+class(entero)
+class(caracter)
+class(logico)
+class(complejo)
+```
+
+# Objetos estructurados {data-background="lengR.png"}
+
+## Vectores {data-background="lengR.png"}
+
+  - Función `vector()` para generar vectores.
+      - Argumentos *mode* y  *length*. 
+          - `(vector(mode = "tipo", length = longitud))` 
+  - Función `c()` para generar vectores.
+  - Los vectores poseen longitud (función `length()`).
+  - **Características:** sólo almacena datos de un mismo tipo.
+
+## Ejemplo {data-background="lengR.png"}
+
+```{r, collapse=TRUE}
+# Vector numérico
+vector.num1 <- vector(mode = "numeric", length = 5)
+vector.num1
+
+# Vector numérico
+vector.num2 <- c(2.5, 1.8, 5)
+vector.num2
+```
+
+```{r, collapse=TRUE}
+class(vector.num1)
+class(vector.num2)
+length(vector.num1)
+```
+
+## Matrices {data-background="lengR.png"}
+
+  - Función `matrix()`
+      - Argumentos *data*, *nrow*, *ncol*, *byrow*...
+  - Las matrices poseen dimensiones (función `dim()`).
+  - Las matrices poseen nombres de filas (`rownames()`).
+  - Las matrices poseen nombres de columnas (`colnames()`).
+  - **Características:** sólo almacena datos de un mismo tipo.     
+
+## Ejemplo {data-background="lengR.png"}
+
+```{r,collapse=TRUE}
+# Matriz por columna
+mi.matriz1 <- matrix(data = c(1, 2, 3, 4), nrow = 2, ncol = 2)
+mi.matriz1
+
+# Matriz por fila
+mi.matriz2 <- matrix(data = c(1, 2, 3, 4), nrow = 2, ncol = 2, byrow = TRUE)
+mi.matriz2
+```
+
+## {data-background="lengR.png"}
+
+```{r, collapse=TRUE}
+# Dimensiones de la matriz
+dim(mi.matriz1)
+
+# Nombres de filas y columnas de la matriz
+rownames(mi.matriz1) <- c("Fila1", "Fila2")
+colnames(mi.matriz1) <- c("Col1", "Col2")
+mi.matriz1
+```
+
+## Factores {data-background="lengR.png"}
+
+  - Función `factor()` para generar factores.
+      - Argumentos *x*, *levels*, *labels*...
+  - Caracteres con jerarquías o niveles. 
+  - Útil para manipular variables categóricas (nominales u ordinales).
+  - La función `levels()` permite observar los niveles de un factor.
+  - Las funciones `table()` y `prop.table()` permiten obtener las frecuencias absolutas y relativas, respectivamente.
+  - Los niveles se organizan por defecto por orden alfabético.
+
+## Ejemplo {data-background="lengR.png"}
+
+```{r, collapse=TRUE}
+# Niveles por defecto
+factor1 <- factor(x = c("Hombre", "Mujer", "Hombre", "Mujer"))
+class(factor1)
+levels(factor1)
+```
+
+```{r, collapse=TRUE}
+# Manipulando los niveles del factor
+factor2 <- factor(x = c("Hombre", "Mujer", "Hombre", "Mujer"),
+                  levels = c("Mujer", "Hombre"))
+class(factor2)
+levels(factor2)
+```
+
+## {data-background="lengR.png"}
+
+```{r, collapse=FALSE}
+table(factor2) # Frecuencia absoluta
+prop.table(table(factor2)) # Frecuencia relativa
+```
+
+## Listas {data-background="lengR.png"}
+
+  - Función `list()` para crear listas.
+  - Las listas poseen longitud.
+  - Las listas poseen nombres de variables (`names()`).
+  - **Características:** permite almacenar cualquier tipo de dato.
+
+## Ejemplo {data-background="lengR.png"}
+
+```{r, collapse=TRUE}
+mi.lista1 <- list(a1 = c(1, 2, 3, 4), a2 = c("Rojo", "Verde"),
+                  a3 = factor(x = c("Hombre", "Mujer", "Hombre")))
+mi.lista1
+class(mi.lista1)
+length(mi.lista1)
+names(mi.lista1)
+```
+
+## Data frame {data-background="lengR.png"}
+
+## Ejemplo {data-background="lengR.png"}
+
+# Coerción {data-background="lengR.png"}
+
+## {data-background="lengR.png"}
+
+  - **implícita:**  
+  - **explícita:**  
+      - `as.numeric():`
+      - `as.integer():`
+      - `as.character():`
+      - `as.logical():`
+      - `as.complex():`
+      - `as.vector():`
+      - `as.matrix():`
+      - `as.factor():`
+      - `as.list():`
+      - `as.data.frame():`
+
+## Ejemplo {data-background="lengR.png"}
+
+# Subconjuntos {data-background="lengR.png"}
+
+## {data-background="lengR.png"}
+
+  - `[]:`
+  - `[[]]:`
+  - `$:`
+  - Función `subset():`
+  
+## Ejemplo {data-background="lengR.png"}
+  
+# Concatenar datos
+
+## {data-background="lengR.png"}
+
+  - `cbind():`
+  - `rbind():`
+
+## Ejemplo {data-background="lengR.png"}
+
+# Lectura de datos
+
+## {data-background="lengR.png"}
+
+  - **Funciones:**
+      - `read.csv():`
+      - `read.csv2():`
+      - `read.table():`    
+
+## Ejemplo {data-background="lengR.png"}
+
+# Escritura de datos
+
+## {data-background="lengR.png"}
+
+- **Funciones:**
+      - `write.csv():`
+      - `write.csv2():`
+      - `write.table():`
+
+## Ejemplo {data-background="lengR.png"}
+
+# Funciones de uso común en R
+
+## {data-background="lengR.png"}
+
+  - `help()` o `?`
+  - `str():`
+  - `class():`
+  - `names():`
+  - `colnames():`
+  - `rownames():`
+  - `summary():`
+  - `length():`
+  - `dim():`
+  - `is.na():`
+  - `is.nan():`
+  
+## Ejemplo {data-background="lengR.png"}
+  
+# Actividad 2
+
+## {data-background="lengR.png"}
+
+```{r}
+head(iris, n = 8)
+```
+

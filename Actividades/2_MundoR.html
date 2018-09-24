@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <title></title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="2_MundoR_files/reveal.js-3.3.0.1/css/reveal.css"/>
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; background-color: #f8f8f8; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+pre, code { background-color: #f8f8f8; }
+code > span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code > span.dt { color: #204a87; } /* DataType */
+code > span.dv { color: #0000cf; } /* DecVal */
+code > span.bn { color: #0000cf; } /* BaseN */
+code > span.fl { color: #0000cf; } /* Float */
+code > span.ch { color: #4e9a06; } /* Char */
+code > span.st { color: #4e9a06; } /* String */
+code > span.co { color: #8f5902; font-style: italic; } /* Comment */
+code > span.ot { color: #8f5902; } /* Other */
+code > span.al { color: #ef2929; } /* Alert */
+code > span.fu { color: #000000; } /* Function */
+code > span.er { color: #a40000; font-weight: bold; } /* Error */
+code > span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #000000; } /* Constant */
+code > span.sc { color: #000000; } /* SpecialChar */
+code > span.vs { color: #4e9a06; } /* VerbatimString */
+code > span.ss { color: #4e9a06; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #000000; } /* Variable */
+code > span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code > span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code > span.ex { } /* Extension */
+code > span.at { color: #c4a000; } /* Attribute */
+code > span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code > span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="2_MundoR_files/reveal.js-3.3.0.1/css/theme/simple.css" id="theme">
+
+
+  <!-- some tweaks to reveal css -->
+  <style type="text/css">
+    .reveal h1 { font-size: 2.0em; }
+    .reveal h2 { font-size: 1.5em;  }
+    .reveal h3 { font-size: 1.25em;	}
+    .reveal h4 { font-size: 1em;	}
+
+    .reveal .slides>section,
+    .reveal .slides>section>section {
+      padding: 0px 0px;
+    }
+
+
+
+    .reveal table {
+      border-width: 1px;
+      border-spacing: 2px;
+      border-style: dotted;
+      border-color: gray;
+      border-collapse: collapse;
+      font-size: 0.7em;
+    }
+
+    .reveal table th {
+      border-width: 1px;
+      padding-left: 10px;
+      padding-right: 25px;
+      font-weight: bold;
+      border-style: dotted;
+      border-color: gray;
+    }
+
+    .reveal table td {
+      border-width: 1px;
+      padding-left: 10px;
+      padding-right: 25px;
+      border-style: dotted;
+      border-color: gray;
+    }
+
+
+  </style>
+
+    <style type="text/css">code{white-space: pre;}</style>
+
+    <link rel="stylesheet" href="estilo.css"/>
+
+<!-- Printing and PDF exports -->
+<script id="paper-css" type="application/dynamic-css">
+
+/* Default Print Stylesheet Template
+   by Rob Glazebrook of CSSnewbie.com
+   Last Updated: June 4, 2008
+
+   Feel free (nay, compelled) to edit, append, and
+   manipulate this file as you see fit. */
+
+
+@media print {
+
+	/* SECTION 1: Set default width, margin, float, and
+	   background. This prevents elements from extending
+	   beyond the edge of the printed page, and prevents
+	   unnecessary background images from printing */
+	html {
+		background: #fff;
+		width: auto;
+		height: auto;
+		overflow: visible;
+	}
+	body {
+		background: #fff;
+		font-size: 20pt;
+		width: auto;
+		height: auto;
+		border: 0;
+		margin: 0 5%;
+		padding: 0;
+		overflow: visible;
+		float: none !important;
+	}
+
+	/* SECTION 2: Remove any elements not needed in print.
+	   This would include navigation, ads, sidebars, etc. */
+	.nestedarrow,
+	.controls,
+	.fork-reveal,
+	.share-reveal,
+	.state-background,
+	.reveal .progress,
+	.reveal .backgrounds {
+		display: none !important;
+	}
+
+	/* SECTION 3: Set body font face, size, and color.
+	   Consider using a serif font for readability. */
+	body, p, td, li, div {
+		font-size: 20pt!important;
+		font-family: Georgia, "Times New Roman", Times, serif !important;
+		color: #000;
+	}
+
+	/* SECTION 4: Set heading font face, sizes, and color.
+	   Differentiate your headings from your body text.
+	   Perhaps use a large sans-serif for distinction. */
+	h1,h2,h3,h4,h5,h6 {
+		color: #000!important;
+		height: auto;
+		line-height: normal;
+		font-family: Georgia, "Times New Roman", Times, serif !important;
+		text-shadow: 0 0 0 #000 !important;
+		text-align: left;
+		letter-spacing: normal;
+	}
+	/* Need to reduce the size of the fonts for printing */
+	h1 { font-size: 28pt !important;  }
+	h2 { font-size: 24pt !important; }
+	h3 { font-size: 22pt !important; }
+	h4 { font-size: 22pt !important; font-variant: small-caps; }
+	h5 { font-size: 21pt !important; }
+	h6 { font-size: 20pt !important; font-style: italic; }
+
+	/* SECTION 5: Make hyperlinks more usable.
+	   Ensure links are underlined, and consider appending
+	   the URL to the end of the link for usability. */
+	a:link,
+	a:visited {
+		color: #000 !important;
+		font-weight: bold;
+		text-decoration: underline;
+	}
+	/*
+	.reveal a:link:after,
+	.reveal a:visited:after {
+		content: " (" attr(href) ") ";
+		color: #222 !important;
+		font-size: 90%;
+	}
+	*/
+
+
+	/* SECTION 6: more reveal.js specific additions by @skypanther */
+	ul, ol, div, p {
+		visibility: visible;
+		position: static;
+		width: auto;
+		height: auto;
+		display: block;
+		overflow: visible;
+		margin: 0;
+		text-align: left !important;
+	}
+	.reveal pre,
+	.reveal table {
+		margin-left: 0;
+		margin-right: 0;
+	}
+	.reveal pre code {
+		padding: 20px;
+		border: 1px solid #ddd;
+	}
+	.reveal blockquote {
+		margin: 20px 0;
+	}
+	.reveal .slides {
+		position: static !important;
+		width: auto !important;
+		height: auto !important;
+
+		left: 0 !important;
+		top: 0 !important;
+		margin-left: 0 !important;
+		margin-top: 0 !important;
+		padding: 0 !important;
+		zoom: 1 !important;
+
+		overflow: visible !important;
+		display: block !important;
+
+		text-align: left !important;
+		-webkit-perspective: none;
+		   -moz-perspective: none;
+		    -ms-perspective: none;
+		        perspective: none;
+
+		-webkit-perspective-origin: 50% 50%;
+		   -moz-perspective-origin: 50% 50%;
+		    -ms-perspective-origin: 50% 50%;
+		        perspective-origin: 50% 50%;
+	}
+	.reveal .slides section {
+		visibility: visible !important;
+		position: static !important;
+		width: auto !important;
+		height: auto !important;
+		display: block !important;
+		overflow: visible !important;
+
+		left: 0 !important;
+		top: 0 !important;
+		margin-left: 0 !important;
+		margin-top: 0 !important;
+		padding: 60px 20px !important;
+		z-index: auto !important;
+
+		opacity: 1 !important;
+
+		page-break-after: always !important;
+
+		-webkit-transform-style: flat !important;
+		   -moz-transform-style: flat !important;
+		    -ms-transform-style: flat !important;
+		        transform-style: flat !important;
+
+		-webkit-transform: none !important;
+		   -moz-transform: none !important;
+		    -ms-transform: none !important;
+		        transform: none !important;
+
+		-webkit-transition: none !important;
+		   -moz-transition: none !important;
+		    -ms-transition: none !important;
+		        transition: none !important;
+	}
+	.reveal .slides section.stack {
+		padding: 0 !important;
+	}
+	.reveal section:last-of-type {
+		page-break-after: avoid !important;
+	}
+	.reveal section .fragment {
+		opacity: 1 !important;
+		visibility: visible !important;
+
+		-webkit-transform: none !important;
+		   -moz-transform: none !important;
+		    -ms-transform: none !important;
+		        transform: none !important;
+	}
+	.reveal section img {
+		display: block;
+		margin: 15px 0px;
+		background: rgba(255,255,255,1);
+		border: 1px solid #666;
+		box-shadow: none;
+	}
+
+	.reveal section small {
+		font-size: 0.8em;
+	}
+
+}  
+</script>
+
+
+<script id="pdf-css" type="application/dynamic-css">
+    
+/**
+ * This stylesheet is used to print reveal.js
+ * presentations to PDF.
+ *
+ * https://github.com/hakimel/reveal.js#pdf-export
+ */
+
+* {
+	-webkit-print-color-adjust: exact;
+}
+
+body {
+	margin: 0 auto !important;
+	border: 0;
+	padding: 0;
+	float: none !important;
+	overflow: visible;
+}
+
+html {
+	width: 100%;
+	height: 100%;
+	overflow: visible;
+}
+
+/* Remove any elements not needed in print. */
+.nestedarrow,
+.reveal .controls,
+.reveal .progress,
+.reveal .playback,
+.reveal.overview,
+.fork-reveal,
+.share-reveal,
+.state-background {
+	display: none !important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	text-shadow: 0 0 0 #000 !important;
+}
+
+.reveal pre code {
+	overflow: hidden !important;
+	font-family: Courier, 'Courier New', monospace !important;
+}
+
+ul, ol, div, p {
+	visibility: visible;
+	position: static;
+	width: auto;
+	height: auto;
+	display: block;
+	overflow: visible;
+	margin: auto;
+}
+.reveal {
+	width: auto !important;
+	height: auto !important;
+	overflow: hidden !important;
+}
+.reveal .slides {
+	position: static;
+	width: 100%;
+	height: auto;
+
+	left: auto;
+	top: auto;
+	margin: 0 !important;
+	padding: 0 !important;
+
+	overflow: visible;
+	display: block;
+
+	-webkit-perspective: none;
+	   -moz-perspective: none;
+	    -ms-perspective: none;
+	        perspective: none;
+
+	-webkit-perspective-origin: 50% 50%; /* there isn't a none/auto value but 50-50 is the default */
+	   -moz-perspective-origin: 50% 50%;
+	    -ms-perspective-origin: 50% 50%;
+	        perspective-origin: 50% 50%;
+}
+
+.reveal .slides section {
+	page-break-after: always !important;
+
+	visibility: visible !important;
+	position: relative !important;
+	display: block !important;
+	position: relative !important;
+
+	margin: 0 !important;
+	padding: 0 !important;
+	box-sizing: border-box !important;
+	min-height: 1px;
+
+	opacity: 1 !important;
+
+	-webkit-transform-style: flat !important;
+	   -moz-transform-style: flat !important;
+	    -ms-transform-style: flat !important;
+	        transform-style: flat !important;
+
+	-webkit-transform: none !important;
+	   -moz-transform: none !important;
+	    -ms-transform: none !important;
+	        transform: none !important;
+}
+
+.reveal section.stack {
+	margin: 0 !important;
+	padding: 0 !important;
+	page-break-after: avoid !important;
+	height: auto !important;
+	min-height: auto !important;
+}
+
+.reveal img {
+	box-shadow: none;
+}
+
+.reveal .roll {
+	overflow: visible;
+	line-height: 1em;
+}
+
+/* Slide backgrounds are placed inside of their slide when exporting to PDF */
+.reveal section .slide-background {
+	display: block !important;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	z-index: -1;
+}
+
+/* All elements should be above the slide-background */
+.reveal section>* {
+	position: relative;
+	z-index: 1;
+}
+
+/* Display slide speaker notes when 'showNotes' is enabled */
+.reveal .speaker-notes-pdf {
+	display: block;
+	width: 100%;
+	max-height: none;
+	left: auto;
+	top: auto;
+	z-index: 100;
+}
+
+/* Display slide numbers when 'slideNumber' is enabled */
+.reveal .slide-number-pdf {
+	display: block;
+	position: absolute;
+	font-size: 14px;
+}
+
+</script>
+
+
+<script>
+var style = document.createElement( 'style' );
+style.type = 'text/css';
+var style_script_id = window.location.search.match( /print-pdf/gi ) ? 'pdf-css' : 'paper-css';
+var style_script = document.getElementById(style_script_id).text;
+style.innerHTML = style_script;
+document.getElementsByTagName('head')[0].appendChild(style);
+</script>
+
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+
+<section><section id="semillero-de-r---facca" class="titleslide slide level1" data-background="fondo1.png"><h1>Semillero de R - FacCA</h1></section></section>
+<section><section id="el-maravilloso-mundo-de-r" class="titleslide slide level1" data-background="lengR.png"><h1>El maravilloso mundo de R</h1></section></section>
+<section><section id="entradas-basicas" class="titleslide slide level1" data-background="lengR.png"><h1>Entradas básicas</h1></section><section id="section" class="slide level2" data-background="lengR.png">
+<h2></h2>
+<ul>
+<li><code>#:</code> comentario.</li>
+<li><code>&lt;-:</code> asignación.</li>
+<li><code>help()</code> o <code>?</code>: sistema de ayudas en R.</li>
+<li>Ejecutar código <code>CTRL + Enter</code>.</li>
+<li>Limpiar consola <code>CTRL + L</code>.</li>
+</ul>
+</section><section id="ejemplo" class="slide level2" data-background="lengR.png">
+<h2>Ejemplo</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Este es un comentario</span>
+dos &lt;-<span class="st"> </span><span class="dv">2</span> <span class="co"># Generando nueva variable &quot;dos&quot; que contiene el nùmero 2</span>
+dos <span class="co"># Imprimir el contenido de la variable &quot;dos&quot;</span></code></pre></div>
+<pre><code>## [1] 2</code></pre>
+</section></section>
+<section><section id="operadores" class="titleslide slide level1" data-background="lengR.png"><h1>Operadores</h1></section><section id="aritmeticos" class="slide level2" data-background="lengR.png">
+<h2>Aritméticos</h2>
+<ul>
+<li><code>+</code>: suma.</li>
+<li><code>-</code>: resta.</li>
+<li><code>*</code>: multiplicación.</li>
+<li><code>/</code>: división.</li>
+<li><code>^</code>: potencia.</li>
+</ul>
+</section><section id="ejemplo-1" class="slide level2" data-background="lengR.png">
+<h2>Ejemplo</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">2</span> <span class="op">+</span><span class="st"> </span><span class="dv">2</span> <span class="co"># Suma</span>
+## [1] 4
+<span class="dv">3</span> <span class="op">-</span><span class="st"> </span><span class="dv">5</span> <span class="co"># Resta</span>
+## [1] -2
+<span class="dv">5</span> <span class="op">*</span><span class="st"> </span><span class="dv">5</span> <span class="co"># Multiplicaciòn</span>
+## [1] 25
+<span class="dv">5</span> <span class="op">/</span><span class="st"> </span><span class="dv">5</span> <span class="co"># División</span>
+## [1] 1
+<span class="dv">2</span> <span class="op">^</span><span class="st"> </span><span class="dv">2</span> <span class="co"># Potencia</span>
+## [1] 4</code></pre></div>
+</section><section id="comparacion" class="slide level2" data-background="lengR.png">
+<h2>Comparación</h2>
+<ul>
+<li><code>==</code>: igualdad.</li>
+<li><code>!=</code>: diferencia.</li>
+<li><code>&gt;</code>: mayor.</li>
+<li><code>&lt;</code>: menor.</li>
+<li><code>&gt;=</code>: mayor o igual.</li>
+<li><code>&lt;=</code>: menor o igual.</li>
+<li><code>!</code>: negación.</li>
+</ul>
+</section><section id="ejemplo-2" class="slide level2" data-background="lengR.png">
+<h2>Ejemplo</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">2</span> <span class="op">==</span><span class="st"> </span><span class="dv">2</span> <span class="co"># Igualdad</span>
+## [1] TRUE
+<span class="dv">2</span> <span class="op">!=</span><span class="st"> </span><span class="dv">2</span> <span class="co"># Diferencia</span>
+## [1] FALSE
+<span class="dv">2</span> <span class="op">&gt;</span><span class="st"> </span><span class="dv">2</span>  <span class="co"># Mayor</span>
+## [1] FALSE
+<span class="dv">2</span> <span class="op">&lt;</span><span class="st"> </span><span class="dv">2</span>  <span class="co"># Menor</span>
+## [1] FALSE
+<span class="dv">2</span> <span class="op">&gt;=</span><span class="st"> </span><span class="dv">2</span> <span class="co"># Mayor o igual</span>
+## [1] TRUE
+<span class="dv">2</span> <span class="op">&lt;=</span><span class="st"> </span><span class="dv">2</span> <span class="co"># Menor o igual</span>
+## [1] TRUE
+<span class="op">!</span>(<span class="dv">2</span> <span class="op">+</span><span class="st"> </span><span class="dv">2</span>) <span class="op">==</span><span class="st"> </span><span class="dv">4</span> <span class="co"># Negación</span>
+## [1] FALSE</code></pre></div>
+</section><section id="conjuncion-y-disyuncion" class="slide level2" data-background="lengR.png">
+<h2>Conjunción y disyunción</h2>
+<ul>
+<li><code>&amp;</code> - <code>&amp;&amp;</code>: conjunción.</li>
+<li><code>|</code> - <code>||</code>: disyunción.</li>
+</ul>
+</section><section id="ejemplo-3" class="slide level2" data-background="lengR.png">
+<h2>Ejemplo</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">flores &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">10</span>, <span class="dv">2</span>, <span class="dv">5</span>)
+frutos &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">3</span>)
+
+<span class="co"># Conjunción</span>
+(flores <span class="op">&gt;</span><span class="st"> </span><span class="dv">3</span>) <span class="op">&amp;</span><span class="st"> </span>(frutos <span class="op">&lt;=</span><span class="st"> </span><span class="dv">2</span>)
+## [1] FALSE FALSE FALSE
+(flores <span class="op">&gt;</span><span class="st"> </span><span class="dv">3</span>) <span class="op">&amp;&amp;</span><span class="st"> </span>(frutos <span class="op">&lt;=</span><span class="st"> </span><span class="dv">2</span>)
+## [1] FALSE</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Disyunción</span>
+(flores <span class="op">&gt;</span><span class="st"> </span><span class="dv">3</span>) <span class="op">|</span><span class="st"> </span>(frutos <span class="op">&lt;=</span><span class="st"> </span><span class="dv">2</span>)
+## [1]  TRUE FALSE  TRUE
+(flores <span class="op">&gt;</span><span class="st"> </span><span class="dv">3</span>) <span class="op">||</span><span class="st"> </span>(frutos <span class="op">&lt;=</span><span class="st"> </span><span class="dv">2</span>)
+## [1] TRUE</code></pre></div>
+</section></section>
+<section><section id="tipos-de-datos-en-r" class="titleslide slide level1" data-background="lengR.png"><h1>Tipos de datos en R</h1></section><section id="section-1" class="slide level2" data-background="lengR.png">
+<h2></h2>
+<ul>
+<li><strong>Numéricos:</strong> <code>numeric</code></li>
+<li><strong>Enteros:</strong> <code>integer</code></li>
+<li><strong>Caracteres:</strong> <code>character</code></li>
+<li><strong>Lógicos:</strong> <code>logical</code></li>
+<li><strong>Complejos:</strong> <code>complex</code></li>
+</ul>
+<p><strong>Nota:</strong> la función <code>class()</code> permite obtener la clase atómica o tipo de dato.</p>
+</section><section id="ejemplo-4" class="slide level2" data-background="lengR.png">
+<h2>Ejemplo</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">numerico &lt;-<span class="st"> </span><span class="fl">3.5</span>
+entero &lt;-<span class="st"> </span>2L
+caracter &lt;-<span class="st"> &quot;Semillero de R&quot;</span>
+logico &lt;-<span class="st"> </span><span class="ot">TRUE</span>
+complejo &lt;-<span class="st"> </span><span class="dv">1</span> <span class="op">+</span><span class="st"> </span>2i</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">class</span>(numerico)
+## [1] &quot;numeric&quot;
+<span class="kw">class</span>(entero)
+## [1] &quot;integer&quot;
+<span class="kw">class</span>(caracter)
+## [1] &quot;character&quot;
+<span class="kw">class</span>(logico)
+## [1] &quot;logical&quot;
+<span class="kw">class</span>(complejo)
+## [1] &quot;complex&quot;</code></pre></div>
+</section></section>
+<section><section id="objetos-estructurados" class="titleslide slide level1" data-background="lengR.png"><h1>Objetos estructurados</h1></section><section id="vectores" class="slide level2" data-background="lengR.png">
+<h2>Vectores</h2>
+<ul>
+<li>Función <code>vector()</code> para generar vectores.
+<ul>
+<li>Argumentos <em>mode</em> y <em>length</em>.
+<ul>
+<li><code>(vector(mode = &quot;tipo&quot;, length = longitud))</code></li>
+</ul></li>
+</ul></li>
+<li>Función <code>c()</code> para generar vectores.</li>
+<li>Los vectores poseen longitud (función <code>length()</code>).</li>
+<li><strong>Características:</strong> sólo almacena datos de un mismo tipo.</li>
+</ul>
+</section><section id="ejemplo-5" class="slide level2" data-background="lengR.png">
+<h2>Ejemplo</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Vector numérico</span>
+vector.num1 &lt;-<span class="st"> </span><span class="kw">vector</span>(<span class="dt">mode =</span> <span class="st">&quot;numeric&quot;</span>, <span class="dt">length =</span> <span class="dv">5</span>)
+vector.num1
+## [1] 0 0 0 0 0
+
+<span class="co"># Vector numérico</span>
+vector.num2 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">2.5</span>, <span class="fl">1.8</span>, <span class="dv">5</span>)
+vector.num2
+## [1] 2.5 1.8 5.0</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">class</span>(vector.num1)
+## [1] &quot;numeric&quot;
+<span class="kw">class</span>(vector.num2)
+## [1] &quot;numeric&quot;
+<span class="kw">length</span>(vector.num1)
+## [1] 5</code></pre></div>
+</section><section id="matrices" class="slide level2" data-background="lengR.png">
+<h2>Matrices</h2>
+<ul>
+<li>Función <code>matrix()</code>
+<ul>
+<li>Argumentos <em>data</em>, <em>nrow</em>, <em>ncol</em>, <em>byrow</em>…</li>
+</ul></li>
+<li>Las matrices poseen dimensiones (función <code>dim()</code>).</li>
+<li>Las matrices poseen nombres de filas (<code>rownames()</code>).</li>
+<li>Las matrices poseen nombres de columnas (<code>colnames()</code>).</li>
+<li><strong>Características:</strong> sólo almacena datos de un mismo tipo.</li>
+</ul>
+</section><section id="ejemplo-6" class="slide level2" data-background="lengR.png">
+<h2>Ejemplo</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Matriz por columna</span>
+mi.matriz1 &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dt">data =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>), <span class="dt">nrow =</span> <span class="dv">2</span>, <span class="dt">ncol =</span> <span class="dv">2</span>)
+mi.matriz1
+##      [,1] [,2]
+## [1,]    1    3
+## [2,]    2    4
+
+<span class="co"># Matriz por fila</span>
+mi.matriz2 &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dt">data =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>), <span class="dt">nrow =</span> <span class="dv">2</span>, <span class="dt">ncol =</span> <span class="dv">2</span>, <span class="dt">byrow =</span> <span class="ot">TRUE</span>)
+mi.matriz2
+##      [,1] [,2]
+## [1,]    1    2
+## [2,]    3    4</code></pre></div>
+</section><section id="section-2" class="slide level2" data-background="lengR.png">
+<h2></h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Dimensiones de la matriz</span>
+<span class="kw">dim</span>(mi.matriz1)
+## [1] 2 2
+
+<span class="co"># Nombres de filas y columnas de la matriz</span>
+<span class="kw">rownames</span>(mi.matriz1) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Fila1&quot;</span>, <span class="st">&quot;Fila2&quot;</span>)
+<span class="kw">colnames</span>(mi.matriz1) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Col1&quot;</span>, <span class="st">&quot;Col2&quot;</span>)
+mi.matriz1
+##       Col1 Col2
+## Fila1    1    3
+## Fila2    2    4</code></pre></div>
+</section><section id="factores" class="slide level2" data-background="lengR.png">
+<h2>Factores</h2>
+<ul>
+<li>Función <code>factor()</code> para generar factores.
+<ul>
+<li>Argumentos <em>x</em>, <em>levels</em>, <em>labels</em>…</li>
+</ul></li>
+<li>Caracteres con jerarquías o niveles.</li>
+<li>Útil para manipular variables categóricas (nominales u ordinales).</li>
+<li>La función <code>levels()</code> permite observar los niveles de un factor.</li>
+<li>Las funciones <code>table()</code> y <code>prop.table()</code> permiten obtener las frecuencias absolutas y relativas, respectivamente.</li>
+<li>Los niveles se organizan por defecto por orden alfabético.</li>
+</ul>
+</section><section id="ejemplo-7" class="slide level2" data-background="lengR.png">
+<h2>Ejemplo</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Niveles por defecto</span>
+factor1 &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="dt">x =</span> <span class="kw">c</span>(<span class="st">&quot;Hombre&quot;</span>, <span class="st">&quot;Mujer&quot;</span>, <span class="st">&quot;Hombre&quot;</span>, <span class="st">&quot;Mujer&quot;</span>))
+<span class="kw">class</span>(factor1)
+## [1] &quot;factor&quot;
+<span class="kw">levels</span>(factor1)
+## [1] &quot;Hombre&quot; &quot;Mujer&quot;</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Manipulando los niveles del factor</span>
+factor2 &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="dt">x =</span> <span class="kw">c</span>(<span class="st">&quot;Hombre&quot;</span>, <span class="st">&quot;Mujer&quot;</span>, <span class="st">&quot;Hombre&quot;</span>, <span class="st">&quot;Mujer&quot;</span>),
+                  <span class="dt">levels =</span> <span class="kw">c</span>(<span class="st">&quot;Mujer&quot;</span>, <span class="st">&quot;Hombre&quot;</span>))
+<span class="kw">class</span>(factor2)
+## [1] &quot;factor&quot;
+<span class="kw">levels</span>(factor2)
+## [1] &quot;Mujer&quot;  &quot;Hombre&quot;</code></pre></div>
+</section><section id="section-3" class="slide level2" data-background="lengR.png">
+<h2></h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">table</span>(factor2) <span class="co"># Frecuencia absoluta</span></code></pre></div>
+<pre><code>## factor2
+##  Mujer Hombre 
+##      2      2</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">prop.table</span>(<span class="kw">table</span>(factor2)) <span class="co"># Frecuencia relativa</span></code></pre></div>
+<pre><code>## factor2
+##  Mujer Hombre 
+##    0.5    0.5</code></pre>
+</section><section id="listas" class="slide level2" data-background="lengR.png">
+<h2>Listas</h2>
+<ul>
+<li>Función <code>list()</code> para crear listas.</li>
+<li>Las listas poseen longitud.</li>
+<li>Las listas poseen nombres de variables (<code>names()</code>).</li>
+<li><strong>Características:</strong> permite almacenar cualquier tipo de dato.</li>
+</ul>
+</section><section id="ejemplo-8" class="slide level2" data-background="lengR.png">
+<h2>Ejemplo</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mi.lista1 &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">a1 =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>), <span class="dt">a2 =</span> <span class="kw">c</span>(<span class="st">&quot;Rojo&quot;</span>, <span class="st">&quot;Verde&quot;</span>),
+                  <span class="dt">a3 =</span> <span class="kw">factor</span>(<span class="dt">x =</span> <span class="kw">c</span>(<span class="st">&quot;Hombre&quot;</span>, <span class="st">&quot;Mujer&quot;</span>, <span class="st">&quot;Hombre&quot;</span>)))
+mi.lista1
+## $a1
+## [1] 1 2 3 4
+## 
+## $a2
+## [1] &quot;Rojo&quot;  &quot;Verde&quot;
+## 
+## $a3
+## [1] Hombre Mujer  Hombre
+## Levels: Hombre Mujer
+<span class="kw">class</span>(mi.lista1)
+## [1] &quot;list&quot;
+<span class="kw">length</span>(mi.lista1)
+## [1] 3
+<span class="kw">names</span>(mi.lista1)
+## [1] &quot;a1&quot; &quot;a2&quot; &quot;a3&quot;</code></pre></div>
+</section><section id="data-frame" class="slide level2" data-background="lengR.png">
+<h2>Data frame</h2>
+</section><section id="ejemplo-9" class="slide level2" data-background="lengR.png">
+<h2>Ejemplo</h2>
+</section></section>
+<section><section id="coercion" class="titleslide slide level1" data-background="lengR.png"><h1>Coerción</h1></section><section id="section-4" class="slide level2" data-background="lengR.png">
+<h2></h2>
+<ul>
+<li><strong>implícita:</strong><br />
+</li>
+<li><strong>explícita:</strong>
+<ul>
+<li><code>as.numeric():</code></li>
+<li><code>as.integer():</code></li>
+<li><code>as.character():</code></li>
+<li><code>as.logical():</code></li>
+<li><code>as.complex():</code></li>
+<li><code>as.vector():</code></li>
+<li><code>as.matrix():</code></li>
+<li><code>as.factor():</code></li>
+<li><code>as.list():</code></li>
+<li><code>as.data.frame():</code></li>
+</ul></li>
+</ul>
+</section><section id="ejemplo-10" class="slide level2" data-background="lengR.png">
+<h2>Ejemplo</h2>
+</section></section>
+<section><section id="subconjuntos" class="titleslide slide level1" data-background="lengR.png"><h1>Subconjuntos</h1></section><section id="section-5" class="slide level2" data-background="lengR.png">
+<h2></h2>
+<ul>
+<li><code>[]:</code></li>
+<li><code>[[]]:</code></li>
+<li><code>$:</code></li>
+<li>Función <code>subset():</code></li>
+</ul>
+</section><section id="ejemplo-11" class="slide level2" data-background="lengR.png">
+<h2>Ejemplo</h2>
+</section></section>
+<section><section id="concatenar-datos" class="titleslide slide level1"><h1>Concatenar datos</h1></section><section id="section-6" class="slide level2" data-background="lengR.png">
+<h2></h2>
+<ul>
+<li><code>cbind():</code></li>
+<li><code>rbind():</code></li>
+</ul>
+</section><section id="ejemplo-12" class="slide level2" data-background="lengR.png">
+<h2>Ejemplo</h2>
+</section></section>
+<section><section id="lectura-de-datos" class="titleslide slide level1"><h1>Lectura de datos</h1></section><section id="section-7" class="slide level2" data-background="lengR.png">
+<h2></h2>
+<ul>
+<li><strong>Funciones:</strong>
+<ul>
+<li><code>read.csv():</code></li>
+<li><code>read.csv2():</code></li>
+<li><code>read.table():</code></li>
+</ul></li>
+</ul>
+</section><section id="ejemplo-13" class="slide level2" data-background="lengR.png">
+<h2>Ejemplo</h2>
+</section></section>
+<section><section id="escritura-de-datos" class="titleslide slide level1"><h1>Escritura de datos</h1></section><section id="section-8" class="slide level2" data-background="lengR.png">
+<h2></h2>
+<ul>
+<li><strong>Funciones:</strong>
+<ul>
+<li><code>write.csv():</code></li>
+<li><code>write.csv2():</code></li>
+<li><code>write.table():</code></li>
+</ul></li>
+</ul>
+</section><section id="ejemplo-14" class="slide level2" data-background="lengR.png">
+<h2>Ejemplo</h2>
+</section></section>
+<section><section id="funciones-de-uso-comun-en-r" class="titleslide slide level1"><h1>Funciones de uso común en R</h1></section><section id="section-9" class="slide level2" data-background="lengR.png">
+<h2></h2>
+<ul>
+<li><code>help()</code> o <code>?</code></li>
+<li><code>str():</code></li>
+<li><code>class():</code></li>
+<li><code>names():</code></li>
+<li><code>colnames():</code></li>
+<li><code>rownames():</code></li>
+<li><code>summary():</code></li>
+<li><code>length():</code></li>
+<li><code>dim():</code></li>
+<li><code>is.na():</code></li>
+<li><code>is.nan():</code></li>
+</ul>
+</section><section id="ejemplo-15" class="slide level2" data-background="lengR.png">
+<h2>Ejemplo</h2>
+</section></section>
+<section><section id="actividad-2" class="titleslide slide level1"><h1>Actividad 2</h1></section><section id="section-10" class="slide level2" data-background="lengR.png">
+<h2></h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(iris, <span class="dt">n =</span> <span class="dv">8</span>)</code></pre></div>
+<pre><code>##   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+## 1          5.1         3.5          1.4         0.2  setosa
+## 2          4.9         3.0          1.4         0.2  setosa
+## 3          4.7         3.2          1.3         0.2  setosa
+## 4          4.6         3.1          1.5         0.2  setosa
+## 5          5.0         3.6          1.4         0.2  setosa
+## 6          5.4         3.9          1.7         0.4  setosa
+## 7          4.6         3.4          1.4         0.3  setosa
+## 8          5.0         3.4          1.5         0.2  setosa</code></pre>
+</section></section>
+    </div>
+  </div>
+
+  <script src="2_MundoR_files/reveal.js-3.3.0.1/lib/js/head.min.js"></script>
+  <script src="2_MundoR_files/reveal.js-3.3.0.1/js/reveal.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        // Display the page number of the current slide
+        slideNumber: true,
+        // Push each slide change to the browser history
+        history: true,
+        // Vertical centering of slides
+        center: true,
+        // Opens links in an iframe preview overlay
+        previewLinks: true,
+        // Transition style
+        transition: 'slide', // none/fade/slide/convex/concave/zoom
+        // Transition style for full page slide backgrounds
+        backgroundTransition: 'default', // none/fade/slide/convex/concave/zoom
+
+
+
+        // Optional reveal.js plugins
+        dependencies: [
+        ]
+      });
+    </script>
+  <!-- dynamically load mathjax for compatibility with self-contained -->
+  <script>
+    (function () {
+      var script = document.createElement("script");
+      script.type = "text/javascript";
+      script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+      document.getElementsByTagName("head")[0].appendChild(script);
+    })();
+  </script>
+
+<script>
+  (function() {
+    if (window.jQuery) {
+      Reveal.addEventListener( 'slidechanged', function(event) {  
+        window.jQuery(event.previousSlide).trigger('hidden');
+        window.jQuery(event.currentSlide).trigger('shown');
+      });
+    }
+  })();
+</script>
+
+
+  </body>
+</html>
