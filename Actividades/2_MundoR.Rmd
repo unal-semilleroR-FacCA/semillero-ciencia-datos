@@ -509,7 +509,7 @@ Con la base de datos de créditos agropecuarios usted debe realizar lo siguiente
   4. ¿Cuál es la dimensión de la base de datos?
   5. Crear una nueva variable llamada ***"creditos2"*** con las siguientes condiciones:
       + Mantener las columnas `Mes`, `Tipo Productor`, `Valor inversión`, `Departamento`, `Plazo` y `Género`.
-      + Mantener filas con valor de inversión mayores a 0.
+      + Mantener filas con valor de inversión  mayores a 0.
 
 ## {data-background="lengR.png"}
 
@@ -519,4 +519,4 @@ Con la base de datos de créditos agropecuarios usted debe realizar lo siguiente
   9. ¿Cómo es la proporción de créditos para el tipo de productor?
   10. ¿En qué mes se presenta el mayor número de créditos en Antioquia?
   
-**Nota:** se sugiere crear el documento *.html* e incorporarlo en su perfil de github desde RStudio.  
+**Nota:** se sugiere crear el documento *.html* e incorporarlo en su perfil de github desde RStudio..  
