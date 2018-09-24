@@ -519,4 +519,4 @@ Con la base de datos de créditos agropecuarios usted debe realizar lo siguiente
   9. ¿Cómo es la proporción de créditos para el tipo de productor?
   10. ¿En qué mes se presenta el mayor número de créditos en Antioquia?
   
-**Nota:** se sugiere crear el documento *.html* e incorporarlo en su perfil de github desde RStudio..  
+**Nota:** se sugiere crear el documento *.html* e incorporarlo en su perfil de github desde RStudio. 
