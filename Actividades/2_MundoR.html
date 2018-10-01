@@ -1011,7 +1011,18 @@ creditos[<span class="dv">1</span><span class="op">:</span><span class="dv">5</s
 <h2>Ejemplo</h2>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">write.csv</span>(<span class="dt">x =</span> creditos, <span class="dt">file =</span> <span class="st">&quot;Creditos_Agro2017.csv&quot;</span>, <span class="dt">row.names =</span> <span class="ot">FALSE</span>)</code></pre></div>
 </section></section>
-<section><section id="funciones-de-uso-comun-en-r" class="titleslide slide level1"><h1>Funciones de uso común en R</h1></section><section id="section-18" class="slide level2" data-background="lengR.png">
+<section><section id="conversion-de-formatos" class="titleslide slide level1" data-background="lengR.png"><h1>Conversión de formatos</h1></section><section id="section-18" class="slide level2" data-background="lengR.png">
+<h2></h2>
+<ul>
+<li>Función <code>save()</code>: guardar (escribir) datos en formato .Rdata.</li>
+<li>Función <code>load()</code>: cargar (leer) datos en formato .Rdata.</li>
+</ul>
+</section><section id="ejemplo-15" class="slide level2">
+<h2>Ejemplo</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">save</span>(creditos, <span class="dt">file =</span> <span class="st">&quot;Creditos.Rdata&quot;</span>)
+<span class="kw">load</span>(<span class="st">&quot;Creditos.Rdata&quot;</span>)</code></pre></div>
+</section></section>
+<section><section id="funciones-de-uso-comun-en-r" class="titleslide slide level1"><h1>Funciones de uso común en R</h1></section><section id="section-19" class="slide level2" data-background="lengR.png">
 <h2></h2>
 <ul>
 <li><code>help()</code> o <code>?</code>: ayudas en R.</li>
@@ -1037,11 +1048,11 @@ creditos[<span class="dv">1</span><span class="op">:</span><span class="dv">5</s
 <li>¿Cuál es la dimensión de la base de datos?</li>
 <li>Crear una nueva variable llamada <strong><em>“creditos2”</em></strong> con las siguientes condiciones:
 <ul>
-<li>Mantener las columnas <code>Mes</code>, <code>Tipo Productor</code>, <code>Valor inversión</code>, <code>Departamento</code>, <code>Plazo</code> y <code>Género</code>.</li>
-<li>Mantener filas con valor de inversión mayores a 0.</li>
+<li>Mantener las columnas <code>Mes</code>, <code>Tipo Productor</code>, <code>Valor inversión</code>, <code>Departamento de inversión</code>, <code>Departamento de colocación</code>, <code>Plazo</code> y <code>Género</code>.</li>
+<li>Mantener filas con valor de inversión mayores o iguales a 100 mil pesos e inferiores a 500 millones de pesos.</li>
 </ul></li>
 </ol>
-</section><section id="section-19" class="slide level2" data-background="lengR.png">
+</section><section id="section-20" class="slide level2" data-background="lengR.png">
 <h2></h2>
 <ol start="6" type="1">
 <li>Cambie los nombres de las variables de la nueva base de datos.<br />
@@ -1050,8 +1061,10 @@ creditos[<span class="dv">1</span><span class="op">:</span><span class="dv">5</s
 <li>¿Existe igual número de hombres y mujeres con créditos agropecuarios para el año 2017?</li>
 <li>¿Cómo es la proporción de créditos para el tipo de productor?</li>
 <li>¿En qué mes se presenta el mayor número de créditos en Antioquia?</li>
+<li>¿Qué proporción de créditos posee colocación en departamentos diferentes a los de inversión?</li>
+<li>Fórmule 1 consulta cuyo alcance y resolución esté acotado por los datos.</li>
 </ol>
-<p><strong>Nota:</strong> se sugiere crear el documento <em>.html</em> e incorporarlo en su perfil de github desde RStudio..</p>
+<p><strong>Nota:</strong> se sugiere crear el documento <em>.html</em> e incorporarlo en su perfil de github desde RStudio.</p>
 </section></section>
     </div>
   </div>

@@ -481,6 +481,20 @@ creditos[1:5, 1:6]
 write.csv(x = creditos, file = "Creditos_Agro2017.csv", row.names = FALSE)
 ```
 
+# Conversión de formatos {data-background="lengR.png"}
+
+## {data-background="lengR.png"}
+
+  - Función `save()`: guardar (escribir) datos en formato .Rdata.
+  - Función `load()`: cargar (leer) datos en formato .Rdata.
+
+## Ejemplo
+
+```{r, eval=FALSE, collapse=TRUE}
+save(creditos, file = "Creditos.Rdata")
+load("Creditos.Rdata")
+```
+
 # Funciones de uso común en R
 
 ## {data-background="lengR.png"}
@@ -508,8 +522,8 @@ Con la base de datos de créditos agropecuarios usted debe realizar lo siguiente
   3. ¿Qué estructura interna tiene el marco de datos?
   4. ¿Cuál es la dimensión de la base de datos?
   5. Crear una nueva variable llamada ***"creditos2"*** con las siguientes condiciones:
-      + Mantener las columnas `Mes`, `Tipo Productor`, `Valor inversión`, `Departamento`, `Plazo` y `Género`.
-      + Mantener filas con valor de inversión  mayores a 0.
+      + Mantener las columnas `Mes`, `Tipo Productor`, `Valor inversión`, `Departamento de inversión`, `Departamento de colocación`, `Plazo` y `Género`.
+      + Mantener filas con valor de inversión  mayores o iguales a 100 mil pesos e inferiores a 500 millones de pesos.
 
 ## {data-background="lengR.png"}
 
@@ -518,5 +532,7 @@ Con la base de datos de créditos agropecuarios usted debe realizar lo siguiente
   8. ¿Existe igual número de hombres y mujeres con créditos agropecuarios para el año 2017?
   9. ¿Cómo es la proporción de créditos para el tipo de productor?
   10. ¿En qué mes se presenta el mayor número de créditos en Antioquia?
+  11. ¿Qué proporción de créditos posee colocación en departamentos diferentes a los de inversión?
+  12. Fórmule 1 consulta cuyo alcance y resolución esté acotado por los datos.
   
 **Nota:** se sugiere crear el documento *.html* e incorporarlo en su perfil de github desde RStudio. 
