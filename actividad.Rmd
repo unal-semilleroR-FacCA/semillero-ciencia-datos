@@ -17,11 +17,11 @@ title: "Actividades"
       - [Actividad práctica 4](/Actividades/Actividad4.html)
   - [5. Visualización y comunicación de resultados](/Actividades/5_Visual.html)
       - [Actividad práctica 5](/Actividades/Actividad5.html)
-  - [6. Caso práctico de interés](/Actividades/Caso1.html)
-  - [7. Caso práctico de interés](/Actividades/Caso2.html)
-  - [8. Caso práctico de interés](/Actividades/Caso3.html)
-  - [9. Caso práctico de interés](/Actividades/Caso4.html)
-  - [10. Caso práctico de interés](/Actividades/Caso5.html) 
+  - [6. Caso práctico de interés 1](/Actividades/Caso1.html)
+  - [7. Caso práctico de interés 2](/Actividades/Caso2.html)
+  - [8. Caso práctico de interés 3](/Actividades/Caso3.html)
+  - [9. Caso práctico de interés 4](/Actividades/Caso4.html)
+  - [10. Caso práctico de interés 5](/Actividades/Caso5.html) 
   
 ### Dinámica del semillero
 
