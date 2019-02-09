@@ -2,7 +2,7 @@
 title: "Actividades"
 ---
 
-### Temario general 2019
+### Temario general 2019-01
   
   - [0. Bienvenida](/Actividades/0_Bienvenida.html)
   - [1. Caja de herramientas del analista de datos](/Actividades/1_Intro.html)
