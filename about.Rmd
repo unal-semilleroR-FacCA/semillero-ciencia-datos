@@ -33,7 +33,7 @@ knitr::include_graphics("images/semillero.jpg")
       - Elementos de investigación reproducible    
       - Genética cuantitativa
       - Mejoramiento genético animal
-      - Bioestadistica
+      - Bioestadística
       - Métodos estadísticos multivariados en la agricultura
       - Métodos estadísticos multivariados en ecología
       - Diseño y análisis estadístico de experimentos
@@ -41,16 +41,16 @@ knitr::include_graphics("images/semillero.jpg")
   - Divulgación de resultados
   - Mejoras compartidas
 
-## Horario 2018-02
+## Horario 2019 
 
   - Lunes:
-      - **Lugar:** bloque 50 - Salón 50-230.
+      - **Lugar:** bloque 11 - Sala de Sistemas Facultad de Ciencias Agrarias.
       - **Hora:**  6:00 a 10:00 am.
   - Martes:
-      - **Lugar:** bloque 50 - Salón 50-323.
+      - **Lugar:** bloque 11 - Sala de Sistemas Facultad de Ciencias Agrarias.
       - **Hora:**  8:00 a 12:00 m.      
 
 ## Dirección del semillero
 
-  - [Edimer David Jaramillo](https://edimer.github.io/)
   - Luis Gabriel González Herrera
+  - [Edimer David Jaramillo](https://edimer.github.io/)  

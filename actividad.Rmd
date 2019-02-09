@@ -2,41 +2,35 @@
 title: "Actividades"
 ---
 
-### Temario general 2018-02
+### Temario general 2019
   
   - [0. Bienvenida](/Actividades/0_Bienvenida.html)
   - [1. Caja de herramientas del analista de datos](/Actividades/1_Intro.html)
+      - [Ecosistema R Markdown](/Actividades/1_RMarkdown.html)
+      - [Actividad práctica 1](/Actividades/Actividad1.html)
       - [Guías - Tutoriales](/Actividades/GuiasR.html)
   - [2. El maravilloso mundo de R](/Actividades/2_MundoR.html)
-  - [3. Proceso de anális de datos (tidyverse)](/Actividades/3_Tidy.html)
-  - [4. Visualización y comunicación de resultados](/Actividades/4_Visual.html)
-  - [5. Caso práctico de interés](/Actividades/5_Caso1.html)
-  - [6. Caso práctico de interés](/Actividades/5_Caso2.html)
-  - [7. Caso práctico de interés](/Actividades/5_Caso3.html)
-  - [8. Caso práctico de interés](/Actividades/5_Caso4.html)
-  - [9. Caso práctico de interés](/Actividades/5_Caso5.html)
-  - [10. Caso práctico de interés](/Actividades/5_Caso6.html)  
+      - [Actividad práctica 2](/Actividades/Actividad2.html)
+  - [3. Funciones y ciclos con R](3_Funciones.html)
+      - [Actividad práctica 3](/Actividades/Actividad3.html)
+  - [4. Proceso de anális de datos (tidyverse)](/Actividades/4_Tidy.html)
+      - [Actividad práctica 4](/Actividades/Actividad4.html)
+  - [5. Visualización y comunicación de resultados](/Actividades/5_Visual.html)
+      - [Actividad práctica 5](/Actividades/Actividad5.html)
+  - [6. Caso práctico de interés](/Actividades/Caso1.html)
+  - [7. Caso práctico de interés](/Actividades/Caso2.html)
+  - [8. Caso práctico de interés](/Actividades/Caso3.html)
+  - [9. Caso práctico de interés](/Actividades/Caso4.html)
+  - [10. Caso práctico de interés](/Actividades/Caso5.html) 
   
 ### Dinámica del semillero
 
-  - 10 reuniones en el semestre.
+  - Temas principales 2019-01:
+      - Introducción a R y RStudio.
+      - Funciones y ciclos con R.
+      - Manejo y procesamiento de bases de datos con R.
+      - Estadística descriptiva con R.
+      - Visualización de datos con R.
   - Con ambos grupos (lunes y martes) se abordarán los mismos temas.
-  - Componente introductorio en 4 sesiones.
-  - Componente práctico en 6 sesiones.
   - Todas las sesiones serán asistidas por la dirección del semillero.
   - Cada sesión contará con actividades desarrolladas por los participantes.
-  
-### Cronograma de actividades 2018-02
-
-  - **Componente Introductorio:**
-      - Lunes 03 de septiembre - Martes 04 de septiembre
-      - Lunes 10 de septiembre - Martes 11 de septiembre
-      - Lunes 24 de septiembre - Martes 25 de septiembre
-      - Lunes 01 de octubre - Martes 02 de octubre
-  - **Componente Práctico**    
-      - Lunes 08 de octubre - Martes 09 de octubre
-      - Lunes 22 de octubre - Martes 23 de octubre
-      - Lunes 29 de octubre - Martes 30 de octubre
-      - Lunes 19 de noviembre - Martes 20 de noviembre
-      - Lunes 26 de noviembre - Martes 27 de noviembre
-      - Lunes 03 de diciembre - Martes 04 de diciembre  
