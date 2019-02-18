@@ -5,8 +5,8 @@ title: "Actividades"
 ### Temario general 2019-01
   
   - [0. Bienvenida](/Actividades/0_Bienvenida.html)
-  - [1. Caja de herramientas del analista de datos](/Actividades/1_Intro.html)
-      - [Ecosistema R Markdown](/Actividades/1_RMarkdown.html)
+  - [1. Introducción a R y RStudio](/Actividades/1_Intro.html)
+      - [Ecosistema R Markdown (I)](/Actividades/1_RMarkdown.html)
       - [Actividad práctica 1](/Actividades/Actividad1.html)
       - [Guías - Tutoriales](/Actividades/GuiasR.html)
   - [2. El maravilloso mundo de R](/Actividades/2_MundoR.html)
@@ -27,6 +27,7 @@ title: "Actividades"
 
   - Temas principales 2019-01:
       - Introducción a R y RStudio.
+      - Ecosistema R Markdown.
       - Funciones y ciclos con R.
       - Manejo y procesamiento de bases de datos con R.
       - Estadística descriptiva con R.

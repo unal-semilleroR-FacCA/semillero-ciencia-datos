@@ -1,0 +1,64 @@
+# Git {data-background="git2.png"}
+
+## Diseñador de Git {data-background="git2.png"}
+
+```{r, out.width="420", out.height="380", fig.align='left'}
+knitr::include_graphics("linus.jpeg")
+```
+
+[Linus Benedict Torvalds.](https://es.wikipedia.org/wiki/Linus_Torvalds)
+
+## ¿Qué es control de versiones? {data-background="git2.png"}
+
+<q>"El control de versiones es un sistema que registra cambios en un archivo o conjunto de archivos a lo largo del tiempo para que pueda recuperar versiones específicas más tarde."</q> [Fuente.](https://git-scm.com/book/en/v2/Getting-Started-About-Version-Control)
+
+## ¿Qué es Git? {data-background="git2.png"}
+
+<q>"Git es un sistema de control de versiones distribuidas de código abierto y gratuito diseñado para manejar todo, desde proyectos pequeños a muy grandes, con velocidad y eficiencia."</q> [Fuente](https://git-scm.com/)
+
+## Control de versiones {data-background="git2.png"}
+
+```{r, out.width="700", out.height="550", fig.align='left'}
+knitr::include_graphics("git3.png")
+```
+
+## Bondades {data-background="git2.png"}
+
+  - <textred>Mejoras compartidas.</textred>
+  - Administración de proyectos remotos (web).
+  - Control de código abierto.
+  - Disponible para todos.
+
+## Descargar e instalar Git {data-background="git2.png"}
+
+  - [Descargar Git](https://git-scm.com/downloads)
+  - **Windows:**
+      - Instalar Git Bash para Windows.
+      - Ejecutar Git Bash.
+
+# Github {data-background="github2.png"}
+
+## ¿Qué es Github? {data-background="github2.png"}
+
+<q>"GitHub es una plataforma de desarrollo inspirada en la forma en que trabajas. Desde el código abierto hasta el del negocio, puede alojar y revisar el código, administrar proyectos y crear software junto con 28 millones de desarrolladores."</q> [Fuente.](https://github.com/)
+
+## Registrarse en Github {data-background="github2.png"}
+
+```{r, out.width="700", out.height="550", fig.align='left', fig.cap="https://github.com/"}
+knitr::include_graphics("github_web.png")
+```
+
+## Configuración de Git {data-background="github2.png"}
+
+  - Configurar nombre de usuario y contraseña:
+
+```
+git config --global user.name "Your Name Here"
+git config --global user.email "your_email@example.com"
+```
+
+  - Verificar nombre de usuario y contraseña:
+  
+```
+git config --list
+```

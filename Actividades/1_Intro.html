@@ -450,17 +450,8 @@ document.getElementsByTagName('head')[0].appendChild(style);
 
 
 <section><section id="semillero-de-r---facca" class="titleslide slide level1" data-background="fondo1.png"><h1>Semillero de R - FacCA</h1></section></section>
-<section><section id="caja-de-herramientas-del-analista-de-datos" class="titleslide slide level1" data-background="caja2.png"><h1>1. Caja de herramientas del analista de datos</h1></section><section id="section" class="slide level2" data-background="caja2.png">
-<h2></h2>
-<ul>
-<li>Lenguaje R</li>
-<li>IDE RStudio</li>
-<li>Git</li>
-<li>Github</li>
-<li>Markdown (Rmarkdown)</li>
-</ul>
-</section></section>
-<section><section id="lenguaje-r" class="titleslide slide level1" data-background="lengR.png"><h1>Lenguaje R</h1></section><section id="caracteristicas-de-r" class="slide level2" data-background="lengR.png">
+<section><section id="introduccion-a-r-y-rstudio" class="titleslide slide level1" data-background="descarga2.png"><h1>1. Introducción a R y RStudio</h1></section></section>
+<section><section id="lenguaje-r" class="titleslide slide level1" data-background="descarga2.png"><h1>Lenguaje R</h1></section><section id="caracteristicas-de-r" class="slide level2" data-background="descarga2.png">
 <h2>Características de R</h2>
 <ul>
 <li>Útil para administración, gestión e integración de datos.</li>
@@ -470,11 +461,11 @@ document.getElementsByTagName('head')[0].appendChild(style);
 <li><a href="https://es.wikipedia.org/wiki/Software_libre">Software libre</a></li>
 <li><a href="https://cran.r-project.org/">Descargar R.</a></li>
 </ul>
-</section><section id="gui-de-r" class="slide level2" data-background="lengR.png">
+</section><section id="gui-de-r" class="slide level2" data-background="descarga2.png">
 <h2>GUI de R</h2>
 <p><img src="01-RConsole.jpg" width="670" height="550" style="display: block; margin: auto auto auto 0;" /></p>
 </section></section>
-<section><section id="rstudio" class="titleslide slide level1" data-background="lrstudio.png"><h1>RStudio</h1></section><section id="caracterisitcas-de-rstudio" class="slide level2" data-background="lrstudio.png">
+<section><section id="rstudio" class="titleslide slide level1" data-background="descarga2.png"><h1>RStudio</h1></section><section id="caracterisitcas-de-rstudio" class="slide level2" data-background="descarga2.png">
 <h2>Caracterísitcas de RStudio</h2>
 <ul>
 <li>Entorno de desarrollo integrado (IDE).</li>
@@ -484,135 +475,75 @@ document.getElementsByTagName('head')[0].appendChild(style);
 <li>Permite control de versiones (Git).</li>
 <li><a href="https://www.rstudio.com/products/rstudio/download/">Descargar RStudio.</a></li>
 </ul>
-</section><section id="ide-rstudio" class="slide level2" data-background="lrstudio.png">
+</section><section id="ide-rstudio" class="slide level2" data-background="descarga2.png">
 <h2>IDE RStudio</h2>
 <p><img src="IDERS.png" width="760" height="550" style="display: block; margin: auto auto auto 0;" /></p>
 </section></section>
-<section><section id="git" class="titleslide slide level1" data-background="git2.png"><h1>Git</h1></section><section id="disenador-de-git" class="slide level2" data-background="git2.png">
-<h2>Diseñador de Git</h2>
-<p><img src="linus.jpeg" width="420" height="380" style="display: block; margin: auto auto auto 0;" /></p>
-<p><a href="https://es.wikipedia.org/wiki/Linus_Torvalds">Linus Benedict Torvalds.</a></p>
-</section><section id="que-es-control-de-versiones" class="slide level2" data-background="git2.png">
-<h2>¿Qué es control de versiones?</h2>
-<p><q>“El control de versiones es un sistema que registra cambios en un archivo o conjunto de archivos a lo largo del tiempo para que pueda recuperar versiones específicas más tarde.”</q> <a href="https://git-scm.com/book/en/v2/Getting-Started-About-Version-Control">Fuente.</a></p>
-</section><section id="que-es-git" class="slide level2" data-background="git2.png">
-<h2>¿Qué es Git?</h2>
-<p><q>“Git es un sistema de control de versiones distribuidas de código abierto y gratuito diseñado para manejar todo, desde proyectos pequeños a muy grandes, con velocidad y eficiencia.”</q> <a href="https://git-scm.com/">Fuente</a></p>
-</section><section id="control-de-versiones" class="slide level2" data-background="git2.png">
-<h2>Control de versiones</h2>
-<p><img src="git3.png" width="700" height="550" style="display: block; margin: auto auto auto 0;" /></p>
-</section><section id="bondades" class="slide level2" data-background="git2.png">
-<h2>Bondades</h2>
+<section><section id="resumen" class="titleslide slide level1" data-background="descarga2.png"><h1>Resumen</h1></section><section id="flujo-de-trabajo-inicial" class="slide level2" data-background="descarga2.png">
+<h2>Flujo de trabajo inicial</h2>
 <ul>
-<li><textred>Mejoras compartidas.</textred></li>
-<li>Administración de proyectos remotos (web).</li>
-<li>Control de código abierto.</li>
-<li>Disponible para todos.</li>
-</ul>
-</section><section id="descargar-e-instalar-git" class="slide level2" data-background="git2.png">
-<h2>Descargar e instalar Git</h2>
+<li>Obtener directorio de trabajo (<code>getwd()</code>)</li>
+<li>Cambiar directorio de trabajo
 <ul>
-<li><a href="https://git-scm.com/downloads">Descargar Git</a></li>
-<li><strong>Windows:</strong>
+<li><em>Session -&gt; Set Working Directory -&gt; Choose Directory.</em></li>
+</ul></li>
+<li>Generar archivo <strong>.R</strong> (<em>ejemplo: Tarea.R</em>).
 <ul>
-<li>Instalar Git Bash para Windows.</li>
-<li>Ejecutar Git Bash.</li>
+<li><em>File -&gt; New File -&gt; R Script (Ctrl + Shift + N).</em></li>
+</ul></li>
+<li>Guardar archivo <strong>.R</strong> (script)
+<ul>
+<li>Codificación UTF-8 para lenguaje castellano.</li>
+<li><em>File -&gt; Save with Encoding -&gt; UTF-8.</em></li>
 </ul></li>
 </ul>
+</section><section id="elementos-basicos-con-r" class="slide level2" data-background="descarga2.png">
+<h2>Elementos básicos con R</h2>
+<ul>
+<li><strong><code>#</code>:</strong> comentar código.</li>
+<li><strong><code>&lt;-</code>:</strong> asignar variables.</li>
+<li><strong><code>Ctrl + Enter</code>:</strong> ejecutar código.</li>
+<li><strong><code>Ctrl + L</code>:</strong> limpiar consola.</li>
+<li>Funciones
+<ul>
+<li><strong><code>c()</code>:</strong> concatenar (crear vectores).</li>
+<li><strong><code>data.frame()</code>:</strong> crear bases de datos.</li>
+<li><strong><code>$</code>:</strong> operador para acceder a las variables por su nombre.</li>
+<li><strong><code>names()</code>:</strong> nombre de variables o columnas.</li>
+<li><strong><code>length()</code>:</strong> longitud de un vector o número de variables en una base de datos.</li>
+<li><strong><code>dim()</code>:</strong> dimensiones (filas y columnas) de una matriz o base de datos.</li>
+<li><strong><code>plot()</code>:</strong> función genérica para graficación. Gráfico de dispersión <em>X vs Y</em>.</li>
+<li><strong><code>str()</code>:</strong> estructura interna de un objeto.</li>
+<li><strong><code>class()</code>:</strong> clase atómica de un objeto.</li>
+</ul></li>
+<li><strong>Tipos de datos:</strong> numércios, enteros, caracteres, factores, otros.</li>
+<li><strong>Parámetros de graficación:</strong> color, tipo de líneas, tipo de símbolos.</li>
+</ul>
 </section></section>
-<section><section id="github" class="titleslide slide level1" data-background="github2.png"><h1>Github</h1></section><section id="que-es-github" class="slide level2" data-background="github2.png">
-<h2>¿Qué es Github?</h2>
-<p><q>“GitHub es una plataforma de desarrollo inspirada en la forma en que trabajas. Desde el código abierto hasta el del negocio, puede alojar y revisar el código, administrar proyectos y crear software junto con 28 millones de desarrolladores.”</q> <a href="https://github.com/">Fuente.</a></p>
-</section><section id="registrarse-en-github" class="slide level2" data-background="github2.png">
-<h2>Registrarse en Github</h2>
-<div class="figure" style="text-align: left">
-<img src="github_web.png" alt="https://github.com/" width="700" height="550" />
-<p class="caption">
-<a href="https://github.com/" class="uri">https://github.com/</a>
-</p>
-</div>
-</section><section id="configuracion-de-git" class="slide level2" data-background="github2.png">
-<h2>Configuración de Git</h2>
-<ul>
-<li>Configurar nombre de usuario y contraseña:</li>
-</ul>
-<pre><code>git config --global user.name &quot;Your Name Here&quot;
-git config --global user.email &quot;your_email@example.com&quot;</code></pre>
-<ul>
-<li>Verificar nombre de usuario y contraseña:</li>
-</ul>
-<pre><code>git config --list</code></pre>
+<section><section id="ciencia-de-datos-data-science" class="titleslide slide level1" data-background="descarga2.png"><h1>Ciencia de datos (Data Science)</h1></section><section id="que-es-ciencia-de-datos" class="slide level2" data-background="descarga2.png">
+<h2>¿Qué es ciencia de datos?</h2>
+<p><img src="Data_Science_VD.png" style="display: block; margin: auto;" /></p>
+</section><section id="que-es-machine-learning" class="slide level2" data-background="descarga2.png">
+<h2>¿Qué es Machine Learning?</h2>
+<p><img src="machinel.png" width="550px" height="375px" style="display: block; margin: auto;" /></p>
+</section><section id="machine-learning-razonamiento-intuitivo" class="slide level2" data-background="descarga2.png">
+<h2>Machine Learning: razonamiento intuitivo</h2>
+<p><img src="ml.gif" width="650px" height="375px" style="display: block; margin: auto;" /></p>
+</section><section id="aplicaciones" class="slide level2" data-background="descarga2.png">
+<h2>Aplicaciones</h2>
+<p><img src="Machine-Learning-Applications.jpg" width="715px" height="415px" style="display: block; margin: auto;" /></p>
+</section><section id="aplicaciones-1" class="slide level2" data-background="descarga2.png">
+<h2>Aplicaciones</h2>
+<p><img src="machineL.png" width="715px" height="415px" style="display: block; margin: auto;" /></p>
 </section></section>
-<section><section id="markdown" class="titleslide slide level1" data-background="markdown2.png"><h1>Markdown</h1></section><section id="que-es-markdown" class="slide level2" data-background="markdown2.png">
-<h2>¿Qué es Markdown?</h2>
-<p><q>“Markdown es un lenguaje de marcado ligero creado por John Gruber que trata de conseguir la máxima legibilidad y facilidad de publicación tanto en su forma de entrada como de salida, inspirándose en muchas convenciones existentes para marcar mensajes de correo electrónico usando texto plano.”</q></p>
-</section><section id="elementos-basicos-de-markdown" class="slide level2" data-background="markdown2.png">
-<h2>Elementos básicos de Markdown</h2>
-</section><section id="titulos-o-encabezados" class="slide level2" data-background="markdown2.png">
-<h2>Títulos o encabezados</h2>
-<pre><code># Título 1
-
-## Título 2
-
-### Título 3</code></pre>
-</section><section id="vinetas" class="slide level2" data-background="markdown2.png">
-<h2>Viñetas</h2>
-<pre><code>  - Viñeta 1
-  - Viñeta 2
-      - Subviñeta 2.1
-  - Viñeta 3
-
-  * Viñeta 1
-  * Viñeta 2
-      * Subviñeta 2.1
-  * Viñeta 3
-  
-  + Viñeta 1
-  + Viñeta 2
-      + Subviñeta 2.1
-  + Viñeta 3  </code></pre>
-</section><section id="insertar-imagen" class="slide level2" data-background="markdown2.png">
-<h2>Insertar imagen</h2>
-<pre><code>![](imagen.png)  </code></pre>
-</section><section id="insertar-hipervinculo" class="slide level2" data-background="markdown2.png">
-<h2>Insertar hipervínculo</h2>
-<ul>
-<li><strong>Primera forma:</strong></li>
-</ul>
-<pre><code>https://es.wikipedia.org/wiki/Git </code></pre>
-<ul>
-<li><strong>Segunda forma:</strong></li>
-</ul>
-<pre><code>[Git Wikipedia](https://es.wikipedia.org/wiki/Git)  </code></pre>
-</section><section id="opciones-de-texto" class="slide level2" data-background="markdown2.png">
-<h2>Opciones de texto</h2>
-<ul>
-<li><strong>Cursiva:</strong></li>
-</ul>
-<pre><code>*Texto*
-_Texto_</code></pre>
-<ul>
-<li><strong>Negrilla:</strong></li>
-</ul>
-<pre><code>**Texto**
-__Texto__</code></pre>
-<ul>
-<li><strong>Negrilla cursiva:</strong></li>
-</ul>
-<pre><code>***Texto***
-___Texto___</code></pre>
-</section></section>
-<section><section id="actividad" class="titleslide slide level1" data-background="github2.png"><h1>Actividad</h1></section><section id="actividad-1" class="slide level2">
-<h2>Actividad 1</h2>
-<ul>
-<li>Crear cuenta en Github.</li>
-<li>Descargar e instalar Git.</li>
-<li>Instalar R.</li>
-<li>Instalar RStudio.</li>
-<li>Crear un repositorio en Github.</li>
-<li>Clonar el repsitorio a través de RStudio.</li>
-<li><textblue>Crear documento Rmarkdown.</textblue></li>
-</ul>
+<section><section id="recursos-de-informacion" class="titleslide slide level1" data-background="descarga2.png"><h1>Recursos de información</h1></section><section id="r-for-data-science" class="slide level2" data-background="descarga2.png">
+<h2>R for Data Science</h2>
+<p><img src="cover.png" width="415px" height="500px" style="display: block; margin: auto;" /></p>
+<p><a href="https://r4ds.had.co.nz/">R for Data Science.</a></p>
+</section><section id="r-programming-for-data-science" class="slide level2" data-background="descarga2.png">
+<h2>R Programming for Data Science</h2>
+<p><img src="cover_sm.png" width="415px" height="500px" style="display: block; margin: auto;" /></p>
+<p><a href="https://bookdown.org/rdpeng/rprogdatascience/">R Programming for Data Science.</a></p>
 </section></section>
     </div>
   </div>
