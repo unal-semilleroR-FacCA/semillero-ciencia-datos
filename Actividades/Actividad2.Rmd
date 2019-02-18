@@ -25,3 +25,24 @@ knitr::opts_chunk$set(echo = FALSE,
 # Semillero de R - FacCA {data-background="fondo1.png"}
 
 # Actividad 2 {data-background="descarga2.png"}
+
+## Objetivos {data-background="descarga2.png"}
+
+  - Datos ordenados con R (tidy data).
+  - Verbos de la biblioteca `dplyr`.
+  - Graficación con `ggplot2`.
+  - Metodología
+      - Plantear preguntas sobre los datos.
+      - Buscar respuestas a través de visualización o transformación de datos.
+      - Estructurar nuevamente las preguntas iniciales.
+
+```{r, echo=FALSE, out.width="510px", out.height="250px"}
+knitr::include_graphics("r4ds_data-science.png")
+```  
+
+## Actividad {data-background="descarga2.png"}
+
+  - **Primera parte:**
+      - Obtenga una base de datos de algún tema que le interese explorar.
+      - Identifique problemáticas de interés con los datos.
+      - Defina la variable respuesta.
