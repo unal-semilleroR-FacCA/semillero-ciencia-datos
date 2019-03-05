@@ -1,7 +1,7 @@
 ---
 title: "Semillero de R - FacCA"
 subtitle: "Mundo R + `tidyverse` I"
-author: "Edimer David Jaramillo"
+author: "Semillero R FacCA"
 date: "Marzo de 2019"
 output:
   html_document:
