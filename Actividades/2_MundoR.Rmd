@@ -1,15 +1,15 @@
 ---
-output: 
-  revealjs::revealjs_presentation:
-    theme: simple
+title: "Semillero de R - FacCA"
+subtitle: "Mundo R + `tidyverse` I"
+author: "Edimer David Jaramillo"
+date: "Marzo de 2019"
+output:
+  html_document:
+    toc: true
+    theme: readable
     highlight: tango
-    center: true
-    transition: slide
     css: estilo.css
-    self_contained: false
-    reveal_options:
-      slideNumber: true
-      previewLinks: true
+    df_print: paged
 ---
 
 ```{r setup, include=FALSE}
@@ -22,60 +22,31 @@ knitr::opts_chunk$set(echo = TRUE,
                       fig.height = 5.5)
 ```
 
-# Semillero de R - FacCA {data-background="fondo1.png"}
+# Elementos básicos con R
 
-# El maravilloso mundo de R {data-background="lengR.png"}
-
-# Entradas básicas {data-background="lengR.png"}
-
-## {data-background="lengR.png"}
-
-  - `#:` comentario.
-  - `<-:` asignación.
-  - `help()` o `?`: sistema de ayudas en R.
-  - `getwd():` obtener el directorio de trabajo.
-  - Ejecutar código `CTRL + Enter`.
-  - Limpiar consola `CTRL + L`.
-
-## Ejemplo {data-background="lengR.png"}
-
-```{r}
-# Este es un comentario
-dos <- 2 # Generando nueva variable "dos" que contiene el nùmero 2
-dos # Imprimir el contenido de la variable "dos"
-```
-
-# Operadores {data-background="lengR.png"}
-
-## Aritméticos {data-background="lengR.png"}
-
-  - `+`: suma.
-  - `-`: resta.
-  - `*`: multiplicación.
-  - `/`: división.
-  - `^`: potencia.
-
-## Ejemplo {data-background="lengR.png"}
-
-```{r, collapse=TRUE}
-2 + 2 # Suma
-3 - 5 # Resta
-5 * 5 # Multiplicaciòn
-5 / 5 # División
-2 ^ 2 # Potencia
-```
-
-## Comparación {data-background="lengR.png"}
-
-  - `==`: igualdad.
-  - `!=`: diferencia.
-  - `>`: mayor.
-  - `<`: menor.
-  - `>=`: mayor o igual.
-  - `<=`: menor o igual.
-  - `!`: negación.
-
-## Ejemplo {data-background="lengR.png"}
+- Entradas básicas:
+    - `#:` comentario.
+    - `<-:` asignación.
+    - `help()` o `?`: sistema de ayudas en R.
+    - `getwd():` obtener el directorio de trabajo.
+    - `CTRL + Enter`: Ejecutar código. 
+    - `CTRL + L`: Limpiar consola.
+- Operadores Aritméticos:
+    - `+`: suma.
+    - `-`: resta.
+    - `*`: multiplicación.
+    - `/`: división.
+    - `^`: potencia.
+    - `%%`: división entera.
+    - `%/%`: división modular.
+- Operadores lógicos:
+    - `==`: igualdad.
+    - `!=`: diferencia.
+    - `>`: mayor.
+    - `<`: menor.
+    - `>=`: mayor o igual.
+    - `<=`: menor o igual.
+    - `!`: negación.
 
 ```{r, collapse=TRUE}
 2 == 2 # Igualdad
@@ -87,12 +58,9 @@ dos # Imprimir el contenido de la variable "dos"
 !(2 + 2) == 4 # Negación
 ```
 
-## Conjunción y disyunción  {data-background="lengR.png"} 
-  
-  - `&` - `&&`: conjunción.
-  - `|` - `||`: disyunción.
-
-## Ejemplo {data-background="lengR.png"}  
+- Conjunción y disyunción:
+    - `&` - `&&`: conjunción.
+    - `|` - `||`: disyunción.
   
 ```{r, collapse=TRUE}
 flores <- c(10, 2, 5)
@@ -101,27 +69,20 @@ frutos <- c(6, 7, 3)
 # Conjunción
 (flores > 3) & (frutos <= 2)
 (flores > 3) && (frutos <= 2)
-```
 
-```{r, collapse=TRUE}
 # Disyunción
 (flores > 3) | (frutos <= 2)
 (flores > 3) || (frutos <= 2)
 ```
 
-# Tipos de datos en R {data-background="lengR.png"}
-
-## {data-background="lengR.png"}
+# Tipos de datos en R
 
   - **Numéricos:** `numeric`
   - **Enteros:** `integer`
   - **Caracteres:** `character`
   - **Lógicos:** `logical`
   - **Complejos:** `complex`
-  
-**Nota:** la función `class()` permite obtener la clase atómica o tipo de dato.  
-
-## Ejemplo {data-background="lengR.png"}
+  - **Nota:** la función `class()` permite obtener el tipo de dato de un objeto o variable.
 
 ```{r, collapse=TRUE}
 numerico <- 3.5
@@ -129,9 +90,7 @@ entero <- 2L
 caracter <- "Semillero de R"
 logico <- TRUE
 complejo <- 1 + 2i
-```
 
-```{r, collapse=TRUE}
 class(numerico)
 class(entero)
 class(caracter)
@@ -139,194 +98,68 @@ class(logico)
 class(complejo)
 ```
 
-# Objetos estructurados {data-background="lengR.png"}
+# Objetos estructurados 
 
-## Vectores {data-background="lengR.png"}
-
-  - Función `vector()` para generar vectores.
-      - Argumentos *mode* y  *length*. 
-          - `(vector(mode = "tipo", length = longitud))` 
-  - Función `c()` para generar vectores.
-  - Los vectores poseen longitud (función `length()`).
-  - **Características:** sólo almacena datos de un mismo tipo.
-
-## Ejemplo {data-background="lengR.png"}
-
-```{r, collapse=TRUE}
-# Vector numérico
-vector.num1 <- vector(mode = "numeric", length = 5)
-vector.num1
-
-# Vector numérico
-vector.num2 <- c(2.5, 1.8, 5)
-vector.num2
-```
-
-```{r, collapse=TRUE}
-class(vector.num1)
-class(vector.num2)
-length(vector.num1)
-```
-
-## Matrices {data-background="lengR.png"}
-
-  - Función `matrix()`
-      - Argumentos *data*, *nrow*, *ncol*, *byrow*...
-  - Las matrices poseen dimensiones (función `dim()`).
-  - Las matrices poseen nombres de filas (`rownames()`).
-  - Las matrices poseen nombres de columnas (`colnames()`).
-  - **Características:** sólo almacena datos de un mismo tipo.     
-
-## Ejemplo {data-background="lengR.png"}
-
-```{r,collapse=TRUE}
-# Matriz por columna
-mi.matriz1 <- matrix(data = c(1, 2, 3, 4), nrow = 2, ncol = 2)
-mi.matriz1
-
-# Matriz por fila
-mi.matriz2 <- matrix(data = c(1, 2, 3, 4), nrow = 2, ncol = 2, byrow = TRUE)
-mi.matriz2
-```
-
-## {data-background="lengR.png"}
+- **Vectores:**
+    - Función `c()` para generar vectores.
+    - **Características:** sólo almacena datos de un mismo tipo.
+- **Matrices:**
+    - Función `matrix()` para crear matrices.
+    - **Características:** sólo almacena datos de un mismo tipo.     
+- **Factores:**
+    - Caracteres con jerarquías o niveles. 
+    - Útil para manipular variables categóricas (nominales u ordinales).
+    - La función `levels()` permite observar los niveles de un factor.
+    - Las funciones `table()` y `prop.table()` permiten obtener las frecuencias absolutas y relativas, respectivamente.
+    - Los niveles se organizan por defecto por orden alfabético.
+- **Listas:**
+    - Función `list()` para crear listas.
+    - Las listas poseen longitud.
+    - Las listas poseen nombres de variables (`names()`).
+    - **Características:** permite almacenar cualquier tipo de dato.
+- **Data frame:**
+    - Función `data.frame()` permite generar marcos de datos (bases de datos).
+    - Los marcos de datos poseen nombres, longitud y dimensión.
+    - La función `str()` es de gran utilidad para observar la estructura interna de un objeto (en este caso de una base de datos).
+    - El operador `$` permitirá elegir variables de la base de datos.
+    - El operador `$` también facilitará la agregación de variables.
+    - La función `head()` permite mostrar un número determinado de datos iniciales.
+    - La función `tail()` permite mostrar un número determinado de datos finales. 
+    - **Características:**
+        - Permite almacenar datos de diferente tipo.
+        - Cada columna representa una variable (vector).
+        - Cada fila es una observación, registro o individuo.
+        - Todas las variables deben tener la misma longitud.
+        - Las bases de datos se pueden crear, importar o utilizar las que trae R por defecto (`data()`).    
 
 ```{r, collapse=TRUE}
-# Dimensiones de la matriz
-dim(mi.matriz1)
+########### EJEMPLO DE UN FACTOR ##############################################
 
-# Nombres de filas y columnas de la matriz
-rownames(mi.matriz1) <- c("Fila1", "Fila2")
-colnames(mi.matriz1) <- c("Col1", "Col2")
-mi.matriz1
-```
-
-## Factores {data-background="lengR.png"}
-
-  - Función `factor()` para generar factores.
-      - Argumentos *x*, *levels*, *labels*...
-  - Caracteres con jerarquías o niveles. 
-  - Útil para manipular variables categóricas (nominales u ordinales).
-  - La función `levels()` permite observar los niveles de un factor.
-  - Las funciones `table()` y `prop.table()` permiten obtener las frecuencias absolutas y relativas, respectivamente.
-  - Los niveles se organizan por defecto por orden alfabético.
-
-## Ejemplo {data-background="lengR.png"}
-
-```{r, collapse=TRUE}
 # Niveles por defecto
 factor1 <- factor(x = c("Hombre", "Mujer", "Hombre", "Mujer"))
-class(factor1)
-levels(factor1)
-```
 
-```{r, collapse=TRUE}
+class(factor1)
+
+levels(factor1)
+
 # Manipulando los niveles del factor
 factor2 <- factor(x = c("Hombre", "Mujer", "Hombre", "Mujer"),
                   levels = c("Mujer", "Hombre"))
 class(factor2)
+
 levels(factor2)
+
+# Frecuencia absoluta
+table(factor2)
+
+# Frecuencia relativa
+prop.table(table(factor2)) 
 ```
 
-## {data-background="lengR.png"}
+# Coerción
 
-```{r, collapse=FALSE}
-table(factor2) # Frecuencia absoluta
-prop.table(table(factor2)) # Frecuencia relativa
-```
-
-## Listas {data-background="lengR.png"}
-
-  - Función `list()` para crear listas.
-  - Las listas poseen longitud.
-  - Las listas poseen nombres de variables (`names()`).
-  - **Características:** permite almacenar cualquier tipo de dato.
-
-## Ejemplo {data-background="lengR.png"}
-
-```{r, collapse=TRUE}
-mi.lista1 <- list(a1 = c(1, 2), a2 = c("Rojo", "Verde"),
-                  a3 = factor(x = c("Hombre", "Mujer")))
-mi.lista1
-class(mi.lista1)
-length(mi.lista1)
-names(mi.lista1)
-```
-
-## Data frame {data-background="lengR.png"}
-
-  - Función `data.frame()` permite generar marcos de datos (bases de datos).
-  - Los marcos de datos poseen nombres, longitud y dimensión.
-  - **Características:**
-      - Permite almacenar datos de diferente tipo.
-      - Cada columna representa una variable (vector).
-      - Cada fila es una observación, registro o individuo.
-      - Todas las variables deben tener la misma longitud.
-      - Las bases de datos se pueden crear, importar o utilizar las que trae R por defecto (`data()`).
-      
-## {data-background="lengR.png"}
-
-  - La función `str()` es de gran utilidad para observar la estructura interna de un objeto (en este caso de una base de datos).
-  - El operador `$` permitirá elegir variables de la base de datos.
-  - El operador `$` también facilitará la agregación de variables.
-  - La función `head()` permite mostrar un número determinado de datos iniciales.
-  - La función `tail()` permite mostrar un número determinado de datos finales. 
-      
-## Ejemplo {data-background="lengR.png"}
-
-```{r, collapse=TRUE}
-df1 <- data.frame(Nombre = c("Juan", "Pedro", "Laura", "Sara"),
-                  Edd = c(12, 16, 25, 30),
-                  genero = c("M", "M", "F", "F"),
-                  edad2 = c("Niño", "Joven", "Joven adulto", "Joven adulto"))
-df1
-```
-
-## {data-background="lengR.png"}
-
-```{r, collapse=TRUE}
-# Estructura interna de la base de datos
-str(df1)
-
-# Imprimir la variable edad2
-df1$edad2
-```
-
-## {data-background="lengR.png"}
-
-```{r, collapse=TRUE}
-# Dimensiones de la base de datos
-dim(df1)
-
-# Longitud de la base de datos
-length(df1)
-
-# Nombres de variables
-names(df1)
-
-# Nombres de individuos
-rownames(df1)
-```
-
-## {data-background="lengR.png"}
-
-```{r, collapse=TRUE}
-# Nueva variable con el número de hermanos
-df1$hermanos <- c(1, 0, 3, 2)
-df1
-
-# Editando los nombres de las variables
-names(df1) <- c("Nombre", "Edad", "Género", "Edad2", "Hermanos")
-head(df1, n = 1)
-tail(df1, n = 1)
-```
-
-# Coerción {data-background="lengR.png"}
-
-## {data-background="lengR.png"}
-
-  - **implícita:** conversión automática.   
-  - **explícita:** conversión dirigida.  
+  - **Implícita:** conversión automática.   
+  - **Explícita:** conversión dirigida.  
       - `as.numeric():` conversión a numérico.
       - `as.integer():` conversión a entero.
       - `as.character():` conversión a caracter.
@@ -338,8 +171,6 @@ tail(df1, n = 1)
       - `as.list():` conversión a lista.
       - `as.data.frame():` conversión a base de datos.
 
-## Ejemplo {data-background="lengR.png"}
-
 ```{r, collapse=TRUE}
 # Implícita
 coer.imp <- c(2, "Texto", TRUE)
@@ -349,155 +180,103 @@ class(coer.imp)
 # Explícita
 as.numeric(coer.imp)
 as.logical(coer.imp)
-df2 <- as.data.frame(mi.lista1)
-df2
 ```
 
-# Subconjuntos {data-background="lengR.png"}
+# Lectura y escritura de datos
 
-## {data-background="lengR.png"}
+- **Lectura:**
+    - `read.csv():` valores separados por comas.
+    - `read.csv2():` valores separados por punto y coma.
+    - `read.table():` valores separados por espacios en blanco.
+- **Escritura:**
+    - `write.csv()`
+    - `write.csv2()`
+    - `write.table()`
+- **Conversión de formatos:**
+    - Función `save()`: guardar (escribir) datos en formato .Rdata.
+    - Función `load()`: cargar (leer) datos en formato .Rdata.
 
-  - `[]:` operador para obtener subconjuntos de diferentes objetos (usualmente vectores, matrices y bases de datos).
-  - `[[]]:` operador para obtener subconjuntos de diferentes objetos (usualmente listas y bases de datos).
-  - `$:` operador que permite acceder a las variables de una lista o base de datos.
-  - Función `subset():` suconjuntos con determinadas condiciones de filtrado.
-  
-## Ejemplo {data-background="lengR.png"}
+# [`Tidyverse`](https://www.tidyverse.org/)
+
+```{r, echo=FALSE, out.height="100", out.width="250"}
+knitr::include_graphics("tidyverse.png")
+```
+<br>
+<br>
+```{r, echo=FALSE, out.height="240", out.width="620"}
+knitr::include_graphics("data-science.png")
+```
+<br>
+<br>
+```{r, echo=FALSE, out.height="240", out.width="620"}
+knitr::include_graphics("tidyverse-logo.png")
+```
+<br>
+<br>
+```{r, echo=FALSE, out.height="240", out.width="620"}
+knitr::include_graphics("tidy.png")
+```
+<br>
+<br>
+```{r, echo=FALSE, out.height="240", out.width="620"}
+knitr::include_graphics("01_tidyverse_data_science.png")
+```
+
+## Funciones de `dplyr` y `ggplot2`
+
+  - `%>%`: operador de encadenamiento de procesos.
+  - **`dplyr`:**
+      - `filter()`: filtrar filas.
+      - `arrange()`: reordenar filas.
+      - `slice()`: seleccionar filas.
+      - `select()`: seleccionar columnas.
+      - `mutate`: editar o generar nuevas variables.
+      - `summarise`: resumir datos.
+      - `group_by()`: operaciones agrupadas.
+  - **`ggplot2`:**
+      - `ggplot`: primera capa con los datos y el mapeo (`mapping`) estético (`aes`) del gráfico.
+          - `x`: eje x.
+          - `y`: eje y.
+          - `color`: color de bordes o líneas.
+          - `fill`: color de relleno.
+      - `+`: agregar una nueva capa al gráfico.
+      - `geom_`: objetos geométricos
+          - `geom_point()`: diagrama de dispersión x vs y.
+          - `geom_histogram()`: histogramas.
+          - `geom_boxplot()`: diagrama de cajas y bigotes.
+          - `geom_bar()`: diagrama de barras.
+          - `geom_col()`: diagrama de barras (con eje *y* definido).
+          - `geom_density()`: densidad.
+          - `geom_line()`: líneas (interesantes en series temporales).
+          - Otros...
+      - `labs`: etiquetas del gráfico (eje x, eje y, título, subtítulo).
+      - `theme_`: temas para el gráfico.
+      - `facet_wrap()`: facetas con una variable categórica.
+      - `facet_grid()`: facetas con dos o más variables categóricas.
+
+# Estado nutricional de la población menor de 6 años en Medellín 2016
+
+  - [Estado nutricional de la población menor de 6 años - Municipio de Medellín 2016.](https://www.datos.gov.co/Salud-y-Protecci-n-Social/Estado-nutricional-de-la-poblaci-n-menor-de-6-a-os/bkt5-gpif)
 
 ```{r, collapse=TRUE}
-# Subconjuntos de vectores
-prueba <- c(2, 4, 6, 20, 50)
-prueba[1]
-prueba[3:length(prueba)]
-prueba[prueba >= 5]
-```
-
-## {data-background="lengR.png"}
-
-```{r, collapse=TRUE}
-# Subconjuntos de matrices
-prueba2 <- matrix(data = c(10, 15, 20, 50), nrow = 2, ncol = 2)
-prueba2
-prueba2[1]
-prueba2[2, 2] # Fila 2 - Columna 2
-prueba2[1, ]  # Fila 1 - Todas las columnas
-prueba2[, 1]  # Todas las filas - Columna 1
-```
-
-## {data-background="lengR.png"}
-
-```{r, collapse=TRUE}
-# Subconjuntos de listas
-mi.lista2 <- list(v1 = c(1:10), v2 = c("Hola mundo"), v3 = c(TRUE, FALSE))
-mi.lista2$v1      # Imprime la variable "v1" sin el nombre
-mi.lista2[1]      # Imprime la variable "v1" con el nombre
-mi.lista2[[1]]    # Imprime la variable "v1" sin el nombre
-mi.lista2[[1]][1] # Imprime el primer dato de la variable "v1"
-mi.lista2$v1[1]   # Imprime el primer dato de la variable "v1"
-```
-  
-## {data-background="lengR.png"}
-
-```{r, collapse=TRUE}
-# Subconjuntos de bases de datos
-df.iris <- iris
-head(df.iris, n = 3)
-df.iris$Sepal.Length[1:3]
-df.iris[[1]][1:3]
-```
-  
-# Concatenar datos
-
-## {data-background="lengR.png"}
-
-  - `cbind():` concatenar por columna.
-  - `rbind():` concatenar por fila.
-
-## Ejemplo {data-background="lengR.png"}
-
-```{r, collapse=TRUE}
-# Base de datos
-df3 <- data.frame(Var1 = c(1:5), Var2 = c("A", "B", "C", "D", "E"))
-df3
-```
-
-## {data-background="lengR.png"}
-
-```{r, collapse=TRUE}
-# Agregando columna
-df3.1 <- cbind(df3, Var3 = c("Norte", "Sur", "Sur", "Oriente", "Sur"))
-df3.1
-```
-
-## {data-background="lengR.png"}
-
-```{r, collapse=TRUE}
-# Agregando fila
-fila.nueva <- data.frame(Var1 = 6, Var2 = "F", Var3 = "Occidente")
-df3.2 <- rbind(df3.1, fila.nueva)
-df3.2
-```
-
 # Lectura de datos
+datos <- read.csv("Datos/Estado_nutricional_de_la_poblaci_n_menor_de_6_a_os_-_Municipio_de_Medell_n_2016.csv")
 
-## {data-background="lengR.png"}
+# Conversión a formato .Rdata
+save(datos, file = "NutricionInfantil.Rdata")
 
-  - **Funciones:**
-      - `read.csv():` valores separados por comas.
-      - `read.csv2():` valores separados por punto y coma.
-      - `read.table():` valores separados por espacios en blanco.    
-
-## Ejemplo {data-background="lengR.png"}
-
-  - [Colocaciones de crédito sector agropecuario - Colombia 2017.](https://www.datos.gov.co/Agricultura-y-Desarrollo-Rural/Colocaciones-De-Credito-Sector-Agropecuario-2017/izjc-stkw)
-
-```{r, echo=FALSE}
-creditos <- read.csv("Datos/Colocaciones_De_Credito_Sector_Agropecuario_2017.csv")
+# Cargando datos en formato .Rdata
+load("NutricionInfantil.Rdata")
 ```
 
-```{r, eval=FALSE}
-# Lectura de datos
-creditos <- read.csv("Colocaciones_De_Credito_Sector_Agropecuario_2017.csv",
-                     sep = ",", encoding = "UTF-8")
+## Estructura interna de los datos
+
+```{r}
+str(datos)
 ```
 
-```{r, collapse=TRUE}
-# Base de datos
-creditos[1:5, 1:6]
-```
 
-# Escritura de datos
-
-## {data-background="lengR.png"}
-
-- **Funciones:**
-      - `write.csv()`
-      - `write.csv2()`
-      - `write.table()`
-
-## Ejemplo {data-background="lengR.png"}
-
-```{r, eval=FALSE}
-write.csv(x = creditos, file = "Creditos_Agro2017.csv", row.names = FALSE)
-```
-
-# Conversión de formatos {data-background="lengR.png"}
-
-## {data-background="lengR.png"}
-
-  - Función `save()`: guardar (escribir) datos en formato .Rdata.
-  - Función `load()`: cargar (leer) datos en formato .Rdata.
-
-## Ejemplo
-
-```{r, eval=FALSE, collapse=TRUE}
-save(creditos, file = "Creditos.Rdata")
-load("Creditos.Rdata")
-```
-
-# Funciones de uso común en R
-
-## {data-background="lengR.png"}
+# Funciones útiles con R
 
   - `help()` o `?`: ayudas en R.
   - `str():` estructura interna de un objeto.
@@ -511,28 +290,3 @@ load("Creditos.Rdata")
   - `is.na():` valores `NA` (no disponibles).
   - `is.nan():` valores `NaN` (no definido).
   
-# Actividad {data-background="lengR.png"}
-
-## Actividad 2 {data-background="lengR.png"}
-
-Con la base de datos de créditos agropecuarios usted debe realizar lo siguiente:
-
-  1. Crear un nuevo documento *Rmarkdown* con título ***"Actividad 2"*** y guardarlo.
-  2. Leer la base de datos en este documento.
-  3. ¿Qué estructura interna tiene el marco de datos?
-  4. ¿Cuál es la dimensión de la base de datos?
-  5. Crear una nueva variable llamada ***"creditos2"*** con las siguientes condiciones:
-      + Mantener las columnas `Mes`, `Tipo Productor`, `Valor inversión`, `Departamento de inversión`, `Departamento de colocación`, `Plazo` y `Género`.
-      + Mantener filas con valor de inversión  mayores o iguales a 100 mil pesos e inferiores a 500 millones de pesos.
-
-## {data-background="lengR.png"}
-
-  6. Cambie los nombres de las variables de la nueva base de datos.    
-  7. Oberve la estructura interna de la nueva base de datos y de ser necesario aplique la conversión a las que considere pertinente.
-  8. ¿Existe igual número de hombres y mujeres con créditos agropecuarios para el año 2017?
-  9. ¿Cómo es la proporción de créditos para el tipo de productor?
-  10. ¿En qué mes se presenta el mayor número de créditos en Antioquia?
-  11. ¿Qué proporción de créditos posee colocación en departamentos diferentes a los de inversión?
-  12. Fórmule 1 consulta cuyo alcance y resolución esté acotado por los datos.
-  
-**Nota:** se sugiere crear el documento *.html* e incorporarlo en su perfil de github desde RStudio. 
