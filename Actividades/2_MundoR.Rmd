@@ -8,7 +8,7 @@ output:
     toc: true
     theme: readable
     highlight: tango
-    css: estilo.css
+    css: estilo2.css
     df_print: paged
 ---
 

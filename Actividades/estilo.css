@@ -1,6 +1,59 @@
-body {
-  text-align: justify;
-  color: black;
-  font-size: 19px;
-  
+/* Style sheet for Reveal.js Presentations
+Author: Vincent Bauer
+Date: 3/25/2016
+*/
+
+<style>
+
+.reveal pre code { /* code boxes */
+	word-wrap: normal; /* wrap code */
+	overflow: visible; /* wrap code */
+  	white-space: pre-line; /* wrap code */
+  	background-color: #FEFCFF;	/* code output bg color*/
+  	width: 950px; /* larger box*/
+  	font-size: 80%;
 }
+
+/* Headings */
+
+.reveal h1 { /* Heading 1 */
+	text-shadow: 0px 0px 6px rgba(0, 0, 0, 0.2); /* shadows */
+	font-weight: bold; /* bold */
+}
+
+.reveal h2.author { /* Heading 2 for an author */
+	font-style: normal; /* could make bold or italics */
+}
+
+/* Images */
+
+.reveal section img{ /* images */
+  border: 0px; /* no border but still shadow */
+}
+
+/* Slide content area */
+/* these need to be at the bottom, do NOT move them */
+
+.reveal .slides { /* all slide content */
+  text-align: justify; /* left align */
+  font-size: 80%; /* smaller text */
+}
+
+.reveal .slides section>* { /* this is for left align */
+  margin-left: 0;
+  margin-right: 0;
+}
+
+textwhite {
+  color: white;
+}
+
+textred {
+  color: red;
+}
+
+textblue {
+  color: blue;
+}
+  
+</style>v
