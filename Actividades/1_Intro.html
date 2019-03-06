@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <title></title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="1_Intro_files/reveal.js-3.3.0.1/css/reveal.css"/>
+
+
+
+<link rel="stylesheet" href="1_Intro_files/reveal.js-3.3.0.1/css/theme/simple.css" id="theme">
+
+
+  <!-- some tweaks to reveal css -->
+  <style type="text/css">
+    .reveal h1 { font-size: 2.0em; }
+    .reveal h2 { font-size: 1.5em;  }
+    .reveal h3 { font-size: 1.25em;	}
+    .reveal h4 { font-size: 1em;	}
+
+    .reveal .slides>section,
+    .reveal .slides>section>section {
+      padding: 0px 0px;
+    }
+
+
+
+    .reveal table {
+      border-width: 1px;
+      border-spacing: 2px;
+      border-style: dotted;
+      border-color: gray;
+      border-collapse: collapse;
+      font-size: 0.7em;
+    }
+
+    .reveal table th {
+      border-width: 1px;
+      padding-left: 10px;
+      padding-right: 25px;
+      font-weight: bold;
+      border-style: dotted;
+      border-color: gray;
+    }
+
+    .reveal table td {
+      border-width: 1px;
+      padding-left: 10px;
+      padding-right: 25px;
+      border-style: dotted;
+      border-color: gray;
+    }
+
+
+  </style>
+
+    <style type="text/css">code{white-space: pre;}</style>
+
+    <link rel="stylesheet" href="estilo.css"/>
+
+<!-- Printing and PDF exports -->
+<script id="paper-css" type="application/dynamic-css">
+
+/* Default Print Stylesheet Template
+   by Rob Glazebrook of CSSnewbie.com
+   Last Updated: June 4, 2008
+
+   Feel free (nay, compelled) to edit, append, and
+   manipulate this file as you see fit. */
+
+
+@media print {
+
+	/* SECTION 1: Set default width, margin, float, and
+	   background. This prevents elements from extending
+	   beyond the edge of the printed page, and prevents
+	   unnecessary background images from printing */
+	html {
+		background: #fff;
+		width: auto;
+		height: auto;
+		overflow: visible;
+	}
+	body {
+		background: #fff;
+		font-size: 20pt;
+		width: auto;
+		height: auto;
+		border: 0;
+		margin: 0 5%;
+		padding: 0;
+		overflow: visible;
+		float: none !important;
+	}
+
+	/* SECTION 2: Remove any elements not needed in print.
+	   This would include navigation, ads, sidebars, etc. */
+	.nestedarrow,
+	.controls,
+	.fork-reveal,
+	.share-reveal,
+	.state-background,
+	.reveal .progress,
+	.reveal .backgrounds {
+		display: none !important;
+	}
+
+	/* SECTION 3: Set body font face, size, and color.
+	   Consider using a serif font for readability. */
+	body, p, td, li, div {
+		font-size: 20pt!important;
+		font-family: Georgia, "Times New Roman", Times, serif !important;
+		color: #000;
+	}
+
+	/* SECTION 4: Set heading font face, sizes, and color.
+	   Differentiate your headings from your body text.
+	   Perhaps use a large sans-serif for distinction. */
+	h1,h2,h3,h4,h5,h6 {
+		color: #000!important;
+		height: auto;
+		line-height: normal;
+		font-family: Georgia, "Times New Roman", Times, serif !important;
+		text-shadow: 0 0 0 #000 !important;
+		text-align: left;
+		letter-spacing: normal;
+	}
+	/* Need to reduce the size of the fonts for printing */
+	h1 { font-size: 28pt !important;  }
+	h2 { font-size: 24pt !important; }
+	h3 { font-size: 22pt !important; }
+	h4 { font-size: 22pt !important; font-variant: small-caps; }
+	h5 { font-size: 21pt !important; }
+	h6 { font-size: 20pt !important; font-style: italic; }
+
+	/* SECTION 5: Make hyperlinks more usable.
+	   Ensure links are underlined, and consider appending
+	   the URL to the end of the link for usability. */
+	a:link,
+	a:visited {
+		color: #000 !important;
+		font-weight: bold;
+		text-decoration: underline;
+	}
+	/*
+	.reveal a:link:after,
+	.reveal a:visited:after {
+		content: " (" attr(href) ") ";
+		color: #222 !important;
+		font-size: 90%;
+	}
+	*/
+
+
+	/* SECTION 6: more reveal.js specific additions by @skypanther */
+	ul, ol, div, p {
+		visibility: visible;
+		position: static;
+		width: auto;
+		height: auto;
+		display: block;
+		overflow: visible;
+		margin: 0;
+		text-align: left !important;
+	}
+	.reveal pre,
+	.reveal table {
+		margin-left: 0;
+		margin-right: 0;
+	}
+	.reveal pre code {
+		padding: 20px;
+		border: 1px solid #ddd;
+	}
+	.reveal blockquote {
+		margin: 20px 0;
+	}
+	.reveal .slides {
+		position: static !important;
+		width: auto !important;
+		height: auto !important;
+
+		left: 0 !important;
+		top: 0 !important;
+		margin-left: 0 !important;
+		margin-top: 0 !important;
+		padding: 0 !important;
+		zoom: 1 !important;
+
+		overflow: visible !important;
+		display: block !important;
+
+		text-align: left !important;
+		-webkit-perspective: none;
+		   -moz-perspective: none;
+		    -ms-perspective: none;
+		        perspective: none;
+
+		-webkit-perspective-origin: 50% 50%;
+		   -moz-perspective-origin: 50% 50%;
+		    -ms-perspective-origin: 50% 50%;
+		        perspective-origin: 50% 50%;
+	}
+	.reveal .slides section {
+		visibility: visible !important;
+		position: static !important;
+		width: auto !important;
+		height: auto !important;
+		display: block !important;
+		overflow: visible !important;
+
+		left: 0 !important;
+		top: 0 !important;
+		margin-left: 0 !important;
+		margin-top: 0 !important;
+		padding: 60px 20px !important;
+		z-index: auto !important;
+
+		opacity: 1 !important;
+
+		page-break-after: always !important;
+
+		-webkit-transform-style: flat !important;
+		   -moz-transform-style: flat !important;
+		    -ms-transform-style: flat !important;
+		        transform-style: flat !important;
+
+		-webkit-transform: none !important;
+		   -moz-transform: none !important;
+		    -ms-transform: none !important;
+		        transform: none !important;
+
+		-webkit-transition: none !important;
+		   -moz-transition: none !important;
+		    -ms-transition: none !important;
+		        transition: none !important;
+	}
+	.reveal .slides section.stack {
+		padding: 0 !important;
+	}
+	.reveal section:last-of-type {
+		page-break-after: avoid !important;
+	}
+	.reveal section .fragment {
+		opacity: 1 !important;
+		visibility: visible !important;
+
+		-webkit-transform: none !important;
+		   -moz-transform: none !important;
+		    -ms-transform: none !important;
+		        transform: none !important;
+	}
+	.reveal section img {
+		display: block;
+		margin: 15px 0px;
+		background: rgba(255,255,255,1);
+		border: 1px solid #666;
+		box-shadow: none;
+	}
+
+	.reveal section small {
+		font-size: 0.8em;
+	}
+
+}  
+</script>
+
+
+<script id="pdf-css" type="application/dynamic-css">
+    
+/**
+ * This stylesheet is used to print reveal.js
+ * presentations to PDF.
+ *
+ * https://github.com/hakimel/reveal.js#pdf-export
+ */
+
+* {
+	-webkit-print-color-adjust: exact;
+}
+
+body {
+	margin: 0 auto !important;
+	border: 0;
+	padding: 0;
+	float: none !important;
+	overflow: visible;
+}
+
+html {
+	width: 100%;
+	height: 100%;
+	overflow: visible;
+}
+
+/* Remove any elements not needed in print. */
+.nestedarrow,
+.reveal .controls,
+.reveal .progress,
+.reveal .playback,
+.reveal.overview,
+.fork-reveal,
+.share-reveal,
+.state-background {
+	display: none !important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	text-shadow: 0 0 0 #000 !important;
+}
+
+.reveal pre code {
+	overflow: hidden !important;
+	font-family: Courier, 'Courier New', monospace !important;
+}
+
+ul, ol, div, p {
+	visibility: visible;
+	position: static;
+	width: auto;
+	height: auto;
+	display: block;
+	overflow: visible;
+	margin: auto;
+}
+.reveal {
+	width: auto !important;
+	height: auto !important;
+	overflow: hidden !important;
+}
+.reveal .slides {
+	position: static;
+	width: 100%;
+	height: auto;
+
+	left: auto;
+	top: auto;
+	margin: 0 !important;
+	padding: 0 !important;
+
+	overflow: visible;
+	display: block;
+
+	-webkit-perspective: none;
+	   -moz-perspective: none;
+	    -ms-perspective: none;
+	        perspective: none;
+
+	-webkit-perspective-origin: 50% 50%; /* there isn't a none/auto value but 50-50 is the default */
+	   -moz-perspective-origin: 50% 50%;
+	    -ms-perspective-origin: 50% 50%;
+	        perspective-origin: 50% 50%;
+}
+
+.reveal .slides section {
+	page-break-after: always !important;
+
+	visibility: visible !important;
+	position: relative !important;
+	display: block !important;
+	position: relative !important;
+
+	margin: 0 !important;
+	padding: 0 !important;
+	box-sizing: border-box !important;
+	min-height: 1px;
+
+	opacity: 1 !important;
+
+	-webkit-transform-style: flat !important;
+	   -moz-transform-style: flat !important;
+	    -ms-transform-style: flat !important;
+	        transform-style: flat !important;
+
+	-webkit-transform: none !important;
+	   -moz-transform: none !important;
+	    -ms-transform: none !important;
+	        transform: none !important;
+}
+
+.reveal section.stack {
+	margin: 0 !important;
+	padding: 0 !important;
+	page-break-after: avoid !important;
+	height: auto !important;
+	min-height: auto !important;
+}
+
+.reveal img {
+	box-shadow: none;
+}
+
+.reveal .roll {
+	overflow: visible;
+	line-height: 1em;
+}
+
+/* Slide backgrounds are placed inside of their slide when exporting to PDF */
+.reveal section .slide-background {
+	display: block !important;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	z-index: -1;
+}
+
+/* All elements should be above the slide-background */
+.reveal section>* {
+	position: relative;
+	z-index: 1;
+}
+
+/* Display slide speaker notes when 'showNotes' is enabled */
+.reveal .speaker-notes-pdf {
+	display: block;
+	width: 100%;
+	max-height: none;
+	left: auto;
+	top: auto;
+	z-index: 100;
+}
+
+/* Display slide numbers when 'slideNumber' is enabled */
+.reveal .slide-number-pdf {
+	display: block;
+	position: absolute;
+	font-size: 14px;
+}
+
+</script>
+
+
+<script>
+var style = document.createElement( 'style' );
+style.type = 'text/css';
+var style_script_id = window.location.search.match( /print-pdf/gi ) ? 'pdf-css' : 'paper-css';
+var style_script = document.getElementById(style_script_id).text;
+style.innerHTML = style_script;
+document.getElementsByTagName('head')[0].appendChild(style);
+</script>
+
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+
+<section><section id="semillero-de-r---facca" class="titleslide slide level1" data-background="fondo1.png"><h1>Semillero de R - FacCA</h1></section></section>
+<section><section id="introduccion-a-r-y-rstudio" class="titleslide slide level1" data-background="descarga2.png"><h1>1. Introducción a R y RStudio</h1></section></section>
+<section><section id="lenguaje-r" class="titleslide slide level1" data-background="descarga2.png"><h1>Lenguaje R</h1></section><section id="caracteristicas-de-r" class="slide level2" data-background="descarga2.png">
+<h2>Características de R</h2>
+<ul>
+<li>Útil para administración, gestión e integración de datos.</li>
+<li>Capacidad de graficación robusta.</li>
+<li>Comunidad dinámica de R.</li>
+<li>Sistema basado en bibliotecas.</li>
+<li><a href="https://es.wikipedia.org/wiki/Software_libre">Software libre</a></li>
+<li><a href="https://cran.r-project.org/">Descargar R.</a></li>
+</ul>
+</section><section id="gui-de-r" class="slide level2" data-background="descarga2.png">
+<h2>GUI de R</h2>
+<p><img src="01-RConsole.jpg" width="670" height="550" style="display: block; margin: auto auto auto 0;" /></p>
+</section></section>
+<section><section id="rstudio" class="titleslide slide level1" data-background="descarga2.png"><h1>RStudio</h1></section><section id="caracterisitcas-de-rstudio" class="slide level2" data-background="descarga2.png">
+<h2>Caracterísitcas de RStudio</h2>
+<ul>
+<li>Entorno de desarrollo integrado (IDE).</li>
+<li>Interactividad.</li>
+<li>Facilita la investigación reproducible.</li>
+<li>Permite la implementación de otros lenguajes de programación.</li>
+<li>Permite control de versiones (Git).</li>
+<li><a href="https://www.rstudio.com/products/rstudio/download/">Descargar RStudio.</a></li>
+</ul>
+</section><section id="ide-rstudio" class="slide level2" data-background="descarga2.png">
+<h2>IDE RStudio</h2>
+<p><img src="IDERS.png" width="760" height="550" style="display: block; margin: auto auto auto 0;" /></p>
+</section></section>
+<section><section id="resumen" class="titleslide slide level1" data-background="descarga2.png"><h1>Resumen</h1></section><section id="flujo-de-trabajo-inicial" class="slide level2" data-background="descarga2.png">
+<h2>Flujo de trabajo inicial</h2>
+<ul>
+<li>Obtener directorio de trabajo (<code>getwd()</code>)</li>
+<li>Cambiar directorio de trabajo
+<ul>
+<li><em>Session -&gt; Set Working Directory -&gt; Choose Directory.</em></li>
+</ul></li>
+<li>Generar archivo <strong>.R</strong> (<em>ejemplo: Tarea.R</em>).
+<ul>
+<li><em>File -&gt; New File -&gt; R Script (Ctrl + Shift + N).</em></li>
+</ul></li>
+<li>Guardar archivo <strong>.R</strong> (script)
+<ul>
+<li>Codificación UTF-8 para lenguaje castellano.</li>
+<li><em>File -&gt; Save with Encoding -&gt; UTF-8.</em></li>
+</ul></li>
+</ul>
+</section><section id="elementos-basicos-con-r" class="slide level2" data-background="descarga2.png">
+<h2>Elementos básicos con R</h2>
+<ul>
+<li><strong><code>#</code>:</strong> comentar código.</li>
+<li><strong><code>&lt;-</code>:</strong> asignar variables.</li>
+<li><strong><code>Ctrl + Enter</code>:</strong> ejecutar código.</li>
+<li><strong><code>Ctrl + L</code>:</strong> limpiar consola.</li>
+<li>Funciones
+<ul>
+<li><strong><code>c()</code>:</strong> concatenar (crear vectores).</li>
+<li><strong><code>data.frame()</code>:</strong> crear bases de datos.</li>
+<li><strong><code>$</code>:</strong> operador para acceder a las variables por su nombre.</li>
+<li><strong><code>names()</code>:</strong> nombre de variables o columnas.</li>
+<li><strong><code>length()</code>:</strong> longitud de un vector o número de variables en una base de datos.</li>
+<li><strong><code>dim()</code>:</strong> dimensiones (filas y columnas) de una matriz o base de datos.</li>
+<li><strong><code>plot()</code>:</strong> función genérica para graficación. Gráfico de dispersión <em>X vs Y</em>.</li>
+<li><strong><code>str()</code>:</strong> estructura interna de un objeto.</li>
+<li><strong><code>class()</code>:</strong> clase atómica de un objeto.</li>
+</ul></li>
+<li><strong>Tipos de datos:</strong> numércios, enteros, caracteres, factores, otros.</li>
+<li><strong>Parámetros de graficación:</strong> color, tipo de líneas, tipo de símbolos.</li>
+</ul>
+</section></section>
+<section><section id="ciencia-de-datos-data-science" class="titleslide slide level1" data-background="descarga2.png"><h1>Ciencia de datos (Data Science)</h1></section><section id="que-es-ciencia-de-datos" class="slide level2" data-background="descarga2.png">
+<h2>¿Qué es ciencia de datos?</h2>
+<p><img src="Data_Science_VD.png" style="display: block; margin: auto;" /></p>
+</section><section id="que-es-machine-learning" class="slide level2" data-background="descarga2.png">
+<h2>¿Qué es Machine Learning?</h2>
+<p><img src="machinel.png" width="550px" height="375px" style="display: block; margin: auto;" /></p>
+</section><section id="machine-learning-razonamiento-intuitivo" class="slide level2" data-background="descarga2.png">
+<h2>Machine Learning: razonamiento intuitivo</h2>
+<p><img src="ml.gif" width="650px" height="375px" style="display: block; margin: auto;" /></p>
+</section><section id="aplicaciones" class="slide level2" data-background="descarga2.png">
+<h2>Aplicaciones</h2>
+<p><img src="Machine-Learning-Applications.jpg" width="715px" height="415px" style="display: block; margin: auto;" /></p>
+</section><section id="aplicaciones-1" class="slide level2" data-background="descarga2.png">
+<h2>Aplicaciones</h2>
+<p><img src="machineL.png" width="715px" height="415px" style="display: block; margin: auto;" /></p>
+</section></section>
+<section><section id="recursos-de-informacion" class="titleslide slide level1" data-background="descarga2.png"><h1>Recursos de información</h1></section><section id="r-for-data-science" class="slide level2" data-background="descarga2.png">
+<h2>R for Data Science</h2>
+<p><img src="cover.png" width="415px" height="500px" style="display: block; margin: auto;" /></p>
+<p><a href="https://r4ds.had.co.nz/">R for Data Science.</a></p>
+</section><section id="r-programming-for-data-science" class="slide level2" data-background="descarga2.png">
+<h2>R Programming for Data Science</h2>
+<p><img src="cover_sm.png" width="415px" height="500px" style="display: block; margin: auto;" /></p>
+<p><a href="https://bookdown.org/rdpeng/rprogdatascience/">R Programming for Data Science.</a></p>
+</section></section>
+    </div>
+  </div>
+
+  <script src="1_Intro_files/reveal.js-3.3.0.1/lib/js/head.min.js"></script>
+  <script src="1_Intro_files/reveal.js-3.3.0.1/js/reveal.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        // Display the page number of the current slide
+        slideNumber: true,
+        // Push each slide change to the browser history
+        history: true,
+        // Vertical centering of slides
+        center: true,
+        // Opens links in an iframe preview overlay
+        previewLinks: true,
+        // Transition style
+        transition: 'slide', // none/fade/slide/convex/concave/zoom
+        // Transition style for full page slide backgrounds
+        backgroundTransition: 'default', // none/fade/slide/convex/concave/zoom
+
+
+
+        // Optional reveal.js plugins
+        dependencies: [
+        ]
+      });
+    </script>
+  <!-- dynamically load mathjax for compatibility with self-contained -->
+  <script>
+    (function () {
+      var script = document.createElement("script");
+      script.type = "text/javascript";
+      script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+      document.getElementsByTagName("head")[0].appendChild(script);
+    })();
+  </script>
+
+<script>
+  (function() {
+    if (window.jQuery) {
+      Reveal.addEventListener( 'slidechanged', function(event) {  
+        window.jQuery(event.previousSlide).trigger('hidden');
+        window.jQuery(event.currentSlide).trigger('shown');
+      });
+    }
+  })();
+</script>
+
+
+  </body>
+</html>
