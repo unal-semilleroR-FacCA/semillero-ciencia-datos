@@ -252,10 +252,14 @@ $(document).ready(function () {
 <li><a href="#tidyverse"><a href="https://www.tidyverse.org/"><code>Tidyverse</code></a></a><ul>
 <li><a href="#funciones-de-dplyr-y-ggplot2">Funciones de <code>dplyr</code> y <code>ggplot2</code></a></li>
 </ul></li>
-<li><a href="#estado-nutricional-de-la-poblacion-menor-de-6-anos-en-medellin-2016">Estado nutricional de la población menor de 6 años en Medellín 2016</a><ul>
+<li><a href="#ejemplos-practicos">Ejemplos prácticos</a><ul>
+<li><a href="#indice-sintetico-de-calidad-educativa---isce---municipio-de-medellin-2016">Índice Sintético de Calidad Educativa - ISCE - Municipio de Medellín 2016</a><ul>
 <li><a href="#estructura-interna-de-los-datos">Estructura interna de los datos</a></li>
 </ul></li>
-<li><a href="#funciones-utiles-con-r">Funciones útiles con R</a></li>
+<li><a href="#estado-nutricional-de-la-poblacion-menor-de-6-anos-en-medellin-2016">Estado nutricional de la población menor de 6 años en Medellín 2016</a><ul>
+<li><a href="#estructura-interna-de-los-datos-1">Estructura interna de los datos</a></li>
+</ul></li>
+</ul></li>
 </ul>
 </div>
 
@@ -535,8 +539,38 @@ coer.imp
 </ul>
 </div>
 </div>
-<div id="estado-nutricional-de-la-poblacion-menor-de-6-anos-en-medellin-2016" class="section level1">
-<h1>Estado nutricional de la población menor de 6 años en Medellín 2016</h1>
+<div id="ejemplos-practicos" class="section level1">
+<h1>Ejemplos prácticos</h1>
+<div id="indice-sintetico-de-calidad-educativa---isce---municipio-de-medellin-2016" class="section level2">
+<h2>Índice Sintético de Calidad Educativa - ISCE - Municipio de Medellín 2016</h2>
+<ul>
+<li><a href="https://www.datos.gov.co/Educaci-n/-ndice-Sint-tico-de-Calidad-Educativa-ISCE-Municip/uc7t-jc5u">Índice Sintético de Calidad Educativa - ISCE - Municipio de Medellín 2016.</a></li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Lectura de datos</span>
+educa &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;Datos/_ndice_Sint_tico_de_Calidad_Educativa_-_ISCE_-_Municipio_de_Medell_n_2016.csv&quot;</span>)
+
+<span class="co"># Guardando datos en formato .Rdata</span>
+<span class="kw">save</span>(educa, <span class="dt">file =</span> <span class="st">&quot;I_Educativo.Rdata&quot;</span>)
+
+<span class="co"># Cargando datos en formato .Rdata</span>
+<span class="kw">load</span>(<span class="st">&quot;I_Educativo.Rdata&quot;</span>)</code></pre></div>
+<div id="estructura-interna-de-los-datos" class="section level3">
+<h3>Estructura interna de los datos</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str</span>(educa)</code></pre></div>
+<pre><code>## 'data.frame':    381 obs. of  9 variables:
+##  $ DANE           : num  1.05e+11 1.05e+11 1.05e+11 1.05e+11 1.05e+11 ...
+##  $ PRESTACION     : Factor w/ 3 levels &quot;COBERTURA CONTRATADA&quot;,..: 3 3 3 3 1 3 3 3 3 3 ...
+##  $ COMUNA         : int  2 2 16 4 1 3 4 10 8 15 ...
+##  $ NOMBRE.COMUNA  : Factor w/ 21 levels &quot; ALTAVISTA&quot;,&quot; ARANJUEZ&quot;,..: 19 19 3 2 14 11 2 9 21 7 ...
+##  $ NOMBRE         : Factor w/ 380 levels &quot;C.E. AMIGUITOS CREATIVOS&quot;,..: 264 197 262 203 84 244 328 247 268 256 ...
+##  $ ISCE.Primaria  : num  4.6 4 6.29 7.78 6.41 5.94 3.92 4.45 4.27 6.9 ...
+##  $ ISCE.Secundaria: Factor w/ 235 levels &quot;3.36&quot;,&quot;3.41&quot;,..: 121 78 173 161 16 50 104 153 47 29 ...
+##  $ ISCE.Media     : Factor w/ 200 levels &quot;2.96&quot;,&quot;3.46&quot;,..: 45 7 140 28 200 22 37 107 105 42 ...
+##  $ ISCE.TOTAL     : num  4.93 4.23 6.84 6.59 NA 4.96 4.5 5.59 4.76 5.34 ...</code></pre>
+</div>
+</div>
+<div id="estado-nutricional-de-la-poblacion-menor-de-6-anos-en-medellin-2016" class="section level2">
+<h2>Estado nutricional de la población menor de 6 años en Medellín 2016</h2>
 <ul>
 <li><a href="https://www.datos.gov.co/Salud-y-Protecci-n-Social/Estado-nutricional-de-la-poblaci-n-menor-de-6-a-os/bkt5-gpif">Estado nutricional de la población menor de 6 años - Municipio de Medellín 2016.</a></li>
 </ul>
@@ -548,8 +582,8 @@ datos &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class
 
 <span class="co"># Cargando datos en formato .Rdata</span>
 <span class="kw">load</span>(<span class="st">&quot;NutricionInfantil.Rdata&quot;</span>)</code></pre></div>
-<div id="estructura-interna-de-los-datos" class="section level2">
-<h2>Estructura interna de los datos</h2>
+<div id="estructura-interna-de-los-datos-1" class="section level3">
+<h3>Estructura interna de los datos</h3>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str</span>(datos)</code></pre></div>
 <pre><code>## 'data.frame':    83861 obs. of  15 variables:
 ##  $ Regimen         : Factor w/ 4 levels &quot;Contributivo&quot;,..: 3 1 1 1 1 1 1 1 1 1 ...
@@ -569,21 +603,6 @@ datos &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class
 ##  $ Grupo.Edad      : Factor w/ 3 levels &quot;1. De 0 a 2 Anos&quot;,..: 1 1 1 2 1 1 2 2 1 1 ...</code></pre>
 </div>
 </div>
-<div id="funciones-utiles-con-r" class="section level1">
-<h1>Funciones útiles con R</h1>
-<ul>
-<li><code>help()</code> o <code>?</code>: ayudas en R.</li>
-<li><code>str():</code> estructura interna de un objeto.</li>
-<li><code>class():</code> clase atómica.</li>
-<li><code>names():</code> nombres de variables.</li>
-<li><code>colnames():</code> nombres de columnas.</li>
-<li><code>rownames():</code> nombres de filas.</li>
-<li><code>summary():</code> resumen numérico.</li>
-<li><code>length():</code> longitud.</li>
-<li><code>dim():</code> dimensión.</li>
-<li><code>is.na():</code> valores <code>NA</code> (no disponibles).</li>
-<li><code>is.nan():</code> valores <code>NaN</code> (no definido).</li>
-</ul>
 </div>
 
 

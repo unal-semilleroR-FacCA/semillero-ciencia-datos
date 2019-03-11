@@ -11,11 +11,12 @@ title: "Actividades"
       - [Actividad práctica 1](/Actividades/Actividad1.html)
       - [Guías - Tutoriales](/Actividades/GuiasR.html)
   - [2. El mundo de R + `tidyverse` I](/Actividades/2_MundoR.html)
-      - [Actividad práctica 2](/Actividades/Actividad2.html)
-  - [3. Funciones y ciclos con R](3_Funciones.html)
-      - [Actividad práctica 3](/Actividades/Actividad3.html)
-  - [4. El mundo de R + `tidyverse` II](/Actividades/2_MundoR.html)    
-      - [Actividad práctica 4](/Actividades/Actividad4.html)
+      - [Ejemplo práctico grupo lunes.]()
+      - [Ejemplo práctico grupo martes.](https://rpubs.com/Edimer/473384)
+  - [3. El mundo de R + `tidyverse` II](/Actividades/2_MundoR_tidy.html)    
+      - [Actividad práctica 2](/Actividades/Actividad4.html)
+  - [4. Funciones y ciclos con R](3_Funciones.html)
+      - [Actividad práctica 3](/Actividades/Actividad3.html)      
   
 ### Dinámica del semillero
 

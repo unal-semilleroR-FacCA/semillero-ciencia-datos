@@ -254,7 +254,30 @@ knitr::include_graphics("01_tidyverse_data_science.png")
       - `facet_wrap()`: facetas con una variable categórica.
       - `facet_grid()`: facetas con dos o más variables categóricas.
 
-# Estado nutricional de la población menor de 6 años en Medellín 2016
+# Ejemplos prácticos
+
+## Índice Sintético de Calidad Educativa - ISCE - Municipio de Medellín 2016
+
+  - [Índice Sintético de Calidad Educativa - ISCE - Municipio de Medellín 2016.](https://www.datos.gov.co/Educaci-n/-ndice-Sint-tico-de-Calidad-Educativa-ISCE-Municip/uc7t-jc5u)
+
+```{r, collapse=TRUE}
+# Lectura de datos
+educa <- read.csv("Datos/_ndice_Sint_tico_de_Calidad_Educativa_-_ISCE_-_Municipio_de_Medell_n_2016.csv")
+
+# Guardando datos en formato .Rdata
+save(educa, file = "I_Educativo.Rdata")
+
+# Cargando datos en formato .Rdata
+load("I_Educativo.Rdata")
+```
+
+### Estructura interna de los datos
+
+```{r}
+str(educa)
+```
+
+## Estado nutricional de la población menor de 6 años en Medellín 2016
 
   - [Estado nutricional de la población menor de 6 años - Municipio de Medellín 2016.](https://www.datos.gov.co/Salud-y-Protecci-n-Social/Estado-nutricional-de-la-poblaci-n-menor-de-6-a-os/bkt5-gpif)
 
@@ -269,24 +292,9 @@ save(datos, file = "NutricionInfantil.Rdata")
 load("NutricionInfantil.Rdata")
 ```
 
-## Estructura interna de los datos
+### Estructura interna de los datos
 
 ```{r}
 str(datos)
 ```
 
-
-# Funciones útiles con R
-
-  - `help()` o `?`: ayudas en R.
-  - `str():` estructura interna de un objeto.
-  - `class():` clase atómica.
-  - `names():` nombres de variables.
-  - `colnames():` nombres de columnas.
-  - `rownames():` nombres de filas.
-  - `summary():` resumen numérico.
-  - `length():` longitud.
-  - `dim():` dimensión.
-  - `is.na():` valores `NA` (no disponibles).
-  - `is.nan():` valores `NaN` (no definido).
-  
