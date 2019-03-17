@@ -1,0 +1,75 @@
+---
+title: "índice sintético de calidad educativa - Medellín 2016"
+author: "Edimer David Jaramillo"
+date: "11 de marzo de 2019"
+output:
+  html_document:
+    toc: yes
+    toc_float: yes
+    theme: readable
+    df_print: kable
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE,#echo para mostrar código
+                      eval = TRUE,#eval para mostrar resultados
+                      message = FALSE, #message para mensajes
+                      warning = FALSE) #advertencias
+```
+
+# Base de datos
+
+  - [Datos de calidad educativa en Medellín 2016.](https://www.datos.gov.co/Educaci-n/-ndice-Sint-tico-de-Calidad-Educativa-ISCE-Municip/uc7t-jc5u)
+  
+# Lectura de datos
+
+```{r}
+educa <- read.csv(file = "_ndice_Sint_tico_de_Calidad_Educativa_-_ISCE_-_Municipio_de_Medell_n_2016.csv")
+```
+
+## Estructura interna
+
+```{r}
+str(educa)
+```
+
+## Niveles de `PRESTACIÓN` 
+
+```{r}
+levels(educa$PRESTACION)
+```
+
+# Depurando datos
+
+## Editando nombres de variables
+
+```{r}
+names(educa) <- c("Dane", "Prestacion", "Comuna", "NComuna",
+                  "Colegio", "ISCE_P", "ISCE_S", "ISCE_M", "ISCE_T")
+```
+
+  - **Consultando nuevos nombres de variables:**
+  
+```{r}
+names(educa)
+```
+
+## Seleccionando variables con `select()`
+
+```{r}
+# Cargando biblioteca dplyr
+library(dplyr)
+
+# Seleccionando todas menos el código del DANE
+educa2 <- select(.data = educa, -Dane)
+
+# Imprimiendo los primeros 10 datos
+head(educa2, n = 10)
+```
+
+## Filtrando filas con `filter()`
+
+```{r}
+educa3 <- filter(.data = educa, ISCE_P > 0)
+```
+
