@@ -11,7 +11,7 @@ title: "Actividades"
       - [Actividad práctica 1](/Actividades/Actividad1.html)
       - [Guías - Tutoriales](/Actividades/GuiasR.html)
   - [2. El mundo de R + `tidyverse` I](/Actividades/2_MundoR.html)
-      - [Ejemplo práctico grupo lunes.]()
+      - [Ejemplo práctico grupo lunes.](https://rpubs.com/Edimer/477135)
       - [Ejemplo práctico grupo martes.](https://rpubs.com/Edimer/473384)
   - [3. El mundo de R + `tidyverse` II](/Actividades/2_MundoR_tidy.html)      
       - [Ejemplo práctico grupo lunes.]()
