@@ -24,7 +24,7 @@ knitr::opts_chunk$set(echo = FALSE,
 
 # Semillero de R - FacCA {data-background="fondo1.png"}
 
-# Markdown {data-background="markdown2.png"}
+# Ecosistema R Markdown I {data-background="markdown2.png"}
 
 ## ¿Qué es Markdown? {data-background="markdown2.png"}
 
@@ -129,7 +129,7 @@ ___Texto___
 
 # Recursos de información {data-background="markdown2.png"}
 
-## R for Data Science {data-background="markdown2.png"}
+## R Markdown: The Definitive Guide {data-background="markdown2.png"}
 
 ```{r, echo=FALSE, out.width="415px", out.height="500px"}
 knitr::include_graphics("cover (1).png")

@@ -7,11 +7,11 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
-  <link rel="stylesheet" href="1_RMarkdown_files/reveal.js-3.3.0.1/css/reveal.css"/>
+  <link rel="stylesheet" href="1.2_RMarkdown_files/reveal.js-3.3.0.1/css/reveal.css"/>
 
 
 
-<link rel="stylesheet" href="1_RMarkdown_files/reveal.js-3.3.0.1/css/theme/simple.css" id="theme">
+<link rel="stylesheet" href="1.2_RMarkdown_files/reveal.js-3.3.0.1/css/theme/simple.css" id="theme">
 
 
   <!-- some tweaks to reveal css -->
@@ -450,110 +450,267 @@ document.getElementsByTagName('head')[0].appendChild(style);
 
 
 <section><section id="semillero-de-r---facca" class="titleslide slide level1" data-background="fondo1.png"><h1>Semillero de R - FacCA</h1></section></section>
-<section><section id="ecosistema-r-markdown-i" class="titleslide slide level1" data-background="markdown2.png"><h1>Ecosistema R Markdown I</h1></section><section id="que-es-markdown" class="slide level2" data-background="markdown2.png">
-<h2>¿Qué es Markdown?</h2>
-<p><q>“Markdown es un lenguaje de marcado ligero creado por John Gruber que trata de conseguir la máxima legibilidad y facilidad de publicación tanto en su forma de entrada como de salida, inspirándose en muchas convenciones existentes para marcar mensajes de correo electrónico usando texto plano.”</q></p>
-</section></section>
-<section><section id="r-markdown" class="titleslide slide level1" data-background="markdown2.png"><h1>R Markdown</h1></section><section id="flujo-de-trabajo-archivo-.rmd" class="slide level2" data-background="markdown2.png">
-<h2>Flujo de trabajo: archivo .Rmd</h2>
+<section><section id="ecosistema-r-markdown-ii" class="titleslide slide level1" data-background="markdown2.png"><h1>Ecosistema R Markdown II</h1></section></section>
+<section><section id="resumen-r-markdown-1" class="titleslide slide level1" data-background="markdown2.png"><h1>Resumen R Markdown 1</h1></section><section id="section" class="slide level2" data-background="markdown2.png">
+<h2></h2>
 <ul>
-<li>Crear archivo nuevo de extensión <strong><em>.Rmd</em></strong>.
+<li>Definición de markdown.</li>
+<li>Flujo de trabajo inicial con R Markdown.
 <ul>
-<li>File -&gt; New File -&gt; R Markdown</li>
+<li><em>File -&gt; New File -&gt; R Markdown</em>.</li>
+<li>Guardar con codificación <em>UTF-8</em>.</li>
 </ul></li>
-</ul>
-<p><img src="rmarkdown.png" width="515px" height="420px" style="display: block; margin: auto;" /></p>
+<li>Componentes de R Markdown:
 <ul>
-<li>Guardar archivo <strong>.Rmd</strong>
-<ul>
-<li><em>File -&gt; Save with Encoding -&gt; UTF-8.</em></li>
+<li>Metadatos. (<code>--- ---</code>)</li>
+<li>Fragmentos de R. (<code>```{r} ```</code>)</li>
 </ul></li>
-</ul>
-</section><section id="flujo-de-trabajo-r-markdown" class="slide level2" data-background="markdown2.png">
-<h2>Flujo de trabajo: R Markdown</h2>
-<ul>
-<li>Texto en formato markdown.</li>
-<li>Fragmentos de código R.</li>
-<li>Compilación de archivos <em>.html</em>.</li>
 <li>Teclas de acceso rápido:
 <ul>
 <li><strong><code>Ctrl + Alt + i</code>:</strong> insertar código R.</li>
 <li><strong><code>Ctrl + Shift + k</code>:</strong> compilar el documento a formato <em>.html</em>.</li>
 </ul></li>
+<li><strong>Elementos básicos:</strong> títulos, viñetas, opciones de texto, insertar imagenes, insertar hipervínculos.</li>
+<li>Publicación de documentos en <a href="https://rpubs.com/">Rpubs.</a>
+<ul>
+<li>Regístrese <a href="https://rpubs.com/users/new">aquí.</a></li>
+</ul></li>
+<li><a href="https://bookdown.org/yihui/rmarkdown/">R Markdown: The Definitive Guide</a></li>
 </ul>
 </section></section>
-<section><section id="elementos-basicos-de-markdown" class="titleslide slide level1" data-background="markdown2.png"><h1>Elementos básicos de Markdown</h1></section><section id="titulos-o-encabezados" class="slide level2" data-background="markdown2.png">
-<h2>Títulos o encabezados</h2>
-<pre><code># Título 1
+<section><section id="formatos-de-salida" class="titleslide slide level1" data-background="markdown2.png"><h1>Formatos de salida</h1></section><section id="section-1" class="slide level2" data-background="markdown2.png">
+<h2></h2>
+<ul>
+<li>R Markdown proporciona dos tipos de salidas:
+<ol type="1">
+<li>Documentos
+<ul>
+<li><code>html_document</code></li>
+<li><code>github_document</code></li>
+<li><code>latex_document</code></li>
+<li><code>md_document</code></li>
+<li><code>odt_document</code></li>
+<li><code>pdf_document</code></li>
+<li><code>rtf_document</code></li>
+<li><code>word_document</code></li>
+</ul></li>
+<li>Presentaciones (diapositivas)
+<ul>
+<li><code>ioslides_presentation</code></li>
+<li><code>slidy_presentation</code><br />
+</li>
+<li><code>beamer_presentation</code><br />
+</li>
+<li><code>power_presentation</code></li>
+</ul></li>
+</ol></li>
+</ul>
+</section></section>
+<section><section id="sintaxis-de-r-markdown" class="titleslide slide level1" data-background="markdown2.png"><h1>Sintaxis de R Markdown</h1></section><section id="sintaxis-de-r-markdown-i" class="slide level2" data-background="markdown2.png">
+<h2>Sintaxis de R Markdown I</h2>
+<ul>
+<li>Encabezados: <code>#</code>, <code>##</code>.</li>
+<li><em><code>*Cursiva*</code></em></li>
+<li><strong><code>**Negrilla**</code></strong></li>
+<li><strong><em><code>*Negrilla cursiva*</code></em></strong></li>
+<li>Insertar imagen: <code>![](imagen.png)</code></li>
+<li>Insertar hipervínculo: <code>[](url.com)</code></li>
+</ul>
+</section><section id="sintaxis-de-r-markdown-ii" class="slide level2" data-background="markdown2.png">
+<h2>Sintaxis de R Markdown II</h2>
+<ul>
+<li>Marcado de texto con comillas transversas <code>`mean()`</code></li>
+<li>Texto con opción de celda de código: <code>```ejemplo```</code></li>
+<li>Ejecución de código en línea de texto: <code>```letra r código```</code></li>
+<li>Más opciones de texto:
+<ul>
+<li><code>H~3~PO~4~</code> —-&gt; H<sub>3</sub>PO<sub>4</sub></li>
+<li><code>2^2^</code> —-&gt; 2<sup>2</sup></li>
+<li>Insertar citación o notas al pie del texto con <code>^[]</code> —-&gt; Semillero R<a href="#/fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a></li>
+<li>Salto de línea en markdown con <code>&lt;br&gt;</code>.</li>
+</ul></li>
+</ul>
+</section><section id="sintaxis-de-r-markdown-ii-1" class="slide level2" data-background="markdown2.png">
+<h2>Sintaxis de R Markdown II</h2>
+<ul>
+<li>Citas textuales con <code>`&gt;`</code></li>
+</ul>
+<pre><code>&gt; &quot;I thoroughly disapprove of duels. If a man should challenge me,
+  I would take him kindly and forgivingly by the hand and lead him
+  to a quiet place and kill him.&quot;
+&gt;
+&gt; --- Mark Twain      </code></pre>
+<blockquote>
+<p>“I thoroughly disapprove of duels. If a man should challenge me, I would take him kindly and forgivingly by the hand and lead him to a quiet place and kill him.”</p>
+<p>— Mark Twain</p>
+</blockquote>
+</section><section id="sintaxis-de-r-markdown-ii-2" class="slide level2" data-background="markdown2.png">
+<h2>Sintaxis de R Markdown II</h2>
+<ul>
+<li>Expresiones matemáticas
+<ul>
+<li><code>$$Latex$$</code>: ecuación centrada con salto de línea.</li>
+<li><code>$Latex$</code>: ecuación en línea.</li>
+<li>Ejemplos:
+<ul>
+<li><code>$f(x) = {n \choose k} p^{x}(1-p)^{n-x}$</code>
+<ul>
+<li>En línea <span class="math inline">\(f(x) = {n \choose k} p^{x}(1-p)^{n-x}\)</span></li>
+</ul></li>
+<li><code>$$f(x) = {n \choose k} p^{x}(1-p)^{n-x}$$</code> <span class="math display">\[f(x) = {n \choose k} p^{x}(1-p)^{n-x}\]</span></li>
+</ul></li>
+</ul></li>
+<li><a href="https://www.latex-project.org/help/documentation/">Documentación Latex.</a></li>
+<li><a href="https://oeis.org/wiki/List_of_LaTeX_mathematical_symbols">Símbolos matemáticos en Latex.</a></li>
+</ul>
+</section><section id="sintaxis-de-r-markdown-ii-3" class="slide level2" data-background="markdown2.png">
+<h2>Sintaxis de R Markdown II</h2>
+<ul>
+<li><strong>Tablas 1:</strong></li>
+</ul>
+<pre><code>Columna 1 | Columna 2 | Columna 3
+--------- | --------- | ---------
+Dato 1    | Dato 2    | Dato 3</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th>Columna 1</th>
+<th>Columna 2</th>
+<th>Columna 3</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Dato 1</td>
+<td>Dato 2</td>
+<td>Dato 3</td>
+</tr>
+</tbody>
+</table>
+<p><br> - <strong>Tablas 2:</strong></p>
+<pre><code>Columna 1 | Columna 2 | Columna 3
+ :------: | --------: | :------
+Dato 1    | Dato 2    | Dato 3
+Dato 1    | Dato 2    | Dato 3</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Columna 1</th>
+<th style="text-align: right;">Columna 2</th>
+<th style="text-align: left;">Columna 3</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">Dato 1</td>
+<td style="text-align: right;">Dato 2</td>
+<td style="text-align: left;">Dato 3</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Dato 1</td>
+<td style="text-align: right;">Dato 2</td>
+<td style="text-align: left;">Dato 3</td>
+</tr>
+</tbody>
+</table>
+</section></section>
+<section><section id="editando-documentos-html" class="titleslide slide level1" data-background="markdown2.png"><h1>Editando documentos <code>html</code></h1></section><section id="metadatos" class="slide level2" data-background="markdown2.png">
+<h2>Metadatos</h2>
+<ul>
+<li><strong><code>title</code>:</strong> título principal del documento.</li>
+<li><strong><code>subtitle</code>:</strong> subtítulo.</li>
+<li><strong><code>date</code>:</strong> fecha.</li>
+<li><strong><code>output</code>:</strong> tipo de salida.
+<ul>
+<li><strong><code>toc</code>:</strong> opción para activar tabla de contenidos.</li>
+<li><strong><code>toc_depth</code>:</strong> configurar los encabezados a tener en cuenta para la tabla de contenidos.</li>
+<li><strong><code>toc_float</code>:</strong> tabla de contenido flotante.
+<ul>
+<li><strong><code>collapsed</code>:</strong> tabla de contenido flotante y plegable.</li>
+<li><strong><code>smooth_scroll</code>:</strong> animaciones de tabla de contenido con el clic.</li>
+</ul></li>
+<li><strong><code>number_sections</code>:</strong> numeración de secciones.</li>
+<li><strong><code>theme</code>:</strong> tema del documento.</li>
+<li><strong><code>highlight</code>:</strong> estilo de resaltado.</li>
+<li><strong><code>df_print</code>:</strong> impresión de <code>data.frame</code> con formato.</li>
+<li><strong><code>code_folding</code>:</strong> opción que permite mostrar u ocultar el código en el documento.</li>
+<li><strong><code>css</code>:</strong> personalización avanzada a través de <code>css</code>.</li>
+</ul></li>
+</ul>
+</section><section id="fragmentos-de-r" class="slide level2" data-background="markdown2.png">
+<h2>Fragmentos de R</h2>
+<ul>
+<li>Insertar fragmento de R con <code>Ctrl + ALt + i</code>.</li>
+<li><strong><code>fig.align</code>:</strong> alineación de figuras e imágenes.</li>
+<li><strong><code>fig.width:</code></strong> ancho de gráficos.</li>
+<li><strong><code>fig.height:</code></strong> altura de gráficos.</li>
+<li><strong><code>out.width:</code></strong> ancho de imágenes.</li>
+<li><strong><code>out.height:</code></strong> alto de imágenes.</li>
+<li><strong><code>echo:</code></strong> opción para imprimir el código en el documento.</li>
+<li><strong><code>eval:</code></strong> opción para evaluar el código, es decir, producir resultados.</li>
+<li><strong><code>warning:</code></strong> opción para desactivar las advertencias.</li>
+<li><strong><code>message:</code></strong> opción para desactivar los mensajes.</li>
+</ul>
+</section><section id="metadatos-y-chunk-de-r" class="slide level2" data-background="markdown2.png">
+<h2>Metadatos y <code>chunk</code> de R</h2>
+<ul>
+<li><strong>Plantilla de metadatos:</strong></li>
+</ul>
+<pre><code>---
+title: &quot;Título&quot;
+subtitle: &quot;Subtítulo&quot;
+author: &quot;Nombre Apellido&quot;
+date: &quot;01 de enero de 1900&quot;
+output:
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+      collapsed: true
+      smooth_scroll: true
+    number_sections: true
+    theme: readable
+    highlight: tango
+    df_print: paged
+    code_folding: hide
+    css: estilo.css
+---</code></pre>
+<ul>
+<li><strong>Plantilla fragmento de R:</strong></li>
+</ul>
+<pre><code>``{r, fig.align=&#39;center&#39;, fig.width=8, fig.height=5, echo=TRUE, eval=TRUE}
 
-## Título 2
-
-### Título 3</code></pre>
-</section><section id="vinetas" class="slide level2" data-background="markdown2.png">
-<h2>Viñetas</h2>
-<pre><code>  - Viñeta 1
-  - Viñeta 2
-      - Subviñeta 2.1
-  - Viñeta 3
-
-  * Viñeta 1
-  * Viñeta 2
-      * Subviñeta 2.1
-  * Viñeta 3
-  
-  + Viñeta 1
-  + Viñeta 2
-      + Subviñeta 2.1
-  + Viñeta 3  </code></pre>
-</section><section id="insertar-imagen" class="slide level2" data-background="markdown2.png">
-<h2>Insertar imagen</h2>
-<pre><code>![](imagen.png)  </code></pre>
-</section><section id="insertar-hipervinculo" class="slide level2" data-background="markdown2.png">
-<h2>Insertar hipervínculo</h2>
-<ul>
-<li><strong>Primera forma:</strong></li>
-</ul>
-<pre><code>https://es.wikipedia.org/wiki/Git </code></pre>
-<ul>
-<li><strong>Segunda forma:</strong></li>
-</ul>
-<pre><code>[Git Wikipedia](https://es.wikipedia.org/wiki/Git)  </code></pre>
-</section><section id="opciones-de-texto" class="slide level2" data-background="markdown2.png">
-<h2>Opciones de texto</h2>
-<ul>
-<li><strong>Cursiva:</strong></li>
-</ul>
-<pre><code>*Texto*
-_Texto_</code></pre>
-<ul>
-<li><strong>Negrilla:</strong></li>
-</ul>
-<pre><code>**Texto**
-__Texto__</code></pre>
-<ul>
-<li><strong>Negrilla cursiva:</strong></li>
-</ul>
-<pre><code>***Texto***
-___Texto___</code></pre>
+``</code></pre>
 </section></section>
-<section><section id="recursos-de-informacion" class="titleslide slide level1" data-background="markdown2.png"><h1>Recursos de información</h1></section><section id="r-markdown-the-definitive-guide" class="slide level2" data-background="markdown2.png">
-<h2>R Markdown: The Definitive Guide</h2>
-<p><img src="cover%20(1).png" width="415px" height="500px" style="display: block; margin: auto;" /></p>
-<p><a href="https://bookdown.org/yihui/rmarkdown/">R Markdown: The Definitive Guide.</a></p>
-</section></section>
-<section><section id="sitios-de-divulgacion-con-rstudio" class="titleslide slide level1" data-background="markdown2.png"><h1>Sitios de divulgación con RStudio</h1></section><section id="rpubs-y-rstudio-connect" class="slide level2" data-background="markdown2.png">
-<h2>RPubs y RStudio Connect</h2>
+<section><section id="presentaciones" class="titleslide slide level1" data-background="markdown2.png"><h1>Presentaciones</h1></section><section id="presentacion-ioslides" class="slide level2" data-background="markdown2.png">
+<h2>Presentación <code>ioslides</code></h2>
 <ul>
-<li>Crear cuenta en <a href="https://rpubs.com/">Rpubs.</a></li>
-<li><a href="https://www.rstudio.com/products/connect/">RStudio Connect.</a></li>
+<li>Crear archivo de extensión <strong><em>.Rmd</em></strong>
+<ul>
+<li><em>File -&gt; New File -&gt; R Mardown -&gt; Presentation -&gt; Ioslides</em></li>
+</ul></li>
 </ul>
-<p><img src="descarga%20(1).jpeg" width="470px" height="200px" style="display: block; margin: auto;" /></p>
+<p><img src="present.png" width="515px" height="420px" style="display: block; margin: auto;" /></p>
+<ul>
+<li>Guardar archivo <strong>.Rmd</strong>
+<ul>
+<li><em>File -&gt; Save with Encoding -&gt; UTF-8.</em></li>
+</ul></li>
+<li>Nueva diapositiva con <code>##</code>.</li>
+<li>Diapositiva de tema principal con <code>#</code>.</li>
+</ul>
 </section></section>
+<section class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p><a href="https://unal-semilleror-facca.github.io/" class="uri">https://unal-semilleror-facca.github.io/</a><a href="#/fnref1">↩</a></p></li>
+</ol>
+</section>
     </div>
   </div>
 
-  <script src="1_RMarkdown_files/reveal.js-3.3.0.1/lib/js/head.min.js"></script>
-  <script src="1_RMarkdown_files/reveal.js-3.3.0.1/js/reveal.js"></script>
+  <script src="1.2_RMarkdown_files/reveal.js-3.3.0.1/lib/js/head.min.js"></script>
+  <script src="1.2_RMarkdown_files/reveal.js-3.3.0.1/js/reveal.js"></script>
 
   <script>
 

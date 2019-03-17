@@ -1,0 +1,230 @@
+---
+output: 
+  revealjs::revealjs_presentation:
+    theme: simple
+    highlight: haddock
+    center: true
+    transition: slide
+    css: estilo.css
+    self_contained: false
+    reveal_options:
+      slideNumber: true
+      previewLinks: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE,
+                      warning = FALSE,
+                      message = FALSE,
+                      error = FALSE,
+                      fig.align = "center",
+                      fig.width = 7.5,
+                      fig.height = 5.5,
+                      eval = TRUE)
+```
+
+# Semillero de R - FacCA {data-background="fondo1.png"}
+
+# Ecosistema R Markdown II {data-background="markdown2.png"}
+
+# Resumen R Markdown 1 {data-background="markdown2.png"}
+
+## {data-background="markdown2.png"}
+
+  - Definición de markdown.
+  - Flujo de trabajo inicial con R Markdown.
+      - *File -> New File -> R Markdown*.
+      - Guardar con codificación *UTF-8*.
+  - Componentes de R Markdown:
+      - Metadatos.  (`--- ---`)
+      - Fragmentos de R.  (```` ```{r} ``` ````)
+  - Teclas de acceso rápido:
+      - **`Ctrl + Alt + i`:** insertar código R.
+      - **`Ctrl + Shift + k`:** compilar el documento a formato *.html*.
+  - **Elementos básicos:** títulos, viñetas, opciones de texto, insertar imagenes, insertar hipervínculos.
+  - Publicación de documentos en  [Rpubs.](https://rpubs.com/)
+      - Regístrese [aquí.](https://rpubs.com/users/new)
+  - [R Markdown: The Definitive Guide](https://bookdown.org/yihui/rmarkdown/)
+      
+# Formatos de salida {data-background="markdown2.png"}
+
+## {data-background="markdown2.png"}
+
+  - R Markdown proporciona dos tipos de salidas:
+      1. Documentos
+          - `html_document`
+          - `github_document`
+          - `latex_document`
+          - `md_document`
+          - `odt_document`
+          - `pdf_document`
+          - `rtf_document`
+          - `word_document`
+      2. Presentaciones (diapositivas)
+          - `ioslides_presentation`
+          - `slidy_presentation`          
+          - `beamer_presentation`          
+          - `power_presentation`
+
+# Sintaxis de R Markdown {data-background="markdown2.png"}
+
+## Sintaxis de R Markdown I {data-background="markdown2.png"}
+
+  - Encabezados: `#`, `##`.
+  - *`*Cursiva*`*
+  - **`**Negrilla**`**
+  - ***`*Negrilla cursiva*`***
+  - Insertar imagen: `![](imagen.png)`
+  - Insertar hipervínculo: `[](url.com)`
+      
+## Sintaxis de R Markdown II {data-background="markdown2.png"}     
+
+  - Marcado de texto con comillas transversas ```` `mean()` ````
+  - Texto con opción de celda de código: ```` ```ejemplo``` ````
+  - Ejecución de código en línea de texto: ```` ```letra r código``` ````
+  - Más opciones de texto:
+      - ```H~3~PO~4~``` ----> H~3~PO~4~
+      - ```2^2^ ``` ----> 2^2^
+      - Insertar citación o notas al pie del texto con ``` ^[]``` ----> Semillero R^[https://unal-semilleror-facca.github.io/]
+      - Salto de línea en markdown con `<br>`.
+
+## Sintaxis de R Markdown II {data-background="markdown2.png"} 
+      
+  - Citas textuales con ``` `>` ```
+
+```      
+> "I thoroughly disapprove of duels. If a man should challenge me,
+  I would take him kindly and forgivingly by the hand and lead him
+  to a quiet place and kill him."
+>
+> --- Mark Twain      
+```
+
+> "I thoroughly disapprove of duels. If a man should challenge me,
+  I would take him kindly and forgivingly by the hand and lead him
+  to a quiet place and kill him."
+>
+> --- Mark Twain 
+
+## Sintaxis de R Markdown II {data-background="markdown2.png"}  
+
+  - Expresiones matemáticas
+      - ```` $$Latex$$ ````: ecuación centrada con salto de línea.
+      - ```` $Latex$ ````: ecuación en línea.
+      - Ejemplos:
+          - ```` $f(x) = {n \choose k} p^{x}(1-p)^{n-x}$````
+              - En línea $f(x) = {n \choose k} p^{x}(1-p)^{n-x}$
+          - ```` $$f(x) = {n \choose k} p^{x}(1-p)^{n-x}$$```` $$f(x) = {n \choose k} p^{x}(1-p)^{n-x}$$
+  - [Documentación Latex.](https://www.latex-project.org/help/documentation/)
+  - [Símbolos matemáticos en Latex.](https://oeis.org/wiki/List_of_LaTeX_mathematical_symbols)
+
+## Sintaxis de R Markdown II {data-background="markdown2.png"} 
+
+  - **Tablas 1:**
+  
+```
+Columna 1 | Columna 2 | Columna 3
+--------- | --------- | ---------
+Dato 1    | Dato 2    | Dato 3
+```
+
+Columna 1 | Columna 2 | Columna 3
+--------- | --------- | ---------
+Dato 1    | Dato 2    | Dato 3
+<br>
+  - **Tablas 2:**
+  
+```
+Columna 1 | Columna 2 | Columna 3
+ :------: | --------: | :------
+Dato 1    | Dato 2    | Dato 3
+Dato 1    | Dato 2    | Dato 3
+```
+
+Columna 1 | Columna 2 | Columna 3
+ :------: | -------: | :------
+Dato 1    | Dato 2    | Dato 3
+Dato 1    | Dato 2    | Dato 3
+
+# Editando documentos `html` {data-background="markdown2.png"} 
+
+## Metadatos {data-background="markdown2.png"} 
+
+  - **`title`:** título principal del documento.
+  - **`subtitle`:** subtítulo.
+  - **`date`:** fecha.
+  - **`output`:** tipo de salida.
+      - **`toc`:** opción para activar tabla de contenidos.
+      - **`toc_depth`:** configurar los encabezados a tener en cuenta para la tabla de contenidos.
+      - **`toc_float`:** tabla de contenido flotante.
+          - **`collapsed`:** tabla de contenido flotante y plegable.
+          - **`smooth_scroll`:** animaciones de tabla de contenido con el clic.
+      - **`number_sections`:** numeración de secciones.
+      - **`theme`:** tema del documento.
+      - **`highlight`:** estilo de resaltado.
+      - **`df_print`:** impresión de `data.frame` con formato.
+      - **`code_folding`:** opción que permite mostrar u ocultar el código en el documento.
+      - **`css`:** personalización avanzada a través de `css`.
+
+## Fragmentos de R {data-background="markdown2.png"}
+
+  - Insertar fragmento de R con `Ctrl + ALt + i`.
+  - **`fig.align`:** alineación de figuras e imágenes.
+  - **`fig.width:`** ancho de gráficos.
+  - **`fig.height:`** altura de gráficos.
+  - **`out.width:`** ancho de imágenes.
+  - **`out.height:`** alto de imágenes.
+  - **`echo:`** opción para imprimir el código en el documento.
+  - **`eval:`** opción para evaluar el código, es decir, producir resultados.
+  - **`warning:`** opción para desactivar las advertencias.
+  - **`message:`** opción para desactivar los mensajes.
+
+## Metadatos y `chunk` de R {data-background="markdown2.png"}
+
+- **Plantilla de metadatos:**
+
+```
+---
+title: "Título"
+subtitle: "Subtítulo"
+author: "Nombre Apellido"
+date: "01 de enero de 1900"
+output:
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+      collapsed: true
+      smooth_scroll: true
+    number_sections: true
+    theme: readable
+    highlight: tango
+    df_print: paged
+    code_folding: hide
+    css: estilo.css
+---
+```
+
+- **Plantilla fragmento de R:**
+
+```
+``{r, fig.align='center', fig.width=8, fig.height=5, echo=TRUE, eval=TRUE}
+
+``
+```
+
+# Presentaciones {data-background="markdown2.png"}
+
+## Presentación `ioslides` {data-background="markdown2.png"}
+
+- Crear archivo de extensión ***.Rmd***
+    - *File -> New File -> R Mardown -> Presentation -> Ioslides*
+  
+```{r, echo=FALSE, out.width="515px", out.height="420px"}
+knitr::include_graphics("present.png")
+```
+
+  - Guardar archivo **.Rmd**
+      - *File -> Save with Encoding -> UTF-8.*
+  - Nueva diapositiva con `##`.
+  - Diapositiva de tema principal con `#`.
