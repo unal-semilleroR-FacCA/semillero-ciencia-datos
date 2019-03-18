@@ -1,0 +1,421 @@
+---
+title: "Estado nutricional en niños menores de 6 años - Medellín 2016"
+author: "Edimer David Jaramillo"
+date: "`r Sys.Date()`"
+output:
+  html_document:
+    toc: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, fig.align = "center")
+```
+
+# Lectura de datos
+
+  - [Estado nutricional de la población menor de 6 años - Municipio de Medellín 2016.](https://www.datos.gov.co/Salud-y-Protecci-n-Social/Estado-nutricional-de-la-poblaci-n-menor-de-6-a-os/bkt5-gpif)
+  
+```{r, eval=FALSE}
+datos <- read.csv("Estado_nutricional_de_la_poblaci_n_menor_de_6_a_os_-_Municipio_de_Medell_n_2016.csv", encoding = "UTF-8")
+```
+
+# Depuración de datos
+
+## Conversión a formato .Rdata
+
+```{r, eval=FALSE}
+# Conversión
+save(datos, file = "Nutricion.Rdata")
+```
+
+```{r}
+# Cargando datos en formato .Rdata
+load("Nutricion.Rdata")
+```
+
+## Estructura interna de los datos iniciales
+
+```{r}
+str(datos)
+```
+
+## Seleccionando columnas con `select()`
+
+```{r, message=FALSE}
+library(dplyr)
+library(ggplot2)
+```
+
+```{r}
+datos2 <- datos %>% 
+  select(-c(Regimen, EPS, Grupo.Edad))
+
+str(datos2)
+```
+
+- **Editanto nombres:**
+
+```{r}
+names(datos2) <- c("Sexo", "Peso", "Estatura", "DSPE", "DPE", "DSTE", "DTE",
+                   "DSPT", "DPT", "Comuna", "Zona", "Edad")
+
+str(datos2)
+```
+
+## Modificando niveles de factores con `mutate()`
+
+```{r}
+datos3 <- datos2 %>% 
+  mutate(Sexo = factor(Sexo, labels = c("Femenino", "Masculino")),
+         DPE = factor(DPE, labels = c("Peso adecuado", "Peso bajo", "Peso muy bajo",
+                                      "Encima de 1 DE", "Riesgo peso bajo")),
+         DTE = factor(DTE, labels = c("Estatura adecuada", "Estatura baja",
+                                      "Muy alto", "Riesgo de E. baja")),
+         DPT = factor(DPT, labels = c("Adecuado-Edad", "Delgado", "Obeso",
+                                      "Adecuado-Estatura", "D. Aguda",
+                                      "D. Severa", "R. peso bajo", "R. Delgadez",
+                                      "Sobrepeso")))
+
+str(datos3)
+```
+
+## Creando nueva variable `Edad2` en años
+
+```{r, eval=FALSE}
+# Una forma con la biblioteca base de R
+datos3$Edad2 <- datos3$Edad/365.5
+```
+
+```{r}
+datos4 <- datos3 %>% 
+  mutate(Edad2 = Edad/365.5)
+
+str(datos4)
+```
+
+## Filtrando individuos con edad mayor a 6 años (`filter()`)
+
+```{r}
+datos5 <- datos4 %>% 
+  filter(Edad2 <= 6)
+```
+
+## Procesos concatenados con `%>%`
+
+```{r}
+datos_final <- datos2 %>% 
+  mutate(Sexo = factor(Sexo, labels = c("Femenino", "Masculino")),
+         DPE = factor(DPE, labels = c("Peso adecuado", "Peso bajo", "Peso muy bajo",
+                                      "Encima de 1 DE", "Riesgo peso bajo")),
+         DTE = factor(DTE, labels = c("Estatura adecuada", "Estatura baja",
+                                      "Muy alto", "Riesgo de E. baja")),
+         DPT = factor(DPT, labels = c("Adecuado-Edad", "Delgado", "Obeso",
+                                      "Adecuado-Estatura", "D. Aguda",
+                                      "D. Severa", "R. peso bajo", "R. Delgadez",
+                                      "Sobrepeso"))) %>%
+  mutate(Edad2 = Edad/365.5) %>% 
+  filter(Edad2 <= 6)
+  
+str(datos_final)  
+```
+
+# Análisis exploratorio de datos
+
+## Distribución de variables categóricas (caso univariado)
+
+### Género
+
+  - **Tabla de distribución por género:**
+
+```{r}
+library(knitr)
+fa_sexo <- datos_final %>% 
+  group_by(Sexo) %>% 
+  summarise(Total = n(), Porcentaje = round(Total/nrow(datos_final)*100,
+                                            digits = 2)) %>% 
+  kable()
+
+fa_sexo
+```
+
+  - **Distribución por género:**
+
+```{r}
+# Base de datos con información a graficar
+fa_sexo2 <- datos_final %>% 
+  group_by(Sexo) %>% 
+  summarise(Total = n(), Porcentaje = round(Total/nrow(datos_final)*100,
+                                            digits = 2))
+# Gráfico con ggplot2
+ggplot(data = fa_sexo2, mapping = aes(x = Sexo, y = Total)) +
+  geom_col(color = "black", fill = "dodgerblue2") +
+  labs(x = "Género", y = "F. Absoluta",
+       title = "Frecuencia absoluta por género") +
+  theme_bw()
+```
+
+  - **`dplyr` + `ggplot2`:**
+
+```{r}
+datos_final %>% 
+  group_by(Sexo) %>% 
+  summarise(Total = n(), Porcentaje = round(Total/nrow(datos_final)*100,
+                                            digits = 2)) %>% 
+  ggplot(data = ., mapping = aes(x = Sexo, y = Total)) +
+  geom_col(color = "black", fill = "dodgerblue2") +
+  labs(x = "Género", y = "F. Absoluta",
+       title = "Frecuencia absoluta por género") +
+  theme_bw()
+```
+
+### Denominación peso-estatura
+
+
+  - **Tabla de distribución:**
+  
+```{r}
+tabla_dpe <- datos_final %>% 
+  group_by(DPE) %>% 
+  summarise(Total = n(),
+            Porcentaje = round((Total/nrow(datos_final)*100), digits = 2)) %>% 
+  arrange(desc(Total)) %>% 
+  kable()
+
+tabla_dpe
+```
+
+  - **Visualización 1 (`geom_col()`):**
+  
+```{r}
+# Proceso concatenado con %>% 
+datos_final %>% 
+  group_by(DPE) %>% 
+  summarise(Total = n(),
+            Porcentaje = round((Total/nrow(datos_final)*100), digits = 2)) %>% 
+  ggplot(data = ., mapping = aes(x = DPE, y = Total)) +
+  geom_col(color = "black", fill = "forestgreen") +
+  labs(x = "Denominación", y = "Frecuencia",
+       title = "Distribución de la denominación Peso-Estatura en infantes")
+```
+
+  - **Visualización 2 (`geom_point()` y `geom_line()`):**
+  
+```{r}
+# Proceso concatenado con %>% 
+datos_final %>% 
+  group_by(DPE) %>% 
+  summarise(Total = n(),
+            Porcentaje = round((Total/nrow(datos_final)*100), digits = 2)) %>% 
+  ggplot(data = ., mapping = aes(x = DPE, y = Total)) +
+  geom_point() +
+  geom_line(mapping = aes(group = 1)) +
+  labs(x = "Denominación", y = "Frecuencia",
+       title = "Distribución de la denominación Peso-Estatura en infantes")
+```
+
+  - **Visualización 3 (`geom_col()`, `geom_point()` y `geom_line()`):**
+  
+```{r}
+# Proceso concatenado con %>% 
+datos_final %>% 
+  group_by(DPE) %>% 
+  summarise(Total = n(),
+            Porcentaje = round((Total/nrow(datos_final)*100), digits = 2)) %>% 
+  ggplot(data = ., mapping = aes(x = DPE, y = Total)) +
+  geom_col(color = "black", fill = "dodgerblue2") +
+  geom_point(size = 4, color = "yellow2") +
+  geom_line(mapping = aes(group = 1), lwd = 0.7) +
+  labs(x = "Denominación", y = "Frecuencia",
+       title = "Distribución de la denominación Peso-Estatura en infantes") +
+  theme_minimal()
+```
+
+### Denominación talla-estatura
+
+
+  - **Tabla de distribución:**
+  
+```{r}
+tabla_dte <- datos_final %>% 
+  group_by(DTE) %>% 
+  summarise(Total = n(),
+            Porcentaje = round((Total/nrow(datos_final)*100), digits = 2)) %>% 
+  arrange(desc(Total)) %>% 
+  kable()
+
+tabla_dte
+```
+
+  - **Visualización:**
+  
+```{r}
+# Proceso concatenado con %>% 
+datos_final %>% 
+  group_by(DTE) %>% 
+  summarise(Total = n(),
+            Porcentaje = round((Total/nrow(datos_final)*100), digits = 2)) %>% 
+  ggplot(data = ., mapping = aes(x = DTE, y = Total)) +
+  geom_col(color = "black", fill = "forestgreen") +
+  labs(x = "Denominación", y = "Frecuencia",
+       title = "Distribución de la denominación Talla-Estatura en infantes")
+```
+
+### Denominación peso-talla
+
+  - **Tabla de distribución:**
+  
+```{r}
+tabla_dpt <- datos_final %>% 
+  group_by(DPT) %>% 
+  summarise(Total = n(),
+            Porcentaje = round((Total/nrow(datos_final)*100), digits = 2)) %>% 
+  arrange(desc(Total)) %>% 
+  kable()
+
+tabla_dpt
+```
+
+  - **Visualización:**
+  
+```{r}
+# Proceso concatenado con %>% 
+datos_final %>% 
+  group_by(DPT) %>% 
+  summarise(Total = n(),
+            Porcentaje = round((Total/nrow(datos_final)*100), digits = 2)) %>% 
+  ggplot(data = ., mapping = aes(x = DPT, y = Total/1000)) +
+  geom_col(color = "black", fill = "forestgreen") +
+  labs(x = "Denominación", y = "Frecuencia (miles)",
+       title = "Distribución de la denominación Peso-Talla en infantes") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+```
+
+### Número de infantes por comuna
+
+  - **Tabla de distribución:**
+  
+```{r}
+tabla_co <- datos_final %>% 
+  group_by(Comuna) %>% 
+  summarise(Total = n(),
+            Porcentaje = round((Total/nrow(datos_final)*100), digits = 2)) %>% 
+  arrange(desc(Total)) %>% 
+  kable()
+
+tabla_co
+```
+
+  - **Visualización:**
+  
+```{r}
+# Proceso concatenado con %>% 
+datos_final %>% 
+  group_by(Comuna) %>% 
+  summarise(Total = n(),
+            Porcentaje = round((Total/nrow(datos_final)*100), digits = 2)) %>% 
+  ggplot(data = ., mapping = aes(x = Comuna, y = Total)) +
+  geom_col(color = "black", fill = "forestgreen") +
+  labs(x = "Comuna", y = "Frecuencia",
+       title = "Distribución de infantes por comuna",
+       subtitle = "Medellín 2016") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+```
+
+### Número de infantes por zona
+
+  - **Tabla de distribución:**
+  
+```{r}
+tabla_z <- datos_final %>% 
+  group_by(Zona) %>% 
+  summarise(Total = n(),
+            Porcentaje = round((Total/nrow(datos_final)*100), digits = 2)) %>% 
+  arrange(desc(Total)) %>% 
+  kable()
+
+tabla_z
+```
+
+  - **Visualización:**
+  
+```{r}
+# Proceso concatenado con %>% 
+datos_final %>% 
+  group_by(Zona) %>% 
+  summarise(Total = n(),
+            Porcentaje = round((Total/nrow(datos_final)*100), digits = 2)) %>% 
+  ggplot(data = ., mapping = aes(x = Zona, y = Total)) +
+  geom_col(color = "black", fill = "forestgreen") +
+  labs(x = "Zona", y = "Frecuencia",
+       title = "Distribución de infantes por zona",
+       subtitle = "Medellín 2016") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+```
+
+## Distribución de variables categóricas (caso bivariado)
+
+### Género y comuna
+
+  - **Tabla:**
+  
+```{r}
+tabla_gc <- datos_final %>% 
+  group_by(Comuna, Sexo) %>% 
+  summarise(Total = n(),
+            Porcentaje = round((Total/nrow(datos_final)*100), digits = 2))
+
+kable(tabla_gc)
+```
+
+  - **Visualización 1:**
+  
+```{r}
+ggplot(data = tabla_gc, mapping = aes(x = Comuna, y = Total, fill = Sexo)) +
+  geom_col(color = "black") +
+  labs(x = "Comuna", y = "Frecuencia",
+       title = "Distribución de infantes por género y comuna",
+       subtitle = "Medellín 2016") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+```
+
+  - **Visualización 2:**
+  
+```{r}
+ggplot(data = tabla_gc, mapping = aes(x = Comuna, y = Total, fill = Sexo)) +
+  geom_col(color = "black", position = "dodge") +
+  scale_fill_manual(values = c("dodgerblue2", "firebrick2")) +
+  labs(x = "Comuna", y = "Frecuencia",
+       title = "Distribución de infantes por género y comuna",
+       subtitle = "Medellín 2016", fill = "Género") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+```
+
+  - **Visualización 1 con facetas (`facet_wrap()`):**
+  
+```{r, fig.height=6.5, fig.width=10}
+ggplot(data = tabla_gc, mapping = aes(x = Comuna, y = Total)) +
+  facet_wrap(facets = ~Sexo) +
+  geom_col() +
+  labs(x = "Comuna", y = "Frecuencia",
+       title = "Distribución de infantes por género y comuna",
+       subtitle = "Medellín 2016") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+```
+
+  - **Visualización 2 con facetas (`facet_wrap()`):**
+  
+```{r, fig.height=18, fig.width=10}
+ggplot(data = tabla_gc, mapping = aes(x = Sexo, y = Total)) +
+  facet_wrap(facets = ~Comuna, ncol = 3) +
+  geom_col(color = "black", fill = "firebrick2") +
+  labs(x = "Género", y = "Frecuencia",
+       title = "Distribución de infantes por género y comuna",
+       subtitle = "Medellín 2016") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+```
+
+# Borrador
+
+  - **Edad promedio:** `r mean(datos_final$Edad2)`.
+  - **Desviación estándar de edad:** `r sd(datos_final$Edad2)`.
+  - **Individuo de menor edad:** `r min(datos_final$Edad2)`.
