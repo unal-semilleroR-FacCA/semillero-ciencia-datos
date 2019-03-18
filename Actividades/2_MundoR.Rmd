@@ -1,15 +1,15 @@
 ---
-title: "Semillero de R - FacCA"
-subtitle: "Mundo R + `tidyverse` I"
-author: "Semillero R FacCA"
-date: "Marzo de 2019"
-output:
-  html_document:
-    toc: true
-    theme: readable
-    highlight: tango
-    css: estilo2.css
-    df_print: paged
+output: 
+  revealjs::revealjs_presentation:
+    theme: simple
+    highlight: haddock
+    center: true
+    transition: slide
+    css: estilo.css
+    self_contained: false
+    reveal_options:
+      slideNumber: true
+      previewLinks: true
 ---
 
 ```{r setup, include=FALSE}
@@ -22,31 +22,42 @@ knitr::opts_chunk$set(echo = TRUE,
                       fig.height = 5.5)
 ```
 
-# Elementos básicos con R
+# Semillero de R - FacCA {data-background="fondo1.png"}
+
+# Mundo R + `tidyverse` I {data-background="fondo_tidy.png"}
+
+# Mundo R {data-background="lengR.png"}
+
+## Elementos básicos con R {data-background="lengR.png"}
 
 - Entradas básicas:
-    - `#:` comentario.
-    - `<-:` asignación.
-    - `help()` o `?`: sistema de ayudas en R.
-    - `getwd():` obtener el directorio de trabajo.
-    - `CTRL + Enter`: Ejecutar código. 
-    - `CTRL + L`: Limpiar consola.
+    - **`#:`** comentario.
+    - **`<-:`** asignación.
+    - **`help()`** o **`?`:** sistema de ayudas en R.
+    - **`getwd():`** obtener el directorio de trabajo.
+    - **`CTRL + Enter`:** Ejecutar código. 
+    - **`CTRL + L`:** Limpiar consola.
 - Operadores Aritméticos:
-    - `+`: suma.
-    - `-`: resta.
-    - `*`: multiplicación.
-    - `/`: división.
-    - `^`: potencia.
-    - `%%`: división entera.
-    - `%/%`: división modular.
+    - **`+`:** suma.
+    - **`-`:** resta.
+    - **`*`:** multiplicación.
+    - **`/`:** división.
+    - **`^`:** potencia.
+    - **`%%`:** división entera.
+    - **`%/%`:** división modular.
+
+## Elementos básicos con R {data-background="lengR.png"}
+
 - Operadores lógicos:
-    - `==`: igualdad.
-    - `!=`: diferencia.
-    - `>`: mayor.
-    - `<`: menor.
-    - `>=`: mayor o igual.
-    - `<=`: menor o igual.
-    - `!`: negación.
+    - **`==`:** igualdad.
+    - **`!=`:** diferencia.
+    - **`>`:** mayor.
+    - **`<`:** menor.
+    - **`>=`:** mayor o igual.
+    - **`<=`:** menor o igual.
+    - **`!`:** negación.
+
+## Elementos básicos con R {data-background="lengR.png"}
 
 ```{r, collapse=TRUE}
 2 == 2 # Igualdad
@@ -58,9 +69,11 @@ knitr::opts_chunk$set(echo = TRUE,
 !(2 + 2) == 4 # Negación
 ```
 
+## Elementos básicos con R {data-background="lengR.png"}
+
 - Conjunción y disyunción:
-    - `&` - `&&`: conjunción.
-    - `|` - `||`: disyunción.
+    - **`&`** - **`&&`:** conjunción.
+    - **`|`** - **`||`:** disyunción.
   
 ```{r, collapse=TRUE}
 flores <- c(10, 2, 5)
@@ -75,14 +88,15 @@ frutos <- c(6, 7, 3)
 (flores > 3) || (frutos <= 2)
 ```
 
-# Tipos de datos en R
+## Elementos básicos con R {data-background="lengR.png"}
 
-  - **Numéricos:** `numeric`
-  - **Enteros:** `integer`
-  - **Caracteres:** `character`
-  - **Lógicos:** `logical`
-  - **Complejos:** `complex`
-  - **Nota:** la función `class()` permite obtener el tipo de dato de un objeto o variable.
+- Tipos de datos en R
+    - **Numéricos:** `numeric`
+    - **Enteros:** `integer`
+    - **Caracteres:** `character`
+    - **Lógicos:** `logical`
+    - **Complejos:** `complex`
+    - **Nota:** la función `class()` permite obtener el tipo de dato de un objeto o variable.
 
 ```{r, collapse=TRUE}
 numerico <- 3.5
@@ -98,7 +112,7 @@ class(logico)
 class(complejo)
 ```
 
-# Objetos estructurados 
+## Objetos estructurados {data-background="lengR.png"}
 
 - **Vectores:**
     - Función `c()` para generar vectores.
@@ -116,7 +130,10 @@ class(complejo)
     - Función `list()` para crear listas.
     - Las listas poseen longitud.
     - Las listas poseen nombres de variables (`names()`).
-    - **Características:** permite almacenar cualquier tipo de dato.
+    - **Características:** permite almacenar cualquier tipo de dato.    
+
+## Objetos estructurados {data-background="lengR.png"}    
+    
 - **Data frame:**
     - Función `data.frame()` permite generar marcos de datos (bases de datos).
     - Los marcos de datos poseen nombres, longitud y dimensión.
@@ -130,8 +147,10 @@ class(complejo)
         - Cada columna representa una variable (vector).
         - Cada fila es una observación, registro o individuo.
         - Todas las variables deben tener la misma longitud.
-        - Las bases de datos se pueden crear, importar o utilizar las que trae R por defecto (`data()`).    
+        - Las bases de datos se pueden crear, importar o utilizar las que trae R por defecto (`data()`).
 
+## Objetos estructurados {data-background="lengR.png"}  
+        
 ```{r, collapse=TRUE}
 ########### EJEMPLO DE UN FACTOR ##############################################
 
@@ -156,7 +175,7 @@ table(factor2)
 prop.table(table(factor2)) 
 ```
 
-# Coerción
+## Coerción {data-background="lengR.png"}
 
   - **Implícita:** conversión automática.   
   - **Explícita:** conversión dirigida.  
@@ -171,6 +190,8 @@ prop.table(table(factor2))
       - `as.list():` conversión a lista.
       - `as.data.frame():` conversión a base de datos.
 
+## Coerción {data-background="lengR.png"}
+
 ```{r, collapse=TRUE}
 # Implícita
 coer.imp <- c(2, "Texto", TRUE)
@@ -182,7 +203,7 @@ as.numeric(coer.imp)
 as.logical(coer.imp)
 ```
 
-# Lectura y escritura de datos
+## Lectura y escritura de datos {data-background="lengR.png"}
 
 - **Lectura:**
     - `read.csv():` valores separados por comas.
@@ -195,34 +216,42 @@ as.logical(coer.imp)
 - **Conversión de formatos:**
     - Función `save()`: guardar (escribir) datos en formato .Rdata.
     - Función `load()`: cargar (leer) datos en formato .Rdata.
+    
+# [`Tidyverse`](https://www.tidyverse.org/) {data-background="fondo_tidy.png"}
 
-# [`Tidyverse`](https://www.tidyverse.org/)
-
-```{r, echo=FALSE, out.height="100", out.width="250"}
-knitr::include_graphics("tidyverse.png")
-```
+## Proceso de análisis de datos {data-background="fondo_tidy.png"}
 <br>
 <br>
-```{r, echo=FALSE, out.height="240", out.width="620"}
+<br>
+```{r, echo=FALSE, out.width="670px", out.height="280px"}
 knitr::include_graphics("data-science.png")
 ```
+
+## Componentes del `tidyverse` {data-background="fondo_tidy.png"}
 <br>
 <br>
-```{r, echo=FALSE, out.height="240", out.width="620"}
+
+```{r, echo=FALSE, out.width="670px", out.height="280px"}
 knitr::include_graphics("tidyverse-logo.png")
 ```
+
+## Análisis de datos + `tidyverse` {data-background="fondo_tidy.png"}
 <br>
 <br>
-```{r, echo=FALSE, out.height="240", out.width="620"}
+
+```{r, echo=FALSE, out.width="690px", out.height="340px"}
 knitr::include_graphics("tidy.png")
 ```
+
+## Análisis de datos + `tidyverse` {data-background="fondo_tidy.png"}
 <br>
 <br>
-```{r, echo=FALSE, out.height="240", out.width="620"}
+
+```{r, echo=FALSE, out.width="620px", out.height="410px"}
 knitr::include_graphics("01_tidyverse_data_science.png")
 ```
 
-## Funciones de `dplyr` y `ggplot2`
+## Funciones de `dplyr` {data-background="fondo_tidy.png"}
 
   - `%>%`: operador de encadenamiento de procesos.
   - **`dplyr`:**
@@ -233,6 +262,9 @@ knitr::include_graphics("01_tidyverse_data_science.png")
       - `mutate`: editar o generar nuevas variables.
       - `summarise`: resumir datos.
       - `group_by()`: operaciones agrupadas.
+      
+## Funciones de `ggplot2` {data-background="fondo_tidy.png"}
+      
   - **`ggplot2`:**
       - `ggplot`: primera capa con los datos y el mapeo (`mapping`) estético (`aes`) del gráfico.
           - `x`: eje x.
@@ -248,15 +280,17 @@ knitr::include_graphics("01_tidyverse_data_science.png")
           - `geom_col()`: diagrama de barras (con eje *y* definido).
           - `geom_density()`: densidad.
           - `geom_line()`: líneas (interesantes en series temporales).
-          - Otros...
-      - `labs`: etiquetas del gráfico (eje x, eje y, título, subtítulo).
-      - `theme_`: temas para el gráfico.
-      - `facet_wrap()`: facetas con una variable categórica.
-      - `facet_grid()`: facetas con dos o más variables categóricas.
 
-# Ejemplos prácticos
+## Funciones de `ggplot2` {data-background="fondo_tidy.png"}          
+          
+- `labs`: etiquetas del gráfico (eje x, eje y, título, subtítulo).
+- `theme_`: temas para el gráfico.
+- `facet_wrap()`: facetas con una variable categórica.
+- `facet_grid()`: facetas con dos o más variables categóricas.
 
-## Índice Sintético de Calidad Educativa - ISCE - Municipio de Medellín 2016
+# Ejemplos prácticos {data-background="fondo_tidy.png"}
+
+## Calidad Educativa - Medellín 2016 {data-background="fondo_tidy.png"}
 
   - [Índice Sintético de Calidad Educativa - ISCE - Municipio de Medellín 2016.](https://www.datos.gov.co/Educaci-n/-ndice-Sint-tico-de-Calidad-Educativa-ISCE-Municip/uc7t-jc5u)
 
@@ -269,15 +303,12 @@ save(educa, file = "I_Educativo.Rdata")
 
 # Cargando datos en formato .Rdata
 load("I_Educativo.Rdata")
-```
 
-### Estructura interna de los datos
-
-```{r}
+# Estructura interna de los datos
 str(educa)
 ```
 
-## Estado nutricional de la población menor de 6 años en Medellín 2016
+## Estado nutricional en infantes Medellín 2016 {data-background="fondo_tidy.png"}
 
   - [Estado nutricional de la población menor de 6 años - Municipio de Medellín 2016.](https://www.datos.gov.co/Salud-y-Protecci-n-Social/Estado-nutricional-de-la-poblaci-n-menor-de-6-a-os/bkt5-gpif)
 
@@ -290,11 +321,7 @@ save(datos, file = "NutricionInfantil.Rdata")
 
 # Cargando datos en formato .Rdata
 load("NutricionInfantil.Rdata")
-```
 
-### Estructura interna de los datos
-
-```{r}
+# Estructura interna de los datos
 str(datos)
 ```
-
