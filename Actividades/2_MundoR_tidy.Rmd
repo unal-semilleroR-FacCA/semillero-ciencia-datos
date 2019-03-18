@@ -1,0 +1,29 @@
+---
+output: 
+  revealjs::revealjs_presentation:
+    theme: simple
+    highlight: haddock
+    center: true
+    transition: slide
+    css: estilo.css
+    self_contained: false
+    reveal_options:
+      slideNumber: true
+      previewLinks: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE,
+                      warning = FALSE,
+                      message = FALSE,
+                      error = FALSE,
+                      fig.align = "center",
+                      fig.width = 7.5,
+                      fig.height = 5.5)
+```
+
+# Semillero de R - FacCA {data-background="fondo1.png"}
+
+# Mundo R + `tidyverse` II {data-background="fondo_tidy.png"}
+
+# Datos ordenados (`tidy data`) {data-background="fondo_tidy.png"}
