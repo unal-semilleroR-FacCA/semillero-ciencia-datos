@@ -1,30 +1,47 @@
 ---
-title: "Estado nutricional en ni帽os menores de 6 a帽os - Medell铆n 2016"
+title: "Estado nutricional en infantes - Medell韓 2016"
+subtitle: "An醠isis Exploratorio"
 author: "Edimer David Jaramillo"
 date: "`r Sys.Date()`"
 output:
   html_document:
-    toc: true
+    toc: yes
+    toc_depth: 3
+    toc_float:
+      collapsed: false
+      smooth_scroll: false
+    number_sections: yes
+    theme: readable
+    highlight: tango
+    df_print: paged
+    code_folding: hide
+    css: estilo.css
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE, fig.align = "center")
+knitr::opts_chunk$set(echo = TRUE,
+                      fig.align = "center",
+                      eval = TRUE,
+                      fig.width = 9,
+                      fig.height = 5.5,
+                      message = FALSE,
+                      warning = FALSE)
 ```
 
 # Lectura de datos
 
-  - [Estado nutricional de la poblaci贸n menor de 6 a帽os - Municipio de Medell铆n 2016.](https://www.datos.gov.co/Salud-y-Protecci-n-Social/Estado-nutricional-de-la-poblaci-n-menor-de-6-a-os/bkt5-gpif)
+  - [Estado nutricional de la poblaci髇 menor de 6 a駉s - Municipio de Medell韓 2016.](https://www.datos.gov.co/Salud-y-Protecci-n-Social/Estado-nutricional-de-la-poblaci-n-menor-de-6-a-os/bkt5-gpif)
   
 ```{r, eval=FALSE}
 datos <- read.csv("Estado_nutricional_de_la_poblaci_n_menor_de_6_a_os_-_Municipio_de_Medell_n_2016.csv", encoding = "UTF-8")
 ```
 
-# Depuraci贸n de datos
+# Depuraci髇 de datos
 
-## Conversi贸n a formato .Rdata
+## Conversi髇 a formato .Rdata
 
 ```{r, eval=FALSE}
-# Conversi贸n
+# Conversi髇
 save(datos, file = "Nutricion.Rdata")
 ```
 
@@ -79,7 +96,7 @@ datos3 <- datos2 %>%
 str(datos3)
 ```
 
-## Creando nueva variable `Edad2` en a帽os
+## Creando nueva variable `Edad2` en a駉s
 
 ```{r, eval=FALSE}
 # Una forma con la biblioteca base de R
@@ -93,7 +110,7 @@ datos4 <- datos3 %>%
 str(datos4)
 ```
 
-## Filtrando individuos con edad mayor a 6 a帽os (`filter()`)
+## Filtrando individuos con edad mayor a 6 a駉s (`filter()`)
 
 ```{r}
 datos5 <- datos4 %>% 
@@ -119,13 +136,13 @@ datos_final <- datos2 %>%
 str(datos_final)  
 ```
 
-# An谩lisis exploratorio de datos
+# An醠isis exploratorio de datos
 
-## Distribuci贸n de variables categ贸ricas (caso univariado)
+## Distribuci髇 de variables categ髍icas (caso univariado)
 
-### G茅nero
+### G閚ero
 
-  - **Tabla de distribuci贸n por g茅nero:**
+  - **Tabla de distribuci髇 por g閚ero:**
 
 ```{r}
 library(knitr)
@@ -138,19 +155,19 @@ fa_sexo <- datos_final %>%
 fa_sexo
 ```
 
-  - **Distribuci贸n por g茅nero:**
+  - **Distribuci髇 por g閚ero:**
 
 ```{r}
-# Base de datos con informaci贸n a graficar
+# Base de datos con informaci髇 a graficar
 fa_sexo2 <- datos_final %>% 
   group_by(Sexo) %>% 
   summarise(Total = n(), Porcentaje = round(Total/nrow(datos_final)*100,
                                             digits = 2))
-# Gr谩fico con ggplot2
+# Gr醘ico con ggplot2
 ggplot(data = fa_sexo2, mapping = aes(x = Sexo, y = Total)) +
   geom_col(color = "black", fill = "dodgerblue2") +
-  labs(x = "G茅nero", y = "F. Absoluta",
-       title = "Frecuencia absoluta por g茅nero") +
+  labs(x = "G閚ero", y = "F. Absoluta",
+       title = "Frecuencia absoluta por g閚ero") +
   theme_bw()
 ```
 
@@ -163,15 +180,15 @@ datos_final %>%
                                             digits = 2)) %>% 
   ggplot(data = ., mapping = aes(x = Sexo, y = Total)) +
   geom_col(color = "black", fill = "dodgerblue2") +
-  labs(x = "G茅nero", y = "F. Absoluta",
-       title = "Frecuencia absoluta por g茅nero") +
+  labs(x = "G閚ero", y = "F. Absoluta",
+       title = "Frecuencia absoluta por g閚ero") +
   theme_bw()
 ```
 
-### Denominaci贸n peso-estatura
+### Denominaci髇 peso-estatura
 
 
-  - **Tabla de distribuci贸n:**
+  - **Tabla de distribuci髇:**
   
 ```{r}
 tabla_dpe <- datos_final %>% 
@@ -184,7 +201,7 @@ tabla_dpe <- datos_final %>%
 tabla_dpe
 ```
 
-  - **Visualizaci贸n 1 (`geom_col()`):**
+  - **Visualizaci髇 1 (`geom_col()`):**
   
 ```{r}
 # Proceso concatenado con %>% 
@@ -194,11 +211,11 @@ datos_final %>%
             Porcentaje = round((Total/nrow(datos_final)*100), digits = 2)) %>% 
   ggplot(data = ., mapping = aes(x = DPE, y = Total)) +
   geom_col(color = "black", fill = "forestgreen") +
-  labs(x = "Denominaci贸n", y = "Frecuencia",
-       title = "Distribuci贸n de la denominaci贸n Peso-Estatura en infantes")
+  labs(x = "Denominaci髇", y = "Frecuencia",
+       title = "Distribuci髇 de la denominaci髇 Peso-Estatura en infantes")
 ```
 
-  - **Visualizaci贸n 2 (`geom_point()` y `geom_line()`):**
+  - **Visualizaci髇 2 (`geom_point()` y `geom_line()`):**
   
 ```{r}
 # Proceso concatenado con %>% 
@@ -209,11 +226,11 @@ datos_final %>%
   ggplot(data = ., mapping = aes(x = DPE, y = Total)) +
   geom_point() +
   geom_line(mapping = aes(group = 1)) +
-  labs(x = "Denominaci贸n", y = "Frecuencia",
-       title = "Distribuci贸n de la denominaci贸n Peso-Estatura en infantes")
+  labs(x = "Denominaci髇", y = "Frecuencia",
+       title = "Distribuci髇 de la denominaci髇 Peso-Estatura en infantes")
 ```
 
-  - **Visualizaci贸n 3 (`geom_col()`, `geom_point()` y `geom_line()`):**
+  - **Visualizaci髇 3 (`geom_col()`, `geom_point()` y `geom_line()`):**
   
 ```{r}
 # Proceso concatenado con %>% 
@@ -225,15 +242,15 @@ datos_final %>%
   geom_col(color = "black", fill = "dodgerblue2") +
   geom_point(size = 4, color = "yellow2") +
   geom_line(mapping = aes(group = 1), lwd = 0.7) +
-  labs(x = "Denominaci贸n", y = "Frecuencia",
-       title = "Distribuci贸n de la denominaci贸n Peso-Estatura en infantes") +
+  labs(x = "Denominaci髇", y = "Frecuencia",
+       title = "Distribuci髇 de la denominaci髇 Peso-Estatura en infantes") +
   theme_minimal()
 ```
 
-### Denominaci贸n talla-estatura
+### Denominaci髇 talla-estatura
 
 
-  - **Tabla de distribuci贸n:**
+  - **Tabla de distribuci髇:**
   
 ```{r}
 tabla_dte <- datos_final %>% 
@@ -246,7 +263,7 @@ tabla_dte <- datos_final %>%
 tabla_dte
 ```
 
-  - **Visualizaci贸n:**
+  - **Visualizaci髇:**
   
 ```{r}
 # Proceso concatenado con %>% 
@@ -256,13 +273,13 @@ datos_final %>%
             Porcentaje = round((Total/nrow(datos_final)*100), digits = 2)) %>% 
   ggplot(data = ., mapping = aes(x = DTE, y = Total)) +
   geom_col(color = "black", fill = "forestgreen") +
-  labs(x = "Denominaci贸n", y = "Frecuencia",
-       title = "Distribuci贸n de la denominaci贸n Talla-Estatura en infantes")
+  labs(x = "Denominaci髇", y = "Frecuencia",
+       title = "Distribuci髇 de la denominaci髇 Talla-Estatura en infantes")
 ```
 
-### Denominaci贸n peso-talla
+### Denominaci髇 peso-talla
 
-  - **Tabla de distribuci贸n:**
+  - **Tabla de distribuci髇:**
   
 ```{r}
 tabla_dpt <- datos_final %>% 
@@ -275,7 +292,7 @@ tabla_dpt <- datos_final %>%
 tabla_dpt
 ```
 
-  - **Visualizaci贸n:**
+  - **Visualizaci髇:**
   
 ```{r}
 # Proceso concatenado con %>% 
@@ -285,14 +302,14 @@ datos_final %>%
             Porcentaje = round((Total/nrow(datos_final)*100), digits = 2)) %>% 
   ggplot(data = ., mapping = aes(x = DPT, y = Total/1000)) +
   geom_col(color = "black", fill = "forestgreen") +
-  labs(x = "Denominaci贸n", y = "Frecuencia (miles)",
-       title = "Distribuci贸n de la denominaci贸n Peso-Talla en infantes") +
+  labs(x = "Denominaci髇", y = "Frecuencia (miles)",
+       title = "Distribuci髇 de la denominaci髇 Peso-Talla en infantes") +
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
 ```
 
-### N煤mero de infantes por comuna
+### N鷐ero de infantes por comuna
 
-  - **Tabla de distribuci贸n:**
+  - **Tabla de distribuci髇:**
   
 ```{r}
 tabla_co <- datos_final %>% 
@@ -305,7 +322,7 @@ tabla_co <- datos_final %>%
 tabla_co
 ```
 
-  - **Visualizaci贸n:**
+  - **Visualizaci髇:**
   
 ```{r}
 # Proceso concatenado con %>% 
@@ -316,14 +333,14 @@ datos_final %>%
   ggplot(data = ., mapping = aes(x = Comuna, y = Total)) +
   geom_col(color = "black", fill = "forestgreen") +
   labs(x = "Comuna", y = "Frecuencia",
-       title = "Distribuci贸n de infantes por comuna",
-       subtitle = "Medell铆n 2016") +
+       title = "Distribuci髇 de infantes por comuna",
+       subtitle = "Medell韓 2016") +
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
 ```
 
-### N煤mero de infantes por zona
+### N鷐ero de infantes por zona
 
-  - **Tabla de distribuci贸n:**
+  - **Tabla de distribuci髇:**
   
 ```{r}
 tabla_z <- datos_final %>% 
@@ -336,7 +353,7 @@ tabla_z <- datos_final %>%
 tabla_z
 ```
 
-  - **Visualizaci贸n:**
+  - **Visualizaci髇:**
   
 ```{r}
 # Proceso concatenado con %>% 
@@ -347,14 +364,14 @@ datos_final %>%
   ggplot(data = ., mapping = aes(x = Zona, y = Total)) +
   geom_col(color = "black", fill = "forestgreen") +
   labs(x = "Zona", y = "Frecuencia",
-       title = "Distribuci贸n de infantes por zona",
-       subtitle = "Medell铆n 2016") +
+       title = "Distribuci髇 de infantes por zona",
+       subtitle = "Medell韓 2016") +
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
 ```
 
-## Distribuci贸n de variables categ贸ricas (caso bivariado)
+## Distribuci髇 de variables categ髍icas (caso bivariado)
 
-### G茅nero y comuna
+### G閚ero y comuna
 
   - **Tabla:**
   
@@ -367,55 +384,202 @@ tabla_gc <- datos_final %>%
 kable(tabla_gc)
 ```
 
-  - **Visualizaci贸n 1:**
+  - **Visualizaci髇 1:**
   
 ```{r}
 ggplot(data = tabla_gc, mapping = aes(x = Comuna, y = Total, fill = Sexo)) +
   geom_col(color = "black") +
   labs(x = "Comuna", y = "Frecuencia",
-       title = "Distribuci贸n de infantes por g茅nero y comuna",
-       subtitle = "Medell铆n 2016") +
+       title = "Distribuci髇 de infantes por g閚ero y comuna",
+       subtitle = "Medell韓 2016") +
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
 ```
 
-  - **Visualizaci贸n 2:**
+  - **Visualizaci髇 2:**
   
 ```{r}
 ggplot(data = tabla_gc, mapping = aes(x = Comuna, y = Total, fill = Sexo)) +
   geom_col(color = "black", position = "dodge") +
   scale_fill_manual(values = c("dodgerblue2", "firebrick2")) +
   labs(x = "Comuna", y = "Frecuencia",
-       title = "Distribuci贸n de infantes por g茅nero y comuna",
-       subtitle = "Medell铆n 2016", fill = "G茅nero") +
+       title = "Distribuci髇 de infantes por g閚ero y comuna",
+       subtitle = "Medell韓 2016", fill = "G閚ero") +
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
 ```
 
-  - **Visualizaci贸n 1 con facetas (`facet_wrap()`):**
+  - **Visualizaci髇 1 con facetas (`facet_wrap()`):**
   
 ```{r, fig.height=6.5, fig.width=10}
 ggplot(data = tabla_gc, mapping = aes(x = Comuna, y = Total)) +
   facet_wrap(facets = ~Sexo) +
   geom_col() +
   labs(x = "Comuna", y = "Frecuencia",
-       title = "Distribuci贸n de infantes por g茅nero y comuna",
-       subtitle = "Medell铆n 2016") +
+       title = "Distribuci髇 de infantes por g閚ero y comuna",
+       subtitle = "Medell韓 2016") +
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
 ```
 
-  - **Visualizaci贸n 2 con facetas (`facet_wrap()`):**
+  - **Visualizaci髇 2 con facetas (`facet_wrap()`):**
   
 ```{r, fig.height=18, fig.width=10}
 ggplot(data = tabla_gc, mapping = aes(x = Sexo, y = Total)) +
   facet_wrap(facets = ~Comuna, ncol = 3) +
   geom_col(color = "black", fill = "firebrick2") +
-  labs(x = "G茅nero", y = "Frecuencia",
-       title = "Distribuci贸n de infantes por g茅nero y comuna",
-       subtitle = "Medell铆n 2016") +
+  labs(x = "G閚ero", y = "Frecuencia",
+       title = "Distribuci髇 de infantes por g閚ero y comuna",
+       subtitle = "Medell韓 2016") +
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
 ```
 
+## Distribuci髇 de variables cuantitativas (caso univariado)
+
+### Distribuci髇 de estatura
+
+```{r}
+ggplot(data = datos_final, mapping = aes(x = Estatura)) +
+  geom_histogram(color = "black", fill = "royalblue3",
+                 bins = 100) +
+  labs(x = "Estatura (cm)", y = "Frecuencia",
+       title = "Distribuci髇 de estatura")
+```
+
+```{r}
+ggplot(data = datos_final, mapping = aes(x = Estatura)) +
+  geom_density(color = "forestgreen", fill = "royalblue", lwd = 1.2) +
+  labs(x = "Estatura (cm)", y = "Densidad",
+       title = "Distribuci髇 de estatura")
+```
+
+```{r}
+ggplot(data = datos_final, mapping = aes(x = Estatura, fill = Sexo)) +
+  geom_density(alpha = 0.45) +
+  labs(x = "Estatura (cm)", y = "Densidad",
+       title = "Distribuci髇 de estatura por g閚ero")
+```
+
+```{r}
+ggplot(data = datos_final, mapping = aes(x = Estatura, fill = DTE)) +
+  geom_density(alpha = 0.45) +
+  labs(x = "Estatura (cm)", y = "Densidad",
+       title = "Distribuci髇 de estatura por DTE")
+```
+
+```{r}
+ggplot(data = datos_final, mapping = aes(x = Estatura, fill = DTE)) +
+  facet_wrap(~Sexo) +
+  geom_density(alpha = 0.45) +
+  labs(x = "Estatura (cm)", y = "Densidad",
+       title = "Distribuci髇 de estatura por g閚ero y DTE")
+```
+
+### Distribuci髇 del peso
+
+```{r}
+ggplot(data = datos_final, mapping = aes(x = Peso)) +
+  geom_histogram(color = "black", fill = "royalblue3",
+                 bins = 100) +
+  geom_vline(xintercept = mean(datos_final$Peso), color = "red",
+             lwd = 1.3) +
+  labs(x = "Peso (kg)", y = "Frecuencia",
+       title = "Distribuci髇 del peso")
+```
+
+## Asociaci髇 de variables
+
+### Relaci髇 estatura vs peso
+
+```{r}
+ggplot(data = datos_final, mapping = aes(x = Estatura, y = Peso)) +
+  geom_point() +
+  geom_smooth(se = FALSE, color = "red") +
+  geom_smooth(method = "lm", color = "blue") +
+  labs(x = "Estatura (cm)", y = "Peso (kg)",
+       title = "Relaci髇 estatura vs peso")
+```
+
+```{r}
+ggplot(data = datos_final, mapping = aes(x = Estatura, y = Peso,
+                                         color = Sexo)) +
+  geom_point() +
+  geom_smooth() +
+  labs(x = "Estatura (cm)", y = "Peso (kg)",
+       title = "Relaci髇 estatura vs peso por g閚ero")
+```
+
+```{r}
+ggplot(data = datos_final, mapping = aes(x = Estatura, y = Peso)) +
+  facet_wrap(~Sexo) +
+  geom_point() +
+  geom_smooth() +
+  labs(x = "Estatura (cm)", y = "Peso (kg)",
+       title = "Relaci髇 estatura vs peso por g閚ero")
+```
+
+<!--
 # Borrador
 
+  - Resalado de funci髇 `mean()`
   - **Edad promedio:** `r mean(datos_final$Edad2)`.
-  - **Desviaci贸n est谩ndar de edad:** `r sd(datos_final$Edad2)`.
+  - **Desviaci髇 est醤dar de edad:** `r sd(datos_final$Edad2)`.
   - **Individuo de menor edad:** `r min(datos_final$Edad2)`.
+  - H~2~O
+  - 2^2^
+  - Nota al pie de la letra^[https://unal-semilleror-facca.github.io/]
+
+Este es un texto...
+<br>
+<br>
+<br>
+Este es otro texto...
+
+  - **Esta es una citaci髇 textual:**
+  
+> "I thoroughly disapprove of duels. If a man should challenge me,
+  I would take him kindly and forgivingly by the hand and lead him
+  to a quiet place and kill him."
+>
+> --- Mark Twain
+
+  - **Expresiones matem醫icas:**
+  
+Esta es una ecuaci髇 en l韓ea: $\mu = 2^2 + x_i + x_{ij} \geq ...$
+
+Esta es una ecuaci髇 centrada: $$Z = \frac{\bar{x} - \mu}{\sigma}$$
+
+  - **Tabla con Markdown:**
+
+```
+Variable 1 | Variable 2 | Variable 3
+---------- | ---------- | ----------
+Edimer     | Nicol醩    | Edinson 
+Mariana    | L. Carlos  | Alejandro
+```
+  
+Variable 1 | Variable 2 | Variable 3
+---------- | ---------- | ----------
+Edimer     | Nicol醩    | Edinson 
+Mariana    | L. Carlos  | Alejandro
+
+  - **Tabla con Markdown (editando alineaci髇):**
+
+```
+Variable 1 | Variable 2 | Variable 3
+:--------- | :--------: | ---------:
+Edimer     | Nicol醩    | Edinson 
+Mariana    | L. Carlos  | Alejandro
+```
+  
+Variable 1 | Variable 2 | Variable 3
+:--------- | :--------: | ---------:
+Edimer     | Nicol醩    | Edinson 
+Mariana    | L. Carlos  | Alejandro
+
+  - **Tabla con c骴igo R:**
+  
+Variable | Estad韘tico
+:------: | :----------:
+Media  Sepal.Length | `r mean(iris$Sepal.Length)`
+M韓imo Sepal.Length | `r min(iris$Sepal.Length)`
+-->
+
+<!-- Comentario en Markdown-->
