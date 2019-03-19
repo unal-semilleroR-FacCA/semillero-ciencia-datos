@@ -451,7 +451,155 @@ document.getElementsByTagName('head')[0].appendChild(style);
 
 <section><section id="semillero-de-r---facca" class="titleslide slide level1" data-background="fondo1.png"><h1>Semillero de R - FacCA</h1></section></section>
 <section><section id="mundo-r-tidyverse-ii" class="titleslide slide level1" data-background="fondo_tidy.png"><h1>Mundo R + <code>tidyverse</code> II</h1></section></section>
-<section><section id="datos-ordenados-tidy-data" class="titleslide slide level1" data-background="fondo_tidy.png"><h1>Datos ordenados (<code>tidy data</code>)</h1></section></section>
+<section><section id="estadistica-descriptiva-con-r" class="titleslide slide level1" data-background="lengR.png"><h1>Estadística Descriptiva con R</h1></section><section id="section" class="slide level2" data-background="lengR.png">
+<h2></h2>
+<center>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Función</th>
+<th style="text-align: center;">Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><code>mean()</code></td>
+<td style="text-align: center;">Media</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>median()</code></td>
+<td style="text-align: center;">Mediana</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>sd()</code></td>
+<td style="text-align: center;">Desviación estándar</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>var()</code></td>
+<td style="text-align: center;">Varianza</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>range()</code></td>
+<td style="text-align: center;">Rango</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>min()</code></td>
+<td style="text-align: center;">Valor mínimo</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>max()</code></td>
+<td style="text-align: center;">Valor máximo</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>quantile()</code></td>
+<td style="text-align: center;">Cuartiles, deciles y percentiles</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>cor()</code></td>
+<td style="text-align: center;">Coeficiente de correlación</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>IQR()</code></td>
+<td style="text-align: center;">Rango intercuartílico</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>skewness()</code></td>
+<td style="text-align: center;">Coeficiente de asimetría (biblioteca <strong>moments</strong>)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>kurtosis()</code></td>
+<td style="text-align: center;">Coeficiente de curtosis (biblioteca <strong>moments</strong>)</td>
+</tr>
+</tbody>
+</table>
+</center>
+</section><section id="section-1" class="slide level2" data-background="lengR.png">
+<h2></h2>
+<center>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Función</th>
+<th style="text-align: center;">Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><code>table()</code></td>
+<td style="text-align: center;">Tabla de frecuencias absolutas</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>prop.table()</code></td>
+<td style="text-align: center;">Tabla de frecuencias relativas</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>sort()</code></td>
+<td style="text-align: center;">Ordenar los datos</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>sum()()</code></td>
+<td style="text-align: center;">Sumar</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>colSums()</code></td>
+<td style="text-align: center;">Suma por columnas</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>rowSums()</code></td>
+<td style="text-align: center;">Suma por filas</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>colMeans()</code></td>
+<td style="text-align: center;">Promedios por columnas</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>rowMeans()</code></td>
+<td style="text-align: center;">Promedios por filas</td>
+</tr>
+</tbody>
+</table>
+</center>
+</section></section>
+<section><section id="datos-ordenados-tidy-data" class="titleslide slide level1" data-background="fondo_tidy.png"><h1>Datos ordenados (<code>tidy data</code>)</h1></section><section id="section-2" class="slide level2" data-background="fondo_tidy.png">
+<h2></h2>
+<blockquote>
+<p>“Tidy datasets are all alike but every messy dataset is messy in its own way.”</p>
+<p>– Hadley Wickham</p>
+</blockquote>
+</section><section id="que-son-datos-ordenados" class="slide level2" data-background="fondo_tidy.png">
+<h2>¿Qué son datos ordenados?</h2>
+<ol type="1">
+<li>Cada <strong>variable</strong> debe tener su propia columna.</li>
+<li>Cada <strong>observacioón</strong> debe tener su propia fila.</li>
+<li>Cada <strong>valor</strong> debe tener su propia celda.</li>
+</ol>
+<p><img src="tidy2.png" width="715px" height="220px" style="display: block; margin: auto;" /></p>
+</section><section id="que-son-datos-ordenados-1" class="slide level2" data-background="fondo_tidy.png">
+<h2>¿Qué son datos ordenados?</h2>
+<p><br> <br> <img src="tidy4.png" width="615px" height="270px" style="display: block; margin: auto;" /></p>
+</section><section id="funciones-tidyr" class="slide level2" data-background="fondo_tidy.png">
+<h2>Funciones <code>tidyr</code></h2>
+<ul>
+<li><strong><code>spread()</code>:</strong> de formato largo a formato ancho.</li>
+<li><strong><code>gather()</code>:</strong> de formato ancho a formato largo.</li>
+<li><strong><code>separate()</code>:</strong> separar columnas.</li>
+<li><strong><code>unite()</code>:</strong> unir columnas.</li>
+</ul>
+</section><section id="usos-de-las-funciones-tidyr" class="slide level2" data-background="fondo_tidy.png">
+<h2>Usos de las funciones <code>tidyr</code></h2>
+<ul>
+<li><code>spread(data, key, value)</code></li>
+<li><code>gather(data, &quot;variable1&quot;, &quot;variable2&quot;, 1:3)</code></li>
+<li><code>separate(data, Separ, into = c(&quot;n1&quot;, &quot;n2&quot;), sep = &quot;/&quot;)</code></li>
+<li><code>unite(data, &quot;nueva&quot;, var1, var2, sep = &quot;&quot;)</code></li>
+</ul>
+</section><section id="spread" class="slide level2" data-background="fondo_tidy.png">
+<h2><code>spread()</code></h2>
+<p><br> <br> <img src="tidy5.png" width="615px" height="410px" style="display: block; margin: auto;" /></p>
+</section><section id="gather" class="slide level2" data-background="fondo_tidy.png">
+<h2><code>gather()</code></h2>
+<p><br> <br> <img src="tidy3.png" width="515px" height="220px" style="display: block; margin: auto;" /></p>
+</section></section>
     </div>
   </div>
 
