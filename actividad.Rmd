@@ -2,6 +2,18 @@
 title: "Actividades"
 ---
 
+### Dinámica del semillero
+
+  - Temas principales 2019-01:
+      - Introducción a R y RStudio.
+      - Ecosistema R Markdown.
+      - Manejo y procesamiento de bases de datos con R.
+      - Estadística descriptiva con R.
+      - Visualización de datos con R.
+  - Con ambos grupos (lunes y martes) se abordarán los mismos temas.
+  - Todas las sesiones serán asistidas por la dirección del semillero.
+  - Cada sesión contará con actividades desarrolladas por los participantes.
+
 ### Temario general 2019-01
   
   - [0. Bienvenida](/Actividades/0_Bienvenida.html)
@@ -27,15 +39,3 @@ title: "Actividades"
           - [Datos depurados en formato .Rdata](/Actividades/Icfes_depurada.Rdata)
           - [Archivo .Rmd](https://github.com/unal-semilleroR-FacCA/unal-semilleror-facca.github.io/blob/master/Actividades/Icfes_Martes.Rmd)
           - [Imagen del documento](/Actividades/saber-pro-celee-eafit.gif)
-  
-### Dinámica del semillero
-
-  - Temas principales 2019-01:
-      - Introducción a R y RStudio.
-      - Ecosistema R Markdown.
-      - Manejo y procesamiento de bases de datos con R.
-      - Estadística descriptiva con R.
-      - Visualización de datos con R.
-  - Con ambos grupos (lunes y martes) se abordarán los mismos temas.
-  - Todas las sesiones serán asistidas por la dirección del semillero.
-  - Cada sesión contará con actividades desarrolladas por los participantes.
