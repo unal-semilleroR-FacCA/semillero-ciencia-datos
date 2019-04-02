@@ -19,6 +19,8 @@ title: "Actividades"
           - [Archivo .css](https://github.com/unal-semilleroR-FacCA/unal-semilleror-facca.github.io/blob/master/Actividades/estiloSemillero.css)
   - [3. El mundo de R + `tidyverse` II](/Actividades/2_MundoR_tidy.html)      
       - [Ejemplo práctico grupo lunes - ICFES 2017_02]()
+          - [Datos iniciales en formato .Rdata]()
+          - [Datos depurados en formato .Rdata]()
           - [Archivo .Rmd]()
       - [Ejemplo práctico grupo martes - ICFES 2018_02](https://rpubs.com/Edimer/482725)
           - [Datos iniciales en formato .Rdata](/Actividades/Icfes_201802.Rdata)
