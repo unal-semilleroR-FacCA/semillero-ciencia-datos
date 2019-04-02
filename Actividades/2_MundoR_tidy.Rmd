@@ -114,3 +114,11 @@ knitr::include_graphics("tidy5.png")
 ```{r, echo=FALSE, out.width="515px", out.height="220px"}
 knitr::include_graphics("tidy3.png")
 ```
+
+# Ejemplos {data-background="fondo_tidy.png"}
+
+## Resultados Saber 11º {data-background="fondo_tidy.png"}
+
+- Ejemplo grupo lunes: [ICFES 2017-02.](https://www.datos.gov.co/Educaci-n/Saber-11-2017-2/s6qh-49yh)
+
+- Ejemplo grupo martes: [ICFES 2018-02.](https://www.datos.gov.co/Educaci-n/Saber-11-2018-2/m2nt-jw2h)
