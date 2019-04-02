@@ -23,7 +23,7 @@ title: "Actividades"
       - [Ejemplo práctico grupo martes - ICFES 2018_02](https://rpubs.com/Edimer/482725)
           - [Datos iniciales en formato .Rdata](/Actividades/Icfes_201802.Rdata)
           - [Datos depurados en formato .Rdata](/Actividades/Icfes_depurada.Rdata)
-          - [Archivo .Rmd]()
+          - [Archivo .Rmd](https://github.com/unal-semilleroR-FacCA/unal-semilleror-facca.github.io/blob/master/Actividades/Icfes_Martes.Rmd)
   
 ### Dinámica del semillero
 
