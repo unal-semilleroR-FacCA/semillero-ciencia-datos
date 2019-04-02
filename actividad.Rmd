@@ -24,6 +24,7 @@ title: "Actividades"
           - [Datos iniciales en formato .Rdata](/Actividades/Icfes_201802.Rdata)
           - [Datos depurados en formato .Rdata](/Actividades/Icfes_depurada.Rdata)
           - [Archivo .Rmd](https://github.com/unal-semilleroR-FacCA/unal-semilleror-facca.github.io/blob/master/Actividades/Icfes_Martes.Rmd)
+          - [Imagen del documento](/Actividades/saber-pro-celee-eafit.gif)
   
 ### Dinámica del semillero
 
