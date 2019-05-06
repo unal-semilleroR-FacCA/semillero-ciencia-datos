@@ -1,10 +1,8 @@
 ---
-title: "Actividades"
+title: "Actividades 2019-01"
 ---
 
-### Dinámica del semillero
-
-  - Temas principales 2019-01:
+  - Temas principales:
       - Introducción a R y RStudio.
       - Ecosistema R Markdown.
       - Manejo y procesamiento de bases de datos con R.

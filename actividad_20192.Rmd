@@ -1,0 +1,25 @@
+---
+title: "Actividades 2019-02"
+---
+
+  - Temas principales:
+      - Estadística y Machine Learning
+      - Visualización de datos: fundamentos prácticos
+          - Visualización estática
+          - Visualización interactiva
+      - Investigación reproducible con `R Markdown`
+          - Presenstaciones
+          - Documentos *pdf*
+          - Tableros de datos (*dashboard*)
+      - Diseño y análisis estadístico de experimentos
+          - Análisis de varianza
+          - Análisis de covarianza
+          - Comparación de medias
+      - Modelos lineales con R
+          - Regresión lineal simple
+          - Regresión lineal múltiple
+      - Análisis multivariado con R
+          - Análisis de componentes principales
+          - Análisis de clúster
+  - Todas las sesiones serán asistidas por la dirección del semillero
+  - Cada sesión contará con actividades desarrolladas por los participantes

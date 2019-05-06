@@ -1,10 +1,6 @@
 ---
-title: "Información"
+title: ""
 ---
-
-```{r, echo=FALSE, fig.align="center", out.width="450", out.height="150"}
-knitr::include_graphics("images/semillero.jpg")
-```
 
 ## ¿Quién puede participar en el semillero?
 
@@ -41,14 +37,9 @@ knitr::include_graphics("images/semillero.jpg")
   - Divulgación de resultados
   - Mejoras compartidas
 
-## Horario 2019 
+## Horario tentativo
 
-  - Lunes:
-      - **Lugar:** bloque 11 - Sala de Sistemas Facultad de Ciencias Agrarias.
-      - **Hora:**  6:00 a 10:00 am.
-  - Martes:
-      - **Lugar:** bloque 11 - Sala de Sistemas Facultad de Ciencias Agrarias.
-      - **Hora:**  8:00 a 12:00 m.      
+  - Sábados de 9:00 am a 12:00 pm.     
 
 ## Dirección del semillero
 

@@ -4,21 +4,40 @@ navbar:
   title: Semillero R-FacCA
   left:
   - text: Inicio
+    icon: fa-home
     href: index.html
   - text: Información
+    icon: fa fa-info-circle
     href: about.html 
+  - text: Integrantes
+    icon: fa fa-users
+    href: integrantes.html   
   - text: Material
+    icon: fa fa-list
     menu:
       - text: R & RStudio
+        icon: fa fa-code
         href: softwarer.html
       - text: Recursos de información
+        icon: fa fa-book
         href: recursos.html
-      - text: Actividades
+      - text: 2019-01
+        icon: fa fa-bar-chart
         href: actividad.html
+      - text: 2019-02
+        icon: fa fa-line-chart
+        href: actividad_20192.html  
       - text: Publicaciones
-        href: publicaciones.html  
-      - text: Foro
-        href: http://semillero-r-facca-unal-medellin.77735.n8.nabble.com/  
+        icon: fa fa-area-chart
+        href: publicaciones.html
+  right:
+  - icon: fa fa-university
+    href: https://medellin.unal.edu.co/
+  - icon: fa fa-github
+    href: https://github.com/unal-semilleroR-FacCA/unal-semilleror-facca.github.io
+  - text: Foro
+    icon: fa fa-commenting-o
+    href: http://semillero-r-facca-unal-medellin.77735.n8.nabble.com/
 output:
   html_document:
     theme: flatly
