@@ -37,11 +37,11 @@ title: ""
   - Divulgación de resultados
   - Mejoras compartidas
 
-## Horario tentativo
+## Horario
 
   - Sábados de 9:00 am a 12:00 pm.     
 
 ## Dirección del semillero
 
-  - Luis Gabriel González Herrera
+  - [Luis Gabriel González Herrera](http://scienti.colciencias.gov.co:8081/cvlac/visualizador/generarCurriculoCv.do?cod_rh=0000901148)
   - [Edimer David Jaramillo](https://edimer.github.io/)  
