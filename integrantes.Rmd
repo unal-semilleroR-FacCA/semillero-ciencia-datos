@@ -2,6 +2,19 @@
 title: "Integrantes"
 ---
 
-- []()
-- []()
-- []()
+- [Alejandro Jaramillo Arango - Ingeniería Forestal](https://github.com/Ale-j)
+- [Alejandro Saldarriaga Saldarriaga - Zootecnista]()
+- [Ángela Gineth Martin Gómez - Ingeniería Agronómica]()
+- [Cristian Camilo Gañan Tapasco - Ingeniería Forestal]()
+- [Cristian Rivera González](https://github.com/riveracrist)
+- [Daniel Alfonso Galvis Pinzón - Ingeniería]()
+- [Duvan Ariel Nieves Ruiz - Ingeniería Ambiental]()
+- [Edison Alexis Toro Sánchez - Ingeniería Forestal](https://github.com/edatorosa)
+- [Fabiola Janeth Arcos Alpala - Ingeniería Agronómica]()
+- [Federico Loaiza Flórez - Ingeniería Forestal](https://kawaiilos3r.netlify.com/)
+- [Ingrid Zubany Ortiz Yepez - Ingeniería Agronómica]()
+- [Luis Carlos Tabares Nieto - Ingeniería Forestal]()
+- [Maria Camila Restrepo Quintero - Ingeniería Forestal]()
+- [Mariana Flórez Restrepo - Ingeniería Forestal](https://github.com/MarianaFlorezRpo)
+- [Miguél Angel Pastos Dimate - Ingeniería Agronómica]()
+- [Viviana Torres - Ingeniera Biológica]()
