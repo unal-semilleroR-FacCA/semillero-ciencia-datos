@@ -23,3 +23,9 @@ title: "Actividades 2019-02"
           - Análisis de clúster
   - Todas las sesiones serán asistidas por la dirección del semillero
   - Cada sesión contará con actividades desarrolladas por los participantes
+  
+# Temas
+
+- [Resumen tópicos 2019-01](/Actividades/Recordatorio.html)
+    - [Archivo .Rmd]()
+    - [Archivo .css]()
