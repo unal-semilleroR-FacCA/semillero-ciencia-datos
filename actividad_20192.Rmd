@@ -27,5 +27,5 @@ title: "Actividades 2019-02"
 # Temas
 
 - [Resumen tópicos 2019-01](/Actividades/Recordatorio.html)
-    - [Archivo .Rmd]()
-    - [Archivo .css]()
+    - [Archivo .Rmd](https://github.com/unal-semilleroR-FacCA/unal-semilleror-facca.github.io/blob/master/Actividades/Recordatorio.Rmd)
+    - [Archivo .css](https://github.com/unal-semilleroR-FacCA/unal-semilleror-facca.github.io/blob/master/Actividades/estilo_p.css)
