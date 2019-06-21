@@ -9,3 +9,28 @@ output: ioslides_presentation
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
+# Bases de datos
+
+## Bases de datos (1/2)
+
+- Todas las bases de datos fueron obtenidas del [Banco Mundial.](https://datos.bancomundial.org/)
+- [Densidad poblacional.](https://datos.bancomundial.org/indicador/EN.POP.DNST?view=chart)
+- [Consumo de energía eléctrica.](https://datos.bancomundial.org/indicador/EG.USE.ELEC.KH.PC?view=chart)
+- [PIB.](https://datos.bancomundial.org/indicador/NY.GDP.MKTP.CD?view=chart)
+- [Crecimiento del PIB.](https://datos.bancomundial.org/indicador/NY.GDP.MKTP.KD.ZG?view=chart)
+- [Gasto público en educación.](https://datos.bancomundial.org/indicador/SE.XPD.TOTL.GD.ZS?view=chart)
+- [Gasto militar.](https://datos.bancomundial.org/indicador/MS.MIL.XPND.GD.ZS?view=chart)
+- [Gasto en investigación y desarrollo.](https://datos.bancomundial.org/indicador/GB.XPD.RSDV.GD.ZS?view=chart)
+- [Deuda externa acumulada.](https://datos.bancomundial.org/indicador/DT.DOD.DECT.GN.ZS?view=chart)
+
+## Bases de datos (2/2)
+
+- [Acceso a la electricidad.](https://datos.bancomundial.org/indicador/EG.ELC.ACCS.ZS?view=chart)
+- [Desempleo total.](https://datos.bancomundial.org/indicador/SL.UEM.TOTL.ZS?view=chart)
+- [Camas hospitalarias.](https://datos.bancomundial.org/indicador/SH.MED.BEDS.ZS?view=chart)
+- [Cajeros automáticos.](https://datos.bancomundial.org/indicador/FB.ATM.TOTL.P5?view=chart)
+- [Contaminación del aire por PM2.5](https://datos.bancomundial.org/indicador/EN.ATM.PM25.MC.M3?view=chart)
+- [Población rural.](https://datos.bancomundial.org/indicador/SP.RUR.TOTL.ZS?view=chart)
+- [Tierras cultivables.](https://datos.bancomundial.org/indicador/AG.LND.ARBL.ZS?view=chart)
+- [Consumo de fertilizantes.](https://datos.bancomundial.org/indicador/AG.CON.FERT.ZS?view=chart)
+- [Extracción de agua dulce.](https://datos.bancomundial.org/indicador/ER.H2O.FWTL.ZS?view=chart)
