@@ -2,11 +2,10 @@
 title: "Ejercicio práctico 1"
 author: "Semillero R - FacCA"
 date: "Junio de 2019"
-output:
-  ioslides_presentation:
-    css: estilo_p.css
+output: ioslides_presentation
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
 ```
+
