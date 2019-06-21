@@ -24,8 +24,10 @@ title: "Actividades 2019-02"
   - Todas las sesiones serán asistidas por la dirección del semillero
   - Cada sesión contará con actividades desarrolladas por los participantes
   
-# Temas
+## Temas
 
 - [Resumen tópicos 2019-01](/Actividades/Recordatorio.html)
     - [Archivo .Rmd](https://github.com/unal-semilleroR-FacCA/unal-semilleror-facca.github.io/blob/master/Actividades/Recordatorio.Rmd)
     - [Archivo .css](https://github.com/unal-semilleroR-FacCA/unal-semilleror-facca.github.io/blob/master/Actividades/estilo_p.css)
+- [Ejercicio práctico 1](/Actividades/Ejercicio1.html)
+    - [Archivo .Rmd](https://github.com/unal-semilleroR-FacCA/unal-semilleror-facca.github.io/blob/master/Actividades/Ejercicio1.Rmd)
