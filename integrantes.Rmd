@@ -7,7 +7,6 @@ title: "Integrantes"
 - [Ángela Gineth Martin Gómez - Ingeniería Agronómica]()
 - [Cristian Camilo Gañan Tapasco - Ingeniería Forestal]()
 - [Cristian Rivera González - Ingeniería de Control](https://github.com/riveracrist)
-- [Daniel Alfonso Galvis Pinzón - Ingeniería]()
 - [Duvan Ariel Nieves Ruiz - Ingeniería Ambiental]()
 - [Edison Alexis Toro Sánchez - Ingeniería Forestal](https://github.com/edatorosa)
 - [Fabiola Janeth Arcos Alpala - Ingeniería Agronómica]()
