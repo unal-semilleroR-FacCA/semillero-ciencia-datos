@@ -5,7 +5,7 @@ title: "Integrantes"
 - [Alejandro Jaramillo Arango - Ingeniería Forestal](https://github.com/Ale-j)
 - [Alejandro Saldarriaga Saldarriaga - Zootecnista]()
 - [Ángela Gineth Martin Gómez - Ingeniería Agronómica]()
-- [Cristian Camilo Gañan Tapasco - Ingeniería Forestal]()
+- [Cristian Camilo Gañan Tapasco - Ingeniería Forestal](https://github.com/ccganant)
 - [Cristian Rivera González - Ingeniería de Control](https://github.com/riveracrist)
 - [Duvan Ariel Nieves Ruiz - Ingeniería Ambiental]()
 - [Edison Alexis Toro Sánchez - Ingeniería Forestal](https://github.com/edatorosa)
