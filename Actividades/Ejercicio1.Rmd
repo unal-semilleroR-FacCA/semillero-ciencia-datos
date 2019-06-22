@@ -1,5 +1,5 @@
 ---
-title: "Ejercicio práctico 1"
+title: "Actividad práctica 1"
 author: "Semillero R - FacCA"
 date: "Junio de 2019"
 output: ioslides_presentation
@@ -8,6 +8,24 @@ output: ioslides_presentation
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
 ```
+
+# Planteamiento del problema
+
+## Problemas asociados a bases de datos no ordenadas
+
+  - Las variables se almacenan tanto en filas como en columnas.
+  - Más de una variable se almacena en una columna.
+  - Múltiples tipos de unidades experimentales se almacenan en una misma tabla.
+  - Un sólo tipo de unidad experimental se almacena en múltiples tablas.
+  - Los encabezados de las columnas, son valores, no variables.
+
+## Descripción del problema
+
+- Bases de datos en múltiples archivos de excel.
+- Si el objetivo de análisis es holístico, no es conveniente tener información disgregada o fraccionada.
+- Unión de datos en función de un factor, individuo u observación común.
+- Caracterizar el comportamiento por países en función de las variables registradas.
+- **Objetivo:** hacer uso de los temas abordados el semestre pasado para describir y caracterizar la situación global por país.
 
 # Bases de datos
 
@@ -34,3 +52,27 @@ knitr::opts_chunk$set(echo = FALSE)
 - [Tierras cultivables.](https://datos.bancomundial.org/indicador/AG.LND.ARBL.ZS?view=chart)
 - [Consumo de fertilizantes.](https://datos.bancomundial.org/indicador/AG.CON.FERT.ZS?view=chart)
 - [Extracción de agua dulce.](https://datos.bancomundial.org/indicador/ER.H2O.FWTL.ZS?view=chart)
+
+# Actividad práctica
+
+## Ejercicios
+
+- Unir las bases de datos en un sólo `data frame` que contenga información para cada país.
+- ¿Cuáles son los 10 países con mayor densidad poblacional?
+- Piense en un gráfico (sólo uno) que permita evidenciar la relación del gasto en educación y el crecimiento del PIB.
+- Genere una nueva variable con información del continente al cual pertenece el país.
+- Con un gráfico o medida trate de mostrar la variación existente en el gasto en investigación y desarrollo por continente.
+- Con un gráfico muestre cómo es la distribución de cada variable numérica.
+
+# Tareas pendientes
+
+## Tareas
+
+- Base de datos con experimento de interés (29 de junio de 2019).
+- Propuesta del logo del semillero (29 de junio de 2019).
+- Presentación de propuestas tentativas para el [R day - Medellín](https://rdaymedellin.github.io/) (06 de julio de 2019).
+- Leer acerca de gráficos cuantil-cuantil y contrastes de hipótesis para validación del supuesto de normalidad.
+- Leer acerca de las funciones *join:*
+    - [Join Data Frames with the R dplyr package.](https://statistical-programming.com/r-dplyr-join-inner-left-right-full-semi-anti)
+    - [Joining Data in R with dplyr.](https://rpubs.com/williamsurles/293454)
+    - [Join two tbls together.](https://dplyr.tidyverse.org/reference/join.html)
