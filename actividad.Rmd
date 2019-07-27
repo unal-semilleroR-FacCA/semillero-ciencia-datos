@@ -31,7 +31,7 @@ title: "Actividades 2019-01"
       - [Ejemplo práctico grupo lunes - ICFES 2017_02](/Actividades/Icfes_201702.html)
           - [Datos iniciales en formato .csv](https://www.datos.gov.co/Educaci-n/Saber-11-2017-2/s6qh-49yh)
           - [Datos depurados en formato .Rdata](/Actividades/Icfes_201702.Rdata)
-          - [Archivo .Rmd]()
+          - [Archivo .Rmd](https://github.com/unal-semilleroR-FacCA/unal-semilleror-facca.github.io/blob/master/Actividades/Icfes_201702.Rmd)
       - [Ejemplo práctico grupo martes - ICFES 2018_02](https://rpubs.com/Edimer/482725)
           - [Datos iniciales en formato .Rdata](/Actividades/Icfes_201802.Rdata)
           - [Datos depurados en formato .Rdata](/Actividades/Icfes_depurada.Rdata)
