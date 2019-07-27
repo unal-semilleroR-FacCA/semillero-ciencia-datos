@@ -1,0 +1,553 @@
+---
+title: "Actividad 1"
+subtitle: "Bases de datos del Banco Mundial"
+author: "Semillero R - FacCA"
+date: "`r Sys.Date()`"
+output:
+  html_document:
+    toc: true
+    df_print: paged
+    highlight: tango
+    theme: readable
+    code_folding: hide
+    toc_float:
+      smooth_scroll: false
+      collapsed: false
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE,
+                      warning = FALSE,
+                      message = FALSE,
+                      fig.align = "center")
+
+# Bibliotecas con ejecución automática
+library(tidyr)
+library(dplyr)
+library(ggplot2)
+library(ggpubr)
+```
+
+# Bibliotecas necesarias
+
+```{r}
+library(tidyr)
+library(dplyr)
+library(ggplot2)
+library(ggpubr) # múltiples gráficos en una sola ventana
+```
+
+# Lectura de datos
+
+## Selección de filas
+
+```{r}
+filas <- c(6, 35, 48, 60:64, 67, 68, 72, 73, 78, 94, 97, 101:104,
+           106, 109, 127, 133:135, 138:139, 141, 152, 155, 160, 
+           169, 180, 182, 190, 196:197, 203, 214:217, 229:230,
+           235, 237, 239, 240, 248, 258)
+```
+
+## Densidad poblacional
+
+```{r, eval=FALSE}
+densidad <- read.csv(file="DensidadPob.csv", encoding = "UTF-8",
+                     skip = 4) %>% 
+  select(Country.Name, X2017) %>%
+  rename(pais = Country.Name, densidad17 = X2017) %>% 
+  slice(-filas)
+```
+
+## Desempleo
+
+```{r, eval=FALSE}
+desempleo <- read.csv(file = "Desempleo.csv", skip = 4, encoding = "UTF-8") %>% 
+  select(Country.Name, X2017) %>% 
+  rename(pais = Country.Name, desempleo17 = X2017) %>% 
+  slice(-filas)
+```
+
+## Camas hospitalarias
+
+```{r, eval=FALSE}
+camas <- read.csv(file = "CamasHospital.csv", skip = 4,
+                  encoding = "UTF-8") %>% 
+  select(Country.Name, X2014) %>% 
+  rename(pais = Country.Name, camas14 = X2014) %>% 
+  slice(-filas)
+```
+
+## Cajeros automáticos
+
+```{r, eval=FALSE}
+cajeros <- read.csv(file = "Cajeros.csv", skip = 4,
+                  encoding = "UTF-8") %>% 
+  select(Country.Name, X2017) %>% 
+  rename(pais = Country.Name, cajeros17 = X2017) %>% 
+  slice(-filas)
+```
+
+## Contaminación por PM2.5
+
+```{r, eval=FALSE}
+pm2.5 <- read.csv(file = "ContaminacionPM25.csv", skip = 4,
+                  encoding = "UTF-8") %>% 
+  select(Country.Name, X2017) %>% 
+  rename(pais = Country.Name, pm2517 = X2017) %>% 
+  slice(-filas)
+```
+
+## Población rural
+
+```{r, eval=FALSE}
+pob_rural <- read.csv(file = "PobRural.csv", skip = 4,
+                  encoding = "UTF-8") %>% 
+  select(Country.Name, X2017) %>% 
+  rename(pais = Country.Name, pobRural17 = X2017) %>% 
+  slice(-filas)
+```
+
+## Tierras cultivables
+
+```{r, eval=FALSE}
+tierra_cult <- read.csv(file = "Tierras.csv", skip = 4,
+                  encoding = "UTF-8") %>% 
+  select(Country.Name, X2016) %>% 
+  rename(pais = Country.Name, tierrasCult16 = X2016) %>% 
+  slice(-filas)
+```
+
+## Consumo de fertilizantes
+
+```{r, eval=FALSE}
+fertilizantes <- read.csv(file = "ConsumoFertilizantes.csv", skip = 4,
+                  encoding = "UTF-8") %>% 
+  select(Country.Name, X2016) %>% 
+  rename(pais = Country.Name, fertil16 = X2016) %>% 
+  slice(-filas)
+```
+
+## Acceso a electricidad
+
+```{r, eval=FALSE}
+electricidad <- read.csv(file = "AccesoElectricidad.csv", skip = 4,
+                  encoding = "UTF-8") %>% 
+  select(Country.Name, X2016) %>% 
+  rename(pais = Country.Name, electri16 = X2016) %>% 
+  slice(-filas)
+```
+
+## PIB
+
+```{r, eval=FALSE}
+pib <- read.csv(file = "PIB.csv", skip = 4,
+                  encoding = "UTF-8") %>% 
+  select(Country.Name, X2016) %>% 
+  rename(pais = Country.Name, pib16 = X2016) %>% 
+  slice(-filas)
+```
+
+## Crecimiento PIB
+
+```{r, eval=FALSE}
+cto_pib <- read.csv(file = "CrecimientoPIB.csv", skip = 4,
+                  encoding = "UTF-8") %>% 
+  select(Country.Name, X2016) %>% 
+  rename(pais = Country.Name, cto_pib16 = X2016) %>% 
+  slice(-filas)
+```
+
+## Gasto público en educación
+
+```{r, eval=FALSE}
+gasto_edu <- read.csv(file = "GastoPublico.csv", skip = 4,
+                  encoding = "UTF-8") %>% 
+  select(Country.Name, X2016) %>% 
+  rename(pais = Country.Name, gasto_edu16 = X2016) %>% 
+  slice(-filas)
+```
+
+## Gasto militar
+
+```{r, eval=FALSE}
+gasto_militar <- read.csv(file = "GastoMilitar.csv", skip = 4,
+                  encoding = "UTF-8") %>% 
+  select(Country.Name, X2017) %>% 
+  rename(pais = Country.Name, gasto_militar17 = X2017) %>% 
+  slice(-filas)
+```
+
+## Gasto I+D
+
+```{r, eval=FALSE}
+gasto_id <- read.csv(file = "GastoID.csv", skip = 4,
+                  encoding = "UTF-8") %>% 
+  select(Country.Name, X2016) %>% 
+  rename(pais = Country.Name, gasto_id16 = X2016) %>% 
+  slice(-filas)
+```
+
+## Deuda externa acumulada
+
+```{r, eval=FALSE}
+deuda <- read.csv(file = "GastoID.csv", skip = 4,
+                  encoding = "UTF-8") %>% 
+  select(Country.Name, X2016) %>% 
+  rename(pais = Country.Name, deuda16 = X2016) %>% 
+  slice(-filas)
+```
+
+# Actividad
+
+1. Unir las bases de datos en un sólo dataframe.
+2. ¿Cuáles son los 10 países con mayor densidad poblacional?
+3. Piense en un gráfico (sólo uno) que permita evidenciar la relación del gasto en educación y el crecimiento del PIB.
+4. Genere una nueva variable con información del continente al cual pertenece el país.
+5. Con un gráfico o medida trate de mostrar la variación existente en el gasto en investigación y desarrollo por continente.
+6. Con un gráfico muestre cómo es la distribución de cada variable numérica.
+
+# Resultados {.tabset .tabset-fade .tabset-pills}
+
+## Punto 1 
+
+- Funciones útiles para unir bases de datos (**sólo de dos en dos**):
+    - `merge()`: función del paquete base.
+    - `inner_join()`: función del paquete `dplyr`.
+
+```{r, eval=FALSE}
+# Prueba con merge()
+prueba_merge <- merge(cajeros, camas) %>% 
+  merge(desempleo) %>% 
+  merge(tierra_cult)
+
+# Prueba con inner_join()
+prueba_inner <- inner_join(cajeros, camas) %>% 
+  inner_join(desempleo) %>% 
+  inner_join(tierra_cult)
+```
+
+```{r, echo=FALSE}
+df_unidas <- read.csv("DatosCompletos.csv")
+```
+
+```{r, eval=FALSE}
+df_unidas <- merge(cajeros, camas) %>% 
+  merge(cto_pib) %>% 
+  merge(densidad) %>% 
+  merge(desempleo) %>% 
+  merge(deuda) %>% 
+  merge(electricidad) %>% 
+  merge(fertilizantes) %>% 
+  merge(gasto_edu) %>% 
+  merge(gasto_id) %>% 
+  merge(gasto_militar) %>% 
+  merge(pib) %>% 
+  merge(pm2.5) %>% 
+  merge(pob_rural) %>% 
+  merge(tierra_cult)
+```
+
+```{r}
+df_unidas
+```
+
+
+- **Exportando datos finales en csv:**
+
+```{r, eval=FALSE}
+write.csv(x = df_unidas, file = "DatosCompletos.csv", row.names = FALSE,
+          fileEncoding = "UTF-8")
+```
+
+## Punto 2
+
+- **Tabla:**
+
+```{r}
+df_unidas %>% 
+  select(pais, densidad17) %>% 
+  arrange(desc(densidad17)) %>% 
+  slice(1:10)
+```
+
+- **Gráfico:**
+
+```{r, fig.width=9, fig.height=20}
+ggarrange(
+  
+  # Gráfico 1
+  df_unidas %>% 
+  select(pais, densidad17) %>% 
+  arrange(desc(densidad17)) %>% 
+  slice(1:10) %>% 
+  ggplot(data = ., mapping = aes(x = pais, y = densidad17)) +
+  geom_bar(stat = "identity") +
+  labs(x = "País", y = "Personas por kilómetro",
+       subtitle = "10 países con mayor densidad poblacional") +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1),
+        plot.subtitle = element_text(hjust = 0.5)),
+  
+  # Gráfico 2
+  df_unidas %>% 
+  select(pais, densidad17) %>% 
+  arrange(desc(densidad17)) %>% 
+  slice(1:10) %>% 
+  ggplot(data = ., mapping = aes(x = pais, y = densidad17)) +
+  geom_bar(stat = "identity") +
+  labs(x = "País", y = "Personas por kilómetro",
+       subtitle = "10 países con mayor densidad poblacional") +
+  theme_bw() +
+  coord_flip(),
+  
+  # Gráfico 3
+  df_unidas %>% 
+  select(pais, densidad17) %>% 
+  arrange(desc(densidad17)) %>% 
+  slice(1:10) %>% 
+  ggplot(data = ., mapping = aes(x = pais, y = densidad17)) +
+  geom_point() +
+  labs(x = "País", y = "Personas por kilómetro",
+       subtitle = "10 países con mayor densidad poblacional") +
+  theme_bw() +
+  coord_flip(),
+  
+  # Gráfico 4
+  df_unidas %>% 
+  select(pais, densidad17) %>% 
+  arrange(desc(densidad17)) %>% 
+  slice(1:10) %>% 
+  ggplot(data = ., mapping = aes(x = pais, y = densidad17)) +
+  geom_point() +
+  labs(x = "País", y = "Personas por kilómetro",
+       subtitle = "10 países con mayor densidad poblacional") +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1),
+        plot.subtitle = element_text(hjust = 0.5)),
+  
+  # Diseño de ventana
+  ncol = 1, nrow = 4
+)
+```
+
+## Punto 3
+
+- **Correlación paramétrica de Pearson:**
+
+```{r}
+cor(x = df_unidas$cto_pib16, y = df_unidas$gasto_edu16,
+    method = "pearson", use = "pairwise.complete.obs")
+```
+
+- **Correlación no paramétrica de Spearman:**
+
+```{r}
+cor(x = df_unidas$cto_pib16, y = df_unidas$gasto_edu16,
+    method = "spearman", use = "pairwise.complete.obs")
+```
+
+- **Correlación no paramétrica de Tau Kendall:**
+
+```{r}
+cor(x = df_unidas$cto_pib16, y = df_unidas$gasto_edu16,
+    method = "kendall", use = "pairwise.complete.obs")
+```
+
+- **Gráfico de dispersión estático:**
+
+```{r}
+df_unidas %>% 
+  ggplot(data = ., mapping = aes(x = cto_pib16, y = gasto_edu16)) +
+  geom_point() +
+  labs(x = "Crecimiento del PIB (%)", y = "Gasto en educación (% PIB)",
+       subtitle = "Relación del crecimiento del PIB con gasto en educación") +
+  theme_bw() +
+  geom_smooth(method = "lm", se = TRUE) +
+  xlim(-5, 15)
+```
+
+- **Gráfico de dispersión interactivo:**
+
+```{r}
+# Cargando biblioteca
+library(plotly)
+
+# Gráfico interactivo
+ggplotly(df_unidas %>% 
+  ggplot(data = ., mapping = aes(x = cto_pib16, y = gasto_edu16)) +
+  geom_point() +
+  labs(x = "Crecimiento del PIB (%)", y = "Gasto en educación (% PIB)",
+       subtitle = "Relación del crecimiento del PIB con gasto en educación") +
+  theme_bw() +
+  geom_smooth(method = "lm", se = TRUE) +
+  xlim(-5, 15))
+```
+
+## Punto 4
+
+1. Usar la función `mutate()` del paquete `dplyr` para generar la nueva variable de nombre continente.
+2. Hacer uso del operador `%in%` ("dentro de") para asignar países a la variable continente.
+3. Declarar vectores para cada continente (en total serán 5 vectores).
+
+```{r}
+# Cambiando de factor a caracter la variable pais
+df_unidas <- df_unidas %>% 
+  mutate(pais = as.character(pais))
+
+# Vectores de continentes
+america <- c(df_unidas$pais[6], df_unidas$pais[9], df_unidas$pais[11],
+             df_unidas$pais[15], df_unidas$pais[18], df_unidas$pais[21],
+             df_unidas$pais[23], df_unidas$pais[25],df_unidas$pais[28],
+             df_unidas$pais[36], df_unidas$pais[38], df_unidas$pais[41],
+             df_unidas$pais[47], df_unidas$pais[50], df_unidas$pais[51],
+             df_unidas$pais[54], df_unidas$pais[55], df_unidas$pais[57],
+             df_unidas$pais[61], df_unidas$pais[75], df_unidas$pais[77],
+             df_unidas$pais[79], df_unidas$pais[83], df_unidas$pais[84],
+             df_unidas$pais[102], df_unidas$pais[103], df_unidas$pais[106],
+             df_unidas$pais[134], df_unidas$pais[143], df_unidas$pais[153],
+             df_unidas$pais[155], df_unidas$pais[156], df_unidas$pais[160],
+             df_unidas$pais[169], df_unidas$pais[174], df_unidas$pais[178],
+             df_unidas$pais[179], df_unidas$pais[186], df_unidas$pais[193],
+             df_unidas$pais[200], df_unidas$pais[207], df_unidas$pais[210])
+
+asia <- c(df_unidas$pais[1], df_unidas$pais[7], df_unidas$pais[10],
+          df_unidas$pais[14], df_unidas$pais[16], df_unidas$pais[17],
+          df_unidas$pais[24], df_unidas$pais[29], df_unidas$pais[34],
+          df_unidas$pais[39], df_unidas$pais[45], df_unidas$pais[46],
+          df_unidas$pais[58], df_unidas$pais[65], df_unidas$pais[67],
+          df_unidas$pais[72], df_unidas$pais[86], df_unidas$pais[88],
+          df_unidas$pais[89], df_unidas$pais[90], df_unidas$pais[91],
+          df_unidas$pais[104], df_unidas$pais[107], df_unidas$pais[108],
+          df_unidas$pais[109], df_unidas$pais[111], df_unidas$pais[114],
+          df_unidas$pais[117], df_unidas$pais[125], df_unidas$pais[127],
+          df_unidas$pais[136], df_unidas$pais[139], df_unidas$pais[142], 
+          df_unidas$pais[149], df_unidas$pais[151], df_unidas$pais[161], 
+          df_unidas$pais[162], df_unidas$pais[164], df_unidas$pais[168],
+          df_unidas$pais[171], df_unidas$pais[185], df_unidas$pais[188],
+          df_unidas$pais[194], df_unidas$pais[196], df_unidas$pais[197],
+          df_unidas$pais[202], df_unidas$pais[208], df_unidas$pais[211])
+
+europa <- c(df_unidas$pais[2], df_unidas$pais[3], df_unidas$pais[4],
+            df_unidas$pais[13],df_unidas$pais[19], df_unidas$pais[20],
+            df_unidas$pais[26], df_unidas$pais[30], df_unidas$pais[40],
+            df_unidas$pais[49], df_unidas$pais[52], df_unidas$pais[59],
+            df_unidas$pais[60], df_unidas$pais[62], df_unidas$pais[68],
+            df_unidas$pais[69], df_unidas$pais[74], df_unidas$pais[76],
+            df_unidas$pais[87], df_unidas$pais[92], df_unidas$pais[93],
+            df_unidas$pais[95], df_unidas$pais[97], df_unidas$pais[98],
+            df_unidas$pais[105], df_unidas$pais[113], df_unidas$pais[116],
+            df_unidas$pais[120], df_unidas$pais[121], df_unidas$pais[122],
+            df_unidas$pais[123], df_unidas$pais[129],  df_unidas$pais[135],
+            df_unidas$pais[137], df_unidas$pais[146], df_unidas$pais[150],
+            df_unidas$pais[158], df_unidas$pais[159], df_unidas$pais[163],
+            df_unidas$pais[166], df_unidas$pais[167], df_unidas$pais[170],
+            df_unidas$pais[172], df_unidas$pais[177], df_unidas$pais[182],
+            df_unidas$pais[191], df_unidas$pais[192], df_unidas$pais[203],
+            df_unidas$pais[205])
+
+oceania <- c(df_unidas$pais[12], df_unidas$pais[66], df_unidas$pais[78],
+             df_unidas$pais[99], df_unidas$pais[100], df_unidas$pais[112],
+             df_unidas$pais[130], df_unidas$pais[141], df_unidas$pais[147],
+             df_unidas$pais[148], df_unidas$pais[152], df_unidas$pais[154],
+             df_unidas$pais[157], df_unidas$pais[175], df_unidas$pais[176],
+             df_unidas$pais[199], df_unidas$pais[204], df_unidas$pais[209])
+
+africa <- c(df_unidas$pais[5], df_unidas$pais[8], df_unidas$pais[22],
+            df_unidas$pais[27], df_unidas$pais[31], df_unidas$pais[32],
+            df_unidas$pais[33], df_unidas$pais[35], df_unidas$pais[37],
+            df_unidas$pais[42], df_unidas$pais[43], df_unidas$pais[44],
+            df_unidas$pais[48], df_unidas$pais[53], df_unidas$pais[56],
+            df_unidas$pais[63], df_unidas$pais[64], df_unidas$pais[70],
+            df_unidas$pais[71], df_unidas$pais[73], df_unidas$pais[80],
+            df_unidas$pais[81], df_unidas$pais[82], df_unidas$pais[110],
+            df_unidas$pais[115], df_unidas$pais[118], df_unidas$pais[119],
+            df_unidas$pais[124], df_unidas$pais[126], df_unidas$pais[128],
+            df_unidas$pais[131], df_unidas$pais[132], df_unidas$pais[133],
+            df_unidas$pais[138], df_unidas$pais[140], df_unidas$pais[144],
+            df_unidas$pais[145], df_unidas$pais[165], df_unidas$pais[173],
+            df_unidas$pais[180], df_unidas$pais[181], df_unidas$pais[183],
+            df_unidas$pais[184], df_unidas$pais[187], df_unidas$pais[189],
+            df_unidas$pais[190], df_unidas$pais[195], df_unidas$pais[198],
+            df_unidas$pais[201], df_unidas$pais[206], df_unidas$pais[212],
+            df_unidas$pais[213], df_unidas$pais[214])
+
+# Generando nueva variable de nombre continente
+df_unidas <- df_unidas %>% 
+  mutate(continente = if_else(
+    condition = pais %in% america, true = "América",
+    false = if_else(
+      condition = pais %in% asia, true = "Asia",
+      false = if_else(
+        pais %in% europa, true = "Europa",
+        false = if_else(
+          pais %in% oceania, true = "Oceanía",
+          false = if_else(
+            pais %in% africa, true = "Africa",
+            false = "Otro"
+            )))))) %>% 
+  mutate(continente = factor(continente))
+
+df_unidas
+```
+
+- **Exportando datos con continentes:**
+
+```{r, eval=FALSE}
+write.csv(df_unidas, file = "Datos_Continentes.csv", fileEncoding = "UTF-8",
+          row.names = FALSE)
+```
+
+## Punto 5
+
+- **Comparación del gasto en educación por continente:**
+
+```{r}
+df_unidas %>% 
+  ggplot(data = ., aes(x = continente, y = gasto_edu16)) +
+  geom_boxplot() +
+  labs(x = "Continente", y = "% PIB",
+       subtitle = "Inversión en educación por continente") +
+  theme_bw()
+```
+
+- **Boxplot de todas las variables por continente:**
+
+```{r, fig.width=9, fig.height=10}
+df_unidas %>% 
+  gather(key = "variable", value = "valor", -c(pais, continente)) %>% 
+  ggplot(data = ., aes(x = continente, y = valor, fill = continente)) +
+  facet_wrap(facets = ~variable, scales = "free_y") +
+  geom_boxplot() +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1),
+        legend.position = "top")
+```
+
+## Punto 6
+
+- **Densidad de todas las variables:**
+
+```{r, fig.width=9, fig.height=10}
+df_unidas %>% 
+  gather(key = "variable", value = "valor", -c(pais, continente)) %>% 
+  ggplot(data = ., aes(x = valor)) +
+  facet_wrap(facets = ~variable, scales = "free") +
+  geom_density(alpha = 0.4) + 
+  geom_rug() +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1),
+        legend.position = "top")
+``` 
+
+- **Densidad de todas las variables por continente:**
+
+```{r, fig.width=9, fig.height=10}
+df_unidas %>% 
+  gather(key = "variable", value = "valor", -c(pais, continente)) %>% 
+  ggplot(data = ., aes(x = valor, fill = continente)) +
+  facet_wrap(facets = ~variable, scales = "free") +
+  geom_density(alpha = 0.4) + 
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1),
+        legend.position = "top")
+```

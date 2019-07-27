@@ -31,3 +31,6 @@ title: "Actividades 2019-02"
     - [Archivo .css](https://github.com/unal-semilleroR-FacCA/unal-semilleror-facca.github.io/blob/master/Actividades/estilo_p.css)
 - [Ejercicio práctico 1](/Actividades/Ejercicio1.html)
     - [Archivo .Rmd](https://github.com/unal-semilleroR-FacCA/unal-semilleror-facca.github.io/blob/master/Actividades/Ejercicio1.Rmd)
+    - [Solución tentativa](https://rpubs.com/Edimer/515789)
+        - [Archivo .Rmd]()
+        - [Bases de datos](/Actividades/Datos.7z)
