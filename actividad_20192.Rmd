@@ -39,7 +39,8 @@ title: "Actividades 2019-02"
         - [Base de datos .csv](Actividades/Datos_Continentes.csv)    
 - Análisis de regresión  
     - [Regresión Lineal Simple](Actividades/regsimple.html)
-        - [Regresión Lineal Simple: actividad]()
+        - - [Archivo .Rmd](https://github.com/unal-semilleroR-FacCA/unal-semilleror-facca.github.io/blob/master/Actividades/CorRLS.Rmd)
+    - [Regresión Lineal Simple: actividad]()
     - [Regresión Lineal Múltiple: ejemplo]()
 - [Métodos Multivariados]()
     - [Análisis de Componentes Principales]()
