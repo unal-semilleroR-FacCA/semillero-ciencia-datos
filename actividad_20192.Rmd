@@ -57,7 +57,7 @@ title: "Actividades 2019-02"
         - [Regresión logística]()
         - [Árboles de decisión]()
 - [Logo Semillero R]()
-- [Propuestas Rday Medellìn 2019]()
+- [Propuestas Rday Medellín 2019]()
     - Encuesta: percepción de la deserción estudiantil
         - [Planificación de encuestas](Actividades/Encuestas.html)
         - [Banco de preguntas]()        
