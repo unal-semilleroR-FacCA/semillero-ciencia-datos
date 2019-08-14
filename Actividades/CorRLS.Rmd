@@ -1,5 +1,5 @@
 ---
-title: "Correlación Y Regresión Lineal Simple"
+title: "Correlación: visualizaciones"
 author: "Edimer David Jaramillo"
 date: "3 de agosto de 2019"
 output:
