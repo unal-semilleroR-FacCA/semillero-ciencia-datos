@@ -7,6 +7,7 @@
 <meta charset="utf-8" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 
@@ -230,18 +231,6 @@ $(document).ready(function () {
 }
 </style>
 
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-
-$(document).ready(function () {
-  $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
-  });
-});
-</script>
-
 <!-- code folding -->
 
 
@@ -425,7 +414,11 @@ $(document).ready(function () {
 </ul></li>
 <li><a href="">Análisis de regresión</a>
 <ul>
-<li><a href="">Correlación: visualizaciones</a></li>
+<li><a href="/Actividades/CorRLS.html">Correlación: visualizaciones</a>
+<ul>
+<li><a href="">Archivo .Rmd</a></li>
+<li><a href="Actividades/Datos_Continentes.csv">Base de datos .csv</a></li>
+</ul></li>
 <li><a href="">Regresión Lineal Simple</a></li>
 <li><a href="">Regresión Lineal Múltiple</a></li>
 </ul></li>
@@ -467,11 +460,11 @@ $(document).ready(function () {
 <li><a href="">Logo Semillero R</a></li>
 <li><a href="">Propuestas Rday Medellìn 2019</a>
 <ul>
-<li><a href="">Encuesta: percepción de la deserción estudiantil</a>
+<li>Encuesta: percepción de la deserción estudiantil
 <ul>
-<li><a href="">Banco de preguntas</a></li>
-<li><a href="">Planificación de encuestas</a></li>
-<li><a href="">Tamaño de muestra</a></li>
+<li><a href="Actividades/Encuestas.html">Planificación de encuestas</a></li>
+<li><a href="">Banco de preguntas</a><br />
+</li>
 <li><a href="">Encuesta final: ficha técnica</a></li>
 <li><a href="">Datos .csv</a></li>
 </ul></li>
@@ -497,6 +490,23 @@ $(document).ready(function () {
 
 
 </script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>
