@@ -38,7 +38,7 @@ title: "Actividades 2019-02"
     - [Archivo .Rmd](https://github.com/unal-semilleroR-FacCA/unal-semilleror-facca.github.io/blob/master/Actividades/CorRLS.Rmd)
     - [Base de datos .csv](Actividades/Datos_Continentes.csv)   
 - [Regresión Lineal Simple](Actividades/regsimple.html)
-    - [Archivo .Rmd](https://github.com/unal-semilleroR-FacCA/unal-semilleror-facca.github.io/blob/master/Actividades/CorRLS.Rmd)
+    - [Archivo .Rmd](https://github.com/unal-semilleroR-FacCA/unal-semilleror-facca.github.io/blob/master/Actividades/regsimple.Rmd)
 - [Regresión Lineal Simple: actividad]()
 - [Regresión Lineal Múltiple: ejemplo]()
 - [Análisis de Componentes Principales]()
