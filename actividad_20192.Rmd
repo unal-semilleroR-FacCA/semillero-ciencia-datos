@@ -36,7 +36,7 @@ title: "Actividades 2019-02"
         - [Bases de datos](/Actividades/Datos.7z)
 - [Análisis de regresión]()
     - [Correlación y Regresión Lineal Simple](/Actividades/CorRLS.html)
-        - [Archivo .Rmd]()
+        - [Archivo .Rmd](https://github.com/unal-semilleroR-FacCA/unal-semilleror-facca.github.io/blob/master/Actividades/CorRLS.Rmd)
         - [Base de datos .csv](Actividades/Datos_Continentes.csv)
     - [Regresión Lineal Simple: actividad]()
     - [Regresión Lineal Múltiple: ejemplo]()
