@@ -22,7 +22,7 @@ title: "Actividades 2019-02"
 - [Machine Learning]()
     - [Métodos de clasificación]()
     - [Métodos de regresión]()
-- [Propuestas Rday Medellín 2019]()
+- Propuestas Rday Medellín 2019
     - Encuesta: percepción de la deserción estudiantil
         - [Planificación de encuestas](Actividades/Encuestas.html)
         - [Banco de preguntas](/Actividades/Encuesta.html)
