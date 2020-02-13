@@ -16,12 +16,9 @@ title: "Actividades 2019-02"
 - [Regresión Lineal Simple](Actividades/regsimple.html)
     - [Archivo .Rmd](https://github.com/unal-semilleroR-FacCA/unal-semilleror-facca.github.io/blob/master/Actividades/regsimple.Rmd)
 - [Regresión Lineal Múltiple](https://rpubs.com/Edimer/565984)
-- [Análisis de Componentes Principales]()
-- [Clusterización]()
-- [Análisis de correspondencias]()
-- [Machine Learning]()
-    - [Métodos de clasificación]()
-    - [Métodos de regresión]()
+- [Análisis de Componentes Principales](https://estudior.github.io/guias_descriptiva/13_ACP_Gorriones.pdf)
+- [Clusterización](https://estudior.github.io/guias_descriptiva/14_Cluster.html#(1))
+- [Machine Learning](https://rpubs.com/Edimer/536034)
 - Propuestas Rday Medellín 2019
     - Encuesta: percepción de la deserción estudiantil
         - [Planificación de encuestas](Actividades/Encuestas.html)
