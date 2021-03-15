@@ -1,18 +1,19 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 
 <head>
 
 <meta charset="utf-8" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 
 
 <title>Recursos de información</title>
 
+<script src="site_libs/header-attrs-2.6/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
@@ -22,6 +23,15 @@
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
 <link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
 
 
 
@@ -53,6 +63,7 @@ h6 {
 }
 </style>
 
+
 <link rel="stylesheet" href="style.css" type="text/css" />
 
 
@@ -69,7 +80,6 @@ code {
 }
 img {
   max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -218,6 +228,7 @@ $(document).ready(function () {
   border: none;
   display: inline-block;
   border-radius: 4px;
+  background-color: transparent;
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li {
@@ -229,18 +240,6 @@ $(document).ready(function () {
   display: none;
 }
 </style>
-
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-
-$(document).ready(function () {
-  $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
-  });
-});
-</script>
 
 <!-- code folding -->
 
@@ -265,13 +264,13 @@ $(document).ready(function () {
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="index.html">Semillero R-FacCA</a>
+      <a class="navbar-brand" href="index.html">Semillero R</a>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
   <a href="index.html">
-    <span class="fa fa-home"></span>
+    <span class="fas fa-home"></span>
      
     Inicio
   </a>
@@ -325,6 +324,13 @@ $(document).ready(function () {
         <span class="fa fa fa fa-line-chart"></span>
          
         2019-02
+      </a>
+    </li>
+    <li>
+      <a href="actividad_20211.html">
+        <span class="fa fa fa fa-pie-chart"></span>
+         
+        2021-01
       </a>
     </li>
     <li>
@@ -387,7 +393,7 @@ $(document).ready(function () {
 <li><a href="https://www.r-bloggers.com/">R-bloggers</a></li>
 </ul>
 </div>
-<div id="material-bibliografico" class="section level2">
+<div id="material-bibliográfico" class="section level2">
 <h2>Material bibliográfico</h2>
 <p>Además de los sitios web, también se recomienda al usuario tener en cuenta el siguiente material de apoyo:</p>
 <ul>
@@ -409,7 +415,7 @@ $(document).ready(function () {
 <li><a href="http://www.calvin.edu/~rpruim/talks/SC11/Seattle/RatSC11/Master-StatsForScience.pdf"><em>Computational Statistics Using R and R Studio An Introduction for Scientists</em></a></li>
 </ul>
 </div>
-<div id="guias" class="section level2">
+<div id="guías" class="section level2">
 <h2>Guías</h2>
 <p>Las siguientes son guías de <code>R</code> y <code>R Studio</code> que pueden ser consultadas <a href="https://www.rstudio.com/resources/cheatsheets/">aquí</a>.</p>
 <ul>
@@ -431,7 +437,7 @@ $(document).ready(function () {
 
 // add bootstrap table styles to pandoc tables
 function bootstrapStylePandocTables() {
-  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
 }
 $(document).ready(function () {
   bootstrapStylePandocTables();
@@ -439,6 +445,23 @@ $(document).ready(function () {
 
 
 </script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>

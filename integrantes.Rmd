@@ -2,19 +2,34 @@
 title: "Integrantes"
 ---
 
-- [Alejandro Jaramillo Arango - Ingeniería Forestal](https://github.com/Ale-j)
-- [Alejandro Saldarriaga Saldarriaga - Zootecnista]()
-- [Ángela Gineth Martin Gómez - Ingeniería Agronómica]()
-- [Cristian Camilo Gañan Tapasco - Ingeniería Forestal](https://github.com/ccganant)
-- [Cristian Rivera González - Ingeniería de Control](https://github.com/riveracrist)
-- [Duvan Ariel Nieves Ruiz - Ingeniería Ambiental]()
-- [Edison Alexis Toro Sánchez - Ingeniería Forestal](https://github.com/edatorosa)
-- [Fabiola Janeth Arcos Alpala - Ingeniería Agronómica]()
-- [Federico Loaiza Flórez - Ingeniería Forestal](https://kawaiilos3r.netlify.com/)
-- [Ingrid Zubany Ortiz Yepez - Ingeniería Agronómica]()
-- [Luis Carlos Tabares Nieto - Ingeniería Forestal](https://github.com/LuisTabares11)
-- [Maria Camila Restrepo Quintero - Ingeniería Forestal]()
-- [Mariana Flórez Restrepo - Ingeniería Forestal](https://github.com/MarianaFlorezRpo)
-- [Miguél Angel Pastos Dimate - Ingeniería Agronómica](https://github.com/mapastord)
-- [Andrés Felipe Ramirez Pelaez - Zootecnia]()
-- [Yuberth Anderson Saavedra Coneo - Estadìstica]()
+| Nombre | Carrera | Institución |
+| :----- | :-----: | :---------: |
+| Alejandra Valencia |  | |
+| Alejandro Jaramillo Arango | Ingeniería Forestal |
+| Andres Felipe Ramírez Peláez | Zootecnia | Universidad Nacional |
+|Angela María Giraldo Duque | Ingeniería Agropecuaria | Universidad de Antioquia |
+| Arledis Madera López | Ingeniería Agropecuaria | Universidad de Antioquia | 
+| Camila F. Gutierrez Vergara | | Universidad Nacional |
+| Cristian C. Gañan Tapasco | Ingeniería Forestal | Universidad Nacional |
+| Cristian Rivera González | Ingeniería de Control | Universidad Nacional |
+| Daniela Mejia Sierra | Ingeniería Agropecuaria | Universidad de Antioquia |
+| Daniela Ortega González | | Universidad Nacional |
+| Duván Ariel Nieves Ruiz | Ingeniería Ambiental | Universidad Nacional |
+| Edgar Ruben Ortiz Suarez | Ingeniería Civil | Universidad Nacional |
+| Edison Alexis Toro Sánchez | Ingeniería Forestal | Universidad Nacional |
+| Elizabeth Burgos Ocampo |  | Universidad Nacional |
+| Federico Loaiza Flórez | Ingeniería Forestal | Universidad Nacional |
+| Federico Zapata | | |
+| Haiver G. García Sánchez | Zootecnia | Universidad Nacional |
+| Ingrid Zubany Ortiz Yepez | Ingeiería Forestal | Universidad Nacional |
+| María C. Restrepo Quintero | Ingeniería Forestal | Universidad Nacional |
+| María Isabel Mejia Quintero | Ingeniería Agropecuaria | Universidad de Antioquia |
+| Mariana Angel Giraldo | Zootecnia | Universidad Nacional |
+| Miguel Angel Pastor Dimate | Ingeniería Agronómica | Universidad Nacional |
+| Natalia Andrea Marin Garzon | | Universidad Nacional |
+| Ricardo Andres Velasco Daza | Zootecnia | Universidad Nacional |
+| Santiago Quintero Guerrero |  | Universidad Nacional |
+| Sergio Nicolas Sanchez Sierra | Zootecnia | Universidad Nacional |
+| Yudith A. Sanchez Balaguera | | Universidad Nacional |
+| Yuliana Ramírez Gómez | Ingeniería Agropecuaria | Universidad de Antioquia |
+

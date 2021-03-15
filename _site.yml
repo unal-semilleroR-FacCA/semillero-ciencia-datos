@@ -1,7 +1,7 @@
 name: Semillero R - Facultad de Ciencias Agrarias
 output_dir: '.'
 navbar:
-  title: Semillero R-FacCA
+  title: Semillero R
   left:
   - text: Inicio
     icon: fa-home
@@ -26,7 +26,10 @@ navbar:
         href: actividad.html
       - text: 2019-02
         icon: fa fa-line-chart
-        href: actividad_20192.html  
+        href: actividad_20192.html 
+      - text: 2021-01
+        icon: fa fa-pie-chart
+        href: actividad_20211.html         
       - text: Publicaciones
         icon: fa fa-area-chart
         href: publicaciones.html

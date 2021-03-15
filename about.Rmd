@@ -4,11 +4,7 @@ title: ""
 
 ## ¿Quién puede participar en el semillero?
 
-  - Cualquier estudiante de la Universidad Nacional de Colombia sede Medellín perteneciente a alguno de los siguientes programas de pregrado:
-      - Zootecnia
-      - Ingeniería Agronómica
-      - Ingeniería Forestal
-      - Ingeniería Biológica
+  - Cualquier estudiante de la Universidad Nacional o Universidad de Antioquia que tenga interés en aprender a utilizar el lenguaje de programación R.
 
 ## Propósitos del semillero  
 
@@ -39,8 +35,8 @@ title: ""
 
 ## Horario
 
-- **Lugar:** bloque 50 - Salón 50-230.
-- **Hora:** sábados de 9:00 am a 12:00 m.
+- **Lugar:** reuniones virtuales.
+- **Hora:** lunes 6 pm a 8 pm.
 
 ## Dirección del semillero
 

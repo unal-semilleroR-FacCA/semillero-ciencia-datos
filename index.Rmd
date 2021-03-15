@@ -2,7 +2,7 @@
 title: ""
 ---
 
-<center> <h2> ¡Bienvenido (a) al Semillero de R para Ciencias Agrarias! </h2> </center>
+<center> <h2> ¡Bienvenidos al Semillero de R para Ciencias Agrarias! </h2> </center>
 
 ```{r, echo=FALSE, fig.align="center", out.width="580", out.height="425"}
 knitr::include_graphics("images/pub.gif")
