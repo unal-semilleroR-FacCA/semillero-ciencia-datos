@@ -36,6 +36,8 @@ navbar:
   right:
   - icon: fa fa-university
     href: https://medellin.unal.edu.co/
+  - icon: fa fa-warehouse
+    href: http://www.udea.edu.co/
   - icon: fa fa-github
     href: https://github.com/unal-semilleroR-FacCA/unal-semilleror-facca.github.io
   - text: Foro
