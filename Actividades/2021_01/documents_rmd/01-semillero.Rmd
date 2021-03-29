@@ -1,0 +1,41 @@
+---
+title: "R Markdown y Tidyverse"
+author: "Edimer David Jaramillo"
+date: "15/3/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Título principal
+
+## Título secundario
+
+### Título de tercer nivel
+
+Este es un texto...
+
+# Insertando imagen
+
+![](img1.PNG)
+
+# Opciones de texto
+
+*esto es una cursiva*
+
+**esto es negrilla**
+
+***esto es negrilla cursiva***
+
+# Viñetas
+
++ Viñeta 1
+  + Subviñeta
+- Viñeta 2
+* Viñeta 3
+
+# Enlace web
+
+[Página web del semillero](https://unal-semilleror-facca.github.io/)

@@ -4,7 +4,7 @@ title: "Actividades 2021-01"
 
 | Tema | Ejemplo *HTML*| Código *.Rmd* |
 | :----- | :-----: | :-------: |
-| [1. Repaso R-Markdown  y Tidyverse](/Actividades/2021_01/01_repaso.html) |  | |
+| [1. Repaso R-Markdown  y Tidyverse](/Actividades/2021_01/01_repaso.html) | [Ejemplo 01 - R Markdown](/Actividades/2021_01/01-ejemplo-rmarkdown-semillero.html)  | [Descargar](/Actividades/2021_01/documents_rmd/01-semillero.Rmd) |
 | [2. Novedades en el tidyverse y bibliotecas auxiliares]() |  | |
 | [3. Visualización con R: parte 1]() |  | |
 | [4. Visualización con R: parte 2]() |  | |
