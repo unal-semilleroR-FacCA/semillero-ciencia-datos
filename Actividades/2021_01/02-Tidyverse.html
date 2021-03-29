@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Semillero R</title>
+    <meta charset="utf-8" />
+    <meta name="date" content="2021-03-29" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link href="libs/remark-css/default.css" rel="stylesheet" />
+    <link href="libs/remark-css/default-fonts.css" rel="stylesheet" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Semillero R
+## Sesión 2: Tidyverse y bibliotecas auxiliares
+### Universidad Nacional - Universidad de Antioquia
+### 2021-03-29
+
+---
+
+
+
+
+# Objetos básicos en R
+
+&lt;center&gt;
+&lt;img src = "https://es.r4ds.hadley.nz/diagrams_w_text_as_path/es/data-structures-overview.svg" width = 600 /&gt;
+&lt;/center&gt;
+
+---
+
+# Objetos estructurados en R
+
+&lt;center&gt;
+&lt;img src = "https://rstudio-education.github.io/hopr/images/hopr_0306.png" width = 700 /&gt;
+&lt;/center&gt;
+
+---
+background-image: url(https://www.tidyverse.org/images/tidyverse-default.png)
+background-position: 50% 50%
+class: center, bottom, inverse
+
+# 
+
+---
+class: center, middle
+
+# Proceso de análisis de datos
+
+&lt;center&gt;
+&lt;img src = "https://es.r4ds.hadley.nz/diagrams_w_text_as_path/es/data-science-wrangle.svg" /&gt;
+&lt;/center&gt;
+
+
+---
+
+# Procesos comunes en manipulación de datos
+
+## 1. Coercionar una variable
+## 2. Seleccionar una o más variables
+## 3. Filtrar filas basado en alguna condición
+## 4. Editar nombres de variables
+## 5. Calcular métricas estadísticas
+
+---
+
+# R "convencional" vs `tidyverse`
+
+## Ejemplo 1: coercionar una variable
+
+--
+
+.pull-left[
+
+### R "convencional"
+
+
+```r
+ejemplo &lt;- iris
+class(ejemplo$Species)
+```
+
+```
+## [1] "factor"
+```
+
+```r
+ejemplo$Species &lt;- as.character(ejemplo$Species)
+class(ejemplo$Species)
+```
+
+```
+## [1] "character"
+```
+
+]
+
+--
+
+.pull-right[
+
+### `tidyverse`
+
+
+```r
+library(tidyverse)
+ejemplo &lt;- ejemplo %&gt;% 
+  mutate(Species = as.character(Species))
+```
+
+
+]
+
+---
+
+# R "convencional" vs `tidyverse`
+
+## Ejemplo 2: seleccionar una o más variables
+
+--
+
+.pull-left[
+
+### R "convencional"
+
+
+```r
+# Primera forma
+forma1 &lt;- iris[, c(2, 3)]
+
+# Segunda forma
+forma2 &lt;- iris[, c("Sepal.Width", "Petal.Length")]
+
+# Tercera forma
+forma3 &lt;- subset(iris,
+                 select = c(Sepal.Width, Petal.Length))
+```
+
+]
+
+--
+
+.pull-right[
+
+### `tidyverse`
+
+
+```r
+library(tidyverse)
+forma_tidy &lt;- iris %&gt;% 
+  select(Sepal.Width, Petal.Length)
+```
+
+
+]
+
+---
+
+# R "convencional" vs `tidyverse`
+
+## Ejemplo 3: filtrar observaciones
+
+--
+
+.pull-left[
+
+### R "convencional"
+
+
+```r
+# Filtro 1 (mayor que)
+filtro1 &lt;- iris[iris$Sepal.Length &gt; 6, ]
+
+# Filtro 2 (igual a)
+filtro2 &lt;- iris[iris$Species == "versicolor", ]
+
+# Filtro 3
+filtro3 &lt;- subset(iris, Sepal.Length &gt; 6)
+```
+
+
+]
+
+--
+
+.pull-right[
+
+### `tidyverse`
+
+
+```r
+library(tidyverse)
+filtro_tidy1 &lt;- iris %&gt;% 
+  filter(Sepal.Length &gt; 6)
+
+filtro_tidy2 &lt;- iris %&gt;% 
+  filter(Sepal.Length &gt; 6 &amp; Species == "versicolor")
+```
+
+]
+
+---
+
+# R "convencional" vs `tidyverse`
+
+## Ejemplo 4: editar nombres de variables
+
+--
+
+.pull-left[
+
+### R "convencional"
+
+
+```r
+# Forma 1
+names(iris) &lt;- c("v1", "v2", "v3", "v4", "v5")
+
+# Forma 2
+setNames(ejemplo, nm = c("v1", "v2", "v3", "v4", "v5"))
+```
+
+]
+
+--
+
+.pull-right[
+
+### `tidyverse`
+
+
+```r
+# Todos los nombres
+library(tidyverse)
+nombres_tidy1 &lt;- iris %&gt;% 
+  set_names(c("v1", "v2", "v3", "v4", "v5"))
+
+# Nombres individuales
+nombres_tidy2 &lt;- iris %&gt;% 
+  rename(nuevo_nombre = Sepal.Length)
+```
+
+
+]
+
+---
+
+# R "convencional" vs `tidyverse`
+
+## Ejemplo 5: calcular la media de una variable
+
+--
+
+.pull-left[
+
+### R "convencional"
+
+
+```r
+mean(iris$Sepal.Length)
+```
+
+```
+## [1] 5.843333
+```
+
+
+]
+
+--
+
+.pull-right[
+
+### `tidyverse`
+
+
+```r
+iris %&gt;% 
+  pull(Sepal.Length) %&gt;% 
+  mean()
+```
+
+```
+## [1] 5.843333
+```
+
+
+]
+
+---
+class: inverse, center, middle
+
+# Bibliotecas [`tidyverse`](https://www.tidyverse.org/)
+
+&lt;center&gt;
+&lt;img src = "https://magrittr.tidyverse.org/logo.png" width = 150 /&gt;
+&lt;/center&gt;
+
+.pull-left[
+
+.pull-left[
+
+&lt;center&gt;
+&lt;img src = "https://readr.tidyverse.org/logo.png" width = 85 /&gt;
+&lt;/center&gt;
+
+&lt;center&gt;
+&lt;img src = "https://readxl.tidyverse.org/logo.png" width = 85 /&gt;
+&lt;/center&gt;
+
+&lt;center&gt;
+&lt;img src = "https://d33wubrfki0l68.cloudfront.net/c477d7eb7fdf2c3d75637cfe19ff4a4d0a107bcf/017d0/css/images/hex/tibble.png" width = 85 /&gt;
+&lt;/center&gt;
+
+
+]
+
+.pull-right[
+
+&lt;center&gt;
+&lt;img src = "https://tidyr.tidyverse.org/logo.png" width = 85 /&gt;
+&lt;/center&gt;
+
+&lt;center&gt;
+&lt;img src = "https://cran.r-project.org/web/packages/janitor/readme/man/figures/logo_small.png" width = 85 /&gt;
+&lt;/center&gt;
+
+&lt;center&gt;
+&lt;img src = "https://d33wubrfki0l68.cloudfront.net/621a9c8c5d7b47c4b6d72e8f01f28d14310e8370/193fc/css/images/hex/dplyr.png" width = 85 /&gt;
+&lt;/center&gt;
+
+]
+
+
+]
+
+.pull-right[
+
+.pull-left[
+&lt;center&gt;
+&lt;img src = "https://d33wubrfki0l68.cloudfront.net/45fd04ad9cdb2159fea08d07dbc11e742d68e4e3/df327/css/images/hex/stringr.png" width = 85 /&gt;
+&lt;/center&gt;
+
+&lt;center&gt;
+&lt;img src = "https://d33wubrfki0l68.cloudfront.net/412a6f14518ab633a94221dda7e16cf22e43a763/91620/css/images/hex/forcats.png" width = 85 /&gt;
+&lt;/center&gt;
+
+&lt;center&gt;
+&lt;img src = "https://bobaekang.github.io/icjia-r-workshop/images/lubridate.png" width = 85 /&gt;
+&lt;/center&gt;
+
+
+
+]
+
+.pull-right[
+
+&lt;center&gt;
+&lt;img src = "https://hms.tidyverse.org/logo.png" width = 85 /&gt;
+&lt;/center&gt;
+
+&lt;center&gt;
+&lt;img src = "https://docs.ropensci.org/skimr/reference/figures/logo.png" width = 85 /&gt;
+&lt;/center&gt;
+
+&lt;center&gt;
+&lt;img src = "https://ggplot2.tidyverse.org/logo.png" width = 85 /&gt;
+&lt;/center&gt;
+
+]
+
+]
+
+---
+class: inverse, center, middle
+
+# Ejemplo [AlimenTro](https://alimentro.agrosavia.co/Home/Index?ReturnUrl=%2f)
+
+&lt;iframe width="800" height="500" src="https://www.youtube.com/embed/dvuhqn4ekl0" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;
+
+---
+class: inverse, center, middle
+
+&lt;center&gt;
+&lt;img src = "img/alimentro.png" width = 500/&gt;
+&lt;/center&gt;
+
+## Descargar datos [aquí](/Actividades/2021_01/data/Alimentos_del_tr_pico_para_alimentaci_n_animal_-_AlimenTro.csv)
+
+## Consultar [datos abiertos AlimenTro](https://www.datos.gov.co/Agricultura-y-Desarrollo-Rural/Alimentos-del-tr-pico-para-alimentaci-n-animal-Ali/6arb-d547)
+
+---
+class: inverse, center, middle
+
+# Pasos a seguir
+
+### 1. Limpiar nombres
+
+### 2. Transformación de variables
+
+### 3. Seleccionar variables de interés
+
+### 4. Obtener métricas descriptivas
+
+### 5. Construir visualizaciones
+
+---
+class: inverse, center, middle
+
+# [*R para Ciencia de Datos*](https://es.r4ds.hadley.nz/)
+
+&lt;center&gt;
+&lt;img src = "https://images-na.ssl-images-amazon.com/images/I/51U8H-yROqL._SX331_BO1,204,203,200_.jpg" width = 300 /&gt;
+&lt;/center&gt;
+
+---
+class: inverse, center, middle
+
+# [*Libro Vivo de Ciencia de Datos*](https://librovivodecienciadedatos.ai/)
+
+&lt;center&gt;
+&lt;img src = "https://librovivodecienciadedatos.ai/introduction/libro_vivo_de_ciencia_de_datos_cover.png" width = 300 /&gt;
+&lt;/center&gt;
+
+---
+class: inverse, center, middle
+
+# 
+
+&lt;center&gt;
+&lt;img src = "img/gracias.gif" width = 600 /&gt;
+&lt;/center&gt;
+
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
