@@ -39,12 +39,25 @@ Además de los sitios web, también se recomienda al usuario tener en cuenta el 
 - [El arte de programar en R](https://cran.r-project.org/doc/contrib/Santana_El_arte_de_programar_en_R.pdf)
 - [*Computational Statistics Using R and R Studio An Introduction for Scientists*](http://www.calvin.edu/~rpruim/talks/SC11/Seattle/RatSC11/Master-StatsForScience.pdf)
 
-## Guías 
+## Hojas de referencia
 
 Las siguientes son guías de `R` y `R Studio` que pueden ser consultadas [aquí](https://www.rstudio.com/resources/cheatsheets/).
 
-- [*Base R: Cheat Sheet*](https://www.rstudio.com/wp-content/uploads/2016/05/base-r.pdf)
-- [*RStudio IDE Cheat Sheet*](https://www.rstudio.com/wp-content/uploads/2016/01/rstudio-IDE-cheatsheet.pdf)
-- [Data Visualization with ggplot2](https://www.rstudio.com/wp-content/uploads/2015/03/ggplot2-cheatsheet.pdf)
-- [R Markdown](https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf)
-- [Shiny](https://www.rstudio.com/wp-content/uploads/2015/02/shiny-cheatsheet.pdf)
+- Hojas de referencia en español:
+  - [Importación de datos](/Actividades/2021_01/pdf/data-import-Spanish_translation-2019.pdf)
+  - [Manejo de datos (1)](/Actividades/2021_01/pdf/data-transformation_Spanish.pdf)
+  - [Manejo de datos (2)](/Actividades/2021_01/pdf/data-wrangling-cheatsheet_Spanish.pdf)
+  - [Manejo de factores con `forcats`](/Actividades/2021_01/pdf/factors-Spanish.pdf)
+  - [Maneo de fechas con `lubridate`](/Actividades/2021_01/pdf/lubridate-Spanish-translation-2019.pdf)
+  - [Manejo de caracteres con `stringr`](/Actividades/2021_01/pdf/strings_Spanish.pdf)
+  - [Visualización con `ggplot2`](/Actividades/2021_01/pdf/ggplot2.pdf)
+  - [Programación con `purrr`](/Actividades/2021_01/pdf/purrr_COrtega_Spanish.pdf)
+  - [Ecosistema R Markdown](/Actividades/2021_01/pdf/rmarkdown-2.0_Spanish.pdf)
+  - [Aplicaciones con `shiny`](/Actividades/2021_01/pdf/shiny_Spanish.pdf)
+  - [IDE RStudio](/Actividades/2021_01/pdf/rstudio-entorno.pdf)
+- Hojas de referencia en inglés:
+  - [*Base R: Cheat Sheet*](https://www.rstudio.com/wp-content/uploads/2016/05/base-r.pdf)
+  - [*RStudio IDE Cheat Sheet*](https://www.rstudio.com/wp-content/uploads/2016/01/rstudio-IDE-cheatsheet.pdf)
+  - [Data Visualization with ggplot2](https://www.rstudio.com/wp-content/uploads/2015/03/ggplot2-cheatsheet.pdf)
+  - [R Markdown](https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf)
+  - [Shiny](https://www.rstudio.com/wp-content/uploads/2015/02/shiny-cheatsheet.pdf)

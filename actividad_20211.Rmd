@@ -13,3 +13,9 @@ title: "Actividades 2021-01"
 | [7. Shiny: Introducción]() |  | |
 | [8. Shiny + flexdashboard: parte 1]() |  | |
 | [9. Shiny + flexdashboard: parte 2]() |  | |
+
+# Guías
+
+| Guía | Descripción |
+| :----- | :----- |
+| [Guía 1. Actualizar versión de R (Windows)](/Actividades/2021_01/guide01.html) | Guía para actualización de versión de R en sistema operativo Windows, haciendo uso de la biblioteca `installr`. |
