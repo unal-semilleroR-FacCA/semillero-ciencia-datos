@@ -16,13 +16,26 @@ output:
 options(htmltools.dir.version = FALSE)
 ```
 
-class: center, middle
+class: middle
 
-# Exploración de datos
+<center>
+<h1> Exploración de datos</h1>
+</center>
 
 <center>
 <img src = "https://es.r4ds.hadley.nz/diagrams_w_text_as_path/es/data-science-explore.svg" />
 </center>
+
+
+> *"Conviva con sus datos antes de sumergirse en el modelamiento."* — Leo Breiman<sup>1</sup>
+
+<br>
+<br>
+<br>
+
+.foot-note[
+[1][Statistical Modeling: The Two Cultures](http://users.csc.calpoly.edu/~dsun09/data401/readings/Breiman-Two-Cultures.pdf)
+]
 
 ---
 class: inverse, center, middle
