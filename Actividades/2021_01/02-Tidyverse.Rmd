@@ -378,7 +378,7 @@ class: inverse, center, middle
 > *“Todos los set de datos ordenados se parecen unos a otros, pero cada set de datos desordenado lo es a su manera”* — Hadley Wickham
 
 <center>
-<img src="https://www.measureevaluation.org/resources/newsroom/news-images/tidy-data/image"; height= 350/>
+<img src="img/no_tidy.jpeg"; height= 300/>
 </center>
 
 ---
