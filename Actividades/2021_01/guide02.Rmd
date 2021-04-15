@@ -34,7 +34,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 # 4. Clic en *Yes* 
 
-- **Nota:** el cuadro de diálogo le solicitará que reinicire el R antes de comenzar con la actualización
+- **Nota:** el cuadro de diálogo le solicitará que reinicie el R antes de comenzar con la actualización
 
 <center>
 <img src = "img/guide02_04.PNG" />
