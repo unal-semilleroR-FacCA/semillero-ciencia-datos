@@ -1,8 +1,7 @@
 ---
-title: "Guía de actualización de versión R"
-subtitle: "Sistema operativo Windows" 
+title: "Actualización de bibliotecas de R con RStudio"
 author: "Edimer David Jaramillo"
-date: "5/4/2021"
+date: "Abril de 2021"
 output:
   html_document:
     toc: true
@@ -13,150 +12,55 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# 1. Instalar biblioteca `installr`
+# 1. Clic en `tools` y luego en `Check for Pckage Updates...`
 
 <center>
-<img src = "img/guide01.PNG" />
+<img src = "img/guide02_01.PNG" />
 </center>
 
-# 2. Abrir GUI de R
+# 2. Seleccionar bibliotecas
 
-- **Nota:** aunque la actualización se puede realizar desde *RStudio*, se recomienda realizar dicho proceso desde la interfaz gráfica de usuario (GUI) de R.
+- **Nota:** aparecerá una lista de bibliotecas para las cuales existe alguna actualización. Puede seleccionar de manera individual aquella que quiera actualizar, sin embargo, se recomienda elegir la opción `Select All` para marcar todos los paquetes.
 
 <center>
-<img src = "img/guide02.PNG" width = 650 />
+<img src = "img/guide02_02.PNG" width = 650 />
 </center>
 
-# 3. Ejecutar código `installr::updateR()`
+# 3. Clic en `Install Updates`
 
 <center>
-<img src = "img/guide03.PNG" width = 650 />
+<img src = "img/guide02_03.PNG" width = 650 />
 </center>
 
-# 4. Clic en *Aceptar* 
+# 4. Clic en *Yes* 
 
-- **Nota:** en caso de que exista alguna versión nueva obtendrá un cuadro de diálogo como el que se muestra a continuación.
+- **Nota:** el cuadro de diálogo le solicitará que reinicire el R antes de comenzar con la actualización
 
 <center>
-<img src = "img/guide04.PNG" />
+<img src = "img/guide02_04.PNG" />
 </center>
 
-# 5. (opcional) Clic en *No* 
+# 5. Clic en *Sí*
 
-- **Nota:** este cuadro de diálogo le permitirá conocer las noticias o registros de actualización de la nueva versión de R.
+- **Nota:** dependiendo de las bibliotecas que haya instalado previamente obtendrá este cuadro de diálogo. Si no aparece no hay ningún problema.
 
 <center>
-<img src = "img/guide05.PNG" />
+<img src = "img/guide02_05.PNG" />
 </center>
 
-# 6. Clic en *Sí* 
+# 6. Esperar actualización...
 
-- **Nota:** este cuadro de diálogo le permitirá aceptar la instalación de la nueva versión de R.
+- **Nota:** en su pantalla identificará cuadros de carga como el que se muestra a continuación.
 
 <center>
-<img src = "img/guide06.PNG" />
+<img src = "img/guide02_06.PNG" />
 </center>
 
-# 7. Instalación
+# 7. Finalización de actualización
 
-- **Elegir idioma y clic en aceptar:**
+- **Nota:** el proceso finalizará cuando el botón rojo de *Stop* no aparezca encendido en su consola, de lo contrario debe esperar.
 
 <center>
-<img src = "img/guide07.PNG" />
+<img src = "img/guide02_07.PNG" />
 </center>
 
-<br>
-
-- **Clic en siguiente:**
-
-<center>
-<img src = "img/guide08.PNG" />
-</center>
-
-<br>
-
-- **Elegir ruta de instalación y clic en siguiente:**
-
-<center>
-<img src = "img/guide09.PNG" />
-</center>
-
-<br>
-
-- **Mantener opciones seleccionadas y clic en siguiente:**
-
-<center>
-<img src = "img/guide10.PNG" />
-</center>
-
-<br>
-
-- **Mantener opciones seleccionadas y clic en siguiente:**
-
-<center>
-<img src = "img/guide11.PNG" />
-</center>
-
-<br>
-
-- **Mantener opciones seleccionadas y clic en siguiente:**
-
-<center>
-<img src = "img/guide12.PNG" />
-</center>
-
-<br>
-
-- **Mantener opciones seleccionadas y clic en siguiente:**
-
-<center>
-<img src = "img/guide13.PNG" />
-</center>
-
-<br>
-
-- **Esperar que el proceso de instalación termine:**
-
-<center>
-<img src = "img/guide14.PNG" />
-</center>
-
-<br>
-
-- **Dar clic en finalizar:**
-
-<center>
-<img src = "img/guide15.PNG" />
-</center>
-
-# 8. Mantener bibliotecas de versión anterior
-
-- **Nota:** el cuadro de diálogo pregunta si desea copiar las bibliotecas que tiene instaladas en la versión anterior. Dar clic en sí.
-
-<center>
-<img src = "img/guide16.PNG" />
-</center>
-
-# 9. Copiar bibliotecas de versión anterior
-
-- **Nota:** el cuadro de diálogo pregunta si desea copiar o borrar las bibliotecas que tiene instaladas en la versión anterior. Dar clic en sí, esto garantiza que las bibliotecas instaladas se mantendrán en la nueva versión.
-
-<center>
-<img src = "img/guide17.PNG" />
-</center>
-
-# 10. (opcional) Clic en *Sí*
-
-- **Nota:** el archivo *Rprofile.site* conserva algunas configuraciones que usted haya asignado previamente en R.
-
-<center>
-<img src = "img/guide18.PNG" />
-</center>
-
-# 11. Actualizar bibliotecas
-
-- **Nota:** dar clic en *Sí* para actualizar las bibliotecas.
-
-<center>
-<img src = "img/guide19.PNG" />
-</center>
