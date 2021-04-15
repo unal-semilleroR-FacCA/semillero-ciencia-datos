@@ -1,0 +1,195 @@
+---
+title: "Ejemplo tidyverse"
+author: "Edimer David Jaramillo"
+date: "29/3/2021"
+output:
+  html_document:
+    df_print: paged
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+```
+
+# Lectura de datos
+
+```{r}
+library(tidyverse)
+datos <- read_csv("Alimentos_del_tr_pico_para_alimentaci_n_animal_-_AlimenTro.csv")
+datos %>% head()
+```
+
+- Estructura de la base de datos:
+
+```{r}
+glimpse(datos)
+```
+
+# Depuración y transformación de datos
+
+```{r}
+library(janitor)
+library(lubridate)
+df_alimentos <- datos %>% 
+  clean_names() %>% 
+  mutate(across(c(extracto_etereo, lignina:enl_rumiantes),
+                as.numeric),
+         fecha = as_date(fecha_recoleccion, format = "%m/%d/%Y"),
+         mes = month(fecha, label = TRUE, abbr = FALSE),
+         year = year(fecha)) %>% 
+  select(-c(id, fecha_recoleccion)) %>% 
+  relocate(fecha, year, mes, everything())
+
+df_alimentos %>% head()
+```
+
+# Exportando datos depurados
+
+```{r, eval = FALSE}
+write_rds(df_alimentos, compress = "xz", file = "alimentro_depurada.rds")
+```
+
+# Métricas descriptivas
+
+## Descriptico general
+
+```{r}
+library(skimr)
+skim(df_alimentos)
+```
+
+## Ejercicio
+
+- Obtener métricas descriptivas para cada variable numérica de interés (media, desviación estándar y mediana) por año.
+  - `mean()`
+  - `median()`
+  - `sd()`
+  - No olvidar agregar el argumento `na.rm = TRUE` en cada función
+
+```{r}
+library(DT)
+df_alimentos %>% 
+  select(year, edad_corte, proteina_cruda:enl_rumiantes) %>% 
+  pivot_longer(cols = -year, names_to = "variable", values_to = "valor") %>% 
+  group_by(year, variable) %>% 
+  summarise(media = mean(valor, na.rm = TRUE),
+            mediana = median(valor, na.rm = TRUE),
+            desviacion = sd(valor, na.rm = TRUE)) %>% 
+  mutate(across(is.numeric, round, digits = 2)) %>% 
+  datatable(rownames = FALSE)
+```
+
+# Ejemplos datos desordenados
+
+## Homicidios Quindío
+
+```{r}
+df_homicidios <- read_csv("Tasas_de_homicidios_seg_n_municipios_por_cien_mil_habitantes._A_os_1990_-_2017.csv")
+
+df_homicidios2 <- df_homicidios %>% 
+  pivot_longer(cols = -Municipio, names_to = "year", values_to = "homicidio",
+               names_transform = list(year = as.numeric)) %>% 
+  rename(municipio = Municipio)
+
+df_homicidios2 %>% head()
+```
+
+# Visualizaciones
+
+## Cantidades
+
+### Gráfico estático
+
+```{r}
+# Configurando tema para todos los gráficos
+theme_set(theme_minimal())
+library(ggthemes)
+
+df_homicidios2 %>% 
+  group_by(year) %>% 
+  summarise(promedio = mean(homicidio)) %>% 
+  ggplot(mapping = aes(x = year, y = promedio)) +
+  geom_col() +
+  scale_x_continuous(breaks = seq(1990, 2017, 2)) +
+  labs(x = "Año", y = "Homicidios",
+       title = "Tasa de homicidios departamento del Quindío",
+       subtitle = "Por cada 100 mil habitantes")
+```
+
+### Gráfico interactivo
+
+```{r}
+library(plotly)
+ggplotly(
+  df_homicidios2 %>% 
+  group_by(year) %>% 
+  summarise(promedio = mean(homicidio)) %>% 
+  ggplot(mapping = aes(x = year, y = promedio)) +
+  geom_col() +
+  scale_x_continuous(breaks = seq(1990, 2017, 2)) +
+  labs(x = "Año", y = "Homicidios",
+       title = "Tasa de homicidios departamento del Quindío"),
+  
+  width = 900
+)
+```
+
+## Distribuciones
+
+- Histogramas y densidades
+- Boxplot
+- Gráfico cuantil cuantil
+
+### Densidades
+
+#### Gráfico estático
+
+```{r, fig.width=9}
+df_homicidios2 %>% 
+  #filter(municipio %in% c("Calarca", "Circasia", "Salento")) %>% 
+  ggplot(mapping = aes(x = homicidio)) +
+  facet_wrap(facets = ~municipio, scales = "free") +
+  geom_density(fill = "dodgerblue", color = "red", alpha = 0.5)
+```
+
+#### Gráfico interactivo
+
+```{r}
+ggplotly(
+  df_homicidios2 %>% 
+  ggplot(mapping = aes(x = homicidio)) +
+  facet_wrap(facets = ~municipio, scales = "free") +
+  geom_density(fill = "dodgerblue", color = "red", alpha = 0.5),
+  
+  width = 900,
+  height = 500
+)
+```
+
+### Boxplot
+
+#### Gráfico estático
+
+```{r, fig.width=9}
+df_homicidios2 %>% 
+  ggplot(mapping = aes(x = fct_reorder(municipio, homicidio, median),
+                       y = homicidio)) +
+  geom_boxplot() +
+  stat_summary(fun = mean, geom = "point", color = "red")
+```
+
+#### Gráfico interactivo
+
+```{r}
+ggplotly(
+  df_homicidios2 %>% 
+  ggplot(mapping = aes(x = fct_reorder(municipio, homicidio, median),
+                       y = homicidio)) +
+  geom_boxplot() +
+  stat_summary(fun = mean, geom = "point", color = "red"),
+  
+  tooltip = c("y"),
+  width = 900
+)
+```
+
