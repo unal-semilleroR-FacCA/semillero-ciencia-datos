@@ -325,6 +325,17 @@ ejemplo %>%
 ---
 class: inverse, center, middle
 
+# [`DataExplorer`](https://boxuancui.github.io/DataExplorer/)
+
+<center>
+<img src="https://boxuancui.github.io/DataExplorer/reference/figures/logo.png" width = 350/>
+</center>
+
+### [Introduction to DataExplorer](https://cran.r-project.org/web/packages/DataExplorer/vignettes/dataexplorer-intro.html)
+
+---
+class: inverse, center, middle
+
 # [`esquisse`](https://dreamrs.github.io/esquisse/)
 
 <center>
