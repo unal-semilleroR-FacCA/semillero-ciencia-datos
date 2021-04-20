@@ -193,3 +193,69 @@ ggplotly(
 )
 ```
 
+### Cuantil-Cuantil
+
+#### Gráfico estático
+
+```{r, fig.width=9}
+df_homicidios2 %>% 
+  ggplot(mapping = aes(sample = homicidio)) +
+  facet_wrap(facets = ~municipio, scales = "free") +
+  geom_qq() +
+  geom_qq_line()
+```
+
+### Relaciones X-Y
+
+#### Gráfico estático
+
+```{r, fig.width=9}
+df_homicidios2 %>% 
+  ggplot(mapping = aes(x = year, y = homicidio)) +
+  geom_line(mapping = aes(color = municipio)) +
+  geom_smooth(se = FALSE, color = "red")
+```
+
+#### Gráfico interactivo
+
+```{r}
+ggplotly(
+  df_homicidios2 %>% 
+  ggplot(mapping = aes(x = year, y = homicidio)) +
+  geom_line(mapping = aes(color = municipio)) +
+  geom_smooth(se = FALSE, color = "red"),
+  
+  width = 900
+)
+```
+
+#### Gráfico estático 2
+
+```{r, fig.width=9}
+df_homicidios2 %>% 
+  ggplot(mapping = aes(x = year, y = homicidio)) +
+  facet_wrap(facets = ~municipio, scales = "free") +
+  geom_line() +
+  geom_smooth(se = FALSE)
+```
+
+### Incertidumbre
+
+```{r, fig.width=9}
+df_homicidios2 %>% 
+  group_by(year) %>% 
+  summarise(
+    promedio = mean(homicidio),
+    p5 = quantile(homicidio, probs = 0.05),
+    p95 = quantile(homicidio, probs = 0.95),
+    p20 = quantile(homicidio, probs = 0.20),
+    p80 = quantile(homicidio, probs = 0.80)
+  ) %>% 
+  ggplot(mapping = aes(x = year, y = promedio)) +
+  geom_ribbon(mapping = aes(ymin = p5, ymax = p95), 
+              fill = "firebrick2", alpha = 0.5) +
+  geom_ribbon(mapping = aes(ymin = p20, ymax = p80),
+              fill = "firebrick2", alpha = 0.6) +
+  geom_line()
+```
+

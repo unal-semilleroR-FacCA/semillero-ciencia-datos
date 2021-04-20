@@ -1,0 +1,59 @@
+---
+title: "Ejemplos tidyverse"
+author: "Edimer David Jaramillo"
+date: "19/04/2021"
+output:
+  html_document:
+    df_print: paged
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+```
+
+# Ejemplo caudal río Chinchiná
+
+## Depuración de datos
+
+```{r}
+library(tidyverse)
+library(janitor)
+library(lubridate)
+
+caudales1 <- read_csv("Caudal_Rio_Chinchina_2016.csv")
+
+# Depuración
+caudales2 <- caudales1 %>% 
+  clean_names() %>% 
+  slice(1:31) %>% 
+  mutate(year = 2016, dia = as.numeric(dia)) %>% 
+  pivot_longer(cols = -c(dia, year), names_to = "mes", values_to = "caudal") %>% 
+  mutate(mes = str_c(mes, ".")) %>% 
+  unite(year, mes, dia, sep = "-", remove = TRUE, col = "fecha") %>% 
+  mutate(fecha = ymd(fecha),
+         mes = month(fecha, label = TRUE, abbr = FALSE),
+         mes = str_to_sentence(mes),
+         mes = fct_relevel(mes, "Enero", "Febrero", "Marzo", "Abril",
+                           "Mayo", "Junio", "Julio", "Agosto", "Septiembre",
+                           "Octubre", "Noviembre", "Diciembre"),
+         dia_mes = day(fecha),
+         semana = week(fecha),
+         dia_semana = weekdays(fecha),
+         dia_semana = str_to_sentence(dia_semana),
+         dia_semana = fct_relevel(dia_semana, "Lunes", "Martes", "Miércoles",
+                                  "Jueves", "Viernes", "Sábado", "Domingo"))
+
+caudales2
+```
+
+## Serie temporal del caudal
+
+```{r, fig.width=9}
+theme_set(theme_minimal())
+caudales2 %>% 
+  ggplot(mapping = aes(x = fecha, y = caudal)) +
+  geom_line() +
+  geom_smooth() +
+  scale_x_date(breaks = "2 month")
+```
+
