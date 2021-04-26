@@ -11,8 +11,8 @@ title: "Actividades 2021-01"
 | [5. Tableros: flexdashboard 1](/Actividades/2021_01/05-Dashboard-1.html) |  | |
 | [6. Tableros: flexdashboard 2]() |  | |
 | [7. Shiny: Introducción]() |  | |
-| [8. Shiny + flexdashboard: parte 1]() |  | |
-| [9. Shiny + flexdashboard: parte 2]() |  | |
+| [8. Shiny + flexdashboard 1]() |  | |
+| [9. Shiny + flexdashboard 2]() |  | |
 
 # Guías
 
