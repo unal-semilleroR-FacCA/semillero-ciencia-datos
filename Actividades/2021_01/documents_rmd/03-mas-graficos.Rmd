@@ -57,3 +57,119 @@ caudales2 %>%
   scale_x_date(breaks = "2 month")
 ```
 
+## ggridges (densidades)
+
+```{r}
+library(ggridges)
+caudales2 %>% 
+  filter(!is.na(mes)) %>% 
+  ggplot(mapping = aes(x = caudal, y = mes)) +
+  geom_density_ridges()
+```
+
+- Gráfico anterior con gradiente:
+
+```{r}
+caudales2 %>% 
+  filter(!is.na(mes)) %>% 
+  ggplot(mapping = aes(x = caudal, y = mes, fill = after_stat(x))) + 
+  geom_density_ridges_gradient() +
+  scale_fill_viridis_c()
+```
+
+## dygraphs
+
+```{r}
+library(dygraphs)
+
+# Convertir en tipo xts
+library(xts)
+
+# Eliminando fechas con NAs
+datos_serie <- caudales2 %>% 
+  filter(!is.na(fecha))
+
+serie_caudal <- xts(x = datos_serie$caudal, order.by = datos_serie$fecha)
+
+dygraph(serie_caudal) %>% dyRangeSelector()
+```
+
+## Gráfico animado (gganimate)
+
+```{r}
+library(gganimate)
+caudales2 %>% 
+  filter(!is.na(fecha)) %>% 
+  ggplot(mapping = aes(x = fecha, y = caudal)) +
+  geom_line() +
+  transition_reveal(fecha)
+```
+
+## Gráfico animado 2
+
+```{r}
+caudales2 %>% 
+  filter(!is.na(mes)) %>% 
+  ggplot(mapping = aes(x = mes, y = caudal)) +
+  geom_boxplot() +
+  transition_manual(mes)
+```
+
+## Gráfico calendario
+
+```{r, fig.width=9}
+caudales2 %>% 
+  filter(!is.na(mes)) %>% 
+  ggplot(mapping = aes(x = mes, y = dia_mes, fill = caudal)) +
+  geom_tile(color = "black") +
+  scale_fill_viridis_c()
+```
+
+## Otros gráficos
+
+### Correlograma (corrplot)
+
+```{r}
+library(corrplot)
+iris %>% 
+  select(where(is.numeric)) %>% 
+  cor(method = "pearson") %>% 
+  corrplot(
+    method = "pie",
+    tl.srt = 25,
+    tl.col = "black",
+    type = "lower",
+    diag = FALSE
+  )
+```
+
+### Coordenadas paralelas
+
+```{r}
+library(GGally)
+ggparcoord(
+  iris,
+  columns = 1:4,
+  groupColumn = 5,
+  scale = "globalminmax",
+  showPoints = TRUE,
+  title = "Sin escalar",
+  alphaLines = 0.3
+)
+```
+
+# DataExplorer
+
+```{r}
+library(DataExplorer)
+plot_histogram(iris)
+```
+
+# esquisse
+
+```{r}
+library(esquisse)
+
+# esquisser(viewer = "browser")
+```
+
