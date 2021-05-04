@@ -1,0 +1,41 @@
+---
+title: "Raíces, Bulbos y Tubérculos en el Departamento del Valle del Cauca"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    vertical_layout: fill
+    theme: united
+    logo: logo3.png
+    favicon: logo3.png
+---
+
+```{r setup, include=FALSE}
+library(flexdashboard)
+```
+
+Column {data-width=400 .tabset}
+-----------------------------------------------------------------------
+
+### Área Sembrada - Municipios
+
+```{r}
+
+```
+
+### Área Sembrada - Cultivos
+
+Column {data-width=600}
+-----------------------------------------------------------------------
+
+### Variación Temporal
+
+```{r}
+
+```
+
+### Resumen Descriptivo - Papa China
+
+```{r}
+
+```
+

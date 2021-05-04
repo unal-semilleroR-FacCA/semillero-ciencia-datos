@@ -173,3 +173,46 @@ library(esquisse)
 # esquisser(viewer = "browser")
 ```
 
+# Accidentes de tránsito Florencia Caquetá
+
+```{r}
+library(tidyverse)
+library(janitor)
+
+accidentes <- read_csv("Accidentes_de_transporte__tasas_de_lesiones_por_100.000_habitantes__seg_n_edad_y_sexo__Colombia__2011.csv")
+accidentes
+```
+
+## Depuración
+
+- Limpiar los nombres
+- Eliminar las dos últimas columnas ("Total/Casos" y "Total/Tasa")
+- Eliminar la última fila que corresponde al "Total"
+- Realizar conversión de formato ancho a formato largo
+- Fraccionar la columna que contiene información de género, casos y tasa
+- Con la función pivot_wider() pasar a formato ancho dos columnas (total y tasa)
+
+```{r}
+accidentes2 <- accidentes %>% 
+  clean_names() %>% 
+  select(-c(total_casos, total_tasa)) %>% 
+  slice(-nrow(accidentes)) %>% 
+  pivot_longer(cols = -edad_anos, names_to = "tipo", values_to = "valores") %>% 
+  separate(col = "tipo", into = c("genero", "tipo2"), sep = "_", remove = TRUE) %>% 
+  pivot_wider(names_from = "tipo2", values_from = "valores")
+
+accidentes2
+```
+
+## Gráfico proporciones
+
+```{r}
+accidentes2 %>% 
+  group_by(edad_anos) %>% 
+  mutate(total_casos = sum(casos),
+         proporcion = casos / total_casos) %>% 
+  ggplot(mapping = aes(x = edad_anos, y = proporcion,
+                       fill = genero, color = genero)) +
+  geom_col(alpha = 0.7) +
+  coord_flip()
+```

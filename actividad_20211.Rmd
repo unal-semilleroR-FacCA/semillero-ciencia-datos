@@ -8,7 +8,7 @@ title: "Actividades 2021-01"
 | [2. Novedades en el tidyverse y bibliotecas auxiliares](/Actividades/2021_01/02-Tidyverse.html) | [Ejemplo 02 - `tidyverse`](https://rpubs.com/Edimer/754957) | [Descargar](/Actividades/2021_01/documents_rmd/02-tidyverse.Rmd) |
 | [3. Visualización con R: parte 1](/Actividades/2021_01/03_ggplot2_p1.html) | [Ejemplo 03 - `tidyverse`](https://rpubs.com/Edimer/757689) | [Descargar](/Actividades/2021_01/documents_rmd/03-mas-graficos.Rmd)  |
 | [4. Visualización con R: parte 2](/Actividades/2021_01/04-Visualization-p2.html) | [Ejemplo 04 - `tidyverse`](https://rpubs.com/Edimer/757689)  | [Descargar](/Actividades/2021_01/documents_rmd/03-mas-graficos.Rmd) |
-| [5. Tableros: flexdashboard 1](/Actividades/2021_01/05-Dashboard-1.html) |  | |
+| [5. Tableros: flexdashboard 1](/Actividades/2021_01/05-Dashboard-1.html) | [Ejemplo 05 - Dashboard 1](https://rpubs.com/Edimer/764924) | [Descargar](/Actividades/2021_01/documents_rmd/tablero1.Rmd) |
 | [6. Tableros: flexdashboard 2]() |  | |
 | [7. Shiny: Introducción]() |  | |
 | [8. Shiny + flexdashboard 1]() |  | |
