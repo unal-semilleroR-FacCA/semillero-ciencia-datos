@@ -2,7 +2,7 @@
 title: "Semillero R"
 subtitle: "Sesión 1: Repaso de R Markdown y Tidyverse"
 institute: "Universidad Nacional - Universidad de Antioquia"
-date: "`r Sys.Date()`"
+date: "2021-03-15"
 output:
   xaringan::moon_reader:
     lib_dir: libs
@@ -261,7 +261,7 @@ class: inverse, center, middle
 # Biblioteca `dplyr`
 
 <center>
-<img src = "https://miro.medium.com/max/3680/1*NXRsFH_12sfj79W-P4qI0Q.png" width = 700 />
+<img src = "img/dplyr.PNG" width = 700 />
 </center>
 
 ---
