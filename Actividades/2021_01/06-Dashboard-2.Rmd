@@ -147,7 +147,7 @@ gauge(
 .panel[.panel-name[Estructura general]
 
 <center>
-<img src = "img/fdash7_2.PNG" height= 350/>
+<img src = "img/fdash7_2.png" height= 350/>
 </center>
 
 ]
