@@ -1,0 +1,191 @@
+---
+title: "Semillero R"
+subtitle: "Sesión 6: Tableros de datos - `flexdashboard`"
+institute: "Universidad Nacional - Universidad de Antioquia"
+date: "2021-05-24"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+xaringanExtra::use_panelset()
+```
+
+class: inverse, center, middle
+
+# [`flexdashboard`](https://rmarkdown.rstudio.com/flexdashboard/)
+
+<center>
+<img src = "https://raw.githubusercontent.com/rstudio/hex-stickers/master/thumbs/flexdashboard.png" />
+</center>
+
+---
+class: inverse, center, middle
+
+# Diseños de múltiples páginas
+
+<center>
+<img src = "https://www.clipartmax.com/png/full/285-2856299_software-development-clipart-client-computer-sales-dashboard-icon-transparent.png" width = 500/>
+</center>
+
+---
+
+# Más diseños...
+
+.panelset[
+
+.panel[.panel-name[Múltiples páginas]
+
+<center>
+<img src = "img/fdash1_2.PNG" height= 400/>
+</center>
+
+]
+
+.panel[.panel-name[Orientación]
+
+<center>
+<img src = "img/fdash2_2.PNG" height= 250/>
+</center>
+
+]
+
+.panel[.panel-name[Menú de navegación]
+
+<center>
+<img src = "img/fdash3_3.PNG" height= 400/>
+</center>
+
+]
+
+.panel[.panel-name[Íconos]
+
+<center>
+<img src = "img/fdash4_2.PNG" height= 250/>
+</center>
+
+- [Consultar íconos *Font Awesome 5*.](https://www.w3schools.com/icons/default.asp)
+- [Consultar íconos *Font Awesome 6*.](https://fontawesome.com/icons)
+
+]
+
+]
+
+
+---
+
+# Componentes adicionales
+
+.panelset[
+
+.panel[.panel-name[Value Boxes]
+
+<center>
+<img src = "img/fdash5_2.PNG"/>
+</center>
+
+```{r, echo=TRUE, eval=FALSE}
+library(flexdashboard)
+valueBox(
+  value = 42,
+  caption = "Texto...",
+  icon = "fa-thumbs-down",
+  color = "#7dcf9c"
+)
+```
+
+]
+
+.panel[.panel-name[Gauges]
+
+<center>
+<img src = "img/fdash6_2.PNG"/>
+</center>
+
+```{r, echo=TRUE, eval=FALSE}
+library(flexdashboard)
+gauge(
+  value = 80, min = 0, max = 100,
+  label = "Rendimiento", symbol = "%",
+  gaugeSectors(
+    success = c(80, 100),
+    warning = c(40, 79),
+    danger = c(0, 39)
+  )
+)
+```
+
+
+]
+
+.panel[.panel-name[Colores]
+
+
+- `primary`
+- `info`
+- `success`
+- `warning`
+- `danger`
+- Colores compatible con *CSS*. [Consultar colores hexadecimales.](https://www.w3schools.com/colors/colors_hexadecimal.asp)
+
+]
+
+]
+
+---
+
+# Storyboard - [ejemplo](https://beta.rstudioconnect.com/jjallaire/htmlwidgets-showcase-storyboard/htmlwidgets-showcase-storyboard.html)
+
+.panelset[
+
+.panel[.panel-name[Estructura general]
+
+<center>
+<img src = "img/fdash7_2.png" height= 350/>
+</center>
+
+]
+
+.panel[.panel-name[Storyboard + Comentarios]
+
+<center>
+<img src = "img/fdash9_2.PNG"  height= 400/>
+</center>
+
+]
+
+.panel[.panel-name[Múltiples páginas]
+
+<center>
+<img src = "img/fdash8_2.PNG"  height= 400/>
+</center>
+
+]
+
+]
+
+---
+class: inverse,  middle, center
+
+# [R Markdown: The Definitive Guide - Chapter 5](https://bookdown.org/yihui/rmarkdown/dashboards.html)
+
+<center>
+<img src="https://bookdown.org/yihui/rmarkdown/images/cover.png" width = 330/>
+</center>
+
+---
+class: inverse, center, middle
+
+# 
+
+<center>
+<img src = "img/gracias.gif" width = 600 />
+</center>
+
+
