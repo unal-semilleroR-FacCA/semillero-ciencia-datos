@@ -11,6 +11,58 @@ output:
 
 ```{r setup, include=FALSE}
 library(flexdashboard)
+
+library(tidyverse)
+library(janitor)
+area_sembrada <- read_csv(
+  "Superficie_Sembrada_con_Ra_ces_Bulbos_y_Tub_rculos_en_el_departamento_del_Valle_del_Cauca.csv"
+) %>% 
+  clean_names() %>% 
+  filter(municipios != "Municipios") %>% 
+  mutate(across(c(ano:zanahoria_b), as.numeric)) %>% 
+  pivot_longer(cols = -c(municipios, ano),
+               names_to = "cultivo",
+               values_to = "area_sembrada")
+
+
+area_cosechada <- read_csv(
+  "Superficie_Cosechada_con_Ra_ces_Bulbos_y_Tub_rculos__en_el_Departamento_del_Valle_del_Cauca_del_A_o_2000_al_2018.csv"
+) %>% 
+  clean_names() %>% 
+  filter(municipios != "Municipios") %>% 
+  mutate(across(c(ano:zanahoria_b), as.numeric)) %>% 
+  pivot_longer(cols = -c(municipios, ano),
+               names_to = "cultivo",
+               values_to = "area_cosechada")
+
+produccion <- read_csv(
+  "Producci_n_en_Toneladas_por_Hect_reas_de_Ra_ces_Bulbos_y_Tub_rculos_en_el_Departamento_del_Valle_del_Cauca.csv"
+) %>% 
+  clean_names() %>% 
+  filter(ano != "año") %>% 
+  filter(arracacha != "ERROR: #VALUE!") %>% 
+  pivot_longer(cols = -c(municipios, ano),
+               names_to = "cultivo",
+               values_to = "produccion") %>% 
+  mutate(produccion = str_replace_all(produccion, ",", "."),
+         produccion = as.numeric(produccion),
+         ano = as.numeric(ano))
+
+
+rendimiento <- read_csv(
+  "Rendimiento_en_toneladas_por_hect_reas_en_Cultivos_de__Ra_ces_Bulbos_y_Tub_rculos_en_el_departamento_del_Valle_del_Cauca.csv"
+) %>% 
+  clean_names() %>% 
+  filter(ano != "año") %>% 
+  mutate(across(c(ano:zanahoria_b), as.numeric)) %>% 
+  pivot_longer(cols = -c(municipios, ano),
+               names_to = "cultivo",
+               values_to = "rendimiento")
+
+df_juntas <- inner_join(area_sembrada, area_cosechada,
+                        by = c("municipios", "ano", "cultivo")) %>% 
+  inner_join(produccion, by = c("municipios", "ano", "cultivo")) %>% 
+  inner_join(rendimiento, by = c("municipios", "ano", "cultivo"))
 ```
 
 Column {data-width=400 .tabset}
@@ -19,10 +71,38 @@ Column {data-width=400 .tabset}
 ### Área Sembrada - Municipios
 
 ```{r}
+library(gganimate)
+prueba <- df_juntas %>% 
+  mutate(ano = as.integer(ano)) %>% 
+  group_by(municipios, ano) %>% 
+  summarise(total_area_siembra = sum(area_sembrada, na.rm = TRUE)) %>% 
+  ggplot(aes(x = fct_reorder(municipios, total_area_siembra), y = total_area_siembra)) +
+  geom_col() +
+  coord_flip() +
+  theme_minimal() +
+  labs(title = 'Año: {frame_time}', x = "Municipio", y = "Hectáreas") +
+  transition_time(ano)
 
+animate(prueba)
 ```
 
 ### Área Sembrada - Cultivos
+
+```{r}
+prueba2 <- df_juntas %>% 
+  mutate(ano = as.integer(ano)) %>% 
+  group_by(cultivo, ano) %>% 
+  summarise(total_area_siembra = sum(area_sembrada, na.rm = TRUE)) %>% 
+  ggplot(aes(x = fct_reorder(cultivo, total_area_siembra), y = total_area_siembra)) +
+  geom_col() +
+  coord_flip() +
+  theme_minimal() +
+  labs(title = 'Año: {frame_time}', x = "Cultivo", y = "Hectáreas") +
+  transition_time(ano)
+
+animate(prueba2)
+```
+
 
 Column {data-width=600}
 -----------------------------------------------------------------------
@@ -30,12 +110,40 @@ Column {data-width=600}
 ### Variación Temporal
 
 ```{r}
-
+library(plotly)
+ggplotly(
+  df_juntas %>% 
+  group_by(ano) %>% 
+  summarise(total_area_siembra = sum(area_sembrada, na.rm = TRUE),
+            total_area_cosecha = sum(area_cosechada, na.rm = TRUE)) %>% 
+  pivot_longer(cols = -ano) %>% 
+  ggplot(aes(x = ano, y = value, color = name)) +
+  geom_line() +
+  labs(x = "Año", y = "Hectáreas") +
+  theme_minimal()
+)
 ```
 
 ### Resumen Descriptivo - Papa China
 
 ```{r}
-
+library(DT)
+df_juntas %>% 
+  filter(cultivo == "papachina") %>% 
+  group_by(municipios, ano) %>% 
+  summarise(area_siembra = sum(area_sembrada, na.rm = TRUE),
+            area_cosecha = sum(area_cosechada, na.rm = TRUE),
+            total_pdn = sum(produccion, na.rm = TRUE),
+            rto_promedio = mean(rendimiento, na.rm = TRUE)) %>% 
+  filter(area_siembra > 0) %>% 
+  rename(Municipio = municipios,
+         Año = ano,
+         `Área sembrada` = area_siembra,
+         `Área cosechada` = area_cosecha,
+         Producción = total_pdn,
+         Rendimiento = rto_promedio) %>% 
+  datatable(
+    rownames = FALSE
+  )
 ```
 
