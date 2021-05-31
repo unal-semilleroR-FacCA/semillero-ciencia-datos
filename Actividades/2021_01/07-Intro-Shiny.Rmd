@@ -1,8 +1,8 @@
 ---
 title: "Semillero R"
-subtitle: "Sesión 6: Tableros de datos - `flexdashboard`"
+subtitle: "Sesión 7: Introducción a `shiny`"
 institute: "Universidad Nacional - Universidad de Antioquia"
-date: "2021-05-24"
+date: "2021-05-31"
 output:
   xaringan::moon_reader:
     lib_dir: libs
@@ -19,164 +19,120 @@ xaringanExtra::use_panelset()
 
 class: inverse, center, middle
 
-# [`flexdashboard`](https://rmarkdown.rstudio.com/flexdashboard/)
+# [`shiny`](https://shiny.rstudio.com/)
 
 <center>
-<img src = "https://raw.githubusercontent.com/rstudio/hex-stickers/master/thumbs/flexdashboard.png" />
+<img src = "https://diegokoz.github.io/intro_ds_bookdown/img/shiny_logo.png" width=350/>
+</center>
+
+[Hoja guía `shiny` (español)](shiny_Spanish.pdf)
+
+---
+class: inverse, center, middle
+
+# ¿Qué es `shiny`?
+
+> *"Shiny es un paquete de código abierto que proporciona un marco elegante y potente para crear aplicaciones web utilizando R. Shiny le ayuda a convertir sus análisis en aplicaciones web interactivas sin necesidad de conocimientos de HTML, CSS o JavaScript."*
+
+> **RStudio.**
+
+<center>
+<img src = "https://insidedatablog.files.wordpress.com/2017/02/shiny.png" width=400/>
+</center>
+
+---
+
+# ¿Cómo funciona `shiny`?
+
+<center>
+<img src = "img/shiny_04.PNG"/>
+</center>
+
+---
+
+# Estructura de una App con `shiny`
+
+.panelset[
+
+.panel[.panel-name[Componentes]
+
+
+<center>
+<img src = "img/shiny_01.png"/>
+</center>
+
+]
+
+.panel[.panel-name[Estructura Simple]
+
+
+<center>
+<img src = "img/shiny_03.PNG"/>
+</center>
+
+]
+
+.panel[.panel-name[Estructura Múltiple]
+
+
+<center>
+<img src = "img/shiny_05.PNG" width=900/>
+</center>
+
+]
+
+]
+
+---
+
+# Entradas &#8594; [*inputs*](https://shiny.rstudio.com/gallery/widget-gallery.html)
+
+<center>
+<img src = "img/shiny_06.png"/>
+</center>
+
+---
+
+# Salidas &#8594; [*outputs*](https://shiny.rstudio.com/tutorial/written-tutorial/lesson4/)
+
+<center>
+<img src = "img/shiny_07.PNG" width=900/>
+</center>
+
+---
+
+# *Inputs* &#8594; *Outputs*
+
+<center>
+<img src = "img/shiny_08.PNG"/>
 </center>
 
 ---
 class: inverse, center, middle
 
-# Diseños de múltiples páginas
+# [Diseños de la App](https://www.bioinformatics.babraham.ac.uk/shiny/Intro_to_Shiny_course/examples/04.1_layouts/)
 
 <center>
-<img src = "https://www.clipartmax.com/png/full/285-2856299_software-development-clipart-client-computer-sales-dashboard-icon-transparent.png" width = 500/>
+<img src = "https://www.clipartmax.com/png/full/285-2856299_software-development-clipart-client-computer-sales-dashboard-icon-transparent.png" width = 250/>
 </center>
 
----
+`fluidRow()`   
+`flowLayout()`   
+`sidebarLayout()`   
+`splitLayout()`   
+`verticalLayout()`   
+`tabsetPanel()`    
+`navlistPanel()`     
+`navbarPage()`   
 
-# Más diseños...
-
-.panelset[
-
-.panel[.panel-name[Múltiples páginas]
-
-<center>
-<img src = "img/fdash1_2.PNG" height= 400/>
-</center>
-
-]
-
-.panel[.panel-name[Orientación]
-
-<center>
-<img src = "img/fdash2_2.PNG" height= 250/>
-</center>
-
-]
-
-.panel[.panel-name[Menú de navegación]
-
-<center>
-<img src = "img/fdash3_3.PNG" height= 400/>
-</center>
-
-]
-
-.panel[.panel-name[Íconos]
-
-<center>
-<img src = "img/fdash4_2.PNG" height= 250/>
-</center>
-
-- [Consultar íconos *Font Awesome 5*.](https://www.w3schools.com/icons/default.asp)
-- [Consultar íconos *Font Awesome 6*.](https://fontawesome.com/icons)
-
-]
-
-]
-
-
----
-
-# Componentes adicionales
-
-.panelset[
-
-.panel[.panel-name[Value Boxes]
-
-<center>
-<img src = "img/fdash5_2.PNG"/>
-</center>
-
-```{r, echo=TRUE, eval=FALSE}
-library(flexdashboard)
-valueBox(
-  value = 42,
-  caption = "Texto...",
-  icon = "fa-thumbs-down",
-  color = "#7dcf9c"
-)
-```
-
-]
-
-.panel[.panel-name[Gauges]
-
-<center>
-<img src = "img/fdash6_2.PNG"/>
-</center>
-
-```{r, echo=TRUE, eval=FALSE}
-library(flexdashboard)
-gauge(
-  value = 80, min = 0, max = 100,
-  label = "Rendimiento", symbol = "%",
-  gaugeSectors(
-    success = c(80, 100),
-    warning = c(40, 79),
-    danger = c(0, 39)
-  )
-)
-```
-
-
-]
-
-.panel[.panel-name[Colores]
-
-
-- `primary`
-- `info`
-- `success`
-- `warning`
-- `danger`
-- Colores compatible con *CSS*. [Consultar colores hexadecimales.](https://www.w3schools.com/colors/colors_hexadecimal.asp)
-
-]
-
-]
-
----
-
-# Storyboard - [ejemplo](https://beta.rstudioconnect.com/jjallaire/htmlwidgets-showcase-storyboard/htmlwidgets-showcase-storyboard.html)
-
-.panelset[
-
-.panel[.panel-name[Estructura general]
-
-<center>
-<img src = "img/fdash7_2.png" height= 350/>
-</center>
-
-]
-
-.panel[.panel-name[Storyboard + Comentarios]
-
-<center>
-<img src = "img/fdash9_2.PNG"  height= 400/>
-</center>
-
-]
-
-.panel[.panel-name[Múltiples páginas]
-
-<center>
-<img src = "img/fdash8_2.PNG"  height= 400/>
-</center>
-
-]
-
-]
 
 ---
 class: inverse,  middle, center
 
-# [R Markdown: The Definitive Guide - Chapter 5](https://bookdown.org/yihui/rmarkdown/dashboards.html)
+# [Mastering Shiny](https://mastering-shiny.org/index.html)
 
 <center>
-<img src="https://bookdown.org/yihui/rmarkdown/images/cover.png" width = 330/>
+<img src="https://d33wubrfki0l68.cloudfront.net/0c97eee3d8fc820f3a8d670c08b286e8a524257b/e426c/cover.png" width = 330/>
 </center>
 
 ---

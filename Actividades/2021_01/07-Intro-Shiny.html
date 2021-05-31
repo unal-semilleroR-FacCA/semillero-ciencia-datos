@@ -3,7 +3,7 @@
   <head>
     <title>Semillero R</title>
     <meta charset="utf-8" />
-    <meta name="date" content="2021-05-24" />
+    <meta name="date" content="2021-05-31" />
     <script src="libs/header-attrs/header-attrs.js"></script>
     <link href="libs/remark-css/default.css" rel="stylesheet" />
     <link href="libs/remark-css/default-fonts.css" rel="stylesheet" />
@@ -15,9 +15,9 @@
 class: center, middle, inverse, title-slide
 
 # Semillero R
-## Sesión 6: Tableros de datos - <code>flexdashboard</code>
+## Sesión 7: Introducción a <code>shiny</code>
 ### Universidad Nacional - Universidad de Antioquia
-### 2021-05-24
+### 2021-05-31
 
 ---
 
@@ -26,166 +26,120 @@ class: center, middle, inverse, title-slide
 
 class: inverse, center, middle
 
-# [`flexdashboard`](https://rmarkdown.rstudio.com/flexdashboard/)
+# [`shiny`](https://shiny.rstudio.com/)
 
 &lt;center&gt;
-&lt;img src = "https://raw.githubusercontent.com/rstudio/hex-stickers/master/thumbs/flexdashboard.png" /&gt;
+&lt;img src = "https://diegokoz.github.io/intro_ds_bookdown/img/shiny_logo.png" width=350/&gt;
+&lt;/center&gt;
+
+[Hoja guía `shiny` (español)](shiny_Spanish.pdf)
+
+---
+class: inverse, center, middle
+
+# ¿Qué es `shiny`?
+
+&gt; *"Shiny es un paquete de código abierto que proporciona un marco elegante y potente para crear aplicaciones web utilizando R. Shiny le ayuda a convertir sus análisis en aplicaciones web interactivas sin necesidad de conocimientos de HTML, CSS o JavaScript."*
+
+&gt; **RStudio.**
+
+&lt;center&gt;
+&lt;img src = "https://insidedatablog.files.wordpress.com/2017/02/shiny.png" width=400/&gt;
+&lt;/center&gt;
+
+---
+
+# ¿Cómo funciona `shiny`?
+
+&lt;center&gt;
+&lt;img src = "img/shiny_04.PNG"/&gt;
+&lt;/center&gt;
+
+---
+
+# Estructura de una App con `shiny`
+
+.panelset[
+
+.panel[.panel-name[Componentes]
+
+
+&lt;center&gt;
+&lt;img src = "img/shiny_01.png"/&gt;
+&lt;/center&gt;
+
+]
+
+.panel[.panel-name[Estructura Simple]
+
+
+&lt;center&gt;
+&lt;img src = "img/shiny_03.PNG"/&gt;
+&lt;/center&gt;
+
+]
+
+.panel[.panel-name[Estructura Múltiple]
+
+
+&lt;center&gt;
+&lt;img src = "img/shiny_05.PNG" width=900/&gt;
+&lt;/center&gt;
+
+]
+
+]
+
+---
+
+# Entradas &amp;#8594; [*inputs*](https://shiny.rstudio.com/gallery/widget-gallery.html)
+
+&lt;center&gt;
+&lt;img src = "img/shiny_06.png"/&gt;
+&lt;/center&gt;
+
+---
+
+# Salidas &amp;#8594; [*outputs*](https://shiny.rstudio.com/tutorial/written-tutorial/lesson4/)
+
+&lt;center&gt;
+&lt;img src = "img/shiny_07.PNG" width=900/&gt;
+&lt;/center&gt;
+
+---
+
+# *Inputs* &amp;#8594; *Outputs*
+
+&lt;center&gt;
+&lt;img src = "img/shiny_08.PNG"/&gt;
 &lt;/center&gt;
 
 ---
 class: inverse, center, middle
 
-# Diseños de múltiples páginas
+# [Diseños de la App](https://www.bioinformatics.babraham.ac.uk/shiny/Intro_to_Shiny_course/examples/04.1_layouts/)
 
 &lt;center&gt;
-&lt;img src = "https://www.clipartmax.com/png/full/285-2856299_software-development-clipart-client-computer-sales-dashboard-icon-transparent.png" width = 500/&gt;
+&lt;img src = "https://www.clipartmax.com/png/full/285-2856299_software-development-clipart-client-computer-sales-dashboard-icon-transparent.png" width = 250/&gt;
 &lt;/center&gt;
 
----
+`fluidRow()`   
+`flowLayout()`   
+`sidebarLayout()`   
+`splitLayout()`   
+`verticalLayout()`   
+`tabsetPanel()`    
+`navlistPanel()`     
+`navbarPage()`   
 
-# Más diseños...
-
-.panelset[
-
-.panel[.panel-name[Múltiples páginas]
-
-&lt;center&gt;
-&lt;img src = "img/fdash1_2.PNG" height= 400/&gt;
-&lt;/center&gt;
-
-]
-
-.panel[.panel-name[Orientación]
-
-&lt;center&gt;
-&lt;img src = "img/fdash2_2.PNG" height= 250/&gt;
-&lt;/center&gt;
-
-]
-
-.panel[.panel-name[Menú de navegación]
-
-&lt;center&gt;
-&lt;img src = "img/fdash3_3.PNG" height= 400/&gt;
-&lt;/center&gt;
-
-]
-
-.panel[.panel-name[Íconos]
-
-&lt;center&gt;
-&lt;img src = "img/fdash4_2.PNG" height= 250/&gt;
-&lt;/center&gt;
-
-- [Consultar íconos *Font Awesome 5*.](https://www.w3schools.com/icons/default.asp)
-- [Consultar íconos *Font Awesome 6*.](https://fontawesome.com/icons)
-
-]
-
-]
-
-
----
-
-# Componentes adicionales
-
-.panelset[
-
-.panel[.panel-name[Value Boxes]
-
-&lt;center&gt;
-&lt;img src = "img/fdash5_2.PNG"/&gt;
-&lt;/center&gt;
-
-
-```r
-library(flexdashboard)
-valueBox(
-  value = 42,
-  caption = "Texto...",
-  icon = "fa-thumbs-down",
-  color = "#7dcf9c"
-)
-```
-
-]
-
-.panel[.panel-name[Gauges]
-
-&lt;center&gt;
-&lt;img src = "img/fdash6_2.PNG"/&gt;
-&lt;/center&gt;
-
-
-```r
-library(flexdashboard)
-gauge(
-  value = 80, min = 0, max = 100,
-  label = "Rendimiento", symbol = "%",
-  gaugeSectors(
-    success = c(80, 100),
-    warning = c(40, 79),
-    danger = c(0, 39)
-  )
-)
-```
-
-
-]
-
-.panel[.panel-name[Colores]
-
-
-- `primary`
-- `info`
-- `success`
-- `warning`
-- `danger`
-- Colores compatible con *CSS*. [Consultar colores hexadecimales.](https://www.w3schools.com/colors/colors_hexadecimal.asp)
-
-]
-
-]
-
----
-
-# Storyboard - [ejemplo](https://beta.rstudioconnect.com/jjallaire/htmlwidgets-showcase-storyboard/htmlwidgets-showcase-storyboard.html)
-
-.panelset[
-
-.panel[.panel-name[Estructura general]
-
-&lt;center&gt;
-&lt;img src = "img/fdash7_2.png" height= 350/&gt;
-&lt;/center&gt;
-
-]
-
-.panel[.panel-name[Storyboard + Comentarios]
-
-&lt;center&gt;
-&lt;img src = "img/fdash9_2.PNG"  height= 400/&gt;
-&lt;/center&gt;
-
-]
-
-.panel[.panel-name[Múltiples páginas]
-
-&lt;center&gt;
-&lt;img src = "img/fdash8_2.PNG"  height= 400/&gt;
-&lt;/center&gt;
-
-]
-
-]
 
 ---
 class: inverse,  middle, center
 
-# [R Markdown: The Definitive Guide - Chapter 5](https://bookdown.org/yihui/rmarkdown/dashboards.html)
+# [Mastering Shiny](https://mastering-shiny.org/index.html)
 
 &lt;center&gt;
-&lt;img src="https://bookdown.org/yihui/rmarkdown/images/cover.png" width = 330/&gt;
+&lt;img src="https://d33wubrfki0l68.cloudfront.net/0c97eee3d8fc820f3a8d670c08b286e8a524257b/e426c/cover.png" width = 330/&gt;
 &lt;/center&gt;
 
 ---
