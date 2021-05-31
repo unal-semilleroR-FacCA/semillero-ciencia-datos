@@ -125,6 +125,18 @@ class: inverse, center, middle
 `navlistPanel()`     
 `navbarPage()`   
 
+---
+class: inverse, center, middle
+
+# 
+
+## [Temas con `shinythemes`](https://rstudio.github.io/shinythemes/)
+
+## [Temas con `bslib`](https://shiny.rstudio.com/articles/themes.html)
+
+<center>
+<img src = "https://icons-for-free.com/iconfiles/png/512/colors+palette+icon-1320087273311630593.png" width = 250/>
+</center>
 
 ---
 class: inverse,  middle, center
