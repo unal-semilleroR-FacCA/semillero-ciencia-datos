@@ -50,6 +50,14 @@ class: inverse, center, middle
 
 ---
 
+# ¿Qué es la reactividad?
+
+<center>
+<img src = "img/shiny_09.PNG"/>
+</center>
+
+---
+
 # Estructura de una App con `shiny`
 
 .panelset[

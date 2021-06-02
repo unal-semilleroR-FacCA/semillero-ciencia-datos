@@ -1,0 +1,132 @@
+---
+title: "Ejemplo Dashboard 2"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    vertical_layout: fill
+    theme: cosmo
+    source: embed
+---
+
+```{r setup, include=FALSE}
+library(flexdashboard)
+```
+
+
+Página 1 {data-orientation=rows data-icon="fa-paw"}
+=====================================
+
+### Panel 1
+
+### Panel 2
+
+Página 2 {data-icon="fa-dove" data-orientation=rows}
+=====================================
+
+Row
+-------------------------------------
+
+### 
+
+```{r}
+valueBox(
+  value = 40.5,
+  caption = "Ejemplo 1",
+  icon = "fa-paw",
+  color = "primary"
+)
+```
+
+### 
+
+```{r}
+valor_calculado <- 85
+
+valueBox(
+  value = valor_calculado,
+  caption = "Ejemplo 2",
+  icon = ifelse(test = valor_calculado > 50, yes = "fa-thumbs-up",
+                no = "fa-thumbs-down"),
+  color = ifelse(test = valor_calculado > 50, yes = "success",
+                 no = "danger")
+)
+```
+
+### 
+
+```{r}
+valueBox(
+  value = 100,
+  caption = "Ejemplo 3",
+  icon = "fa-thumbs-down",
+  color = "#414181"
+)
+```
+
+###
+
+```{r}
+gauge(
+  value = 40,
+  symbol = "%",
+  min = 1,
+  max = 100,
+  sectors = gaugeSectors(
+    success = c(70, 100),
+    warning = c(30, 69),
+    danger = c(1, 29)
+  ),
+  label = "Indicador 1"
+)
+```
+
+
+Row
+-------------------------------------
+
+### Tabla
+
+### Gráfico
+
+Ejemplo 1 {data-navmenu="Menú" .storyboard}
+=====================================
+
+### Ejemplo storyboard
+
+```{r}
+plot(iris)
+```
+
+### Otro ejemplo
+
+```{r}
+plot(mtcars)
+```
+
+### Este es un ejemplo de storyboard con flexdashboard en el semillero de R
+
+```{r}
+plot(Titanic)
+```
+
+***
+
+Estas son algunas notas para este resultado:
+
+- Viñeta 1
+
+- Viñeta 2
+
+- Viñeta 3
+
+### Ejemplo A
+
+### Ejemplo B
+
+### Ejemplo C
+
+Ejemplo 2 {data-navmenu="Menú"}
+=====================================
+
+Ejemplo 3 {data-navmenu="Menú"}
+=====================================
