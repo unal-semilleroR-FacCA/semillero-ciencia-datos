@@ -1,0 +1,266 @@
+---
+title: "Semillero R"
+subtitle: "Sesión 1: Introducción al Machine Learning con R"
+institute: "Universidad Nacional - Universidad de Antioquia"
+date: "2022-03-26"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+```
+
+background-image: url(https://www.grid.cl/blog/wp-content/uploads/2019/03/Machine-learning-1024x682.jpg)
+background-position: 50% 50%
+class: center, bottom, inverse
+
+---
+class: center, middle
+
+
+<center>
+<img src = "img/img1.png" />
+</center>
+
+.footnote[
+[Fuente: Diego Kozlowski y Juan Manuel Barriola](https://diegokoz.github.io/EEA2019/clase%208/tidymodels.nb.html)
+]
+
+---
+
+# Antecedentes históricos
+
+<center>
+<img src = "https://pbs.twimg.com/media/E51K5HwUYAgggrr.jpg" />
+</center>
+
+---
+
+# IA, ML y DL
+
+<center>
+<img src = "https://els-jbs-prod-cdn.jbs.elsevierhealth.com/cms/attachment/923fc6c6-8255-455e-90a1-b8411d1896f0/gr1_lrg.jpg" width = 500/>
+</center>
+
+---
+
+# ¿Qué es Machine Learning?
+
+.pull-left[
+
+<center>
+<img src = "https://camo.githubusercontent.com/25fd9336fe8deb6154d3356ba52ac62475e9ae163ee599ff81ce5985a14727da/68747470733a2f2f63646e2d696d616765732d312e6d656469756d2e636f6d2f6d61782f313230302f312a6d6758767a4e637766706e426177493658546b5652672e706e67" width = 280/>
+</center>
+
+<br>
+<center>
+<img src = "https://cdn-images-1.medium.com/max/1200/0*rRe5C8jraGnY-kli.jpeg"/>
+</center>
+
+
+
+]
+
+.pull-right[
+
+<center>
+<img src = "https://www.kdnuggets.com/wp-content/uploads/michell-process-measure-improve.png"/>
+</center>
+
+<br>
+
+<center>
+<img src = "https://i0.wp.com/www.zldoty.com/wp-content/uploads/2017/04/2017-04-06-001-Machine-Learning-Definition-ETP-Framework.png?resize=1003%2C550"/>
+</center>
+
+]
+
+---
+
+# Tipos de aprendizaje
+
+<center>
+<img src = "https://www.profesionalreview.com/wp-content/uploads/2019/08/Machine-Learning-1.png" />
+</center>
+
+---
+
+# Moodelamiento Estadístico
+
+> *"Si nuestro objetivo como campo es usar datos para resolver problemas, entonces debemos alejarnos de la dependencia exclusiva de los modelos de datos y adoptar un conjunto de herramientas más diverso"*.
+> Leo Breiman.
+
+<center>
+<img src = "img/img2.png" width = 550/>
+</center>
+
+.footnote[
+[Statistical Modeling: The Two Cultures](http://www2.math.uu.se/~thulin/mm/breiman.pdf)
+]
+
+---
+
+# Proceso de *Ciencia de Datos* y esquema de modelación
+
+<center>
+<img src = "https://www.tmwr.org/premade/data-science-model.svg" width = 400/>
+</center>
+
+<center>
+<img src = "https://www.tmwr.org/premade/modeling-process.svg" width = 600/>
+</center>
+
+
+---
+
+# [*Tidy Modeling with R*](https://www.tmwr.org/)
+
+<center>
+<img src = "https://www.tmwr.org/images/cover.png" width = 380 />
+</center>
+
+---
+
+#  
+
+.pull-left[
+
+### [`tidyverse`](https://www.tidyverse.org/)
+
+<center>
+<img src = "https://tidyverse.tidyverse.org/logo.png" width = 310/>
+</center>
+
+]
+
+.pull-right[
+
+### [`tidymodels`](https://www.tidymodels.org/)
+
+<center>
+<img src = "https://avatars0.githubusercontent.com/u/29100987?s=400&v=4"/>
+</center>
+
+]
+
+---
+
+<center>
+<img src = "https://pbs.twimg.com/media/Ef1Oac7WAAImCos.jpg" width = 680/>
+</center>
+
+---
+
+# Construcción de modelos predictivos
+
+  0. Entendimiento del problema
+  1. Análisis exploratorio  
+  2. Remuestreo de datos
+  3. Preprocesamiento
+  4. Ingeniería de características
+  5. Optimización de hiperparámetros
+  6. Evaluación del modelo
+
+<center>
+<img src = "img/img3.png" width = 550/>
+</center>
+
+.footnote[
+[Fuente: Tidymodels Ecosystem Tutorial](https://rpubs.com/chenx/tidymodels_tutorial)
+]
+
+---
+
+# Aprendizaje supervisado con R
+
+
+| Algoritmo | Función | Biblioteca | Tipo |
+| :------- | :--------: | :-----: | :--: |
+| Regresión lineal | `lm()`  | `stats`  | Regresión |
+| Regresión logística | `glm()` | `stats` | Clasificación |
+| Regresión regularizada | `glmnet()` | `glmnet` | Regresión, Clasificación |
+| K-vecinos más cercanos | `kknn()`  | `kknn`  | Regresión, Clasificación |
+| Árboles de decisión | `rpart()`  | `rpart`  | Regresión, Clasificación |
+|  Análisis discriminante lineal | `lda()`  | `MASS`  | Clasificación |
+| Análisis discriminante flexible | `earth()`  | `earth`  | Regresión |
+| Splines de regresión adaptativa multivariante (MARS)| `earth()`  | `earth`   | Regresión |
+
+
+
+---
+
+# Aprendizaje supervisado con R
+
+
+| Algoritmo | Función | Biblioteca | Tipo |
+| :------- | :--------: | :-----: | :--: |
+| Random Forest | `ranger()`  | `ranger`  | Regresión, Clasificación |
+| Naive Bayes | `naive_bayes()`  | `naivebayes`  | Clasificación |
+| Support Vector Machine | `svm()`  | `liquidSVM `  | Regresión, Clasificación |
+| Extreme Gradient Boosting | `xgboost()`  | `xgboost` | Regresión, Clasificación |
+| Perceptrón multicapa | `nnet()`  | `nnet`  | Regresión, Clasificación |
+| Regresión multinomial  | `multinom()`  | `nnet`  | Regresión, Clasificación |
+| Light Gradient Boosting Machine | `lightgbm()`  | `lightgbm`  | Regresión, Clasificación |
+
+---
+
+# Ejemplo de regresión: [Predicción de gastos por turistas en Tanzania](https://zindi.africa/competitions/tanzania-tourism-prediction/data)
+
+<center>
+<img src = "img/img4.png" height = 300 />
+</center>
+
+## [Descargar datos](/Actividades/2022_01/data/01-regresion-tanzania.zip)
+
+---
+class: inverse, center, middle
+
+# [*Tidy Modeling with R*](https://www.tmwr.org/)
+
+<center>
+<img src = "https://www.tmwr.org/images/cover.png" width = 380 />
+</center>
+
+---
+class: inverse, center, middle
+
+# [*Hands-On Machine Learning with R*](https://bradleyboehmke.github.io/HOML/)
+
+<center>
+<img src = "https://bradleyboehmke.github.io/HOML/images/homl-cover.jpg" width = 340 />
+</center>
+
+---
+class: inverse, center, middle
+
+# [*Explanatory Model Analysis - Explore, Explain, and Examine Predictive Models*](https://ema.drwhy.ai/)
+
+<center>
+<img src = "https://ema.drwhy.ai/figure/front4.png" width = 280 />
+</center>
+
+---
+class: inverse, center, middle
+
+# [*Feature Engineering and Selection: A Practical Approach for Predictive Models*](http://www.feat.engineering/)
+
+<center>
+<img src = "https://images-na.ssl-images-amazon.com/images/I/41Iu2bXXUgL._SX347_BO1,204,203,200_.jpg" width = 320 />
+</center>
+
+
+---
+class: inverse, center, middle
+
+
+<center>
+<img src = "img/gracias.gif" width = 600 />
+</center>
+
+

@@ -4,7 +4,7 @@ title: ""
 
 ## ¿Quién puede participar en el semillero?
 
-  - Cualquier estudiante de la Universidad Nacional o Universidad de Antioquia que tenga interés en aprender a utilizar el lenguaje de programación R.
+  - Cualquier persona que tenga interés en aprender a utilizar el lenguaje de programación R para análisis de datos.
 
 ## Propósitos del semillero  
 
@@ -12,7 +12,7 @@ title: ""
   - Promover la formulación y ejecución de proyectos de investigación con énfasis en métodos estadísticos aplicados en las ciencias biológicas.
   - Estimular el uso de herramientas tecnológicas que viabilicen el ejercicio académico y profesional.
   - Impulsar la utilización de herramientas de código abierto ([software libre](https://en.wikipedia.org/wiki/Free_software)) para ejecutar análisis estadístico.
-  - Potenciar la sinergía entre tecnología, agricultura y datos; como pilar fundamental de la toma de decisiones.
+  - Potenciar la sinergía entre tecnología, agricultura y datos, como pilar fundamental de la toma de decisiones.
 
 ## Actividades del semillero
 
@@ -36,7 +36,7 @@ title: ""
 ## Horario
 
 - **Lugar:** reuniones virtuales.
-- **Hora:** lunes 6 pm a 8 pm.
+- **Hora:** sábados 10:00 am a 12:00 pm.
 
 ## Dirección del semillero
 

@@ -28,8 +28,11 @@ navbar:
         icon: fa fa-line-chart
         href: actividad_20192.html 
       - text: 2021-01
-        icon: fa fa-pie-chart
-        href: actividad_20211.html         
+        icon: fa fa-tachometer
+        href: actividad_20211.html 
+      - text: 2022-01
+        icon: fa fa-flag
+        href: actividad_20221.html   
       - text: Publicaciones
         icon: fa fa-area-chart
         href: publicaciones.html
