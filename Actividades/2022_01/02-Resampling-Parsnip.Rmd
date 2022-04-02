@@ -23,7 +23,7 @@ xaringanExtra::use_panelset()
 # Remuestreo
 
 <center>
-<img src = "https://miro.medium.com/max/1400/1*9x2lAp3QF2FyIyQNaePkVA.png" width = 700 />
+<img src = "img/new.png" width = 700 />
 </center>
 
 
