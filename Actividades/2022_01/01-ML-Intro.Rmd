@@ -12,8 +12,12 @@ output:
       countIncrementalSlides: false
 ---
 
+
 ```{r setup, include=FALSE}
 options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(echo = TRUE)
+library(xaringanExtra)
+xaringanExtra::use_panelset()
 ```
 
 background-image: url(https://www.grid.cl/blog/wp-content/uploads/2019/03/Machine-learning-1024x682.jpg)
@@ -207,6 +211,32 @@ class: center, middle
 | Perceptrón multicapa | `nnet()`  | `nnet`  | Regresión, Clasificación |
 | Regresión multinomial  | `multinom()`  | `nnet`  | Regresión, Clasificación |
 | Light Gradient Boosting Machine | `lightgbm()`  | `lightgbm`  | Regresión, Clasificación |
+
+---
+
+# Consideraciones
+
+.panelset.sideways[
+
+.panel[.panel-name[Complejidad vs Interpretación]
+
+<center>
+<img src = "img/img13.png"/>
+</center>
+
+]
+
+.panel[.panel-name[Balance Sesgo-Varianza]
+
+<center>
+<img src = "img/img12.png"/>
+</center>
+
+]
+
+]
+
+
 
 ---
 
