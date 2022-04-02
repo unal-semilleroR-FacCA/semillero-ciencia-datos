@@ -1,0 +1,126 @@
+---
+title: "Semillero R"
+subtitle: "Sesión 2: Remuestreo y Arquitecturas de Modelos"
+institute: "Universidad Nacional - Universidad de Antioquia"
+date: "2022-04-02"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+class: inverse, center, middle
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(echo = TRUE)
+library(xaringanExtra)
+xaringanExtra::use_panelset()
+```
+
+# Remuestreo
+
+<center>
+<img src = "https://miro.medium.com/max/1400/1*9x2lAp3QF2FyIyQNaePkVA.png" width = 700 />
+</center>
+
+
+
+---
+
+# Remuestreo con `rsample`
+
+.panelset.sideways[
+
+.panel[.panel-name[Train - Test] 
+
+<center>
+<img src = "img/img6.png" width = 500/>
+</center>
+
+]
+
+.panel[.panel-name[Train, Validation y Test] 
+
+<center>
+<img src = "img/img7.PNG" width = 500/>
+</center>
+
+]
+
+.panel[.panel-name[Train, Validation y Test] 
+
+<center>
+<img src = "img/img8.PNG"/>
+</center>
+
+]
+
+.panel[.panel-name[Validación Cruzada] 
+
+<center>
+<img src = "img/img10.PNG"/>
+</center>
+
+]
+
+.panel[.panel-name[Validación Cruzada (*k-folds*)] 
+
+<center>
+<img src = "img/img9.PNG"/>
+</center>
+
+]
+
+.panel[.panel-name[Bootstrapping] 
+
+<center>
+<img src = "img/img11.png"/>
+</center>
+
+]
+
+
+
+]
+
+
+
+.footnote[
+[Fuente: Tidy Modeling with R](https://www.tmwr.org/)
+]
+
+---
+
+# Modelos con `parsnip`
+
+
+<center>
+<img src = "https://josiahparry.com/slides/tidymodels/images/parsnip.png" width = 380 />
+</center>
+
+- [Modelos disponibles con `parsnip`](https://www.tidymodels.org/find/parsnip/)
+
+---
+class: inverse, center, middle
+
+# [*Tidy Modeling with R*](https://www.tmwr.org/)
+
+<center>
+<img src = "https://www.tmwr.org/images/cover.png" width = 380 />
+</center>
+
+
+
+
+---
+class: inverse, center, middle
+
+
+<center>
+<img src = "img/gracias.gif" width = 600 />
+</center>
+
+

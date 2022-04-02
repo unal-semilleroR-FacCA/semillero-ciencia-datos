@@ -9,11 +9,10 @@ title: "Actividades 2022-01"
 | Tema | Ejemplo *HTML*| Código *.Rmd* |
 | :----- | :-----: | :-------: |
 | [1. Machine Learning con R: introducción a `tidymodels`](/Actividades/2022_01/01-ML-Intro.html) | [Ejemplo](/Actividades/2022_01/)  | [Descargar](/Actividades/2022_01/documents_rmd/) |
-| [2. Algoritmos de Machine Learning con R: `parsnip`](/Actividades/2022_01/) | [Ejemplo]() | [Descargar](/Actividades/2022_01/documents_rmd/) |
-| [3. Técnicas de remuestreo con R: Cross-Validation y Bootstrapping: `rsample`](/Actividades/2022_01/) | [Ejemplo]() | [Descargar](/Actividades/2022_01/documents_rmd/)  |
-| [4. Preprocesamiento e Ingeniería de características con R: `recipes`](/Actividades/2022_01/) | [Ejemplo]()  | [Descargar](/Actividades/2022_01/documents_rmd/) |
-| [5. Optimización de hiperparámetros con R: `tune` ](/Actividades/2022_01/) | [Ejemplo]() | [Descargar](/Actividades/2022_01/documents_rmd/) |
-| [6. Flujos de trabajo para Machine Learning con R: `workflows` (pipelines)](/Actividades/2022_01/) | [Ejemplo]() | [Descargar](/Actividades/2022_01/documents_rmd/) |
+| [2. Remuestreo con `rsample` y modelos con `parsnip`](/Actividades/2022_01/02-Resampling-Parsnip.html) | [Ejemplo]() | [Descargar](/Actividades/2022_01/documents_rmd/) |
+| [3. Preprocesamiento e Ingeniería de características con R: `recipes`](/Actividades/2022_01/) | [Ejemplo]()  | [Descargar](/Actividades/2022_01/documents_rmd/) |
+| [4. Optimización de hiperparámetros con R: `tune` ](/Actividades/2022_01/) | [Ejemplo]() | [Descargar](/Actividades/2022_01/documents_rmd/) |
+| [5. Flujos de trabajo para Machine Learning con R: `workflows` (pipelines)](/Actividades/2022_01/) | [Ejemplo]() | [Descargar](/Actividades/2022_01/documents_rmd/) |
 
 # Guías
 
