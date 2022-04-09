@@ -253,7 +253,7 @@ class: center, middle
 # Ejemplo de clasificación: [Registros clínicos de insuficiencia cardíaca](https://archive.ics.uci.edu/ml/datasets/Heart+failure+clinical+records)
 
 <center>
-<img src = "img/img5.png" />
+<img src = "img/imgnew.png" />
 </center>
 
 ---
