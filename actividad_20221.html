@@ -13,7 +13,7 @@
 
 <title>Actividades 2022-01</title>
 
-<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.13/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
@@ -47,6 +47,7 @@
 
 
 
+
 <link rel="stylesheet" href="style.css" type="text/css" />
 
 
@@ -71,6 +72,9 @@ button.code-folding-btn:focus {
 }
 summary {
   display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
 }
 pre code {
   padding: 0;
@@ -223,7 +227,7 @@ $(document).ready(function () {
 <div class="navbar navbar-default  navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
@@ -254,7 +258,7 @@ $(document).ready(function () {
   </a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     <span class="fa fa-list"></span>
      
     Material
@@ -372,29 +376,40 @@ $(document).ready(function () {
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left"><a href="/Actividades/2022_01/01-ML-Intro.html">1. Machine Learning con R: introducción a <code>tidymodels</code></a></td>
-<td align="center"><a href="/Actividades/2022_01/">Ejemplo</a></td>
-<td align="center"><a href="/Actividades/2022_01/documents_rmd/">Descargar</a></td>
+<td align="left"><a href="/Actividades/2022_01/01-ML-Intro.html">1.
+Machine Learning con R: introducción a <code>tidymodels</code></a></td>
+<td align="center"></td>
+<td align="center"></td>
 </tr>
 <tr class="even">
-<td align="left"><a href="/Actividades/2022_01/02-Resampling-Parsnip.html">2. Remuestreo con <code>rsample</code> y modelos con <code>parsnip</code></a></td>
+<td align="left"><a
+href="/Actividades/2022_01/02-Resampling-Parsnip.html">2. Remuestreo con
+<code>rsample</code> y modelos con <code>parsnip</code></a></td>
 <td align="center"><a href="">Ejemplo</a></td>
-<td align="center"><a href="/Actividades/2022_01/documents_rmd/">Descargar</a></td>
+<td align="center"><a
+href="/Actividades/2022_01/documents_rmd/">Descargar</a></td>
 </tr>
 <tr class="odd">
-<td align="left"><a href="/Actividades/2022_01/">3. Preprocesamiento e Ingeniería de características con R: <code>recipes</code></a></td>
+<td align="left"><a href="/Actividades/2022_01/">3. Ajuste de modelos
+con <code>tune</code> e Ingeniería de características con
+<code>recipes</code></a></td>
 <td align="center"><a href="">Ejemplo</a></td>
-<td align="center"><a href="/Actividades/2022_01/documents_rmd/">Descargar</a></td>
+<td align="center"><a
+href="/Actividades/2022_01/documents_rmd/">Descargar</a></td>
 </tr>
 <tr class="even">
-<td align="left"><a href="/Actividades/2022_01/">4. Optimización de hiperparámetros con R: <code>tune</code></a></td>
+<td align="left"><a href="/Actividades/2022_01/">4. Optimización de
+hiperparámetros con R: <code>tune</code></a></td>
 <td align="center"><a href="">Ejemplo</a></td>
-<td align="center"><a href="/Actividades/2022_01/documents_rmd/">Descargar</a></td>
+<td align="center"><a
+href="/Actividades/2022_01/documents_rmd/">Descargar</a></td>
 </tr>
 <tr class="odd">
-<td align="left"><a href="/Actividades/2022_01/">5. Flujos de trabajo para Machine Learning con R: <code>workflows</code> (pipelines)</a></td>
+<td align="left"><a href="/Actividades/2022_01/">5. Flujos de trabajo
+para Machine Learning con R: <code>workflows</code> (pipelines)</a></td>
 <td align="center"><a href="">Ejemplo</a></td>
-<td align="center"><a href="/Actividades/2022_01/documents_rmd/">Descargar</a></td>
+<td align="center"><a
+href="/Actividades/2022_01/documents_rmd/">Descargar</a></td>
 </tr>
 </tbody>
 </table>
@@ -413,12 +428,17 @@ $(document).ready(function () {
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left"><a href="/Actividades/2021_01/guide01.html">Guía 1. Actualizar versión de R (Windows)</a></td>
-<td align="left">Guía para actualización de versión de R en sistema operativo Windows, haciendo uso de la biblioteca <code>installr</code>.</td>
+<td align="left"><a href="/Actividades/2021_01/guide01.html">Guía 1.
+Actualizar versión de R (Windows)</a></td>
+<td align="left">Guía para actualización de versión de R en sistema
+operativo Windows, haciendo uso de la biblioteca
+<code>installr</code>.</td>
 </tr>
 <tr class="even">
-<td align="left"><a href="/Actividades/2021_01/guide02.html">Guía 2. Actualizar bibliotecas de R con RStudio</a></td>
-<td align="left">Guía para actualización de bibliotecas de R a través de RStudio.</td>
+<td align="left"><a href="/Actividades/2021_01/guide02.html">Guía 2.
+Actualizar bibliotecas de R con RStudio</a></td>
+<td align="left">Guía para actualización de bibliotecas de R a través de
+RStudio.</td>
 </tr>
 </tbody>
 </table>

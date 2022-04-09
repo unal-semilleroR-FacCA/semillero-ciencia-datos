@@ -13,7 +13,7 @@
 
 <title>R &amp; RStudio</title>
 
-<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.13/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
@@ -47,6 +47,7 @@
 
 
 
+
 <link rel="stylesheet" href="style.css" type="text/css" />
 
 
@@ -71,6 +72,9 @@ button.code-folding-btn:focus {
 }
 summary {
   display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
 }
 pre code {
   padding: 0;
@@ -223,7 +227,7 @@ $(document).ready(function () {
 <div class="navbar navbar-default  navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
@@ -254,7 +258,7 @@ $(document).ready(function () {
   </a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     <span class="fa fa-list"></span>
      
     Material
@@ -356,15 +360,34 @@ $(document).ready(function () {
 
 <div id="lenguaje-de-programación-r" class="section level2">
 <h2>Lenguaje de programación R</h2>
-<p><code>R</code> es un lenguaje de distribución libre (bajo la licencia <a href="https://en.wikipedia.org/wiki/GNU_General_Public_License">GPL - <em>General Public Licence</em></a>), interpretado y de gran uso en la manipulación de datos para el cómputo estadístico y gráfico. Disponible para Linux, MacOS y Windows. <code>R</code> fue creado por Ross Ihaka y Robert Gentleman a principios de los años 90 en Nueva Zelanda, y puede ser definido como una implementación del lenguaje <code>S</code>, este último desarrollado en AT&amp;T por John Chambers, Rick Becker y Allan Wilks.</p>
-<p>John Chambers y Trevor Hastie en el año 1991 describen en el texto <em>Statistical Models in S:</em></p>
+<p><code>R</code> es un lenguaje de distribución libre (bajo la licencia
+<a href="https://en.wikipedia.org/wiki/GNU_General_Public_License">GPL -
+<em>General Public Licence</em></a>), interpretado y de gran uso en la
+manipulación de datos para el cómputo estadístico y gráfico. Disponible
+para Linux, MacOS y Windows. <code>R</code> fue creado por Ross Ihaka y
+Robert Gentleman a principios de los años 90 en Nueva Zelanda, y puede
+ser definido como una implementación del lenguaje <code>S</code>, este
+último desarrollado en AT&amp;T por John Chambers, Rick Becker y Allan
+Wilks.</p>
+<p>John Chambers y Trevor Hastie en el año 1991 describen en el texto
+<em>Statistical Models in S:</em></p>
 <blockquote>
-<p>“Buscamos que los usuarios puedan iniciar en un entorno interactivo, en el que no se vean, conscientemente, a ellos mismos como programadores. Conforme sus necesidades sean más claras y su complejidd se incremente, deberían gradualmente poder profundizar en la programación, es cuando los aspectos del lenguaje y el sistema se vuelven más importantes”.</p>
+<p>“Buscamos que los usuarios puedan iniciar en un entorno interactivo,
+en el que no se vean, conscientemente, a ellos mismos como
+programadores. Conforme sus necesidades sean más claras y su complejidd
+se incremente, deberían gradualmente poder profundizar en la
+programación, es cuando los aspectos del lenguaje y el sistema se
+vuelven más importantes”.</p>
 </blockquote>
 </div>
 <div id="r-studio" class="section level2">
 <h2>R-Studio</h2>
-<p><code>R-Studio</code> es un entorno de desarrollo integrado (IDE) de fuente abierta para el lenguaje de programación <code>R</code>, que ofrece gran variedad de herramientas tecnológicas de vanguardia para la importación, administración, visualización, modelación y comunicación de la información. (Para más información consultar <a href="https://www.rstudio.com/">RStudio</a>).</p>
+<p><code>R-Studio</code> es un entorno de desarrollo integrado (IDE) de
+fuente abierta para el lenguaje de programación <code>R</code>, que
+ofrece gran variedad de herramientas tecnológicas de vanguardia para la
+importación, administración, visualización, modelación y comunicación de
+la información. (Para más información consultar <a
+href="https://www.rstudio.com/">RStudio</a>).</p>
 </div>
 <div id="aplicaciones" class="section level2">
 <h2>Aplicaciones</h2>
@@ -375,7 +398,10 @@ $(document).ready(function () {
 <li>Detección de enfermedades</li>
 <li>Clasificación de tumores</li>
 <li>Búsqueda de patrones en secuencias de DNA o RNA</li>
-<li>Algoritmos de <a href="https://en.wikipedia.org/wiki/Machine_learning">Machine Learning</a> para clasificación de pacientes con determinadas patologías</li>
+<li>Algoritmos de <a
+href="https://en.wikipedia.org/wiki/Machine_learning">Machine
+Learning</a> para clasificación de pacientes con determinadas
+patologías</li>
 </ul></li>
 <li>Desarrollo de herramientas de software
 <ul>
@@ -402,8 +428,10 @@ $(document).ready(function () {
 <li>Web scraping</li>
 <li>Big data</li>
 <li><a href="https://www.r-graph-gallery.com/">Galería de R</a></li>
-<li><a href="https://rmarkdown.rstudio.com/gallery.html">Galería de RStudio</a></li>
-<li><a href="https://shiny.rstudio.com/gallery/">Galería de Shiny</a></li>
+<li><a href="https://rmarkdown.rstudio.com/gallery.html">Galería de
+RStudio</a></li>
+<li><a href="https://shiny.rstudio.com/gallery/">Galería de
+Shiny</a></li>
 </ul>
 </div>
 
