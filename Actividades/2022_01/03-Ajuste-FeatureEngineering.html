@@ -27,6 +27,11 @@ class: inverse center, middle
 
 # Modelos de machine learning 
 
+&lt;center&gt;
+&lt;img src = "https://www.atriainnovation.com/wp-content/uploads/2021/02/portada.jpg" width = 700 /&gt;
+&lt;/center&gt;
+
+
 
 
 ---
@@ -132,22 +137,81 @@ class: inverse center, middle
 
 .panel[.panel-name[Regresión Lineal] 
 
+#### Modelo Lineal
+
+`$$y = b + mx \\$$`
+
+#### Modelo Lineal Múltiple
+
+`$$\hat{y} = \hat{\beta_0} + \hat{\beta_1}X_{i1} + \hat{\beta_2}X_{i2} + ... + \hat{\beta_{p-1}}X_{i_{(p-1)}} +  \hat{\epsilon}$$`
+
+#### Estimación por *Mínimos Cuadrados*
+
+`$$\beta = (X^TX)^{-1}X^Ty$$`
+#### Función de pérdida
+
+`$$SSE = \sum_{i=1}^{n}(y_i - \hat{y}_i)^2$$`
 
 ]
 
 .panel[.panel-name[Regresión Polinomial] 
 
+#### Regresión Polinomial
+
+&lt;center&gt;
+&lt;img src = "https://static.javatpoint.com/tutorial/machine-learning/images/machine-learning-polynomial-regression.png" width = 400 /&gt;
+&lt;/center&gt;
+
+
+
+`$$\hat{y} = \hat{\beta_0} + \hat{\beta_1}X_{i1} + \hat{\beta_1}X_{i1}^2 + \hat{\beta_2}X_{i2}^3 + ... + \hat{\beta_{p-1}}X_{i_{(p-1)}}^k +  \hat{\epsilon}$$`
+
+]
+
+.panel[.panel-name[Regresión con Splines] 
+
+`$$\hat{y} = \hat{\beta_0} + \hat{\beta_1}b_1(X_{i1}) + \hat{\beta_2}b_2(X_{i2}) + \hat{\beta_3}b_3(X_{i3}) + ... + \hat{\beta_k}b_k(X_{ik}) +  \hat{\epsilon}$$`
+
+Donde:
+
+`$$(x-t_i)^3_+ = \begin{cases}  (x-t_i)^3 &amp;\mbox{if } x &gt; t_i \\ 0 &amp; \mbox{if } x \leq t_i  \end{cases}$$`
+
+
+&lt;center&gt;
+&lt;img src = "https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Parametic_Cubic_Spline.svg/1200px-Parametic_Cubic_Spline.svg.png" width = 400 /&gt;
+&lt;/center&gt;
 
 ]
 
 .panel[.panel-name[Regresión Regularizada] 
 
+#### Regresión Ridge `\((L_2)\)`
+
+`$$SSE_{L_2} = \sum_{i=1}^{n}(y_i - \hat{y}_i)^2 + \lambda \sum_{j=1}^{p} \beta_j^2$$`
+
+#### Regresión Lasso `\((L_1)\)`
+
+`$$SSE_{L_1} = \sum_{i=1}^{n}(y_i - \hat{y}_i)^2 + \lambda \sum_{j=1}^{p} |\beta_j|$$`
+
+#### Regresión ElasticNet
+
+`$$SSE_{Enet} = \sum_{i=1}^{n}(y_i - \hat{y}_i)^2 + \lambda_1 \sum_{j=1}^{p} \beta_j^2 + \lambda_2 \sum_{j=1}^{p} |\beta_j|$$`
 
 ]
 
 .panel[.panel-name[Regresión Logística] 
 
+#### Modelo
 
+`$$log(\frac{p}{1-p}) = \beta_0+\beta_1X_1+\beta_2X_2+...++\beta_pX_p$$`
+
+#### Calculando probabilidades
+
+`$$p = \frac{1}{1+exp[-(\beta_0+\beta_1X_1+\beta_2X_2+...+\beta_pX_p)]}$$`
+
+#### Función de pérdida
+
+`$$-\frac{1}{N} \sum_{i=1}^{N} y_i \times log(p(y_i)) + (1-y_i) \times log(1-p(y_i))$$`
 
 ]
 
