@@ -34,6 +34,14 @@ xaringanExtra::use_panelset()
 
 .panelset.sideways[
 
+.panel[.panel-name[`rsample`] 
+
+<center>
+<img src = "https://rsample.tidymodels.org/logo.png" width = 200/>
+</center>
+
+]
+
 .panel[.panel-name[Train - Test] 
 
 <center>

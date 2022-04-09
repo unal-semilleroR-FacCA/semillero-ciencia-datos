@@ -3,7 +3,7 @@
   <head>
     <title>Semillero R</title>
     <meta charset="utf-8" />
-    <meta name="date" content="2022-04-02" />
+    <meta name="date" content="2022-04-09" />
     <script src="libs/header-attrs/header-attrs.js"></script>
     <link href="libs/remark-css/default.css" rel="stylesheet" />
     <link href="libs/remark-css/default-fonts.css" rel="stylesheet" />
@@ -15,116 +15,197 @@
 class: center, middle, inverse, title-slide
 
 # Semillero R
-## Sesión 2: Remuestreo y Arquitecturas de Modelos
+## Sesión 3: Ajuste de modelos e ingeniería de características
 ### Universidad Nacional - Universidad de Antioquia
-### 2022-04-02
+### 2022-04-09
 
 ---
 
-class: inverse, center, middle
+class: inverse center, middle
 
 
 
-# Remuestreo
+# Modelos de machine learning 
+
+
+
+---
+
+# Aprendizaje Supervisado
 
 &lt;center&gt;
-&lt;img src = "img/new.png" width = 700 /&gt;
+&lt;img src = "https://static.javatpoint.com/tutorial/machine-learning/images/regression-vs-classification-in-machine-learning.png" width = 700 /&gt;
 &lt;/center&gt;
 
 
+---
+
+# Métricas de error o desempeño ([ver lista](https://yardstick.tidymodels.org/articles/metric-types.html))
+
+&lt;center&gt;
+&lt;img src = "https://yardstick.tidymodels.org/logo.png" /&gt;
+&lt;/center&gt;
+
+.pull-left[
+
+#### Clasificación
+
+- Curva ROC (AUC)
+- Log loss
+- Accuracy
+- Especificidad
+- Sensitividad
+- F1-Score
+- Matriz de confusión
+- ...
+
+]
+
+.pull-right[
+
+#### Regresión
+
+- RMSE
+- MSE
+- `\(R^2\)`
+- MAPE
+- MASE
+- MAE
+- Huber loss
+- ...
+
+]
 
 ---
 
-# Remuestreo con `rsample`
+# Funciones de *pérdida (loss)*
+
+.panelset[
+
+.panel[.panel-name[Representación]
+
+&lt;center&gt;
+&lt;img src = "https://i0.wp.com/neptune.ai/wp-content/uploads/neural-network-loss.jpg?resize=768%2C407&amp;ssl=1" /&gt;
+&lt;/center&gt;
+
+]
+
+.panel[.panel-name[Problemas de Optimización]
+
+&lt;center&gt;
+&lt;img src = "https://blog.paperspace.com/content/images/2018/05/convex_cost_function.jpg" /&gt;
+&lt;/center&gt;
+
+]
+
+.panel[.panel-name[Tipos de Funciones]
+
+.pull-left[
+
+#### Sencillas
+
+&lt;center&gt;
+&lt;img src = "https://miro.medium.com/max/1400/1*lhEF_VbpXHW76p6KI5cycQ.gif" height = 280  /&gt;
+&lt;/center&gt;
+
+]
+
+.pull-right[
+
+#### Complejas
+
+&lt;center&gt;
+&lt;img src = "https://miro.medium.com/max/1400/1*LESP-gCIM4H-WZbX_3LwKw.gif" height = 280 /&gt;
+&lt;/center&gt;
+
+]
+
+]
+
+]
+
+---
+
+# Modelos Lineales
 
 .panelset.sideways[
 
-.panel[.panel-name[`rsample`] 
+.panel[.panel-name[Regresión Lineal] 
+
+
+]
+
+.panel[.panel-name[Regresión Polinomial] 
+
+
+]
+
+.panel[.panel-name[Regresión Regularizada] 
+
+
+]
+
+.panel[.panel-name[Regresión Logística] 
+
+
+
+]
+
+]
+
+
+---
+
+# Ingeniería de características con `recipes`
+
 
 &lt;center&gt;
-&lt;img src = "https://rsample.tidymodels.org/logo.png" width = 200/&gt;
+&lt;img src = "https://recipes.tidymodels.org/logo.png" width = 350 /&gt;
 &lt;/center&gt;
-
-]
-
-.panel[.panel-name[Train - Test] 
-
-&lt;center&gt;
-&lt;img src = "img/img6.png" width = 500/&gt;
-&lt;/center&gt;
-
-]
-
-.panel[.panel-name[Train, Validation y Test] 
-
-&lt;center&gt;
-&lt;img src = "img/img7.PNG" width = 500/&gt;
-&lt;/center&gt;
-
-]
-
-.panel[.panel-name[Train, Validation y Test] 
-
-&lt;center&gt;
-&lt;img src = "img/img8.PNG"/&gt;
-&lt;/center&gt;
-
-]
-
-.panel[.panel-name[Validación Cruzada] 
-
-&lt;center&gt;
-&lt;img src = "img/img10.PNG"/&gt;
-&lt;/center&gt;
-
-]
-
-.panel[.panel-name[Validación Cruzada (*k-folds*)] 
-
-&lt;center&gt;
-&lt;img src = "img/img9.PNG"/&gt;
-&lt;/center&gt;
-
-]
-
-.panel[.panel-name[Bootstrapping] 
-
-&lt;center&gt;
-&lt;img src = "img/img11.png"/&gt;
-&lt;/center&gt;
-
-]
-
-
-
-]
-
-
 
 .footnote[
-[Fuente: Tidy Modeling with R](https://www.tmwr.org/)
+[Funciones de referencia](https://recipes.tidymodels.org/reference/index.html)
 ]
 
 ---
 
-# Modelos con `parsnip`
+# Ajuste de modelos con `tune`
 
 
 &lt;center&gt;
-&lt;img src = "https://josiahparry.com/slides/tidymodels/images/parsnip.png" width = 380 /&gt;
+&lt;img src = "https://tune.tidymodels.org/logo.png" width = 350 /&gt;
 &lt;/center&gt;
 
-- [Modelos disponibles con `parsnip`](https://www.tidymodels.org/find/parsnip/)
+.footnote[
+[Funciones de referencia](https://tune.tidymodels.org/reference/index.html)
+]
 
 ---
 class: inverse, center, middle
 
-# [*Tidy Modeling with R*](https://www.tmwr.org/)
+# [*An Introduction to Statistical Learning*](https://www.statlearning.com/)
 
 &lt;center&gt;
-&lt;img src = "https://www.tmwr.org/images/cover.png" width = 380 /&gt;
+&lt;img src = "https://images.squarespace-cdn.com/content/v1/5ff2adbe3fe4fe33db902812/1611294680091-25SIDM9AHA8ECIFFST23/Screen+Shot+2021-01-21+at+11.02.06+AM.png?format=500w" width = 280 /&gt;
 &lt;/center&gt;
 
+---
+class: inverse, center, middle
+
+# [*Applied Predictive Modeling*](https://www.ic.unicamp.br/~wainer/cursos/1s2021/432/2013_Book_AppliedPredictiveModeling.pdf)
+
+&lt;center&gt;
+&lt;img src = "http://images.squarespace-cdn.com/content/v1/51156277e4b0b8b2ffe11c00/1360360583907-80GO5VT0A3YJVIDEBRS6/cover.png?format=1500w" width = 280 /&gt;
+&lt;/center&gt;
+
+---
+class: inverse, center, middle
+
+# [*The Elements of Statistical Learning*](https://hastie.su.domains/Papers/ESLII.pdf)
+
+&lt;center&gt;
+&lt;img src = "https://media.springernature.com/w306/springer-static/cover-hires/book/978-0-387-84858-7" width = 280 /&gt;
+&lt;/center&gt;
 
 
 
