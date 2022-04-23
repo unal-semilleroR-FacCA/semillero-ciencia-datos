@@ -228,6 +228,26 @@ $$-\frac{1}{N} \sum_{i=1}^{N} y_i \times log(p(y_i)) + (1-y_i) \times log(1-p(y_
 
 ---
 
+# Representación de modelos "mentales"
+
+#### Incorrecto
+
+<center>
+<img src = "https://www.tmwr.org/premade/bad-workflow.svg" width = 400 />
+</center>
+
+#### Correcto
+
+<center>
+<img src = "https://www.tmwr.org/premade/proper-workflow.svg" width = 400 />
+</center>
+
+.footnote[
+[Fuente: *Tidy modeling with R*](https://www.tmwr.org/workflows.html)
+]
+
+---
+
 # Ajuste de modelos con `tune`
 
 
