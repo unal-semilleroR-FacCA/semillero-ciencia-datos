@@ -11,8 +11,8 @@ title: "Actividades 2022-01"
 | [1. Machine Learning con R: introducción a `tidymodels`](/Actividades/2022_01/01-ML-Intro.html) |   | |
 | [2. Remuestreo con `rsample` y modelos con `parsnip`](/Actividades/2022_01/02-Resampling-Parsnip.html) | [Ejemplo](https://rpubs.com/Edimer/893663) | [Descargar](/Actividades/2022_01/documents_rmd/01-remuestreo-modelos-parsnip.zip) |
 | [3. Ajuste de modelos con `tune` e Ingeniería de características con `recipes`](/Actividades/2022_01/03-Ajuste-FeatureEngineering.html) | [Ejemplo](https://rpubs.com/Edimer/893683)  | [Descargar](/Actividades/2022_01/documents_rmd/02-Ajuste-Remuestreo-Recetas.zip) |
-| [4. Optimización de hiperparámetros con R: `tune` ](/Actividades/2022_01/) | [Ejemplo]() | [Descargar](/Actividades/2022_01/documents_rmd/) |
-| [5. Flujos de trabajo para Machine Learning con R: `workflows` (pipelines)](/Actividades/2022_01/) | [Ejemplo]() | [Descargar](/Actividades/2022_01/documents_rmd/) |
+| [4. Optimización de hiperparámetros con R: `tune` ](/Actividades/2022_01/04-Tuning.html) | [Ejemplo](https://rpubs.com/Edimer/899489) | [Descargar](/Actividades/2022_01/documents_rmd/03-Tuning-Workflows.zip) |
+| [5. Flujos de trabajo para Machine Learning con R: `workflows` (pipelines)](/Actividades/2022_01/05-Pipeline-ML.html) | [Ejemplo](https://rpubs.com/Edimer/899489) | [Descargar](/Actividades/2022_01/documents_rmd/03-Tuning-Workflows.zip) |
 
 # Guías
 
