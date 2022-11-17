@@ -4,34 +4,15 @@ title: ""
 
 ## ¿Quién puede participar en el semillero?
 
-  - Cualquier persona que tenga interés en aprender a utilizar el lenguaje de programación R para análisis de datos.
+  - Cualquier persona que tenga interés en aprender a utilizar los lenguajes de programación R y Python para análisis de datos. **El semillero es totalmente abierto y no tiene ningún costo.**
 
 ## Propósitos del semillero  
 
-  - Fomentar la discusión de temas relacionados con estadística computacional aplicada en las ciencias agrarias.
-  - Promover la formulación y ejecución de proyectos de investigación con énfasis en métodos estadísticos aplicados en las ciencias biológicas.
+  - Fomentar la discusión de temas relacionados con estadística computacional aplicada .
+  - Promover la formulación y ejecución de proyectos de investigación con énfasis en métodos estadísticos aplicados.
   - Estimular el uso de herramientas tecnológicas que viabilicen el ejercicio académico y profesional.
   - Impulsar la utilización de herramientas de código abierto ([software libre](https://en.wikipedia.org/wiki/Free_software)) para ejecutar análisis estadístico.
   - Potenciar la sinergía entre tecnología, agricultura y datos, como pilar fundamental de la toma de decisiones.
-
-## Actividades del semillero
-
-  - Reuniones periódicas
-  - Discusión de temas relacionados con los siguientes tópicos:
-      - Estadística teórica
-      - Estadística computacional
-          - Software R
-          - IDE RStudio
-      - Elementos de investigación reproducible    
-      - Genética cuantitativa
-      - Mejoramiento genético animal
-      - Bioestadística
-      - Métodos estadísticos multivariados en la agricultura
-      - Métodos estadísticos multivariados en ecología
-      - Diseño y análisis estadístico de experimentos
-  - Planeación, formulación y ejecución de proyectos de investigación
-  - Divulgación de resultados
-  - Mejoras compartidas
 
 ## Horario
 
@@ -40,5 +21,5 @@ title: ""
 
 ## Dirección del semillero
 
-  - [Luis Gabriel González Herrera](http://scienti.colciencias.gov.co:8081/cvlac/visualizador/generarCurriculoCv.do?cod_rh=0000901148)
-  - [Edimer David Jaramillo](https://edimer.github.io/)  
+  - [Luis Gabriel González Herrera](https://scholar.google.es/citations?user=6H65sOoAAAAJ&hl=es)
+  - [Edimer David Jaramillo](https://edimer.netlify.app/)  
