@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.1.251">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Semillero R - FacCA">
+
+<title>Ciencia de Datos con R y Python - Actividad práctica 1</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../favicon.png" rel="icon" type="image/png">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "Sín resultados",
+    "search-matching-documents-text": "documentos encontrados",
+    "search-copy-link-title": "Copiar el enlace en la busqueda",
+    "search-hide-matches-text": "Esconder resultados adicionales",
+    "search-more-match-text": "hay más resultados en este documento",
+    "search-more-matches-text": "más resultados en este documento",
+    "search-clear-button-title": "Borrar",
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Eviar"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-fixed fullcontent">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Ciencia de Datos con R y Python</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html">Inicio</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html">Información</a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-temas" role="button" data-bs-toggle="dropdown" aria-expanded="false">Temas</a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-temas">    
+        <li>
+    <a class="dropdown-item" href="../ciclo1.html">
+ <span class="dropdown-text">Ciclo 01</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/web-edimer/unal-semilleror-facca.github.io"><i class="bi bi-github" role="img">
+</i> 
+ </a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://www.youtube.com/@rpycol"><i class="bi bi-youtube" role="img">
+</i> 
+ </a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Actividad práctica 1</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Autor</div>
+    <div class="quarto-title-meta-contents">
+             <p>Semillero R - FacCA </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Fecha de Publicación</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">1 de junio de 2019</p>
+    </div>
+  </div>
+    
+  </div>
+  
+
+</header>
+
+<section id="planteamiento-del-problema" class="level1">
+<h1>Planteamiento del problema</h1>
+<section id="problemas-asociados-a-bases-de-datos-no-ordenadas" class="level2">
+<h2 class="anchored" data-anchor-id="problemas-asociados-a-bases-de-datos-no-ordenadas">Problemas asociados a bases de datos no ordenadas</h2>
+<ul>
+<li>Las variables se almacenan tanto en filas como en columnas.</li>
+<li>Más de una variable se almacena en una columna.</li>
+<li>Múltiples tipos de unidades experimentales se almacenan en una misma tabla.</li>
+<li>Un sólo tipo de unidad experimental se almacena en múltiples tablas.</li>
+<li>Los encabezados de las columnas, son valores, no variables.</li>
+</ul>
+</section>
+<section id="descripción-del-problema" class="level2">
+<h2 class="anchored" data-anchor-id="descripción-del-problema">Descripción del problema</h2>
+<ul>
+<li>Bases de datos en múltiples archivos de excel.</li>
+<li>Si el objetivo de análisis es holístico, no es conveniente tener información disgregada o fraccionada.</li>
+<li>Unión de datos en función de un factor, individuo u observación común.</li>
+<li>Caracterizar el comportamiento por países en función de las variables registradas.</li>
+<li><strong>Objetivo:</strong> hacer uso de los temas abordados el semestre pasado para describir y caracterizar la situación global por país.</li>
+</ul>
+</section>
+</section>
+<section id="bases-de-datos" class="level1">
+<h1>Bases de datos</h1>
+<section id="bases-de-datos-12" class="level2">
+<h2 class="anchored" data-anchor-id="bases-de-datos-12">Bases de datos (1/2)</h2>
+<ul>
+<li>Todas las bases de datos fueron obtenidas del <a href="https://datos.bancomundial.org/">Banco Mundial.</a></li>
+<li><a href="https://datos.bancomundial.org/indicador/EN.POP.DNST?view=chart">Densidad poblacional.</a></li>
+<li><a href="https://datos.bancomundial.org/indicador/EG.USE.ELEC.KH.PC?view=chart">Consumo de energía eléctrica.</a></li>
+<li><a href="https://datos.bancomundial.org/indicador/NY.GDP.MKTP.CD?view=chart">PIB.</a></li>
+<li><a href="https://datos.bancomundial.org/indicador/NY.GDP.MKTP.KD.ZG?view=chart">Crecimiento del PIB.</a></li>
+<li><a href="https://datos.bancomundial.org/indicador/SE.XPD.TOTL.GD.ZS?view=chart">Gasto público en educación.</a></li>
+<li><a href="https://datos.bancomundial.org/indicador/MS.MIL.XPND.GD.ZS?view=chart">Gasto militar.</a></li>
+<li><a href="https://datos.bancomundial.org/indicador/GB.XPD.RSDV.GD.ZS?view=chart">Gasto en investigación y desarrollo.</a></li>
+<li><a href="https://datos.bancomundial.org/indicador/DT.DOD.DECT.GN.ZS?view=chart">Deuda externa acumulada.</a></li>
+</ul>
+</section>
+<section id="bases-de-datos-22" class="level2">
+<h2 class="anchored" data-anchor-id="bases-de-datos-22">Bases de datos (2/2)</h2>
+<ul>
+<li><a href="https://datos.bancomundial.org/indicador/EG.ELC.ACCS.ZS?view=chart">Acceso a la electricidad.</a></li>
+<li><a href="https://datos.bancomundial.org/indicador/SL.UEM.TOTL.ZS?view=chart">Desempleo total.</a></li>
+<li><a href="https://datos.bancomundial.org/indicador/SH.MED.BEDS.ZS?view=chart">Camas hospitalarias.</a></li>
+<li><a href="https://datos.bancomundial.org/indicador/FB.ATM.TOTL.P5?view=chart">Cajeros automáticos.</a></li>
+<li><a href="https://datos.bancomundial.org/indicador/EN.ATM.PM25.MC.M3?view=chart">Contaminación del aire por PM2.5</a></li>
+<li><a href="https://datos.bancomundial.org/indicador/SP.RUR.TOTL.ZS?view=chart">Población rural.</a></li>
+<li><a href="https://datos.bancomundial.org/indicador/AG.LND.ARBL.ZS?view=chart">Tierras cultivables.</a></li>
+<li><a href="https://datos.bancomundial.org/indicador/AG.CON.FERT.ZS?view=chart">Consumo de fertilizantes.</a></li>
+<li><a href="https://datos.bancomundial.org/indicador/ER.H2O.FWTL.ZS?view=chart">Extracción de agua dulce.</a></li>
+</ul>
+</section>
+</section>
+<section id="actividad-práctica" class="level1">
+<h1>Actividad práctica</h1>
+<section id="ejercicios" class="level2">
+<h2 class="anchored" data-anchor-id="ejercicios">Ejercicios</h2>
+<ul>
+<li>Unir las bases de datos en un sólo <code>data frame</code> que contenga información para cada país.</li>
+<li>¿Cuáles son los 10 países con mayor densidad poblacional?</li>
+<li>Piense en un gráfico (sólo uno) que permita evidenciar la relación del gasto en educación y el crecimiento del PIB.</li>
+<li>Genere una nueva variable con información del continente al cual pertenece el país.</li>
+<li>Con un gráfico o medida trate de mostrar la variación existente en el gasto en investigación y desarrollo por continente.</li>
+<li>Con un gráfico muestre cómo es la distribución de cada variable numérica.</li>
+</ul>
+</section>
+</section>
+<section id="tareas-pendientes" class="level1">
+<h1>Tareas pendientes</h1>
+<section id="tareas" class="level2">
+<h2 class="anchored" data-anchor-id="tareas">Tareas</h2>
+<ul>
+<li>Base de datos con experimento de interés (29 de junio de 2019).</li>
+<li>Propuesta del logo del semillero (29 de junio de 2019).</li>
+<li>Presentación de propuestas tentativas para el <a href="https://rdaymedellin.github.io/">R day - Medellín</a> (06 de julio de 2019).</li>
+<li>Leer acerca de gráficos cuantil-cuantil y contrastes de hipótesis para validación del supuesto de normalidad.</li>
+<li>Leer acerca de las funciones <em>join:</em>
+<ul>
+<li><a href="https://statistical-programming.com/r-dplyr-join-inner-left-right-full-semi-anti">Join Data Frames with the R dplyr package.</a></li>
+<li><a href="https://rpubs.com/williamsurles/293454">Joining Data in R with dplyr.</a></li>
+<li><a href="https://dplyr.tidyverse.org/reference/join.html">Join two tbls together.</a></li>
+</ul></li>
+</ul>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copiada");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

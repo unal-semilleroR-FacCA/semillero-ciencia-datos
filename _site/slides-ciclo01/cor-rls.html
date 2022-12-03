@@ -1,0 +1,1611 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.1.251">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Edimer David Jaramillo">
+
+<title>Ciencia de Datos con R y Python - Correlación: visualizaciones</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../favicon.png" rel="icon" type="image/png">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "Sín resultados",
+    "search-matching-documents-text": "documentos encontrados",
+    "search-copy-link-title": "Copiar el enlace en la busqueda",
+    "search-hide-matches-text": "Esconder resultados adicionales",
+    "search-more-match-text": "hay más resultados en este documento",
+    "search-more-matches-text": "más resultados en este documento",
+    "search-clear-button-title": "Borrar",
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Eviar"
+  }
+}</script>
+
+<script src="../site_libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+<link href="../site_libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet">
+<script src="../site_libs/datatables-binding-0.25/datatables.js"></script>
+<script src="../site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<link href="../site_libs/dt-core-1.11.3/css/jquery.dataTables.min.css" rel="stylesheet">
+<link href="../site_libs/dt-core-1.11.3/css/jquery.dataTables.extra.css" rel="stylesheet">
+<script src="../site_libs/dt-core-1.11.3/js/jquery.dataTables.min.js"></script>
+<link href="../site_libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet">
+<script src="../site_libs/crosstalk-1.2.0/js/crosstalk.min.js"></script>
+
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-fixed fullcontent">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Ciencia de Datos con R y Python</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html">Inicio</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html">Información</a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-temas" role="button" data-bs-toggle="dropdown" aria-expanded="false">Temas</a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-temas">    
+        <li>
+    <a class="dropdown-item" href="../ciclo1.html">
+ <span class="dropdown-text">Ciclo 01</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/web-edimer/unal-semilleror-facca.github.io"><i class="bi bi-github" role="img">
+</i> 
+ </a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://www.youtube.com/@rpycol"><i class="bi bi-youtube" role="img">
+</i> 
+ </a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Correlación: visualizaciones</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Autor</div>
+    <div class="quarto-title-meta-contents">
+             <p>Edimer David Jaramillo </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Fecha de Publicación</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">1 de enero de 2019</p>
+    </div>
+  </div>
+    
+  </div>
+  
+
+</header>
+
+<section id="base-de-datos" class="level1">
+<h1>Base de datos</h1>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>datos <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"Datos/Datos_Continentes.csv"</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>datos</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                                               pais  cajeros17 camas14
+1                                       AfganistÃ¡n   1.274667    0.50
+2                                           Albania  31.471579      NA
+3                                          Alemania         NA      NA
+4                                           Andorra         NA      NA
+5                                            Angola         NA      NA
+6                                 Antigua y Barbuda  63.114237    3.80
+7                                    Arabia Saudita  74.375035    2.70
+8                                           Argelia   9.384573      NA
+9                                         Argentina  59.391257    5.00
+10                                          Armenia  63.690056      NA
+11                                            Aruba 124.985534      NA
+12                                        Australia 162.006414    3.80
+13                                          Austria 115.303521      NA
+14                                      AzerbaiyÃ¡n  32.127577      NA
+15                                          Bahamas 115.105535      NA
+16                                          Bahrein         NA    2.00
+17                                       Bangladesh   8.072708    0.60
+18                                         Barbados         NA    5.80
+19                                         BelarÃºs  55.633457      NA
+20                                         BÃ©lgica         NA    6.20
+21                                           Belice  38.917623    1.30
+22                                            Benin         NA      NA
+23                                         Bermudas         NA      NA
+24                                          BhutÃ¡n  36.581871      NA
+25                                          Bolivia  40.225490    1.10
+26                             Bosnia y Herzegovina  51.104169      NA
+27                                         Botswana  32.571156      NA
+28                                           Brasil 106.780646    2.20
+29                                Brunei Darussalam  68.486509      NA
+30                                         Bulgaria  95.128845      NA
+31                                     Burkina Faso   3.972802      NA
+32                                          Burundi         NA    0.80
+33                                       Cabo Verde  46.938877      NA
+34                                          Camboya  16.728591      NA
+35                                         CamerÃºn         NA      NA
+36                                          CanadÃ¡ 227.823571      NA
+37                                             Chad   1.536362      NA
+38                                            Chile  52.979853      NA
+39                                            China         NA      NA
+40                                           Chipre  48.520334      NA
+41                                         Colombia  41.840115    1.50
+42                                          Comoras   4.896051      NA
+43                            Congo, RepÃºblica del         NA      NA
+44               Congo, RepÃºblica DemocrÃ¡tica del         NA      NA
+45                             Corea, RepÃºblica de         NA      NA
+46        Corea, RepÃºblica Popular DemocrÃ¡tica de         NA      NA
+47                                       Costa Rica  64.883624    1.10
+48                                   CÃ´te d'Ivoire         NA      NA
+49                                          Croacia 140.381651    5.89
+50                                             Cuba         NA    5.20
+51                                          Curacao         NA      NA
+52                                        Dinamarca  50.057355      NA
+53                                         Djibouti  12.130586    1.40
+54                                         Dominica  36.279455      NA
+55                                          Ecuador  50.280612      NA
+56                     Egipto, RepÃºblica Ã\201rabe de         NA    1.60
+57                                      El Salvador  37.264356    1.30
+58                          Emiratos Ã\201rabes Unidos  65.505847      NA
+59                                        Eslovenia  93.655056      NA
+60                                          EspaÃ±a 111.834936      NA
+61                                   Estados Unidos         NA      NA
+62                                          Estonia  67.989627      NA
+63                                         Eswatini  30.040870      NA
+64                                         EtiopÃ­a         NA      NA
+65                             FederaciÃ³n de Rusia 163.926125      NA
+66                                             Fiji  50.177164      NA
+67                                        Filipinas  28.305813      NA
+68                                        Finlandia  32.515116      NA
+69                                          Francia         NA      NA
+70                                           GabÃ³n         NA      NA
+71                                           Gambia         NA      NA
+72                                          Georgia  75.930531      NA
+73                                            Ghana  11.530873      NA
+74                                        Gibraltar         NA      NA
+75                                          Granada  44.067839    3.70
+76                                           Grecia  61.532615      NA
+77                                      Groenlandia         NA      NA
+78                                             Guam         NA      NA
+79                                        Guatemala  36.057779    0.60
+80                                           Guinea   2.247021      NA
+81                                Guinea Ecuatorial         NA      NA
+82                                    Guinea-Bissau         NA      NA
+83                                           Guyana  20.278907    1.60
+84                                           HaitÃ­   1.969990      NA
+85                                         Honduras  23.889901    0.70
+86       Hong Kong, RegiÃ³n Administrativa Especial         NA      NA
+87                                         HungrÃ­a  60.937153      NA
+88                                            India  22.065116      NA
+89                                        Indonesia  55.614194      NA
+90                  IrÃ¡n, RepÃºblica IslÃ¡mica del  76.488143    1.50
+91                                             Iraq   2.678396    1.40
+92                                          Irlanda  89.500261      NA
+93                                      Isla de Man         NA      NA
+94             Isla de San MartÃ­n (parte francesa)         NA      NA
+95                                         Islandia  89.470869    3.20
+96                                    Islas CaimÃ¡n         NA      NA
+97                                  Islas del Canal         NA      NA
+98                                      Islas Feroe         NA      NA
+99                                   Islas Marshall         NA      NA
+100                                  Islas SalomÃ³n  12.035851      NA
+101                           Islas Turcas y Caicos         NA      NA
+102                        Islas VÃ­rgenes (EE.UU.)         NA      NA
+103                     Islas VÃ­rgenes BritÃ¡nicas         NA      NA
+104                                          Israel 121.258372      NA
+105                                          Italia  92.400919      NA
+106                                         Jamaica  31.789783      NA
+107                                          JapÃ³n 127.766988      NA
+108                                        Jordania  27.998151    1.90
+109                                      KazajstÃ¡n  74.599741      NA
+110                                           Kenya         NA      NA
+111                                     KirguistÃ¡n  33.430396      NA
+112                                        Kiribati         NA      NA
+113                                          Kosovo  36.010919      NA
+114                                          Kuwait  64.428607    2.00
+115                                         Lesotho         NA      NA
+116                                         Letonia  61.884893      NA
+117                                         LÃ­bano  40.658488    2.90
+118                                         Liberia         NA      NA
+119                                           Libia   3.755819    3.70
+120                                   Liechtenstein         NA      NA
+121                                        Lituania  46.749891      NA
+122                                      Luxemburgo 115.396650    4.90
+123                             Macedonia del Norte  59.407401      NA
+124                                      Madagascar   2.795703      NA
+125                                         Malasia  46.751131      NA
+126                                          Malawi         NA      NA
+127                                        Maldivas  35.010339      NA
+128                                           MalÃ­         NA      NA
+129                                           Malta  55.254084    4.70
+130                                         Mariana         NA      NA
+131                                       Marruecos  26.979311    1.10
+132                                        Mauricio  43.504273      NA
+133                                      Mauritania         NA      NA
+134                                         MÃ©xico  53.532271      NA
+135                                         MÃ³naco         NA      NA
+136                                        Mongolia         NA      NA
+137                                      Montenegro  80.832711      NA
+138                                      Mozambique   8.931567      NA
+139                                         Myanmar   4.378925      NA
+140                                         Namibia         NA      NA
+141                                           Nauru         NA      NA
+142                                           Nepal  10.275601      NA
+143                                       Nicaragua  17.654647    0.90
+144                                          NÃ­ger         NA      NA
+145                                         Nigeria  16.320860      NA
+146                                         Noruega  36.377238      NA
+147                                 Nueva Caledonia         NA      NA
+148                                  Nueva Zelandia  65.880694      NA
+149                                           OmÃ¡n  37.710615    1.60
+150                                   PaÃ­ses Bajos  44.613599      NA
+151                                       PakistÃ¡n  10.435218    0.60
+152                                           Palau  45.845272      NA
+153                                         PanamÃ¡  70.663779      NA
+154                              Papua Nueva Guinea         NA      NA
+155                                        Paraguay  27.116665      NA
+156                                           PerÃº 106.572408    1.60
+157                              Polinesia Francesa         NA      NA
+158                                         Polonia         NA      NA
+159                                        Portugal 168.039179      NA
+160                                     Puerto Rico         NA      NA
+161                                           Qatar  59.041954    1.20
+162 RegiÃ³n Administrativa Especial de Macao, China 313.152787      NA
+163                                     Reino Unido 128.126941      NA
+164                         RepÃºblica Ã\201rabe Siria         NA    1.50
+165                       RepÃºblica Centroafricana   1.322474      NA
+166                                RepÃºblica Checa  55.650985      NA
+167                           RepÃºblica de Moldova  36.743286      NA
+168             RepÃºblica DemocrÃ¡tica Popular Lao  26.092450      NA
+169                           RepÃºblica Dominicana  39.015209    1.60
+170                             RepÃºblica Eslovaca  60.688374      NA
+171                        Ribera Occidental y Gaza         NA      NA
+172                                         Rumania  66.693235      NA
+173                                          Rwanda   5.555326      NA
+174                             Saint Kitts y Nevis  88.439385      NA
+175                                           Samoa  49.770813      NA
+176                                 Samoa Americana         NA      NA
+177                                      San Marino 182.892515      NA
+178                    San Vicente y las Granadinas  35.821323    2.60
+179                                    Santa LucÃ­a  43.426712      NA
+180                         Santo TomÃ© y PrÃ­ncipe  27.398668      NA
+181                                         Senegal         NA      NA
+182                                          Serbia  45.765899      NA
+183                                      Seychelles  79.163770      NA
+184                                    Sierra Leona         NA      NA
+185                                        Singapur  65.158486      NA
+186                       Sint Maarten (Dutch part)         NA      NA
+187                                         Somalia         NA    0.90
+188                                       Sri Lanka         NA      NA
+189                                      SudÃ¡frica  67.930858      NA
+190                                          SudÃ¡n   5.423853      NA
+191                                          Suecia  31.978818      NA
+192                                           Suiza  97.769823      NA
+193                                        Suriname         NA      NA
+194                                       Tailandia 117.279135      NA
+195                                       TanzanÃ­a         NA      NA
+196                                     TayikistÃ¡n         NA      NA
+197                                     Timor-Leste  12.584690      NA
+198                                            Togo   3.929497      NA
+199                                           Tonga  36.067229      NA
+200                               Trinidad y Tobago  43.083965    3.00
+201                                          TÃºnez         NA    2.20
+202                                   TurkmenistÃ¡n         NA      NA
+203                                        TurquÃ­a  78.124179      NA
+204                                          Tuvalu         NA      NA
+205                                         Ucrania  97.670667      NA
+206                                          Uganda   4.060236      NA
+207                                         Uruguay  84.726290    2.80
+208                                     UzbekistÃ¡n  24.147006      NA
+209                                         Vanuatu         NA      NA
+210                                       Venezuela         NA    0.80
+211                                        Viet Nam  24.336015    2.60
+212                                 Yemen, Rep. del         NA    0.70
+213                                          Zambia  11.293390      NA
+214                                        Zimbabwe   5.792911      NA
+      cto_pib16   densidad17 desempleo17 deuda16  electri16     fertil16
+1     2.2603142 5.442221e+01       1.559      NA  84.137138 1.218230e+01
+2     3.3500000 1.048707e+02      13.750      NA 100.000000 1.261385e+02
+3     2.2422351 2.366780e+02       3.746 2.93949 100.000000 1.972283e+02
+4     1.8891244 1.637553e+02          NA      NA 100.000000           NA
+5    -2.5800972 2.389043e+01       7.139      NA  40.520607 7.982743e+00
+6     5.5897391 2.318455e+02          NA      NA  97.354668 1.387000e+01
+7     1.6706423 1.532231e+01       5.890      NA 100.000000 1.768737e+02
+8     3.3000000 1.734788e+01      11.996      NA  99.439568 2.231527e+01
+9    -1.8225422 1.617686e+01       8.347 0.53274 100.000000 5.033633e+01
+10    0.2000000 1.029312e+02      17.827 0.23305 100.000000 1.104951e+02
+11   -0.2112251 5.848000e+02          NA      NA  95.570145           NA
+12    2.8273105 3.198361e+00       5.594      NA 100.000000 6.810370e+01
+13    2.0395750 1.066074e+02       5.499 3.08695 100.000000 1.418374e+02
+14   -3.1000002 1.191972e+02       5.000 0.20637 100.000000 1.409285e+01
+15   -1.6895499 3.949660e+01      12.381      NA 100.000000 1.440175e+02
+16    3.4709237 1.918488e+03       0.947      NA 100.000000 1.318750e+03
+17    7.1134895 1.265036e+03       4.372      NA  75.920000 2.894023e+02
+18    2.0071685 6.644628e+02       9.487      NA 100.000000 1.138043e+02
+19   -2.5264464 4.679224e+01       5.650 0.50063 100.000000 1.466186e+02
+20    1.4886796 3.759047e+02       7.086 2.48835 100.000000 3.184848e+02
+21   -0.5880236 1.642617e+01       9.000      NA  92.214317 4.662489e+02
+22    3.9648599 9.911043e+01       2.180      NA  41.402615 1.474761e+01
+23           NA 1.211870e+03          NA      NA 100.000000 1.771000e+02
+24    8.0221012 2.117266e+01       2.170      NA 100.000000 1.325330e+01
+25    4.2639194 1.020179e+01       3.233      NA  93.039131 7.609475e+00
+26    3.1440700 6.849643e+01      20.470 0.21597 100.000000 1.318000e+02
+27    4.3154865 4.043656e+00      17.631      NA  60.688396 8.957242e+01
+28   -3.3054543 2.504005e+01      12.827 1.26578 100.000000 1.860961e+02
+29   -2.4655149 8.134668e+01       9.316      NA 100.000000 1.418000e+02
+30    3.9367581 6.518006e+01       6.164 0.78006 100.000000 1.255434e+02
+31    5.9341351 7.015125e+01       6.015      NA  19.164713 2.177352e+01
+32   -0.6000200 4.230625e+02       1.501      NA   7.588477 5.424258e+00
+33    4.7057915 1.355801e+02      12.241      NA  92.611588           NA
+34    6.8630921 9.067173e+01       1.062      NA  49.770657 1.739360e+01
+35    4.6484816 5.088474e+01       3.359      NA  60.074768 9.667529e+00
+36    1.4141027 4.036734e+00       6.340 1.60407 100.000000 8.762510e+01
+37   -6.2555271 1.183291e+01       2.199 0.32217   8.830898           NA
+38    1.2658676 2.428238e+01       6.958 0.36244 100.000000 2.938448e+02
+39    6.7000000 1.476741e+02       4.400 2.10826 100.000000 5.033221e+02
+40    4.8121876 1.276570e+02      11.052 0.50167 100.000000 1.967388e+02
+41    1.9626143 4.422318e+01       8.872 0.26955  99.004456 6.594521e+02
+42    2.1881975 4.373519e+02       3.696      NA  77.844215           NA
+43   -2.8000188 1.540483e+01      10.156      NA  56.566170 1.844091e+00
+44    2.3993791 3.587922e+01       4.102      NA  17.147379 2.476703e+00
+45    2.9293048 5.279180e+02       3.700 4.22744 100.000000 3.802815e+02
+46           NA 2.117014e+02       3.287      NA  39.244225           NA
+47    4.2459899 9.607852e+01       8.142 0.45775 100.000000 6.048858e+02
+48    7.9717457 7.639858e+01       2.488      NA  64.300000 5.168334e+01
+49    3.5361295 7.370499e+01      11.208 0.84581 100.000000 1.193096e+02
+50    0.5137615 1.104080e+02       2.278 0.34865 100.000000 4.944624e+01
+51           NA 3.607545e+02          NA      NA 100.000000           NA
+52    2.3996822 1.372941e+02       5.743 2.87125 100.000000 1.311478e+02
+53    8.7222601 4.128494e+01      11.164      NA  51.782692           NA
+54    2.5220457 9.856667e+01          NA      NA 100.000000 8.805167e+01
+55   -1.2263840 6.693855e+01       3.836      NA  99.936813 3.454419e+02
+56    4.3466435 9.799905e+01      11.770 0.70848 100.000000 6.491940e+02
+57    2.5805775 3.078114e+02       4.385 0.14662  98.618896 1.323780e+02
+58    2.9884418 1.323591e+02       2.463 0.96366 100.000000           NA
+59    3.1483555 1.025910e+02       6.564 2.00202 100.000000 2.589406e+02
+60    3.1725897 9.326767e+01      17.224 1.18549 100.000000 1.439661e+02
+61    1.5672152 3.554523e+01       4.355 2.74418 100.000000 1.385948e+02
+62    3.4890971 3.030559e+01       5.760 1.28129 100.000000 1.126810e+02
+63    3.2224724 7.949151e+01      22.340      NA  65.790207           NA
+64    7.5617667 1.049574e+02       1.810      NA  42.900000 1.443371e+01
+65   -0.2249110 8.823221e+00       5.212 1.09557 100.000000 1.846364e+01
+66    0.3800034 4.956223e+01       4.143      NA  98.646049 4.603315e+01
+67    6.8757148 3.518734e+02       2.552      NA  90.981613 1.574240e+02
+68    2.7719255 1.812449e+01       8.640 2.74645 100.000000 8.050980e+01
+69    1.1710502 1.225544e+02       9.397 2.24805 100.000000 1.631391e+02
+70    2.0914422 7.859421e+00      19.374      NA  91.395500 2.676640e+01
+71    0.4055965 2.075660e+02       8.906      NA  47.757088 1.235341e+00
+72    2.8489734 6.503202e+01      13.930 0.30104 100.000000 1.708321e+02
+73    3.4477930 1.267189e+02       6.629      NA  79.300000 2.087660e+01
+74           NA 3.457100e+03          NA      NA 100.000000           NA
+75    3.7356141 3.171324e+02          NA      NA  92.344368           NA
+76   -0.1909523 8.342538e+01      21.488 1.00700 100.000000 1.230112e+02
+77    7.6629989 1.368522e-01          NA      NA 100.000000           NA
+78    0.2502888 3.041278e+02       5.245      NA 100.000000           NA
+79    3.0924826 1.578341e+02       2.684      NA  91.779228 3.031532e+02
+80   10.4541058 5.175475e+01       3.572      NA  33.500000 1.568584e+00
+81   -8.5339106 4.519390e+01       9.155      NA  67.889290           NA
+82    6.2628056 6.619072e+01       4.033      NA  14.655790           NA
+83    3.3161317 3.951532e+00      12.115      NA  84.242905 4.460405e+01
+84    1.4527070 3.984481e+02      13.405      NA  38.690166           NA
+85    3.7521489 8.280514e+01       4.048      NA  87.576630 1.643176e+02
+86    2.1629233 7.039714e+03       3.090 0.79144 100.000000 2.704003e+03
+87    2.2807978 1.081185e+02       4.156 1.20606 100.000000 1.282525e+02
+88    8.1695265 4.504186e+02       2.557      NA  84.526817 1.658482e+02
+89    5.0330692 1.457252e+02       4.185      NA  97.620000 2.313696e+02
+90   13.3962445 4.983103e+01      12.100      NA 100.000000 7.629205e+01
+91   13.0241537 8.816436e+01       7.891 0.03631 100.000000 3.581725e+01
+92    4.9875824 6.984063e+01       6.710 1.17681 100.000000 1.247938e+03
+93    7.4000000 1.478719e+02          NA      NA 100.000000           NA
+94           NA 5.905331e+02          NA      NA  71.970284           NA
+95    7.3514753 3.425436e+00       2.742 2.07540 100.000000 1.815289e+02
+96    3.5356589 2.564958e+02          NA      NA 100.000000           NA
+97           NA 8.349192e+02       7.347      NA 100.000000           NA
+98           NA 3.530802e+01          NA      NA 100.000000           NA
+99    1.9104950 2.951500e+02          NA      NA  93.138046           NA
+100   3.4566064 2.184148e+01       1.771      NA  47.919144           NA
+101          NA 3.731158e+01          NA      NA  95.700439           NA
+102   0.9369952 3.064800e+02       8.462      NA 100.000000           NA
+103          NA 2.079733e+02          NA      NA         NA           NA
+104   4.0078887 4.026479e+02       4.215 4.25121 100.000000 2.806780e+02
+105   1.1455128 2.058092e+02      11.211 1.28566 100.000000 1.298473e+02
+106   1.3806584 2.668789e+02      11.659      NA  98.204269 5.724633e+01
+107   0.9381939 3.477776e+02       2.800 3.14081 100.000000 2.421845e+02
+108   2.0037336 1.092853e+02      14.879 0.33201 100.000000 1.120459e+02
+109   1.1000000 6.681400e+00       4.900 0.14179 100.000000 4.325566e+00
+110   5.8691977 8.732449e+01       9.292      NA  56.000000 3.818022e+01
+111   4.3358559 3.231595e+01       6.890 0.11121  99.996101 3.141071e+01
+112   5.1297505 1.437012e+02          NA      NA  84.936272           NA
+113   4.0565786 1.681547e+02          NA      NA 100.000000           NA
+114   3.5470051 2.321284e+02       1.997 0.07878 100.000000 7.507238e+02
+115   3.1789867 7.356189e+01      23.613      NA  29.733309           NA
+116   2.0643813 3.123590e+01       8.715 0.44292 100.000000 1.041925e+02
+117   1.7407420 5.945608e+02       6.114      NA 100.000000 3.309255e+02
+118  -1.5995841 4.912693e+01       2.028      NA  19.800000           NA
+119  -2.7954689 3.622888e+00      17.122      NA  98.536728 1.165116e+01
+120          NA 2.370125e+02          NA      NA 100.000000           NA
+121   2.3531813 4.515186e+01       7.073 0.84724 100.000000 1.318650e+02
+122   2.4114308 2.454058e+02       5.522 1.24366 100.000000 2.621080e+02
+123   2.8484415 8.259952e+01      22.381 0.43287 100.000000 7.931488e+01
+124   4.1799902 4.395135e+01       1.669 0.01498  22.900000 5.174971e+00
+125   4.2234102 9.625404e+01       3.410      NA 100.000000 1.723389e+03
+126   2.4840406 1.975191e+02       5.468      NA  11.000000 2.160590e+01
+127   7.2891863 1.454433e+03       5.830      NA 100.000000 3.149000e+02
+128   5.8000000 1.519598e+01       9.435      NA  35.069500 4.423502e+01
+129   5.2305849 1.462497e+03       4.567 0.59697 100.000000 2.646020e+02
+130  28.2238443 1.198783e+02          NA      NA 100.000000           NA
+131   1.1259775 8.007972e+01       9.053      NA 100.000000 7.110563e+01
+132   3.8379524 6.229621e+02       6.752      NA  98.781784 2.353080e+02
+133   2.0000000 4.288526e+00      10.276      NA  41.652107           NA
+134   2.8978596 6.644372e+01       3.420 0.48650 100.000000 1.140062e+02
+135   3.2138488 1.934750e+04          NA      NA 100.000000           NA
+136   1.1683935 1.979741e+00       6.359 0.18342  81.775032 3.996867e+01
+137   2.9000000 4.627309e+01      16.071      NA 100.000000 2.852078e+02
+138   3.7632756 3.772837e+01       3.173      NA  24.198339 3.722713e+00
+139   5.8624729 8.172140e+01       1.551      NA  57.009384 1.787317e+01
+140   0.6416496 3.077645e+00      23.088      NA  51.782425 2.610671e+01
+141  10.4000040 6.438000e+02          NA      NA  99.202805           NA
+142   0.5886785 2.044297e+02       1.253      NA  90.700000 7.407848e+01
+143   4.6587592 5.166679e+01       4.213      NA  81.796799 6.146321e+01
+144   4.9259309 1.695535e+01       0.285      NA  16.217234 4.020905e-01
+145  -1.6168690 2.095878e+02       6.013      NA  59.300000 5.470367e+00
+146   1.1873548 1.445258e+01       4.162 2.03222 100.000000 2.038963e+02
+147          NA 1.534245e+01      13.797      NA 100.000000 2.381410e+02
+148   3.4714568 1.820630e+01       4.702      NA 100.000000 1.777239e+03
+149   4.9801710 1.497984e+01       3.137 0.25511 100.000000 4.680684e+02
+150   2.1917137 5.084980e+02       4.839 2.03247 100.000000 2.889241e+02
+151   5.5267358 2.555728e+02       3.181      NA  99.147438 1.443301e+02
+152   0.5265690 4.723696e+01          NA      NA  99.289352           NA
+153   4.9664618 5.513300e+01       3.900      NA  93.417801 4.912286e+01
+154   1.5923853 1.822012e+01       2.352 0.03294  22.932154 1.120521e+02
+155   4.3129050 1.714396e+01       4.615 0.15366  98.400000 1.103496e+02
+156   3.9513092 2.512929e+01       3.460 0.12024  94.851746 1.276999e+02
+157          NA 7.732432e+01      12.097      NA 100.000000 2.520320e+02
+158   3.0626004 1.240237e+02       4.887 0.96538 100.000000 1.728171e+02
+159   1.9257357 1.124418e+02       8.867 1.26565 100.000000 1.993961e+02
+160  -1.3269279 3.748592e+02      10.800      NA 100.000000           NA
+161   2.1313109 2.273222e+02       0.140      NA 100.000000 6.755245e+03
+162  -0.8631188 2.047918e+04       2.000 0.23367 100.000000           NA
+163   1.7892361 2.729025e+02       4.335 1.68847 100.000000 2.529037e+02
+164          NA 9.949283e+01       8.031      NA 100.000000 7.551489e+00
+165   4.5312860 7.478699e+00       6.447      NA  13.985112           NA
+166   2.4505424 1.371981e+02       2.890 1.67830 100.000000 1.961472e+02
+167   4.5000000 1.236545e+02       4.098 0.32888 100.000000 2.440760e+01
+168   7.0230919 2.971473e+01       0.603      NA  87.095772           NA
+169   6.6122082 2.228731e+02       5.832      NA 100.000000 8.808971e+01
+170   3.1254101 1.131288e+02       8.131 0.78965 100.000000 1.257624e+02
+171   4.7084353 7.782022e+02      27.444      NA 100.000000           NA
+172   4.8008101 8.511816e+01       4.927 0.48209 100.000000 5.990748e+01
+173   5.9813149 4.948685e+02       0.954      NA  29.370000 1.085750e+01
+174   2.3175085 2.128654e+02          NA      NA 100.000000 4.600000e-01
+175   7.1694201 6.941343e+01       8.324      NA 100.000000 4.637500e+00
+176  -2.6194145 2.782050e+02          NA      NA         NA           NA
+177   2.2000000 5.566667e+02          NA      NA 100.000000           NA
+178   1.9754559 2.817872e+02      19.731      NA 100.000000           NA
+179   3.3651531 2.931869e+02      20.790      NA  97.760918 1.708933e+02
+180   4.1792093 2.128406e+02      13.139      NA  65.440483           NA
+181   6.2284499 8.232778e+01       6.437      NA  64.500000 1.640938e+01
+182   2.7973237 8.027507e+01      13.477 0.89059 100.000000 2.447871e+02
+183   4.5030316 2.083543e+02          NA 0.22162 100.000000 5.217333e+02
+184   6.0554740 1.046995e+02       4.325      NA  20.300000           NA
+185   2.3970215 7.915730e+03       3.907      NA 100.000000 3.023786e+04
+186   0.4325063 1.209088e+03          NA      NA 100.000000           NA
+187          NA 2.350005e+01      13.913      NA  29.890318           NA
+188   4.4688297 3.419550e+02       4.180      NA  95.588234 1.319226e+02
+189   0.5653449 4.675429e+01      27.327      NA  84.200000 5.851160e+01
+190   4.7000000 2.325842e+01      12.773      NA  38.528442 7.172658e+00
+191   2.6839663 2.469298e+01       6.718 3.25490 100.000000 9.633644e+01
+192   1.6012236 2.138590e+02       4.797      NA 100.000000 2.144073e+02
+193  -5.5611934 3.611551e+00       7.599      NA  87.176315 2.177086e+02
+194   3.2826831 1.351319e+02       0.632 0.78133 100.000000 1.617103e+02
+195   6.8671162 6.469860e+01       1.939      NA  32.800000 1.260450e+01
+196   6.8729642 6.427944e+01      10.738 0.10685 100.000000 8.137740e+01
+197   0.8278572 8.717626e+01       2.963      NA  63.394138           NA
+198   5.0999921 1.433663e+02       1.658      NA  46.928375 1.102612e+01
+199   3.3794737 1.500278e+02       1.003      NA  97.020000 3.930055e+01
+200  -5.9570613 2.668860e+02       2.817 0.09175 100.000000 3.560000e+02
+201   1.1083930 7.422842e+01      15.379 0.59989 100.000000 5.925128e+01
+202   6.2000000 1.225305e+01       3.695      NA 100.000000           NA
+203   3.1838191 1.049141e+02      10.819      NA 100.000000 1.377049e+02
+204   3.0349510 3.730667e+02          NA      NA  99.426155           NA
+205   2.4409947 7.738980e+01       9.510 0.48384 100.000000 5.274744e+01
+206   4.7810003 2.137590e+02       1.698      NA  26.700000 1.910848e+00
+207   1.6897982 1.975060e+01       7.890 0.40845 100.000000 1.436685e+02
+208   7.8000000 7.613352e+01       4.972 0.22139 100.000000 2.327032e+02
+209   4.0005745 2.266153e+01       5.423      NA  57.820000           NA
+210          NA 3.625312e+01       7.422 0.11867  99.603836 1.834675e+02
+211   6.2108117 3.081266e+02       1.886      NA 100.000000 4.297848e+02
+212 -13.6214584 5.350762e+01      13.175      NA  71.642349 1.639655e+01
+213   3.7571778 2.299483e+01       7.206      NA  27.219337 8.959407e+01
+214   0.7558693 4.272949e+01       4.943      NA  38.145138 2.290000e+01
+    gasto_edu16 gasto_id16 gasto_militar17        pib16    pm2517 pobRural17
+1       4.20525         NA    9.068569e-01 1.904636e+10 56.910808     74.750
+2       3.95464         NA    1.244175e+00 1.188368e+10 18.200603     40.617
+3            NA    2.93949    1.220136e+00 3.495163e+12 12.028767     22.739
+4       3.25670         NA              NA 2.877312e+09 10.307621     11.850
+5            NA         NA    2.201338e+00 1.011239e+11 32.388505     35.161
+6            NA         NA              NA 1.464630e+09 18.622343     75.287
+7            NA         NA    1.028867e+01 6.449355e+11 87.945447     16.378
+8            NA         NA    5.708235e+00 1.601299e+11 38.884011     27.948
+9       5.57218    0.53274    9.096630e-01 5.548609e+11 13.311834      8.251
+10      2.75812    0.23305    3.968039e+00 1.054614e+10 32.528118     36.897
+11      6.14322         NA              NA 2.646927e+09        NA     56.707
+12           NA         NA    1.989293e+00 1.208039e+12  8.550324     14.096
+13           NA    3.08695    7.293552e-01 3.940528e+11 12.477967     41.906
+14      2.90341    0.20637    3.937400e+00 3.786752e+10 19.928664     44.657
+15           NA         NA              NA 1.183880e+10 17.367720     17.075
+16           NA         NA    4.123826e+00 3.225013e+10 70.816208     10.814
+17      1.53554         NA    1.380750e+00 2.214152e+11 60.845785     64.142
+18      5.09272         NA              NA 4.529050e+09 23.080176     68.841
+19      4.94655    0.50063    1.191985e+00 4.774906e+10 18.765580     21.866
+20           NA    2.48835    9.094851e-01 4.697387e+11 12.886518      2.039
+21      7.06045         NA    1.253084e+00 1.806646e+09 23.011892     54.399
+22      3.99469         NA    1.216322e+00 8.573160e+09 38.999959     53.232
+23           NA         NA              NA           NA 11.646359      0.000
+24      6.80557         NA              NA 2.219676e+09 37.926503     59.833
+25           NA         NA    1.757835e+00 3.394113e+10 21.568987     30.920
+26           NA    0.21597    8.993755e-01 1.691109e+10 27.747669     52.124
+27           NA         NA    3.052535e+00 1.564863e+10 23.094386     31.300
+28           NA    1.26578    1.410026e+00 1.796275e+12 12.706629     13.691
+29      4.42541         NA    2.879225e+00 1.140065e+10  5.903065     22.688
+30           NA    0.78006    1.554292e+00 5.324095e+10 19.149132     25.331
+31           NA         NA    1.436230e+00 1.088636e+10 42.935593     71.257
+32      4.61813         NA    1.983154e+00 2.959185e+09 38.896268     87.294
+33      5.36651         NA    5.420811e-01 1.663009e+09 34.778700     34.739
+34           NA         NA    2.087211e+00 2.001675e+10 25.614292     77.020
+35      2.68755         NA    1.316594e+00 3.262154e+10 72.793096     44.223
+36           NA    1.60407    1.253960e+00 1.526954e+12  6.428383     18.650
+37           NA    0.32217    2.151363e+00 1.009092e+10 66.029205     77.142
+38      5.35064    0.36244    1.910062e+00 2.500362e+11 21.036299     12.510
+39           NA    2.10826    1.908845e+00 1.119099e+13 52.664596     42.040
+40           NA    0.50167    1.879581e+00 2.045376e+10 17.294406     33.164
+41      4.52091    0.26955    3.102233e+00 2.828561e+11 16.527210     19.554
+42           NA         NA              NA 1.024262e+09 20.546825     71.216
+43           NA         NA    6.167053e+00 9.035848e+09 46.638220     33.541
+44      2.11869         NA    6.987736e-01 3.713480e+10 44.909264     56.120
+45           NA    4.22744    2.554898e+00 1.414804e+12 25.039425     18.497
+46           NA         NA              NA           NA 32.007452     38.322
+47      7.11873    0.45775    0.000000e+00 5.715799e+10 15.725920     21.440
+48      4.94837         NA    1.280443e+00 3.539000e+10 25.886266     49.674
+49           NA    0.84581    1.436931e+00 5.164088e+10 17.901772     43.333
+50           NA    0.34865              NA 9.137000e+10 19.706047     23.023
+51           NA         NA              NA           NA        NA     10.797
+52           NA    2.87125    1.174356e+00 3.119881e+11 10.029653     12.243
+53           NA         NA              NA 1.764268e+09 45.549618     22.352
+54           NA         NA              NA 5.754682e+08 19.493154     29.819
+55           NA         NA    2.445253e+00 9.993770e+10 14.886101     36.330
+56           NA    0.70848    1.285924e+00 3.329278e+11 86.999452     57.295
+57      3.86991    0.14662    9.005177e-01 2.391223e+10 24.472292     28.725
+58           NA    0.96366              NA 3.570451e+11 40.917510     13.752
+59           NA    2.00202    9.982137e-01 4.470860e+10 16.023980     45.727
+60           NA    1.18549    1.242562e+00 1.237499e+12  9.697928     19.920
+61           NA    2.74418    3.149222e+00 1.870719e+13  7.409442     17.942
+62           NA    1.28129    2.098303e+00 2.398430e+10  6.732124     31.283
+63           NA         NA    1.752853e+00 3.817430e+09 17.168787     76.375
+64           NA         NA    6.596553e-01 7.300098e+10 38.978738     79.690
+65           NA    1.09557    4.262469e+00 1.282664e+12 16.160224     25.708
+66           NA         NA    9.010199e-01 4.671313e+09 10.840160     44.258
+67           NA         NA    1.390559e+00 3.048891e+11 18.069799     53.318
+68           NA    2.74645    1.437758e+00 2.390095e+11  5.861331     14.675
+69           NA    2.24805    2.255229e+00 2.465134e+12 11.814964     19.820
+70           NA         NA    2.055644e+00 1.401437e+10 44.385548     11.024
+71      3.08513         NA              NA 1.442299e+09 33.982639     39.401
+72      3.78477    0.30104    2.225139e+00 1.437802e+10 22.196055     41.769
+73      5.76632         NA    4.060351e-01 5.500973e+10 34.713514     44.593
+74           NA         NA              NA           NA        NA      0.000
+75     10.29313         NA              NA 1.061631e+09 22.722687     63.836
+76           NA    1.00700    2.506157e+00 1.952224e+11 16.218266     21.276
+77           NA         NA              NA 2.705899e+09 11.602179     13.426
+78           NA         NA              NA 5.793000e+09 11.634407      5.301
+79      2.83281         NA    3.732213e-01 6.866365e+10 24.070649     49.320
+80      2.51800         NA    2.332467e+00 8.694360e+09 26.062490     64.207
+81           NA         NA              NA 1.126090e+10 53.240621     28.354
+82           NA         NA              NA 1.178205e+09 29.774702     57.055
+83      6.06100         NA    1.443677e+00 3.504024e+09 22.375575     73.462
+84      2.44959         NA    8.874827e-04 7.970649e+09 15.019824     45.654
+85      6.30177         NA    1.578230e+00 2.164394e+10 20.628851     43.543
+86      3.29265    0.79144              NA 3.208812e+11        NA      0.000
+87           NA    1.20606    1.054927e+00 1.260080e+11 15.926048     28.938
+88           NA         NA    2.493046e+00 2.290432e+12 90.873210     66.400
+89           NA         NA    8.093374e-01 9.318774e+11 16.502653     45.341
+90      3.36576         NA    3.099259e+00 4.189767e+11 38.978760     25.606
+91           NA    0.03631    3.855106e+00 1.705596e+11 61.636236     29.722
+92           NA    1.17681    3.567806e-01 3.022429e+11  8.208577     37.053
+93           NA         NA              NA 6.592628e+09        NA     47.542
+94           NA         NA              NA           NA        NA         NA
+95           NA    2.07540    0.000000e+00 2.071602e+10  6.481147      6.227
+96           NA         NA              NA           NA        NA      0.000
+97           NA         NA              NA           NA        NA     69.086
+98           NA         NA              NA           NA        NA     58.086
+99           NA         NA              NA 1.944979e+08 10.241332     23.366
+100          NA         NA              NA 1.232699e+09 11.879122     76.714
+101          NA         NA              NA           NA        NA      7.183
+102          NA         NA              NA           NA 10.265312      4.397
+103          NA         NA              NA           NA        NA     52.663
+104          NA    4.25121    4.725543e+00 3.193779e+11 21.381102      7.664
+105          NA    1.28566    1.522313e+00 1.869117e+12 16.750712     29.856
+106     5.31866         NA    9.035378e-01 1.407214e+10 13.404151     44.622
+107     3.46746    3.14081    9.349600e-01 4.949273e+12 11.704778      8.465
+108     3.89621    0.33201    4.797788e+00 3.865473e+10 33.006081      9.253
+109     2.97810    0.14179    8.412225e-01 1.372783e+11 13.824288     42.664
+110     5.36267         NA    1.230708e+00 7.087522e+10 28.578374     73.438
+111     6.58615    0.11121    3.158171e+00 6.813092e+09 22.737768     63.865
+112          NA         NA              NA 1.783289e+08 10.640856     46.738
+113          NA         NA              NA 6.714712e+09        NA         NA
+114          NA    0.07878    5.751166e+00 1.109123e+11 60.745160      0.000
+115          NA         NA    2.230775e+00 2.323420e+09 28.028654     72.270
+116          NA    0.44292    1.721654e+00 2.769547e+10 13.426458     31.925
+117          NA         NA    4.513849e+00 5.148391e+10 30.621111     11.571
+118     4.00885         NA    6.381542e-01 3.277826e+09 17.984112     49.303
+119          NA         NA              NA 2.622166e+10 54.254682     20.183
+120          NA         NA              NA 6.214634e+09        NA     85.685
+121          NA    0.84724    1.748494e+00 4.297337e+10 11.853282     32.484
+122          NA    1.24366    5.060577e-01 5.896124e+10 10.364637      9.273
+123          NA    0.43287    9.825918e-01 1.067247e+10 29.726945     42.252
+124          NA    0.01498    5.852912e-01 1.000119e+10 22.542283     63.478
+125     4.82754         NA    1.125453e+00 2.967529e+11 16.035809     24.553
+126     4.74857         NA    7.701816e-01 5.433040e+09 23.565921     83.286
+127     4.25199         NA              NA 4.414056e+09  7.795821     60.620
+128     3.09071         NA    3.054094e+00 1.401079e+10 38.526606     58.428
+129          NA    0.59697    5.317390e-01 1.127402e+10 13.909543      5.454
+130          NA         NA              NA 1.250000e+09  9.892981      8.470
+131          NA         NA    3.152900e+00 1.033453e+11 32.593541     38.092
+132     5.01360         NA    1.806503e-01 1.223246e+10 14.457827     59.159
+133     2.63107         NA              NA 4.739299e+09 47.422992     47.176
+134          NA    0.48650    5.017429e-01 1.077780e+12 20.921116     20.133
+135     1.37102         NA              NA 6.468252e+09        NA      0.000
+136     5.18212    0.18342    7.371034e-01 1.118673e+10 40.112849     31.637
+137          NA         NA    1.667099e+00 4.374131e+09 20.781814     33.523
+138          NA         NA    8.146646e-01 1.098136e+10 21.298695     64.545
+139          NA         NA    2.483304e+00 6.325618e+10 35.557453     69.678
+140          NA         NA    3.382267e+00 1.128126e+10 25.358765     50.995
+141          NA         NA              NA 1.020601e+08        NA      0.000
+142     4.44099         NA    1.552752e+00 2.118592e+10 99.734374     80.664
+143     4.11264         NA    6.099227e-01 1.318499e+10 17.614180     41.701
+144     4.04160         NA    2.674758e+00 7.528285e+09 94.053818     83.650
+145          NA         NA    4.117073e-01 4.046495e+11 71.798174     50.481
+146          NA    2.03222    1.643376e+00 3.713448e+11  6.956520     18.129
+147          NA         NA              NA           NA        NA     29.744
+148     6.30374         NA    1.158444e+00 1.892860e+11  5.956001     13.534
+149     6.10957    0.25511    1.207272e+01 6.594148e+10 41.115238     16.440
+150          NA    2.03247    1.225072e+00 7.835282e+11 12.034408      8.923
+151     2.49180         NA    3.495483e+00 2.786546e+11 58.282419     63.558
+152          NA         NA              NA 3.039845e+08        NA     20.635
+153          NA         NA    0.000000e+00 5.795759e+10 11.400054     32.635
+154          NA    0.03294    4.875105e-01 1.902812e+10 12.294418     86.898
+155     4.52037    0.15366    1.184159e+00 3.605428e+10 11.909081     38.700
+156     3.81827    0.12024    9.773834e-01 1.916397e+11 24.786728     22.280
+157          NA         NA              NA           NA        NA     38.216
+158          NA    0.96538    1.956786e+00 4.719921e+11 20.877822     39.895
+159          NA    1.26565    1.733643e+00 2.062757e+11  8.160752     35.348
+160          NA         NA              NA 1.039608e+11  8.349033      6.413
+161          NA         NA              NA 1.517321e+11 91.187328      0.922
+162     3.08310    0.23367              NA 4.531088e+10        NA      0.000
+163     5.54179    1.68847    1.834837e+00 2.659239e+12 10.472690     16.857
+164          NA         NA              NA           NA 43.757259     46.500
+165          NA         NA    1.323566e+00 1.755468e+09 56.828497     59.020
+166          NA    1.67830    1.051767e+00 1.950903e+11 16.071245     26.325
+167     6.66130    0.32888    4.206777e-01 6.795731e+09 16.251033     57.443
+168          NA         NA              NA 1.580571e+10 25.109538     65.632
+169          NA         NA    6.619087e-01 7.234297e+10 13.726321     19.723
+170          NA    0.78965    1.188659e+00 8.984836e+10 17.562911     46.249
+171     5.71773         NA              NA 1.342570e+10 33.225630     24.106
+172          NA    0.48209    1.971667e+00 1.884941e+11 14.611340     46.064
+173     3.53979         NA    9.745173e-01 8.475682e+09 43.210217     82.875
+174          NA         NA              NA 9.589732e+08        NA     69.227
+175     4.08105         NA              NA 7.866400e+08 11.548027     81.548
+176          NA         NA              NA 6.530000e+08 12.473820     12.830
+177          NA         NA              NA 1.564381e+09        NA      2.928
+178     5.79986         NA              NA 7.707622e+08 22.200516     48.216
+179     5.71024         NA              NA 1.635675e+09 22.400817     81.388
+180     5.07533         NA              NA 3.542375e+08 28.539584     28.032
+181     6.62561         NA    1.896635e+00 1.897389e+10 40.695826     53.260
+182     3.86178    0.89059    1.828501e+00 3.829985e+10 24.726358     44.058
+183     4.41832    0.22162    1.565582e+00 1.427525e+09 20.178649     43.739
+184     3.06023         NA    7.233298e-01 3.556037e+09 21.625947     58.364
+185          NA         NA    3.321162e+00 3.097639e+11 19.078256      0.000
+186          NA         NA              NA           NA        NA      0.000
+187          NA         NA              NA 6.761999e+09 32.034584     55.609
+188     3.47508         NA    2.171972e+00 8.178742e+10 11.099617     81.616
+189     5.94059         NA    1.047490e+00 2.957466e+11 25.102205     34.150
+190          NA         NA    3.183156e+00 9.558438e+10 55.370834     65.630
+191          NA    3.25490    1.025254e+00 5.122052e+11  6.184665     12.854
+192     5.12430         NA    6.836302e-01 6.701811e+11 10.303100     26.239
+193          NA         NA              NA 3.152174e+09 24.780011     33.959
+194          NA    0.78133    1.422584e+00 4.117552e+11 26.256727     50.800
+195          NA         NA    1.137277e+00 4.977402e+10 29.076641     66.947
+196          NA    0.10685              NA 6.952678e+09 46.152185     73.018
+197          NA         NA    9.069040e-01 2.521000e+09 19.257209     69.788
+198     5.06326         NA    1.935261e+00 4.457733e+09 35.731336     58.838
+199          NA         NA              NA 4.011175e+08 10.785479     76.831
+200          NA    0.09175    8.911694e-01 2.229559e+10 24.108568     46.795
+201          NA    0.59989    2.070079e+00 4.180838e+10 37.655994     31.358
+202          NA         NA              NA 3.618000e+10 21.767721     48.847
+203          NA         NA    2.178140e+00 8.637217e+11 44.311526     25.356
+204          NA         NA              NA 3.657261e+07        NA     38.470
+205     5.01437    0.48384    3.412975e+00 9.335599e+10 20.309776     30.754
+206     2.55882         NA    1.675066e+00 2.413366e+10 50.494321     76.804
+207          NA    0.40845    2.051628e+00 5.268761e+10  9.274883      4.760
+208     6.91097    0.22139              NA 6.744571e+10 28.455901     49.450
+209          NA         NA              NA 7.879426e+08 11.652777     74.837
+210          NA    0.11867    4.878441e-01           NA 17.008554     11.817
+211          NA         NA    2.286511e+00 2.052762e+11 29.626728     64.787
+212          NA         NA              NA 3.643665e+10 50.456007     63.984
+213          NA         NA    1.341520e+00 2.095475e+10 27.438035     57.024
+214          NA         NA    1.970583e+00 2.054868e+10 22.251671     67.763
+    tierrasCult16 continente
+1     11.83867904       Asia
+2     22.63868569     Europa
+3     33.67013968     Europa
+4      1.65957441     Europa
+5      3.93037619     Africa
+6      9.09090909   AmÃ©rica
+7      1.61744251       Asia
+8      3.10873571     Africa
+9     14.32387300   AmÃ©rica
+10    15.67966259       Asia
+11    11.11111111   AmÃ©rica
+12     5.98646389   OceanÃ­a
+13    16.29230665     Europa
+14    24.18047659       Asia
+15     0.79920080   AmÃ©rica
+16     2.05655522       Asia
+17    59.64669249       Asia
+18    16.27906977   AmÃ©rica
+19    28.00066795     Europa
+20    28.05151996     Europa
+21     3.41955283   AmÃ©rica
+22    23.94466123     Africa
+23     5.55555568   AmÃ©rica
+24     2.62164436       Asia
+25     4.11058802   AmÃ©rica
+26    20.03906250     Europa
+27     0.45806646     Africa
+28     9.68827993   AmÃ©rica
+29     0.94876660       Asia
+30    32.20338983     Europa
+31    21.92982456     Africa
+32    46.72897196     Africa
+33    12.40694789     Africa
+34    21.52730569       Asia
+35    13.11586385     Africa
+36     4.81288303   AmÃ©rica
+37     3.89135959     Africa
+38     1.70779468   AmÃ©rica
+39    12.66482109       Asia
+40     9.15909061     Europa
+41     1.52194680   AmÃ©rica
+42    34.92745721     Africa
+43     1.61054173     Africa
+44     3.13182329     Africa
+45    14.57600286       Asia
+46    19.51665144       Asia
+47     4.84723854   AmÃ©rica
+48     9.11949686     Africa
+49    15.58255897     Europa
+50    28.73870316   AmÃ©rica
+51             NA   AmÃ©rica
+52    56.56108597     Europa
+53     0.08628128     Africa
+54     8.00000000   AmÃ©rica
+55     3.92977935   AmÃ©rica
+56     2.79950778     Africa
+57    35.56949807   AmÃ©rica
+58     0.62658406       Asia
+59     9.12918327     Europa
+60    24.69589497     Europa
+61    16.64540384   AmÃ©rica
+62    16.01104210     Europa
+63    10.17441860     Africa
+64    15.11900000     Africa
+65     7.51803124       Asia
+66     9.03119869   OceanÃ­a
+67    18.74769427       Asia
+68     7.39034583     Europa
+69    33.52330476     Europa
+70     1.26130322     Africa
+71    43.47826087     Africa
+72     4.95035257       Asia
+73    20.65570889     Africa
+74             NA     Europa
+75     8.82352941   AmÃ©rica
+76    16.60201707     Europa
+77             NA   AmÃ©rica
+78     1.85185185   OceanÃ­a
+79     8.04404629   AmÃ©rica
+80    12.61598567     Africa
+81     4.27807487     Africa
+82    10.66856330     Africa
+83     2.13360427   AmÃ©rica
+84    38.82438316   AmÃ©rica
+85     9.11609617   AmÃ©rica
+86     2.85714286       Asia
+87    47.76317243     Europa
+88    52.62462204       Asia
+89    12.97217331       Asia
+90     9.01728923       Asia
+91    11.51734030       Asia
+92     6.47408913     Europa
+93    41.22807018     Europa
+94             NA   AmÃ©rica
+95     1.20698254     Europa
+96     0.83333335   AmÃ©rica
+97    19.69697094     Europa
+98     2.14899704     Europa
+99    11.11111111   OceanÃ­a
+100    0.71454091   OceanÃ­a
+101    1.05263158   AmÃ©rica
+102    2.85714286   AmÃ©rica
+103    6.66666667   AmÃ©rica
+104   13.63216266       Asia
+105   22.44509417     Europa
+106   11.08033241   AmÃ©rica
+107   11.47684880       Asia
+108    2.67244869       Asia
+109   10.88824684       Asia
+110   10.19081421     Africa
+111    6.71532847       Asia
+112    2.46913580   OceanÃ­a
+113            NA     Europa
+114    0.44893378       Asia
+115   11.59420290     Africa
+116   20.71405597     Europa
+117   12.90322581       Asia
+118    5.19102990     Africa
+119    0.97752822     Africa
+120   13.50000054     Europa
+121   34.20388926     Europa
+122   25.45679037     Europa
+123   16.49484536     Europa
+124    6.01581299     Africa
+125    2.68452290       Asia
+126   40.30547306     Africa
+127   13.00000032       Asia
+128    5.25409977     Africa
+129   28.34374905     Europa
+130    2.17391304   OceanÃ­a
+131   18.21644634     Africa
+132   36.94581281     Africa
+133    0.43659649     Africa
+134   11.60626559   AmÃ©rica
+135            NA     Europa
+136    0.36509695       Asia
+137    0.66914498     Europa
+138    7.18482159     Africa
+139   16.70239481       Asia
+140    0.97171106     Africa
+141            NA   OceanÃ­a
+142   14.74502931       Asia
+143   12.49792255   AmÃ©rica
+144   13.26280887     Africa
+145   37.33104955     Africa
+146    2.20509250     Europa
+147    0.34135666   OceanÃ­a
+148    2.16474878   OceanÃ­a
+149    0.18129241       Asia
+150   30.51350549     Europa
+151   40.26567040       Asia
+152    2.17391304   OceanÃ­a
+153    7.57331181   AmÃ©rica
+154    0.66245639   OceanÃ­a
+155   12.08155047   AmÃ©rica
+156    2.74062500   AmÃ©rica
+157    0.68306011   OceanÃ­a
+158   35.29181227     Europa
+159   10.68351748     Europa
+160    6.87711387   AmÃ©rica
+161    1.23169683       Asia
+162            NA       Asia
+163   24.90807161     Europa
+164   25.38800850       Asia
+165    2.88933834     Africa
+166   32.29733230     Europa
+167   55.55792183     Europa
+168    6.60745234       Asia
+169   16.55971848   AmÃ©rica
+170   28.01580699     Europa
+171    8.44186041       Asia
+172   37.30006954     Europa
+173   46.68422988     Africa
+174   19.23076923   AmÃ©rica
+175    2.82685512   OceanÃ­a
+176   15.00000000   OceanÃ­a
+177   16.66666667     Europa
+178   12.82051282   AmÃ©rica
+179    4.91803279   AmÃ©rica
+180    9.06249980     Africa
+181   16.62078637     Africa
+182   29.70500800     Europa
+183    0.32608697     Africa
+184   21.94513716     Africa
+185    0.78984484       Asia
+186            NA   AmÃ©rica
+187    1.75343514     Africa
+188   20.73034604       Asia
+189   10.30426432     Africa
+190            NA     Africa
+191    6.32098426     Europa
+192   10.08958403     Europa
+193    0.41666667   AmÃ©rica
+194   32.90336472       Asia
+195   15.24046060     Africa
+196    5.25974494       Asia
+197   10.42367182       Asia
+198   48.72219158     Africa
+199   25.00000000   OceanÃ­a
+200    4.87329435   AmÃ©rica
+201   18.66632338     Africa
+202    4.12827442       Asia
+203   26.48155607     Europa
+204            NA   OceanÃ­a
+205   56.57960607     Europa
+206   34.41053262     Africa
+207   13.77328361   AmÃ©rica
+208   10.34320639       Asia
+209    1.64068909   OceanÃ­a
+210    3.06105096   AmÃ©rica
+211   22.56909730       Asia
+212    2.36377067     Africa
+213    5.11171794     Africa
+214   10.33992504     Africa</code></pre>
+</div>
+</div>
+</section>
+<section id="resumen-numérico" class="level1 tabset tabset-fade tabset-pills">
+<h1 class="tabset tabset-fade tabset-pills">Resumen numérico</h1>
+<p>El resumen numérico de las variables cuantitativas tiene los siguientes estadísticos:</p>
+<ul>
+<li>Media</li>
+<li>Mediana</li>
+<li>Desviación estándar</li>
+<li>Mínimo</li>
+<li>Máximo</li>
+</ul>
+<section id="tabla-por-defecto" class="level2">
+<h2 class="anchored" data-anchor-id="tabla-por-defecto">Tabla por defecto</h2>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Bibliotecas</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Resumen numérico por variable</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>datos <span class="sc">%&gt;%</span> </span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span><span class="fu">c</span>(pais, continente)) <span class="sc">%&gt;%</span> </span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gather</span>(<span class="at">key =</span> <span class="st">"variable"</span>, <span class="at">value =</span> <span class="st">"valor"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(variable) <span class="sc">%&gt;%</span> </span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">Promedio =</span> <span class="fu">mean</span>(valor, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>            <span class="at">DE =</span> <span class="fu">sd</span>(valor, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>            <span class="at">Min =</span> <span class="fu">min</span>(valor, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>            <span class="at">Max =</span> <span class="fu">max</span>(valor, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>            <span class="at">Mediana =</span> <span class="fu">median</span>(valor, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 15 x 6
+   variable        Promedio      DE           Min     Max  Mediana
+   &lt;chr&gt;              &lt;dbl&gt;   &lt;dbl&gt;         &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;
+ 1 cajeros17        5.51e 1 4.69e 1        1.27   3.13e 2 4.58e+ 1
+ 2 camas14          2.29e 0 1.57e 0        0.5    6.2 e 0 1.6 e+ 0
+ 3 cto_pib16        3.03e 0 3.75e 0      -13.6    2.82e 1 3.06e+ 0
+ 4 densidad17       4.49e 2 2.05e 3        0.137  2.05e 4 9.47e+ 1
+ 5 desempleo17      7.36e 0 5.53e 0        0.140  2.74e 1 5.76e+ 0
+ 6 deuda16          1.03e 0 1.02e 0        0.0150 4.25e 0 6.54e- 1
+ 7 electri16        8.44e 1 2.64e 1        7.59   1   e 2 1   e+ 2
+ 8 fertil16         4.18e 2 2.44e 3        0.402  3.02e 4 1.19e+ 2
+ 9 gasto_edu16      4.53e 0 1.53e 0        1.37   1.03e 1 4.44e+ 0
+10 gasto_id16       1.03e 0 1.02e 0        0.0150 4.25e 0 6.54e- 1
+11 gasto_militar17  1.86e 0 1.62e 0        0      1.21e 1 1.44e+ 0
+12 pib16            3.79e11 1.63e12 36572612.     1.87e13 2.70e+10
+13 pm2517           2.70e 1 1.88e 1        5.86   9.97e 1 2.16e+ 1
+14 pobRural17       3.90e 1 2.38e 1        0      8.73e 1 3.83e+ 1
+15 tierrasCult16    1.42e 1 1.35e 1        0.0863 5.96e 1 1.04e+ 1</code></pre>
+</div>
+</div>
+</section>
+<section id="tabla-con-dt" class="level2">
+<h2 class="anchored" data-anchor-id="tabla-con-dt">Tabla con DT</h2>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Bibliotecas</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(DT)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Resumen numérico por variable</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>datos <span class="sc">%&gt;%</span> </span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span><span class="fu">c</span>(pais, continente)) <span class="sc">%&gt;%</span> </span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gather</span>(<span class="at">key =</span> <span class="st">"variable"</span>, <span class="at">value =</span> <span class="st">"valor"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(variable) <span class="sc">%&gt;%</span> </span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">Promedio =</span> <span class="fu">mean</span>(valor, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>            <span class="at">DE =</span> <span class="fu">sd</span>(valor, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>            <span class="at">Min =</span> <span class="fu">min</span>(valor, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>            <span class="at">Max =</span> <span class="fu">max</span>(valor, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>            <span class="at">Mediana =</span> <span class="fu">median</span>(valor, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">datatable</span>()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div id="htmlwidget-13eca0cdb1f9084edb11" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-13eca0cdb1f9084edb11">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15"],["cajeros17","camas14","cto_pib16","densidad17","desempleo17","deuda16","electri16","fertil16","gasto_edu16","gasto_id16","gasto_militar17","pib16","pm2517","pobRural17","tierrasCult16"],[55.1196036377194,2.29163265306122,3.02640099479596,449.387043752041,7.35891895640541,1.03477384615385,84.3502905575734,417.605786272689,4.53041608612259,1.03477384615385,1.863973927737,378862320893.031,26.9594007355736,39.0181367924528,14.175274204095],[46.9290679842077,1.57165431279005,3.75187392717875,2051.62952192388,5.53297052970703,1.02358403615596,26.38333302863,2442.77179288074,1.53418432589205,1.02358403615596,1.6150458230517,1633312267229.77,18.8299906160669,23.8268893116642,13.4963277685366],[1.27466705619395,0.5,-13.621458438417,0.136852235351444,0.140000000596046,0.01498,7.58847713470459,0.402090467725481,1.37101995944977,0.01498,0,36572611.8853148,5.86133100081928,0,0.0862812769628991],[313.152787448703,6.2,28.2238442822384,20479.1778885587,27.4440002441406,4.25121,100,30237.8556190309,10.2931299209595,4.25121,12.0727196538761,18707189000000,99.7343737198505,87.294,59.646692486268],[45.7658986412207,1.6,3.06260036695409,94.6730948993107,5.76000022888184,0.654185,100,119.309633027523,4.44098997116089,0.654185,1.43693076288569,26958567380.3348,21.5689865956858,38.269,10.4236718224613]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>variable<\/th>\n      <th>Promedio<\/th>\n      <th>DE<\/th>\n      <th>Min<\/th>\n      <th>Max<\/th>\n      <th>Mediana<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[2,3,4,5,6]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+</section>
+<section id="tabla-con-knitr" class="level2">
+<h2 class="anchored" data-anchor-id="tabla-con-knitr">Tabla con Knitr</h2>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Bibliotecas</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Resumen numérico por variable</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>datos <span class="sc">%&gt;%</span> </span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span><span class="fu">c</span>(pais, continente)) <span class="sc">%&gt;%</span> </span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gather</span>(<span class="at">key =</span> <span class="st">"variable"</span>, <span class="at">value =</span> <span class="st">"valor"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(variable) <span class="sc">%&gt;%</span> </span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">Promedio =</span> <span class="fu">mean</span>(valor, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>            <span class="at">DE =</span> <span class="fu">sd</span>(valor, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>            <span class="at">Min =</span> <span class="fu">min</span>(valor, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>            <span class="at">Max =</span> <span class="fu">max</span>(valor, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>            <span class="at">Mediana =</span> <span class="fu">median</span>(valor, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="table table-sm table-striped">
+<colgroup>
+<col style="width: 19%">
+<col style="width: 15%">
+<col style="width: 15%">
+<col style="width: 17%">
+<col style="width: 15%">
+<col style="width: 15%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">variable</th>
+<th style="text-align: right;">Promedio</th>
+<th style="text-align: right;">DE</th>
+<th style="text-align: right;">Min</th>
+<th style="text-align: right;">Max</th>
+<th style="text-align: right;">Mediana</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">cajeros17</td>
+<td style="text-align: right;">5.511960e+01</td>
+<td style="text-align: right;">4.692907e+01</td>
+<td style="text-align: right;">1.274667e+00</td>
+<td style="text-align: right;">3.131528e+02</td>
+<td style="text-align: right;">4.576590e+01</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">camas14</td>
+<td style="text-align: right;">2.291633e+00</td>
+<td style="text-align: right;">1.571654e+00</td>
+<td style="text-align: right;">5.000000e-01</td>
+<td style="text-align: right;">6.200000e+00</td>
+<td style="text-align: right;">1.600000e+00</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">cto_pib16</td>
+<td style="text-align: right;">3.026401e+00</td>
+<td style="text-align: right;">3.751874e+00</td>
+<td style="text-align: right;">-1.362146e+01</td>
+<td style="text-align: right;">2.822384e+01</td>
+<td style="text-align: right;">3.062600e+00</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">densidad17</td>
+<td style="text-align: right;">4.493870e+02</td>
+<td style="text-align: right;">2.051630e+03</td>
+<td style="text-align: right;">1.368522e-01</td>
+<td style="text-align: right;">2.047918e+04</td>
+<td style="text-align: right;">9.467309e+01</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">desempleo17</td>
+<td style="text-align: right;">7.358919e+00</td>
+<td style="text-align: right;">5.532971e+00</td>
+<td style="text-align: right;">1.400000e-01</td>
+<td style="text-align: right;">2.744400e+01</td>
+<td style="text-align: right;">5.760000e+00</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">deuda16</td>
+<td style="text-align: right;">1.034774e+00</td>
+<td style="text-align: right;">1.023584e+00</td>
+<td style="text-align: right;">1.498000e-02</td>
+<td style="text-align: right;">4.251210e+00</td>
+<td style="text-align: right;">6.541850e-01</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">electri16</td>
+<td style="text-align: right;">8.435029e+01</td>
+<td style="text-align: right;">2.638333e+01</td>
+<td style="text-align: right;">7.588477e+00</td>
+<td style="text-align: right;">1.000000e+02</td>
+<td style="text-align: right;">1.000000e+02</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">fertil16</td>
+<td style="text-align: right;">4.176058e+02</td>
+<td style="text-align: right;">2.442772e+03</td>
+<td style="text-align: right;">4.020905e-01</td>
+<td style="text-align: right;">3.023786e+04</td>
+<td style="text-align: right;">1.193096e+02</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">gasto_edu16</td>
+<td style="text-align: right;">4.530416e+00</td>
+<td style="text-align: right;">1.534184e+00</td>
+<td style="text-align: right;">1.371020e+00</td>
+<td style="text-align: right;">1.029313e+01</td>
+<td style="text-align: right;">4.440990e+00</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">gasto_id16</td>
+<td style="text-align: right;">1.034774e+00</td>
+<td style="text-align: right;">1.023584e+00</td>
+<td style="text-align: right;">1.498000e-02</td>
+<td style="text-align: right;">4.251210e+00</td>
+<td style="text-align: right;">6.541850e-01</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">gasto_militar17</td>
+<td style="text-align: right;">1.863974e+00</td>
+<td style="text-align: right;">1.615046e+00</td>
+<td style="text-align: right;">0.000000e+00</td>
+<td style="text-align: right;">1.207272e+01</td>
+<td style="text-align: right;">1.436931e+00</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">pib16</td>
+<td style="text-align: right;">3.788623e+11</td>
+<td style="text-align: right;">1.633312e+12</td>
+<td style="text-align: right;">3.657261e+07</td>
+<td style="text-align: right;">1.870719e+13</td>
+<td style="text-align: right;">2.695857e+10</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">pm2517</td>
+<td style="text-align: right;">2.695940e+01</td>
+<td style="text-align: right;">1.882999e+01</td>
+<td style="text-align: right;">5.861331e+00</td>
+<td style="text-align: right;">9.973437e+01</td>
+<td style="text-align: right;">2.156899e+01</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">pobRural17</td>
+<td style="text-align: right;">3.901814e+01</td>
+<td style="text-align: right;">2.382689e+01</td>
+<td style="text-align: right;">0.000000e+00</td>
+<td style="text-align: right;">8.729400e+01</td>
+<td style="text-align: right;">3.826900e+01</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">tierrasCult16</td>
+<td style="text-align: right;">1.417527e+01</td>
+<td style="text-align: right;">1.349633e+01</td>
+<td style="text-align: right;">8.628130e-02</td>
+<td style="text-align: right;">5.964669e+01</td>
+<td style="text-align: right;">1.042367e+01</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="descripción-del-proceso" class="level2">
+<h2 class="anchored" data-anchor-id="descripción-del-proceso">Descripción del proceso</h2>
+<ul>
+<li>El proceso anterior se puede describir de la siguiente manera:
+<ol type="1">
+<li><code>Datos</code> es la base de datos sobre la cual deseo ejecutar un proceso.</li>
+<li><code>%&gt;%</code> operador de tubería que se lee como “<em>entonces</em>”“. Permite que el código sea legible, además, proporciona operaciones en cadena.</li>
+<li><strong>Opcional:</strong> como la descripción numérica que se va a realizar sólo es con las variables cuantitativas, selecciono unicamente aquellas de interés, es decir, todas excepto el país y el contienente (por ser texto o factores).</li>
+<li>La función <code>gather()</code> permite pasar de múltiples columnas a dos variables que contienen la misma información. Los argumentos necesarios para procesar son:
+<ul>
+<li><code>key</code>: nombre de la nueva variable que contiene los encabezados (nombres de variables en la base de datos con formato ancho).</li>
+<li><code>value</code>: nombre de la nueva variable que contiene valores asociados a las variables de interés.</li>
+</ul></li>
+<li>La función <code>group_by()</code> permitirá agrupar por <code>variable</code>, es decir, que en teoría se tendrán 15 grupos (porque son 15 variables).</li>
+<li>La función <code>summarise()</code> permite generar resúmenes numéricos en función de la agrupación previa. Los nombres <code>Promedio</code>, <code>DE</code>, <code>Min</code>, <code>Max</code> y <code>Mediana</code> los asigna el usuario.</li>
+<li><strong>Nota:</strong> el argumento <code>na.rm = TRUE</code> en las funciones de estadísticos descriptivos permite remover los <code>NAs</code> para efectuar el cálculo.</li>
+</ol></li>
+</ul>
+</section>
+</section>
+<section id="gráficos-de-dispersión" class="level1 tabset tabset-fade tabset-pills">
+<h1 class="tabset tabset-fade tabset-pills">Gráficos de dispersión</h1>
+<section id="gráfio-x-vs-y-simple" class="level2">
+<h2 class="anchored" data-anchor-id="gráfio-x-vs-y-simple">Gráfio X vs Y (simple)</h2>
+<ul>
+<li><strong>Gráfico con todos los datos:</strong></li>
+</ul>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Biblioteca</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Gráfico</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> datos, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> gasto_militar17, <span class="at">y =</span> gasto_edu16)) <span class="sc">+</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="cor-rls_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<ul>
+<li><strong>Gráfico con filtro sobre dato “atípico” en gasto militar:</strong></li>
+</ul>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Gráfico</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>datos <span class="sc">%&gt;%</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(gasto_militar17 <span class="sc">&lt;=</span> <span class="dv">10</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">data =</span> ., <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> gasto_militar17, <span class="at">y =</span> gasto_edu16)) <span class="sc">+</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="cor-rls_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="matriz-dispersión-1" class="level2">
+<h2 class="anchored" data-anchor-id="matriz-dispersión-1">Matriz Dispersión 1</h2>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Biblioteca</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(psych)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Matriz de dispersión</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>datos_disp <span class="ot">&lt;-</span> datos <span class="sc">%&gt;%</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select_if</span>(is.numeric)</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="fu">pairs.panels</span>(datos_disp)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="cor-rls_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="864"></p>
+</figure>
+</div>
+</div>
+</div>
+<ul>
+<li><strong>Matriz de dispersión reducida (ejemplo):</strong></li>
+</ul>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>datos_disp2 <span class="ot">&lt;-</span> datos <span class="sc">%&gt;%</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(gasto_militar17, gasto_edu16, desempleo17,</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>         camas14, pib16, gasto_id16)</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="fu">pairs.panels</span>(datos_disp2)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="cor-rls_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="864"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="matriz-de-dispersión-ggplot2" class="level2">
+<h2 class="anchored" data-anchor-id="matriz-de-dispersión-ggplot2">Matriz de dispersión <code>ggplot2</code></h2>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Biblioteca</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(GGally)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Matriz de dispersión</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggpairs</span>(datos_disp2)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="cor-rls_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="864"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="matriz-de-correlaciones-numérica" class="level2">
+<h2 class="anchored" data-anchor-id="matriz-de-correlaciones-numérica">Matriz de correlaciones numérica</h2>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Obtener correlaciones (Pearson: ejemplo)</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>matriz_cor <span class="ot">&lt;-</span> <span class="fu">cor</span>(datos_disp2, <span class="at">use =</span> <span class="st">"pairwise.complete.obs"</span>)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>matriz_cor</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                gasto_militar17  gasto_edu16 desempleo17     camas14
+gasto_militar17     1.000000000  0.005680844  0.07243089 -0.08380492
+gasto_edu16         0.005680844  1.000000000  0.18996210  0.39890799
+desempleo17         0.072430891  0.189962103  1.00000000  0.09568141
+camas14            -0.083804924  0.398907991  0.09568141  1.00000000
+pib16               0.049793587 -0.039946838 -0.08014070  0.12298349
+gasto_id16         -0.073199552 -0.103750960 -0.15564109  0.55237344
+                      pib16  gasto_id16
+gasto_militar17  0.04979359 -0.07319955
+gasto_edu16     -0.03994684 -0.10375096
+desempleo17     -0.08014070 -0.15564109
+camas14          0.12298349  0.55237344
+pib16            1.00000000  0.37707683
+gasto_id16       0.37707683  1.00000000</code></pre>
+</div>
+</div>
+</section>
+<section id="matriz-de-correlaciones-gráfica" class="level2">
+<h2 class="anchored" data-anchor-id="matriz-de-correlaciones-gráfica">Matriz de correlaciones gráfica</h2>
+<ul>
+<li><strong>Método por defecto:</strong></li>
+</ul>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Biblioteca</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(corrplot)</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Gráfico</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="fu">corrplot</span>(matriz_cor)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="cor-rls_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<ul>
+<li><strong>Otro método gráfico:</strong></li>
+</ul>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">corrplot</span>(matriz_cor, <span class="at">method =</span> <span class="st">"pie"</span>, <span class="at">type =</span> <span class="st">"upper"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="cor-rls_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copiada");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

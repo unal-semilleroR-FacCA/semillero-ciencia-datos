@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.1.251">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Semillero R - FacCA">
+
+<title>Ciencia de Datos con R y Python - Recordatorio Semillero R 2019-01</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../favicon.png" rel="icon" type="image/png">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "Sín resultados",
+    "search-matching-documents-text": "documentos encontrados",
+    "search-copy-link-title": "Copiar el enlace en la busqueda",
+    "search-hide-matches-text": "Esconder resultados adicionales",
+    "search-more-match-text": "hay más resultados en este documento",
+    "search-more-matches-text": "más resultados en este documento",
+    "search-clear-button-title": "Borrar",
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Eviar"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-fixed fullcontent">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Ciencia de Datos con R y Python</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html">Inicio</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html">Información</a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-temas" role="button" data-bs-toggle="dropdown" aria-expanded="false">Temas</a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-temas">    
+        <li>
+    <a class="dropdown-item" href="../ciclo1.html">
+ <span class="dropdown-text">Ciclo 01</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/web-edimer/unal-semilleror-facca.github.io"><i class="bi bi-github" role="img">
+</i> 
+ </a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://www.youtube.com/@rpycol"><i class="bi bi-youtube" role="img">
+</i> 
+ </a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Recordatorio Semillero R 2019-01</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Autor</div>
+    <div class="quarto-title-meta-contents">
+             <p>Semillero R - FacCA </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Fecha de Publicación</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">1 de junio de 2019</p>
+    </div>
+  </div>
+    
+  </div>
+  
+
+</header>
+
+<section id="mundo-r" class="level1">
+<h1>Mundo R</h1>
+<section id="atajos-del-teclado" class="level2">
+<h2 class="anchored" data-anchor-id="atajos-del-teclado">Atajos del teclado</h2>
+<ul>
+<li><code>CTRL + L</code>: limpiar la consola.</li>
+<li><code>CTRL + Enter</code>: ejecutar código.</li>
+<li><code>CTRL + Shift + M</code>: operador de tubería (<code>%&gt;%</code>)</li>
+<li><code>CTRL + Shift + K</code>: compilar documentos RMardkown.</li>
+<li><code>CTRL + Alt + i</code>: insetar chunk o fragmento de R en documento RMarkdown.</li>
+<li><code>CTRL + s</code>: guardar de forma rápida.</li>
+<li><code>CTRL + Shift + Enter</code>: ejecución del script completo.</li>
+</ul>
+</section>
+<section id="tipos-de-datos-en-r" class="level2">
+<h2 class="anchored" data-anchor-id="tipos-de-datos-en-r">Tipos de datos en R</h2>
+<ul>
+<li><strong>Numéricos:</strong> todo dato en la escala de los reales - <code>numeric</code>.</li>
+<li><strong>Enteros:</strong> toda información cuantitativa sin decimales - <code>integer</code>.</li>
+<li><strong>Lógicos:</strong> datos dicotómicos con dos posibles resultados (TRUE o FALSE) - <code>logical</code>.</li>
+<li><strong>Caracteres:</strong> datos tipo texto (sin jerarquia) - <code>character</code>.
+<ul>
+<li><strong>Factores:</strong> datos tipo texto (con jerarquia). De gran utilidad para manejar variables categóricas o cualitativas - <code>factor</code>.</li>
+</ul></li>
+<li><strong>Complejos:</strong> datos numéricos con inclusión del número imaginario (i) - <code>complex</code>.</li>
+</ul>
+</section>
+<section id="objetos-estructurados" class="level2">
+<h2 class="anchored" data-anchor-id="objetos-estructurados">Objetos estructurados</h2>
+<ul>
+<li><strong>Vector:</strong> los vectores tiene la característica de almacenar información de un sólo tipo (por ejemplo, sólo puedo tener numéricos o caracteres, pero no ambos) - <code>c()</code> o <code>vector()</code>.</li>
+<li><strong>Matriz:</strong> las matrices son arreglos de dos o más dimensiones con la misma característica de los vectores, sólo permiten almacenar información de un sólo tipo - <code>matrix()</code>.</li>
+<li><strong>Listas:</strong> las listas permiten almacenar información de cualquier tipo; son altamente flexibles para procesos iterativos - <code>list()</code>.</li>
+<li><strong>Dataframe:</strong> similar a una hoja de cálculo en excel. Constituye la materia prima (bases de datos) para cualquier proceso de Ciencia de Datos.</li>
+<li><strong>Factores:</strong> se definen como vectores de caracteres con estructura jerárquica (niveles) - <code>factor()</code>.</li>
+</ul>
+</section>
+<section id="funciones-auxiliares-generales-1" class="level2">
+<h2 class="anchored" data-anchor-id="funciones-auxiliares-generales-1">Funciones auxiliares generales 1</h2>
+<ul>
+<li><code>str()</code>: devuelve la estructura interna de un objeto cualquiera.</li>
+<li><code>class()</code>: devuelve la clase atómica de un objeto, es decir, el tipo de dato.</li>
+<li><code>levels()</code>: devuelve los niveles de un factor.</li>
+<li><code>names()</code>: observar o editar los nombres de un objeto.</li>
+<li><code>rownames()</code>: observar o editar los nombres de las filas de una matriz o una base de datos (dataframe).</li>
+<li><code>colnames()</code>:observar o editar los nombres de las columnas de una matriz o una base de datos (dataframe).</li>
+</ul>
+</section>
+<section id="funciones-auxiliares-generales-2" class="level2">
+<h2 class="anchored" data-anchor-id="funciones-auxiliares-generales-2">Funciones auxiliares generales 2</h2>
+<ul>
+<li><code>length()</code>: devuelve la longitud de un objeto. La longitud de un vector es el número de datos del mismo, sin embargo, la longitud en un dataframe o una matriz es el número de columnas o variables.</li>
+<li><code>dim()</code>: devuelve las dimensiones de una matriz o un dataframe.</li>
+<li><code>nrow()</code>: devuelve el número de filas de un objeto.</li>
+<li><code>ncol()</code>: devuelve el número de columnas de un objeto.</li>
+</ul>
+</section>
+<section id="funciones-auxiliares-numéricas-1" class="level2">
+<h2 class="anchored" data-anchor-id="funciones-auxiliares-numéricas-1">Funciones auxiliares numéricas 1</h2>
+<ul>
+<li><code>summary()</code>: resumen numérico general. Es una función genérica.</li>
+<li><code>mean()</code>: devuelve la media. Si hay valores <code>NAs</code> se debe agregar el argumento <code>na.rm = TRUE</code> - <code>mean(x, na.rm = TRUE)</code>.</li>
+<li><code>median()</code>: devuelve la mediana. Si hay valores <code>NAs</code> se debe agregar el argumento <code>na.rm = TRUE</code> - <code>median(x, na.rm = TRUE)</code>.</li>
+<li><code>min()</code>: devuelve el valor mínimo. Si hay valores <code>NAs</code> se debe agregar el argumento <code>na.rm = TRUE</code> - <code>min(x, na.rm = TRUE)</code>.</li>
+<li><code>max()</code>: devuelve el valor máximo. Si hay valores <code>NAs</code> se debe agregar el argumento <code>na.rm = TRUE</code> - <code>max(x, na.rm = TRUE)</code>.</li>
+<li><code>sd()</code>: devuelve la desviación estándar. Si hay valores <code>NAs</code> se debe agregar el argumento <code>na.rm = TRUE</code> - <code>sd(x, na.rm = TRUE)</code>.</li>
+</ul>
+</section>
+<section id="funciones-auxiliares-numéricas-2" class="level2">
+<h2 class="anchored" data-anchor-id="funciones-auxiliares-numéricas-2">Funciones auxiliares numéricas 2</h2>
+<ul>
+<li><code>var()</code>: devuelve la varianza. Si hay valores <code>NAs</code> se debe agregar el argumento <code>na.rm = TRUE</code> - <code>var(x, na.rm = TRUE)</code>.</li>
+<li><code>IQR()</code>: devuelve el rango intercuartílico. Si hay valores <code>NAs</code> se debe agregar el argumento <code>na.rm = TRUE</code> - <code>IQR(x, na.rm = TRUE)</code>.</li>
+<li><code>range()</code>: devuelve el rango de un objeto numérico. Si hay valores <code>NAs</code> se debe agregar el argumento <code>na.rm = TRUE</code> - <code>range(x, na.rm = TRUE)</code>.</li>
+<li><code>quantile()</code>: devuelve cuartiles, deciles o percentiles. La función requiere del valor de probabilidad para las medidas de posición (<code>probs = 0.25</code>). Si hay valores <code>NAs</code> se debe agregar el argumento <code>na.rm = TRUE</code> - <code>quantile(x, probs = 0.25, na.rm = TRUE)</code>.</li>
+</ul>
+</section>
+<section id="funciones-para-importar-datos" class="level2">
+<h2 class="anchored" data-anchor-id="funciones-para-importar-datos">Funciones para importar datos</h2>
+<ul>
+<li><code>read.csv()</code>: función para importar datos en formato csv (separados por comas), donde el decimal está definido por punto (.).</li>
+<li><code>read.csv2()</code>: función para importar datos en formato csv (separados por punto y coma), donde el decimal está dado por la com (,).</li>
+<li><code>read.table()</code>: función para importar datos en formato txt (texto plano o sin formato), donde el decimal está dado por el punto (.)</li>
+<li><strong>Datos en formato office:</strong> para importar datos en formato .xls o .xlsx es necesario instalar la biblioteca <code>readxl</code> e implementar la función <code>read_xlsx()</code> o <code>read_xls</code>.</li>
+<li><code>load()</code>: función que permite importar información en formato <code>.Rdata</code> (formato específico del lenguaje R).</li>
+</ul>
+</section>
+<section id="funciones-para-exportar-datos" class="level2">
+<h2 class="anchored" data-anchor-id="funciones-para-exportar-datos">Funciones para exportar datos</h2>
+<ul>
+<li><code>write.csv()</code>: función que permite exportar datos en formato .csv (separados por comas) y el decimal está definido por el punto (.).</li>
+<li><code>write.csv2()</code>: función que permite exportar datos en formato .csv (separados por punto y comas) y el decimal está definido por la coma (,).</li>
+<li><code>write.table()</code>: función que permite exportar datos en formato .txt (texto plano o sin formato) y el decimal está definido por el punto (.).</li>
+<li><strong>Datos en formato office:</strong> para exportar datos en formato .xls o .xlsx es necesario instalar las bibliotecas <code>writexl</code> o <code>WriteXLS</code> e implementar las funciones <code>write_xlsx()</code> o <code>WriteXLS()</code>, respectivamente.</li>
+<li><strong>save()</strong>: función para exportar datos en formato .Rdata. <strong>Nota:</strong> no olvidar que la función <code>save</code> permite diferentes niveles de compresión a través del argumento <code>compress.level</code>.</li>
+</ul>
+</section>
+</section>
+<section id="tidyverse" class="level1">
+<h1>Tidyverse</h1>
+<section id="introducción" class="level2">
+<h2 class="anchored" data-anchor-id="introducción">Introducción</h2>
+<ul>
+<li>El <code>tidyverse</code> no es una biblioteca en sí misma, es un grupo de bibliotecas o componentes que conforman el paradigma de programación de <code>datos ordenados</code> (tidydata).</li>
+<li>Los datos ordenados tienen las siguientes tres características:
+<ul>
+<li>Cada fila es una observación, individuo o registro.</li>
+<li>Cada columna es una variable.</li>
+<li>Cada celda es un dato.</li>
+</ul></li>
+<li>Algunas de las bibliotecas que componen el <code>tidyverse</code> son: <code>dplyr</code>, <code>tidyr</code>, <code>ggplot2</code>.</li>
+<li>El <code>tidyverse</code> posee la particularidad de concatenar procesos a través del operador de tubería (<code>%&gt;%</code>).</li>
+</ul>
+</section>
+<section id="manejo-de-datos-con-dplyr" class="level2">
+<h2 class="anchored" data-anchor-id="manejo-de-datos-con-dplyr">Manejo de datos con <code>dplyr</code></h2>
+<ul>
+<li><code>filter()</code>: filtrar filas bajo una o más condiciones.</li>
+<li><code>slice()</code>: seleccionar filas basado en la indexación (posición).</li>
+<li><code>arrange()</code>: ordenar filas en función de algún criterio. Por defecto la función ordena las filas de manera ascendente, sin embargo, con el argumento <code>desc</code> es posible cambiar dicho orden.</li>
+<li><code>select()</code>: seleccionar columnas por nombre.</li>
+<li><code>rename()</code>: editar nombres de variables.</li>
+<li><code>mutate()</code>: editar o crear nuevas variables en función de las existentes.</li>
+<li><code>group_by()</code>: permite conformar grupos “latentes” para resúmenes numéricos. La gran mayoría de veces está acompañada de la función <code>summarise()</code>.</li>
+<li><code>summarise()</code>: permite obtener resúmenes numéricos para variables de interés (agrupadas o sin agrupar).</li>
+</ul>
+</section>
+<section id="conversión-de-formatos-con-tidyr" class="level2">
+<h2 class="anchored" data-anchor-id="conversión-de-formatos-con-tidyr">Conversión de formatos con <code>tidyr</code></h2>
+<ul>
+<li>La biblioteca <code>tidyr</code> permite conversiones de formatos. Es de utilidad para pasar de formatos largos a achos o viceversa.</li>
+<li><code>gather()</code>: conversión de formato ancho a largo, es decir, que permite disminuir la dimensialidad de los datos (reducir el número de variables).</li>
+<li><code>spread()</code>: conversión de formato largo a ancho, es decir, que permite aumentar la dimensionalidad de los datos (aumentar el número de columnas).</li>
+<li><rojo>Característica principal:</rojo> siempre cualquiera de las dos funciones debe contener una llave (<code>key</code>) y un valor (<code>value</code>) asociado a dicha llave.</li>
+<li>Las funciones <code>separate()</code> y <code>unite()</code> son de utilidad para separar o unir columnas.</li>
+</ul>
+</section>
+<section id="visualización-con-ggplot2" class="level2">
+<h2 class="anchored" data-anchor-id="visualización-con-ggplot2">Visualización con <code>ggplot2</code></h2>
+<ul>
+<li><code>ggplot2</code> permite visualizar gráficos con instrucciones dadas por capas.</li>
+<li><rojo>Sintaxis principal:</rojo>
+<ul>
+<li><strong>1era capa:</strong> <code>ggplot(data = datos, mapping = aes(x, y))</code></li>
+<li><strong>2da capa:</strong> asignación de objetos geométricos con las funciones que tiene el prefijo <code>geom_</code>:
+<ul>
+<li><code>geom_boxplot()</code>, <code>geom_histogram()</code>, <code>geom_density()</code>, <code>geom_point()</code>, <code>geom_bar()</code>, <code>geom_col</code>, entre otras.</li>
+</ul></li>
+<li><strong>3ra capa:</strong> asignación de rótulos. Es posible hacerlo con la función <code>labs()</code>.</li>
+<li>Cada capa se adiciona con el símbolo más (+).</li>
+</ul></li>
+</ul>
+</section>
+</section>
+<section id="estilo-con-css" class="level1">
+<h1>Estilo con css</h1>
+<section id="pasos-a-seguir" class="level2">
+<h2 class="anchored" data-anchor-id="pasos-a-seguir">Pasos a seguir…</h2>
+<ol type="1">
+<li>Crear un archivo con formato .css (darle un nombre) en el mismo directorio de trabajo.</li>
+<li>Editar o incorporar clases para formatos específicos de texto.</li>
+<li>Dar nombre a la clase en css (puede ser cualquiera) seguido de las llaves <code>{}</code>. Dentro de las llaves se indican los formatos específicos; en este caso, el color. <code>rojo {color: red;}</code></li>
+<li>Incorporar en los metadatos (con la opción css) el archivo (.css) que determina el estilo del documento.</li>
+<li>Hacer uso de la clase específica de la siguiente manera: <code>&lt;clase&gt;Texto&lt;/clase&gt;</code>. <rojo>Texto en color rojo</rojo></li>
+<li><a href="https://www.w3schools.com/">Mayor información en W3Schools.</a></li>
+</ol>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copiada");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

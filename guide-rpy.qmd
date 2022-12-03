@@ -1,0 +1,14 @@
+---
+title: "Guías"
+---
+
+## Guías R
+
+## Guías Python
+
+
+<center>
+
+<p>Página web construida con Quarto - <a href="https://github.com/web-edimer/unal-semilleror-facca.github.io">Código fuente en Github.</a></p>
+
+</center>

@@ -1,0 +1,57 @@
+---
+title: "Ciclo 01"
+---
+
+## Temas desarrollados
+
+-   Este ciclo se desarrolló durante los años 2018 a 2022.
+-   Los temas principales fueron:
+    -   Investigación reproducible con R: Ecosistema `R Markdown`
+    -   Fundamentos de manipulación de datos con R: `tidyverse`
+    -   Fundamentos de visualización de datos con R: `ggplot2`
+    -   Generación de tableros con R: `flexdashboard`
+    -   Introducción al desarrollo de aplicaciones con R: `shiny`
+    -   Introducción al *Machine Learning* con R: `tidymodels`
+
+## Material de apoyo - 2019-01
+
+0. [Bienvenida](/slides-ciclo01/0_bienvenida.html)
+1. [Introducción a R y RStudio](/slides-ciclo01/1_Intro.html)
+2. [Ecosistema R Markdown (1/2)](/slides-ciclo01/1_rmarkdown.html)
+3. [Ecosistema R Markdown (2/2)](/slides-ciclo01/1.2_rmarkdown.html)
+4. [Mundo R + `tidyverse` (1/2)](/slides-ciclo01/2_mundor.html)
+5. [Mundo R + `tidyverse` (2/2)](/slides-ciclo01/2_mundor_tidy.html)
+
+## Material de apoyo - 2019-02
+
+1. [Repaso: R + `tidyverse`](/slides-ciclo01/recordatorio.html)
+2. [Ejercicio](/slides-ciclo01/ejercicio1.html)
+3. [Correlaciones](/slides-ciclo01/cor-rls.html)
+4. [Regresión Lineal Simple](/slides-ciclo01/regsimple.html)
+5. [Encuenta `rday 2019`](/slides-ciclo01/pdf/Encuesta_Rday.pdf)
+
+## Material de apoyo - 2021-01
+
+1. [Repaso R-Markdown y Tidyverse](https://rpubs.com/Edimer/978335)
+2. [Novedades en el tidyverse y bibliotecas auxiliares](https://rpubs.com/Edimer/978336)
+3. [Visualización con R: parte 1](https://rpubs.com/Edimer/978338)
+4. [Visualización con R: parte 2](https://rpubs.com/Edimer/978340)
+5. [Tableros: flexdashboard 1](https://rpubs.com/Edimer/978341)
+6. [Tableros: flexdashboard 2](https://rpubs.com/Edimer/978342)
+7. [Shiny: Introducción](https://rpubs.com/Edimer/978344)
+8. [Descargar ejemplos .Rmd y datos](/slides-ciclo01/ejemplos/ejemplos-2021-01.zip)
+
+## Material de apoyo - 2022-01
+
+1. [Machine Learning con R: introducción a `tidymodels`](https://rpubs.com/Edimer/978348)
+2. [Remuestreo con rsample y modelos con `parsnip`](https://rpubs.com/Edimer/978350)
+3. [Ajuste de modelos con tune e Ingeniería de características con `recipes`](https://rpubs.com/Edimer/978351)
+4. [Optimización de hiperparámetros con R: `tune`](https://rpubs.com/Edimer/978352)
+5. [Flujos de trabajo para Machine Learning con R: `workflow` (pipelines)](https://rpubs.com/Edimer/978353)
+6. [Descargar ejemplos .Rmd y datos](/slides-ciclo01/ejemplos/ejemplos-2022-01.zip)
+
+<center>
+
+<p>Página web construida con Quarto - <a href="https://github.com/web-edimer/unal-semilleror-facca.github.io">Código fuente en Github.</a></p>
+
+</center>

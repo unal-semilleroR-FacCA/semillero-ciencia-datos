@@ -1,0 +1,15 @@
+---
+title: "Ciclo 02"
+---
+
+## Material de apoyo - 2022-02
+
+1. [Bienvenida e Introducción](https://rpubs.com/Edimer/975282)
+2. [Ejemplo aplicado: Web Scraping con R y Python]()
+
+
+<center>
+
+<p>Página web construida con Quarto - <a href="https://github.com/web-edimer/unal-semilleror-facca.github.io">Código fuente en Github.</a></p>
+
+</center>

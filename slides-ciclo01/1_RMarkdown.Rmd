@@ -1,0 +1,149 @@
+---
+output: 
+  revealjs::revealjs_presentation:
+    theme: simple
+    highlight: haddock
+    center: true
+    transition: slide
+    css: estilo.css
+    self_contained: false
+    reveal_options:
+      slideNumber: true
+      previewLinks: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE,
+                      warning = FALSE,
+                      message = FALSE,
+                      error = FALSE,
+                      fig.align = "center",
+                      fig.width = 7.5,
+                      fig.height = 5.5)
+```
+
+# Semillero de R - FacCA {data-background="fondo1.png"}
+
+# Ecosistema R Markdown I {data-background="markdown2.png"}
+
+## ¿Qué es Markdown? {data-background="markdown2.png"}
+
+<q>"Markdown es un lenguaje de marcado ligero creado por John Gruber que trata de conseguir la máxima legibilidad y facilidad de publicación tanto en su forma de entrada como de salida, inspirándose en muchas convenciones existentes para marcar mensajes de correo electrónico usando texto plano."</q>
+
+# R Markdown {data-background="markdown2.png"}
+
+## Flujo de trabajo: archivo .Rmd {data-background="markdown2.png"}
+
+  - Crear archivo nuevo de extensión ***.Rmd***.
+      - File -> New File -> R Markdown
+
+```{r, echo=FALSE, out.width="515px", out.height="420px"}
+knitr::include_graphics("images/rmarkdown.png")
+```
+
+  - Guardar archivo **.Rmd**
+      - *File -> Save with Encoding -> UTF-8.*
+
+## Flujo de trabajo: R Markdown{data-background="markdown2.png"}
+
+  - Texto en formato markdown.
+  - Fragmentos de código R.
+  - Compilación de archivos *.html*.
+  - Teclas de acceso rápido:
+      - **`Ctrl + Alt + i`:** insertar código R.
+      - **`Ctrl + Shift + k`:** compilar el documento a formato *.html*.
+
+# Elementos básicos de Markdown {data-background="markdown2.png"}
+
+## Títulos o encabezados {data-background="markdown2.png"}
+  
+```
+# Título 1
+
+## Título 2
+
+### Título 3
+```
+
+## Viñetas {data-background="markdown2.png"}
+  
+```
+  - Viñeta 1
+  - Viñeta 2
+      - Subviñeta 2.1
+  - Viñeta 3
+
+  * Viñeta 1
+  * Viñeta 2
+      * Subviñeta 2.1
+  * Viñeta 3
+  
+  + Viñeta 1
+  + Viñeta 2
+      + Subviñeta 2.1
+  + Viñeta 3  
+```
+
+## Insertar imagen {data-background="markdown2.png"}
+
+```
+![](imagen.png)  
+```
+
+## Insertar hipervínculo {data-background="markdown2.png"}
+
+  - **Primera forma:**
+
+```
+https://es.wikipedia.org/wiki/Git 
+```
+
+  - **Segunda forma:**
+
+```
+[Git Wikipedia](https://es.wikipedia.org/wiki/Git)  
+```
+
+## Opciones de texto {data-background="markdown2.png"}
+
+  - **Cursiva:**
+
+```
+*Texto*
+_Texto_
+```
+
+  - **Negrilla:**
+
+```
+**Texto**
+__Texto__
+```
+  
+  - **Negrilla cursiva:**
+  
+```
+***Texto***
+___Texto___
+```
+
+# Recursos de información {data-background="markdown2.png"}
+
+## R Markdown: The Definitive Guide {data-background="markdown2.png"}
+
+```{r, echo=FALSE, out.width="415px", out.height="500px"}
+knitr::include_graphics("images/cover (1).png")
+```
+
+[R Markdown: The Definitive Guide.](https://bookdown.org/yihui/rmarkdown/)
+
+# Sitios de divulgación con RStudio {data-background="markdown2.png"}
+
+## RPubs y RStudio Connect{data-background="markdown2.png"}
+
+  - Crear cuenta en [Rpubs.](https://rpubs.com/)
+  - [RStudio Connect.](https://www.rstudio.com/products/connect/)
+  
+```{r, echo=FALSE, out.width="470px", out.height="200px"}
+knitr::include_graphics("images/descarga (1).jpeg")
+```  

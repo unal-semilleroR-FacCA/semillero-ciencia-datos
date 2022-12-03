@@ -1,0 +1,192 @@
+---
+title: "Correlación: visualizaciones"
+author: "Edimer David Jaramillo"
+date: "Agosto de 2019"
+output:
+  html_document:
+    toc: true
+    theme: readable
+    df_print: paged
+    code_foldin: hide
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE,
+                      message = FALSE,
+                      warning = FALSE,
+                      fig.align = "center")
+```
+
+# Base de datos
+
+```{r}
+datos <- read.csv("Datos/Datos_Continentes.csv")
+datos
+```
+
+# Resumen numérico {.tabset .tabset-fade .tabset-pills}
+
+El resumen numérico de las variables cuantitativas tiene los siguientes estadísticos:
+
+- Media
+- Mediana
+- Desviación estándar
+- Mínimo
+- Máximo
+
+## Tabla por defecto
+
+```{r}
+# Bibliotecas
+library(tidyr)
+library(dplyr)
+
+# Resumen numérico por variable
+datos %>% 
+  select(-c(pais, continente)) %>% 
+  gather(key = "variable", value = "valor") %>% 
+  group_by(variable) %>% 
+  summarise(Promedio = mean(valor, na.rm = TRUE),
+            DE = sd(valor, na.rm = TRUE),
+            Min = min(valor, na.rm = TRUE),
+            Max = max(valor, na.rm = TRUE),
+            Mediana = median(valor, na.rm = TRUE))
+```
+
+## Tabla con DT
+
+```{r}
+# Bibliotecas
+library(DT)
+
+# Resumen numérico por variable
+datos %>% 
+  select(-c(pais, continente)) %>% 
+  gather(key = "variable", value = "valor") %>% 
+  group_by(variable) %>% 
+  summarise(Promedio = mean(valor, na.rm = TRUE),
+            DE = sd(valor, na.rm = TRUE),
+            Min = min(valor, na.rm = TRUE),
+            Max = max(valor, na.rm = TRUE),
+            Mediana = median(valor, na.rm = TRUE)) %>% 
+  datatable()
+```
+
+## Tabla con Knitr
+
+```{r}
+# Bibliotecas
+library(knitr)
+
+# Resumen numérico por variable
+datos %>% 
+  select(-c(pais, continente)) %>% 
+  gather(key = "variable", value = "valor") %>% 
+  group_by(variable) %>% 
+  summarise(Promedio = mean(valor, na.rm = TRUE),
+            DE = sd(valor, na.rm = TRUE),
+            Min = min(valor, na.rm = TRUE),
+            Max = max(valor, na.rm = TRUE),
+            Mediana = median(valor, na.rm = TRUE)) %>% 
+  kable()
+```
+
+## Descripción del proceso
+
+- El proceso anterior se puede describir de la siguiente manera:
+    1. `Datos` es la base de datos sobre la cual deseo ejecutar un proceso.
+    2. `%>%` operador de tubería que se lee como "*entonces*"". Permite que el código sea legible, además, proporciona operaciones en cadena.
+    3. **Opcional:** como la descripción numérica que se va a realizar sólo es con las variables cuantitativas, selecciono unicamente aquellas de interés, es decir, todas excepto el país y el contienente (por ser texto o factores).
+    4. La función `gather()` permite pasar de múltiples columnas a dos variables que contienen la misma información. Los argumentos necesarios para procesar son:
+        - `key`: nombre de la nueva variable que contiene los encabezados (nombres de variables en la base de datos con formato ancho). 
+        - `value`: nombre de la nueva variable que contiene valores asociados a las variables de interés.
+    5. La función `group_by()` permitirá agrupar por `variable`, es decir, que en teoría se tendrán 15 grupos (porque son 15 variables).
+    6. La función `summarise()` permite generar resúmenes numéricos en función de la agrupación previa. Los nombres `Promedio`, `DE`, `Min`, `Max` y `Mediana` los asigna el usuario.
+    7. **Nota:** el argumento `na.rm = TRUE` en las funciones de estadísticos descriptivos permite remover los `NAs` para efectuar el cálculo.
+
+# Gráficos de dispersión {.tabset .tabset-fade .tabset-pills}
+
+## Gráfio X vs Y (simple)
+
+- **Gráfico con todos los datos:**
+
+```{r}
+# Biblioteca
+library(ggplot2)
+
+# Gráfico
+ggplot(data = datos, mapping = aes(x = gasto_militar17, y = gasto_edu16)) +
+  geom_point() +
+  geom_smooth(method = "lm", se = FALSE)
+```
+
+- **Gráfico con filtro sobre dato "atípico" en gasto militar:**
+
+```{r}
+# Gráfico
+datos %>%
+  filter(gasto_militar17 <= 10) %>% 
+  ggplot(data = ., mapping = aes(x = gasto_militar17, y = gasto_edu16)) +
+  geom_point() +
+  geom_smooth(method = "lm", se = FALSE)
+```
+
+## Matriz Dispersión 1
+
+```{r, fig.width=9, fig.height=12}
+# Biblioteca
+library(psych)
+
+# Matriz de dispersión
+datos_disp <- datos %>%
+  select_if(is.numeric)
+
+pairs.panels(datos_disp)
+```
+
+- **Matriz de dispersión reducida (ejemplo):**
+
+```{r, fig.width=9, fig.height=6.5}
+datos_disp2 <- datos %>%
+  select(gasto_militar17, gasto_edu16, desempleo17,
+         camas14, pib16, gasto_id16)
+
+pairs.panels(datos_disp2)
+```
+
+## Matriz de dispersión `ggplot2`
+
+```{r, fig.width=9, fig.height=6.5}
+# Biblioteca
+library(GGally)
+
+# Matriz de dispersión
+ggpairs(datos_disp2)
+```
+
+## Matriz de correlaciones numérica
+
+```{r}
+# Obtener correlaciones (Pearson: ejemplo)
+matriz_cor <- cor(datos_disp2, use = "pairwise.complete.obs")
+matriz_cor
+```
+
+## Matriz de correlaciones gráfica
+
+- **Método por defecto:**
+
+```{r}
+# Biblioteca
+library(corrplot)
+
+# Gráfico
+corrplot(matriz_cor)
+```
+
+- **Otro método gráfico:**
+
+```{r}
+corrplot(matriz_cor, method = "pie", type = "upper")
+```
+

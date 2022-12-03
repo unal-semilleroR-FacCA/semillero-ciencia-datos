@@ -1,0 +1,21 @@
+---
+title: ""
+---
+
+<center> <h2> ¡Bienvenidos al Semillero de Ciencia de Datos! </h2> </center>
+
+
+::: {layout-ncol=2}
+
+```{r, echo=FALSE, fig.align="center", out.height="250"}
+knitr::include_graphics("images/pub.gif")
+```
+
+
+```{r, echo=FALSE, fig.align="center", out.height="250"}
+knitr::include_graphics("images/gif_py.gif")
+```
+
+:::
+
+<center> <p>Página web construida con Quarto - <a href="https://github.com/web-edimer/unal-semilleror-facca.github.io">Código fuente en Github.</a></p></center>

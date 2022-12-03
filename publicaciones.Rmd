@@ -1,9 +1,0 @@
----
-title: "Publicaciones"
----
-
-```{r, echo=FALSE, fig.align="center", out.width="350", out.height="200"}
-knitr::include_graphics("images/pubf.gif")
-```
-
-- [Percepción de deserción estudiantil en UNAL Medellín - Rday 2019](/Actividades/Encuesta_Rday.pdf)

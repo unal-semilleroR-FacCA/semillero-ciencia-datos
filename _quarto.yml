@@ -1,0 +1,36 @@
+project:
+  type: website
+
+website:
+  favicon: favicon.png
+  title: "Ciencia de Datos con R y Python"
+  site-url: https://semillerorpy.netlify.app/
+  navbar:
+    left:
+      - href: index.qmd
+        text: Inicio
+      - href: about.qmd
+        text: Información
+      - text: "Temas"
+        menu: 
+          - href: ciclo1.qmd
+          - href: ciclo2.qmd
+      - text: "Documentación"
+        menu: 
+          - href: recursos-info.qmd 
+          - href: books-rpy.qmd 
+          - href: examples-rpy.qmd 
+          - href: guide-rpy.qmd 
+    right:
+      - icon: github
+        href: https://github.com/web-edimer/unal-semilleror-facca.github.io
+      - icon: youtube
+        href: https://www.youtube.com/@rpycol   
+
+format:
+  html:
+    theme: lux
+    css: styles.css
+    lang: es
+
+

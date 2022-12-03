@@ -1,0 +1,157 @@
+---
+title: "Recordatorio Semillero R 2019-01"
+author: "Semillero R - FacCA"
+date: "Junio de 2019"
+output:
+  ioslides_presentation:
+    css: estilo_p.css
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+# Mundo R
+
+## Atajos del teclado
+
+- `CTRL + L`: limpiar la consola.
+- `CTRL + Enter`: ejecutar código.
+- `CTRL + Shift + M`: operador de tubería (`%>%`)
+- `CTRL + Shift + K`: compilar documentos RMardkown.
+- `CTRL + Alt + i`: insetar chunk o fragmento de R en documento RMarkdown.
+- `CTRL + s`: guardar de forma rápida.
+- `CTRL + Shift + Enter`: ejecución del script completo.
+
+## Tipos de datos en R
+
+- **Numéricos:** todo dato en la escala de los reales - `numeric`.
+- **Enteros:** toda información cuantitativa sin decimales - `integer`.
+- **Lógicos:** datos dicotómicos con dos posibles resultados (TRUE o FALSE) - `logical`.
+- **Caracteres:** datos tipo texto (sin jerarquia) - `character`.
+    - **Factores:** datos tipo texto (con jerarquia). De gran utilidad para manejar variables categóricas o cualitativas - `factor`.
+- **Complejos:** datos numéricos con inclusión del número imaginario (i) - `complex`.
+
+
+## Objetos estructurados
+
+- **Vector:** los vectores tiene la característica de almacenar información de un sólo tipo (por ejemplo, sólo puedo tener numéricos o caracteres, pero no ambos) - `c()` o `vector()`.
+- **Matriz:** las matrices son arreglos de dos o más dimensiones con la misma característica de los vectores, sólo permiten almacenar información de un sólo tipo - `matrix()`.
+- **Listas:** las listas permiten almacenar información de cualquier tipo; son altamente flexibles para procesos iterativos - `list()`.
+- **Dataframe:** similar a una hoja de cálculo en excel. Constituye la materia prima (bases de datos) para cualquier proceso de Ciencia de Datos.
+- **Factores:** se definen como vectores de caracteres con estructura jerárquica (niveles) - `factor()`.
+
+## Funciones auxiliares generales 1
+
+- `str()`: devuelve la estructura interna de un objeto cualquiera.
+- `class()`: devuelve la clase atómica de un objeto, es decir, el tipo de dato.
+- `levels()`: devuelve los niveles de un factor.
+- `names()`: observar o editar los nombres de un objeto.
+- `rownames()`: observar o editar los nombres de las filas de una matriz o una base de datos (dataframe).
+- `colnames()`:observar o editar los nombres de las columnas de una matriz o una base de datos (dataframe).
+
+## Funciones auxiliares generales 2
+
+- `length()`: devuelve la longitud de un objeto. La longitud de un vector es el número de datos del mismo, sin embargo, la longitud en un dataframe o una matriz es el número de columnas o variables.
+- `dim()`: devuelve las dimensiones de una matriz o un dataframe.
+- `nrow()`: devuelve el número de filas de un objeto.
+- `ncol()`: devuelve el número de columnas de un objeto.
+
+## Funciones auxiliares numéricas 1
+
+- `summary()`: resumen numérico general. Es una función genérica.
+- `mean()`: devuelve la media. Si hay valores `NAs` se debe agregar el argumento `na.rm = TRUE` - `mean(x, na.rm = TRUE)`.
+- `median()`: devuelve la mediana. Si hay valores `NAs` se debe agregar el argumento `na.rm = TRUE` - `median(x, na.rm = TRUE)`.
+- `min()`: devuelve el valor mínimo. Si hay valores `NAs` se debe agregar el argumento `na.rm = TRUE` - `min(x, na.rm = TRUE)`.
+- `max()`: devuelve el valor máximo. Si hay valores `NAs` se debe agregar el argumento `na.rm = TRUE` - `max(x, na.rm = TRUE)`.
+- `sd()`: devuelve la desviación estándar. Si hay valores `NAs` se debe agregar el argumento `na.rm = TRUE` - `sd(x, na.rm = TRUE)`.
+
+## Funciones auxiliares numéricas 2
+
+- `var()`: devuelve la varianza. Si hay valores `NAs` se debe agregar el argumento `na.rm = TRUE` - `var(x, na.rm = TRUE)`.
+- `IQR()`: devuelve el rango intercuartílico. Si hay valores `NAs` se debe agregar el argumento `na.rm = TRUE` - `IQR(x, na.rm = TRUE)`.
+- `range()`: devuelve el rango de un objeto numérico. Si hay valores `NAs` se debe agregar el argumento `na.rm = TRUE` - `range(x, na.rm = TRUE)`.
+- `quantile()`: devuelve cuartiles, deciles o percentiles. La función requiere del valor de probabilidad para las medidas de posición (`probs = 0.25`). Si hay valores `NAs` se debe agregar el argumento `na.rm = TRUE` - `quantile(x, probs = 0.25, na.rm = TRUE)`.
+
+## Funciones para importar datos
+
+- `read.csv()`: función para importar datos en formato csv (separados por comas), donde el decimal está definido por punto (.).
+- `read.csv2()`: función para importar datos en formato csv (separados por punto y coma), donde el decimal está dado por la com (,).
+- `read.table()`: función para importar datos en formato txt (texto plano o sin formato), donde el decimal está dado por el punto (.)
+- **Datos en formato office:** para importar datos en formato .xls o .xlsx es necesario instalar la biblioteca `readxl` e implementar la función `read_xlsx()` o `read_xls`.
+- `load()`: función que permite importar información en formato `.Rdata` (formato específico del lenguaje R).
+
+## Funciones para exportar datos
+
+- `write.csv()`: función que permite exportar datos en formato .csv (separados por comas) y el decimal está definido por el punto (.).
+- `write.csv2()`: función que permite exportar datos en formato .csv (separados por punto y comas) y el decimal está definido por la coma (,).
+- `write.table()`: función que permite exportar datos en formato .txt (texto plano o sin formato) y el decimal está definido por el punto (.).
+- **Datos en formato office:** para exportar datos en formato .xls o .xlsx es necesario instalar las bibliotecas `writexl` o `WriteXLS` e implementar las funciones `write_xlsx()` o `WriteXLS()`, respectivamente.
+- **save()**: función para exportar datos en formato .Rdata. **Nota:** no olvidar que la función `save` permite diferentes niveles de compresión a través del argumento `compress.level`.
+
+# Tidyverse
+
+## Introducción
+
+- El `tidyverse` no es una biblioteca en sí misma, es un grupo de bibliotecas o componentes que conforman el paradigma de programación de `datos ordenados` (tidydata).
+- Los datos ordenados tienen las siguientes tres características:
+    - Cada fila es una observación, individuo o registro.
+    - Cada columna es una variable.
+    - Cada celda es un dato.
+- Algunas de las bibliotecas que componen el `tidyverse` son: `dplyr`, `tidyr`, `ggplot2`.
+- El `tidyverse` posee la particularidad de concatenar procesos a través del operador de tubería (`%>%`).
+
+## Manejo de datos con `dplyr`
+
+- `filter()`: filtrar filas bajo una o más condiciones.
+- `slice()`: seleccionar filas basado en la indexación (posición).
+- `arrange()`: ordenar filas en función de algún criterio. Por defecto la función ordena las filas de manera ascendente, sin embargo, con el argumento `desc` es posible cambiar dicho orden.
+- `select()`: seleccionar columnas por nombre.
+- `rename()`: editar nombres de variables.
+- `mutate()`: editar o crear nuevas variables en función de las existentes.
+- `group_by()`: permite conformar grupos "latentes" para resúmenes numéricos. La gran mayoría de veces está acompañada de la función `summarise()`.
+- `summarise()`: permite obtener resúmenes numéricos para variables de interés (agrupadas o sin agrupar).
+
+## Conversión de formatos con `tidyr`
+
+- La biblioteca `tidyr` permite conversiones de formatos. Es de utilidad para pasar de formatos largos a achos o viceversa.
+- `gather()`: conversión de formato ancho a largo, es decir, que permite disminuir la dimensialidad de los datos (reducir el número de variables).
+- `spread()`: conversión de formato largo a ancho, es decir, que permite aumentar la dimensionalidad de los datos (aumentar el número de columnas).
+- <rojo>Característica principal:</rojo> siempre cualquiera de las dos funciones debe contener una llave (`key`) y un valor (`value`) asociado a dicha llave.
+- Las funciones `separate()` y `unite()` son de utilidad para separar o unir columnas.
+
+## Visualización con `ggplot2`
+
+- `ggplot2` permite visualizar gráficos con instrucciones dadas por capas.
+- <rojo>Sintaxis principal:</rojo>
+    - **1era capa:** `ggplot(data = datos, mapping = aes(x, y))`
+    - **2da capa:** asignación de objetos geométricos con las funciones que tiene el prefijo `geom_`:
+        - `geom_boxplot()`, `geom_histogram()`, `geom_density()`,
+        `geom_point()`, `geom_bar()`, `geom_col`, entre otras.
+    - **3ra capa:** asignación de rótulos. Es posible hacerlo con la función `labs()`.
+    - Cada capa se adiciona con el símbolo más (+).
+
+    
+# Estilo con css
+
+## Pasos a seguir...
+
+1. Crear un archivo con formato .css (darle un nombre) en el mismo directorio de trabajo.
+2. Editar o incorporar clases para formatos específicos de texto.
+3. Dar nombre a la clase en css (puede ser cualquiera) seguido de las llaves `{}`. Dentro de las llaves se indican los formatos específicos; en este caso, el color. `rojo {color: red;}`
+4. Incorporar en los metadatos (con la opción css) el archivo (.css) que determina el estilo del documento.
+5. Hacer uso de la clase específica de la siguiente manera: `<clase>Texto</clase>`. <rojo>Texto en color rojo</rojo>
+6. [Mayor información en W3Schools.](https://www.w3schools.com/)
+
+
+
+
+
+
+
+
+
+
+
+
+
