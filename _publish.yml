@@ -1,0 +1,4 @@
+- source: project
+  netlify:
+    - id: 0a95518c-68fc-4597-9440-421cfc7999a1
+      url: 'https://semillerorpy.netlify.app'
