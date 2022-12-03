@@ -1,12 +1,54 @@
 ---
-title: "Guías"
+title: "Guías - Herramientas"
 ---
 
-## Guías R
+## Herramientas de software
 
-## Guías Python
+- [Descargar R](https://cran.r-project.org/)
+- [Descargar Python](https://www.python.org/downloads/)
+- [Descargar RStudio](https://posit.co/downloads/)
+- [Descargar Visual Studio Code](https://code.visualstudio.com/download)
+- [Descargar Quarto](https://quarto.org/docs/get-started/)
 
+## Guías
 
+- [Guía de actualización de versión R](https://rpubs.com/Edimer/978394)
+- [Actualización de bibliotecas de R con RStudio](https://rpubs.com/Edimer/978395)
+- [Guías R, R Markdown, Git y Github](/guias/GuiasR.html)
+
+## Instalación de R y RStudio
+
+<iframe width="800" height="500" src="https://www.youtube.com/embed/q5ICvuU_qqY" frameborder="0" allowfullscreen></iframe>
+<center>
+
+## Instalación de Python y Visual Studio Code
+
+<iframe width="800" height="500" src="https://www.youtube.com/embed/jDmHWjzPavw" frameborder="0" allowfullscreen></iframe>
+<center>
+
+## Instalación de bibliotecas en R
+
+<iframe width="800" height="500" src="https://www.youtube.com/embed/Bay9FTIJaiY" frameborder="0" allowfullscreen></iframe>
+<center>
+
+## Instalación de bibliotecas en Python
+
+<iframe width="800" height="500" src="https://www.youtube.com/embed/UoqqKNHvDK8" frameborder="0" allowfullscreen></iframe>
+<center>
+
+## Guía rápida de Markdown
+
+<iframe width="800" height="500" src="https://www.youtube.com/embed/oxaH9CFpeEE" frameborder="0" allowfullscreen></iframe>
+<center>
+
+## Guía rápida de R Markdown
+
+<iframe width="800" height="500" src="https://www.youtube.com/embed/6Qj8yBFgT9Q" frameborder="0" allowfullscreen></iframe>
+<center>
+
+## Creación de informes con Quarto
+
+<iframe width="800" height="500" src="https://www.youtube.com/embed/0SE_XjWJLvA" frameborder="0" allowfullscreen></iframe>
 <center>
 
 <p>Página web construida con Quarto - <a href="https://github.com/web-edimer/unal-semilleror-facca.github.io">Código fuente en Github.</a></p>

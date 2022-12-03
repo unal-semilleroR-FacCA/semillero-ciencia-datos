@@ -28,7 +28,7 @@ title: "Ciclo 01"
 2. [Ejercicio](/slides-ciclo01/ejercicio1.html)
 3. [Correlaciones](/slides-ciclo01/cor-rls.html)
 4. [Regresión Lineal Simple](/slides-ciclo01/regsimple.html)
-5. [Encuenta `rday 2019`](/slides-ciclo01/pdf/Encuesta_Rday.pdf)
+5. [Encuesta `rday 2019`](/slides-ciclo01/pdf/Encuesta_Rday.pdf)
 
 ## Material de apoyo - 2021-01
 

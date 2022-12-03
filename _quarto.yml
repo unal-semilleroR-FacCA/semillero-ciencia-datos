@@ -18,8 +18,7 @@ website:
       - text: "Documentación"
         menu: 
           - href: recursos-info.qmd 
-          - href: books-rpy.qmd 
-          - href: examples-rpy.qmd 
+          - href: books-rpy.qmd
           - href: guide-rpy.qmd 
     right:
       - icon: github

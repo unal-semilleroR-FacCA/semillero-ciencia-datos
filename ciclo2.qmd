@@ -5,7 +5,13 @@ title: "Ciclo 02"
 ## Material de apoyo - 2022-02
 
 1. [Bienvenida e Introducción](https://rpubs.com/Edimer/975282)
-2. [Ejemplo aplicado: Web Scraping con R y Python]()
+2. [Ejemplo aplicado: Web Scraping con R]()
+3. [Ejemplo aplicado: Web Scraping con Python]()
+4. [R + Python en la nube]()
+5. [Interoperabilidad R + Python: fundamentos de programación]()
+6. [Interoperabilidad R + Python: manipulación de datos]()
+7. [Interoperabilidad R + Python: visualización de datos]()
+8. [Interoperabilidad R + Python: productos de datos]()
 
 
 <center>

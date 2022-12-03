@@ -2,7 +2,86 @@
 title: "Libros"
 ---
 
-## *PDF*
+::: {layout-ncol=2}
+![[R Para Ciencia de Datos](https://es.r4ds.hadley.nz/)](https://images-na.ssl-images-amazon.com/images/I/512BRANyRxS._SX600_.jpg)
+
+![[Python for Data Analysis, 3E](https://wesmckinney.com/book/)](https://wesmckinney.com/book/images/cover.png)
+
+:::
+
+::: {layout-ncol=2}
+![[Fundamentals of Data Visualization](https://clauswilke.com/dataviz/)](https://clauswilke.com/dataviz/cover.png)
+
+![[ggplot2: Elegant Graphics for Data Analysis](https://ggplot2-book.org/index.html)](https://ggplot2-book.org/cover.jpg)
+
+:::
+
+::: {layout-ncol=2}
+![[Interactive web-based data visualization with R, plotly, and shiny](https://plotly-r.com/index.html)](https://plotly-r.com/crc-cover.png)
+
+![[Data Visualization A practical introduction](https://socviz.co/index.html)](https://socviz.co/assets/dv-cover-pupress.jpg)
+
+:::
+
+::: {layout-ncol=2}
+![[Hands-On Programming with R](https://jjallaire.github.io/hopr/)](https://jjallaire.github.io/hopr/cover.png)
+
+![[Advanced R](https://adv-r.hadley.nz/index.html)](https://d33wubrfki0l68.cloudfront.net/565916198b0be51bf88b36f94b80c7ea67cafe7c/7f70b/cover.png)
+
+:::
+
+::: {layout-ncol=2}
+![[Natural Language Processing with Python](https://sites.pitt.edu/~naraehan/ling1330/nltk_book.html)](https://covers.oreilly.com/images/9780596516499/cat.gif)
+
+![[Welcome to Text Mining with R](https://www.tidytextmining.com/index.html)](https://www.tidytextmining.com/images/cover.png)
+
+:::
+
+::: {layout-ncol=2}
+![[R Markdown: The Definitive Guide](https://bookdown.org/yihui/rmarkdown/)](https://bookdown.org/yihui/rmarkdown/images/cover.png)
+
+![[Mastering Shiny](https://mastering-shiny.org/index.html)](https://d33wubrfki0l68.cloudfront.net/0c97eee3d8fc820f3a8d670c08b286e8a524257b/e426c/cover.png)
+
+:::
+
+::: {layout-ncol=2}
+
+![[Forecasting: Principles and Practice (3rd ed)](https://otexts.com/fpp3/)](https://otexts.com/fpp3/figs/fpp3_front_cover.jpg)
+
+
+![[Statistical Inference via Data Science](https://moderndive.com/)](https://d33wubrfki0l68.cloudfront.net/19dafd10a53785f1407566a1f3a09b29a6bab847/1e5f0/images/logos/book_cover.png)
+
+:::
+
+::: {layout-ncol=2}
+![[Supervised Machine Learning for Text Analysis in R](https://smltar.com/)](https://m.media-amazon.com/images/I/31+mpS8w44L._AC_SY780_.jpg)
+
+![[Tidy Modeling with R](https://www.tmwr.org/)](https://www.tmwr.org/images/cover.png)
+
+:::
+
+::: {layout-ncol=2}
+![[Deep Learning](https://www.deeplearningbook.org/)](https://m.media-amazon.com/images/I/A1GbblX7rOL.jpg)
+
+![[Hands-On Machine Learning with Scikit-Learn and TensorFlow: Concepts, Tools, and Techniques to Build Intelligent Systems](https://bcebakhtiyarpur.org/wp-content/uploads/2020/03/file_5e748501c810d.pdf)](https://m.media-amazon.com/images/S/aplus-media-library-service-media/e81bbfe4-5c61-4b4d-ae33-8c259509e678.__CR38,38,353,470_PT0_SX300_V1___.png)
+
+:::
+
+::: {layout-ncol=2}
+![[Deep Learning with Python](https://unica.it/static/resources/cms/documents/DeepLearningWithPython.pdf)](https://images.manning.com/book/7/65fca1c-6826-472d-bbea-c1d4a7b3c570/Chollet-DLP-HI.png)
+
+![[Deep Learning with R](https://manning-content.s3.amazonaws.com/download/9/9a3b0d8-e651-4239-8c4f-94267be64fee/SampleCh03.pdf)](https://images.manning.com/book/a/4e5e97f-4e8d-4d97-a715-f6c2b0eb95f5/Allaire-DLwithR-HI.png)
+
+:::
+
+::: {layout-ncol=2}
+![[Deep Learning for Coders with Fastai and PyTorch](https://dl.ebooksworld.ir/books/Deep.Learning.for.Coders.with.fastai.and.PyTorch.Howard.Gugger.OReilly.9781492045526.EBooksWorld.ir.pdf)](https://course.fast.ai/images/book.png)
+
+![[Mastering Spark with R](https://therinspark.com/)](https://therinspark.s3-us-west-2.amazonaws.com/mastering-spark-with-r.png)
+
+:::
+
+
 
 
 <center>

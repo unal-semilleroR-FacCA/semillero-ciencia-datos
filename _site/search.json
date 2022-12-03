@@ -35,6 +35,13 @@
     "text": "Contacto\n\nEscríbenos a semillerorpy@gmail.com\n\n\n\nPágina web construida con Quarto - Código fuente en Github."
   },
   {
+    "objectID": "books-rpy.html",
+    "href": "books-rpy.html",
+    "title": "Libros",
+    "section": "",
+    "text": "Fundamentals of Data Visualization\n\n\n\n\n\n\n\nggplot2: Elegant Graphics for Data Analysis\n\n\n\n\n\n\n\n\n\n\n\nInteractive web-based data visualization with R, plotly, and shiny\n\n\n\n\n\n\n\nData Visualization A practical introduction\n\n\n\n\n\n\n\n\n\n\n\nHands-On Programming with R\n\n\n\n\n\n\n\nAdvanced R\n\n\n\n\n\n\n\n\n\n\n\nNatural Language Processing with Python\n\n\n\n\n\n\n\nWelcome to Text Mining with R\n\n\n\n\n\n\n\n\n\n\n\nR Markdown: The Definitive Guide\n\n\n\n\n\n\n\nMastering Shiny\n\n\n\n\n\n\n\n\n\n\n\nForecasting: Principles and Practice (3rd ed)\n\n\n\n\n\n\n\nStatistical Inference via Data Science\n\n\n\n\n\n\n\n\n\n\n\nSupervised Machine Learning for Text Analysis in R\n\n\n\n\n\n\n\nTidy Modeling with R\n\n\n\n\n\n\n\n\n\n\n\nDeep Learning\n\n\n\n\n\n\n\nHands-On Machine Learning with Scikit-Learn and TensorFlow: Concepts, Tools, and Techniques to Build Intelligent Systems\n\n\n\n\n\n\n\n\n\n\n\nDeep Learning with Python\n\n\n\n\n\n\n\nDeep Learning with R\n\n\n\n\n\n\n\n\n\n\n\nDeep Learning for Coders with Fastai and PyTorch\n\n\n\n\n\n\n\nMastering Spark with R\n\n\n\n\n\n\n\nPágina web construida con Quarto - Código fuente en Github."
+  },
+  {
     "objectID": "ciclo1.html",
     "href": "ciclo1.html",
     "title": "Ciclo 01",
@@ -53,7 +60,7 @@
     "href": "ciclo1.html#material-de-apoyo---2019-02",
     "title": "Ciclo 01",
     "section": "Material de apoyo - 2019-02",
-    "text": "Material de apoyo - 2019-02\n\nRepaso: R + tidyverse\nEjercicio\nCorrelaciones\nRegresión Lineal Simple\nEncuenta rday 2019"
+    "text": "Material de apoyo - 2019-02\n\nRepaso: R + tidyverse\nEjercicio\nCorrelaciones\nRegresión Lineal Simple\nEncuesta rday 2019"
   },
   {
     "objectID": "ciclo1.html#material-de-apoyo---2021-01",
@@ -70,11 +77,109 @@
     "text": "Material de apoyo - 2022-01\n\nMachine Learning con R: introducción a tidymodels\nRemuestreo con rsample y modelos con parsnip\nAjuste de modelos con tune e Ingeniería de características con recipes\nOptimización de hiperparámetros con R: tune\nFlujos de trabajo para Machine Learning con R: workflow (pipelines)\nDescargar ejemplos .Rmd y datos\n\n\n\nPágina web construida con Quarto - Código fuente en Github."
   },
   {
+    "objectID": "ciclo2.html",
+    "href": "ciclo2.html",
+    "title": "Ciclo 02",
+    "section": "",
+    "text": "Bienvenida e Introducción\nEjemplo aplicado: Web Scraping con R\nEjemplo aplicado: Web Scraping con Python\nR + Python en la nube\nInteroperabilidad R + Python: fundamentos de programación\nInteroperabilidad R + Python: manipulación de datos\nInteroperabilidad R + Python: visualización de datos\nInteroperabilidad R + Python: productos de datos\n\n\n\nPágina web construida con Quarto - Código fuente en Github."
+  },
+  {
+    "objectID": "examples-rpy.html",
+    "href": "examples-rpy.html",
+    "title": "Ejemplos",
+    "section": "",
+    "text": "Página web construida con Quarto - Código fuente en Github."
+  },
+  {
+    "objectID": "guide-rpy.html",
+    "href": "guide-rpy.html",
+    "title": "Guías - Herramientas",
+    "section": "",
+    "text": "Descargar R\nDescargar Python\nDescargar RStudio\nDescargar Visual Studio Code\nDescargar Quarto"
+  },
+  {
+    "objectID": "guide-rpy.html#guías",
+    "href": "guide-rpy.html#guías",
+    "title": "Guías - Herramientas",
+    "section": "Guías",
+    "text": "Guías\n\nGuía de actualización de versión R\nActualización de bibliotecas de R con RStudio\nGuías R, R Markdown, Git y Github"
+  },
+  {
+    "objectID": "guide-rpy.html#instalación-de-r-y-rstudio",
+    "href": "guide-rpy.html#instalación-de-r-y-rstudio",
+    "title": "Guías - Herramientas",
+    "section": "Instalación de R y RStudio",
+    "text": "Instalación de R y RStudio"
+  },
+  {
+    "objectID": "guide-rpy.html#instalación-de-python-y-visual-studio-code",
+    "href": "guide-rpy.html#instalación-de-python-y-visual-studio-code",
+    "title": "Guías - Herramientas",
+    "section": "Instalación de Python y Visual Studio Code",
+    "text": "Instalación de Python y Visual Studio Code"
+  },
+  {
+    "objectID": "guide-rpy.html#instalación-de-bibliotecas-en-r",
+    "href": "guide-rpy.html#instalación-de-bibliotecas-en-r",
+    "title": "Guías - Herramientas",
+    "section": "Instalación de bibliotecas en R",
+    "text": "Instalación de bibliotecas en R"
+  },
+  {
+    "objectID": "guide-rpy.html#instalación-de-bibliotecas-en-python",
+    "href": "guide-rpy.html#instalación-de-bibliotecas-en-python",
+    "title": "Guías - Herramientas",
+    "section": "Instalación de bibliotecas en Python",
+    "text": "Instalación de bibliotecas en Python"
+  },
+  {
+    "objectID": "guide-rpy.html#guía-rápida-de-markdown",
+    "href": "guide-rpy.html#guía-rápida-de-markdown",
+    "title": "Guías - Herramientas",
+    "section": "Guía rápida de Markdown",
+    "text": "Guía rápida de Markdown"
+  },
+  {
+    "objectID": "guide-rpy.html#guía-rápida-de-r-markdown",
+    "href": "guide-rpy.html#guía-rápida-de-r-markdown",
+    "title": "Guías - Herramientas",
+    "section": "Guía rápida de R Markdown",
+    "text": "Guía rápida de R Markdown"
+  },
+  {
+    "objectID": "guide-rpy.html#creación-de-informes-con-quarto",
+    "href": "guide-rpy.html#creación-de-informes-con-quarto",
+    "title": "Guías - Herramientas",
+    "section": "Creación de informes con Quarto",
+    "text": "Creación de informes con Quarto\n\n\n\n\nPágina web construida con Quarto - Código fuente en Github."
+  },
+  {
     "objectID": "index.html",
     "href": "index.html",
     "title": "Ciencia de Datos con R y Python",
     "section": "",
     "text": "Página web construida con Quarto - Código fuente en Github."
+  },
+  {
+    "objectID": "recursos-info.html",
+    "href": "recursos-info.html",
+    "title": "Recursos Web",
+    "section": "",
+    "text": "Algunos recursos de información en los cuales el usuario podrá encontrar múltiples ayudas, ejemplos, tutoriales y ejercicios para desarrollar con R (y otros lenguajes de programación) son los siguientes:\n\nStack Overflow en inglés\nStack Overflow en español\nRpubs\nCRAN\nR-Studio\nDataCamp\nGithub\nedX\nR-Exercises\nR-bloggers"
+  },
+  {
+    "objectID": "recursos-info.html#material-bibliográfico",
+    "href": "recursos-info.html#material-bibliográfico",
+    "title": "Recursos Web",
+    "section": "Material bibliográfico",
+    "text": "Material bibliográfico\nAdemás de los sitios web, también se recomienda al usuario tener en cuenta el siguiente material de apoyo:\n\nR for Data Science - R4ds\nR: A Language for Data Analysis and Graphichs\nR and S\nR for Beginners\nR para principiantes\nAn Introduction to R\nIntroduction to the R project for Statistical Computing for use at ITC\nR for Biologists\nMétodos Estadísticos con R y R commander\nStatistics Using R with Biological Examples\nOpenIntro Statistics\nAn Introduction to Statistical Learning with Applications in R\nHandbook of Biological Statistics\nGráficos Estadísticos con R\nEl arte de programar en R\nComputational Statistics Using R and R Studio An Introduction for Scientists"
+  },
+  {
+    "objectID": "recursos-info.html#hojas-de-referencia",
+    "href": "recursos-info.html#hojas-de-referencia",
+    "title": "Recursos Web",
+    "section": "Hojas de referencia",
+    "text": "Hojas de referencia\nLas siguientes son guías de R y R Studio que pueden ser consultadas aquí.\n\nHojas de referencia en español:\n\nImportación de datos\nManejo de datos (1)\nManejo de datos (2)\nManejo de factores con forcats\nManeo de fechas con lubridate\nManejo de caracteres con stringr\nVisualización con ggplot2\nProgramación con purrr\nEcosistema R Markdown\nAplicaciones con shiny\nIDE RStudio\n\nHojas de referencia en inglés:\n\nBase R: Cheat Sheet\nRStudio IDE Cheat Sheet\nData Visualization with ggplot2\nR Markdown\nShiny\n\n\n\n\nPágina web construida con Quarto - Código fuente en Github."
   },
   {
     "objectID": "slides-ciclo01/0_Bienvenida.html#participantes",
@@ -936,47 +1041,5 @@
     "title": "Análisis de Regresión",
     "section": "¿Regresión Lineal Múltiple?",
     "text": "¿Regresión Lineal Múltiple?"
-  },
-  {
-    "objectID": "ciclo2.html",
-    "href": "ciclo2.html",
-    "title": "Ciclo 02",
-    "section": "",
-    "text": "Bienvenida e Introducción\nEjemplo aplicado: Web Scraping con R y Python\n\n\n\nPágina web construida con Quarto - Código fuente en Github."
-  },
-  {
-    "objectID": "recursos-info.html",
-    "href": "recursos-info.html",
-    "title": "Recursos Web",
-    "section": "",
-    "text": "Algunos recursos de información en los cuales el usuario podrá encontrar múltiples ayudas, ejemplos, tutoriales y ejercicios para desarrollar con R (y otros lenguajes de programación) son los siguientes:\n\nStack Overflow en inglés\nStack Overflow en español\nRpubs\nCRAN\nR-Studio\nDataCamp\nGithub\nedX\nR-Exercises\nR-bloggers"
-  },
-  {
-    "objectID": "recursos-info.html#material-bibliográfico",
-    "href": "recursos-info.html#material-bibliográfico",
-    "title": "Recursos Web",
-    "section": "Material bibliográfico",
-    "text": "Material bibliográfico\nAdemás de los sitios web, también se recomienda al usuario tener en cuenta el siguiente material de apoyo:\n\nR for Data Science - R4ds\nR: A Language for Data Analysis and Graphichs\nR and S\nR for Beginners\nR para principiantes\nAn Introduction to R\nIntroduction to the R project for Statistical Computing for use at ITC\nR for Biologists\nMétodos Estadísticos con R y R commander\nStatistics Using R with Biological Examples\nOpenIntro Statistics\nAn Introduction to Statistical Learning with Applications in R\nHandbook of Biological Statistics\nGráficos Estadísticos con R\nEl arte de programar en R\nComputational Statistics Using R and R Studio An Introduction for Scientists"
-  },
-  {
-    "objectID": "recursos-info.html#hojas-de-referencia",
-    "href": "recursos-info.html#hojas-de-referencia",
-    "title": "Recursos Web",
-    "section": "Hojas de referencia",
-    "text": "Hojas de referencia\nLas siguientes son guías de R y R Studio que pueden ser consultadas aquí.\n\nHojas de referencia en español:\n\nImportación de datos\nManejo de datos (1)\nManejo de datos (2)\nManejo de factores con forcats\nManeo de fechas con lubridate\nManejo de caracteres con stringr\nVisualización con ggplot2\nProgramación con purrr\nEcosistema R Markdown\nAplicaciones con shiny\nIDE RStudio\n\nHojas de referencia en inglés:\n\nBase R: Cheat Sheet\nRStudio IDE Cheat Sheet\nData Visualization with ggplot2\nR Markdown\nShiny\n\n\n\n\nPágina web construida con Quarto - Código fuente en Github."
-  },
-  {
-    "objectID": "books-rpy.html",
-    "href": "books-rpy.html",
-    "title": "Libros",
-    "section": "",
-    "text": "Página web construida con Quarto - Código fuente en Github."
-  },
-  {
-    "objectID": "examples-rpy.html",
-    "href": "examples-rpy.html",
-    "title": "Ejemplos",
-    "section": "",
-    "text": "Página web construida con Quarto - Código fuente en Github."
   }
 ]
