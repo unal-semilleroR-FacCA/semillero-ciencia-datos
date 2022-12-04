@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.1.251">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Ciencia de Datos con R y Python – intro</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../favicon.png" rel="icon" type="image/png">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "Sín resultados",
+    "search-matching-documents-text": "documentos encontrados",
+    "search-copy-link-title": "Copiar el enlace en la busqueda",
+    "search-hide-matches-text": "Esconder resultados adicionales",
+    "search-more-match-text": "hay más resultados en este documento",
+    "search-more-matches-text": "más resultados en este documento",
+    "search-clear-button-title": "Borrar",
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Eviar"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-fixed fullcontent">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Ciencia de Datos con R y Python</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html">Inicio</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html">Información</a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-temas" role="button" data-bs-toggle="dropdown" aria-expanded="false">Temas</a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-temas">    
+        <li>
+    <a class="dropdown-item" href="../ciclo1.html">
+ <span class="dropdown-text">Ciclo 01</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../ciclo2.html">
+ <span class="dropdown-text">Ciclo 02</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-documentación" role="button" data-bs-toggle="dropdown" aria-expanded="false">Documentación</a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-documentación">    
+        <li>
+    <a class="dropdown-item" href="../recursos-info.html">
+ <span class="dropdown-text">Recursos Web</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../books-rpy.html">
+ <span class="dropdown-text">Libros</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../guide-rpy.html">
+ <span class="dropdown-text">Guías - Herramientas</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/web-edimer/unal-semilleror-facca.github.io"><i class="bi bi-github" role="img">
+</i> 
+ </a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://www.youtube.com/@rpycol"><i class="bi bi-youtube" role="img">
+</i> 
+ </a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+
+<section id="semillero-de-r---facca" class="level1" data-background="fondo1.png">
+<h1 data-background="fondo1.png">Semillero de R - FacCA</h1>
+</section>
+<section id="introducción-a-r-y-rstudio" class="level1" data-background="descarga2.png">
+<h1 data-background="descarga2.png">1. Introducción a R y RStudio</h1>
+</section>
+<section id="lenguaje-r" class="level1" data-background="descarga2.png">
+<h1 data-background="descarga2.png">Lenguaje R</h1>
+<section id="características-de-r" class="level2" data-background="descarga2.png">
+<h2 data-background="descarga2.png" class="anchored" data-anchor-id="características-de-r">Características de R</h2>
+<ul>
+<li>Útil para administración, gestión e integración de datos.</li>
+<li>Capacidad de graficación robusta.</li>
+<li>Comunidad dinámica de R.</li>
+<li>Sistema basado en bibliotecas.</li>
+<li><a href="https://es.wikipedia.org/wiki/Software_libre">Software libre</a></li>
+<li><a href="https://cran.r-project.org/">Descargar R.</a></li>
+</ul>
+</section>
+<section id="gui-de-r" class="level2" data-background="descarga2.png">
+<h2 data-background="descarga2.png" class="anchored" data-anchor-id="gui-de-r">GUI de R</h2>
+<div class="cell" data-layout-align="left">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-left">
+<figure class="figure">
+<p><img src="images/01-RConsole.jpg" width="670" height="550" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="rstudio" class="level1" data-background="descarga2.png">
+<h1 data-background="descarga2.png">RStudio</h1>
+<section id="caracterísitcas-de-rstudio" class="level2" data-background="descarga2.png">
+<h2 data-background="descarga2.png" class="anchored" data-anchor-id="caracterísitcas-de-rstudio">Caracterísitcas de RStudio</h2>
+<ul>
+<li>Entorno de desarrollo integrado (IDE).</li>
+<li>Interactividad.</li>
+<li>Facilita la investigación reproducible.</li>
+<li>Permite la implementación de otros lenguajes de programación.</li>
+<li>Permite control de versiones (Git).</li>
+<li><a href="https://www.rstudio.com/products/rstudio/download/">Descargar RStudio.</a></li>
+</ul>
+</section>
+<section id="ide-rstudio" class="level2" data-background="descarga2.png">
+<h2 data-background="descarga2.png" class="anchored" data-anchor-id="ide-rstudio">IDE RStudio</h2>
+<div class="cell" data-layout-align="left">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-left">
+<figure class="figure">
+<p><img src="images/IDERS.png" width="760" height="550" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="resumen" class="level1" data-background="descarga2.png">
+<h1 data-background="descarga2.png">Resumen</h1>
+<section id="flujo-de-trabajo-inicial" class="level2" data-background="descarga2.png">
+<h2 data-background="descarga2.png" class="anchored" data-anchor-id="flujo-de-trabajo-inicial">Flujo de trabajo inicial</h2>
+<ul>
+<li>Obtener directorio de trabajo (<code>getwd()</code>)</li>
+<li>Cambiar directorio de trabajo
+<ul>
+<li><em>Session -&gt; Set Working Directory -&gt; Choose Directory.</em></li>
+</ul></li>
+<li>Generar archivo <strong>.R</strong> (<em>ejemplo: Tarea.R</em>).
+<ul>
+<li><em>File -&gt; New File -&gt; R Script (Ctrl + Shift + N).</em></li>
+</ul></li>
+<li>Guardar archivo <strong>.R</strong> (script)
+<ul>
+<li>Codificación UTF-8 para lenguaje castellano.</li>
+<li><em>File -&gt; Save with Encoding -&gt; UTF-8.</em></li>
+</ul></li>
+</ul>
+</section>
+<section id="elementos-básicos-con-r" class="level2" data-background="descarga2.png">
+<h2 data-background="descarga2.png" class="anchored" data-anchor-id="elementos-básicos-con-r">Elementos básicos con R</h2>
+<ul>
+<li><strong><code>#</code>:</strong> comentar código.</li>
+<li><strong><code>&lt;-</code>:</strong> asignar variables.</li>
+<li><strong><code>Ctrl + Enter</code>:</strong> ejecutar código.</li>
+<li><strong><code>Ctrl + L</code>:</strong> limpiar consola.</li>
+<li>Funciones
+<ul>
+<li><strong><code>c()</code>:</strong> concatenar (crear vectores).</li>
+<li><strong><code>data.frame()</code>:</strong> crear bases de datos.</li>
+<li><strong><code>$</code>:</strong> operador para acceder a las variables por su nombre.</li>
+<li><strong><code>names()</code>:</strong> nombre de variables o columnas.</li>
+<li><strong><code>length()</code>:</strong> longitud de un vector o número de variables en una base de datos.</li>
+<li><strong><code>dim()</code>:</strong> dimensiones (filas y columnas) de una matriz o base de datos.</li>
+<li><strong><code>plot()</code>:</strong> función genérica para graficación. Gráfico de dispersión <em>X vs Y</em>.</li>
+<li><strong><code>str()</code>:</strong> estructura interna de un objeto.</li>
+<li><strong><code>class()</code>:</strong> clase atómica de un objeto.</li>
+</ul></li>
+<li><strong>Tipos de datos:</strong> numércios, enteros, caracteres, factores, otros.</li>
+<li><strong>Parámetros de graficación:</strong> color, tipo de líneas, tipo de símbolos.</li>
+</ul>
+</section>
+</section>
+<section id="ciencia-de-datos-data-science" class="level1" data-background="descarga2.png">
+<h1 data-background="descarga2.png">Ciencia de datos (Data Science)</h1>
+<section id="qué-es-ciencia-de-datos" class="level2" data-background="descarga2.png">
+<h2 data-background="descarga2.png" class="anchored" data-anchor-id="qué-es-ciencia-de-datos">¿Qué es ciencia de datos?</h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/Data_Science_VD.png" class="img-fluid figure-img" width="264"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="qué-es-machine-learning" class="level2" data-background="descarga2.png">
+<h2 data-background="descarga2.png" class="anchored" data-anchor-id="qué-es-machine-learning">¿Qué es Machine Learning?</h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/machinel.png" width="550" height="375" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="machine-learning-razonamiento-intuitivo" class="level2" data-background="descarga2.png">
+<h2 data-background="descarga2.png" class="anchored" data-anchor-id="machine-learning-razonamiento-intuitivo">Machine Learning: razonamiento intuitivo</h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/ml.gif" width="650" height="375" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="aplicaciones" class="level2" data-background="descarga2.png">
+<h2 data-background="descarga2.png" class="anchored" data-anchor-id="aplicaciones">Aplicaciones</h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/Machine-Learning-Applications.jpg" width="715" height="415" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="aplicaciones-1" class="level2" data-background="descarga2.png">
+<h2 data-background="descarga2.png" class="anchored" data-anchor-id="aplicaciones-1">Aplicaciones</h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/machineL.png" width="715" height="415" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="recursos-de-información" class="level1" data-background="descarga2.png">
+<h1 data-background="descarga2.png">Recursos de información</h1>
+<section id="r-for-data-science" class="level2" data-background="descarga2.png">
+<h2 data-background="descarga2.png" class="anchored" data-anchor-id="r-for-data-science">R for Data Science</h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/cover.png" width="415" height="500" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><a href="https://r4ds.had.co.nz/">R for Data Science.</a></p>
+</section>
+<section id="r-programming-for-data-science" class="level2" data-background="descarga2.png">
+<h2 data-background="descarga2.png" class="anchored" data-anchor-id="r-programming-for-data-science">R Programming for Data Science</h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/cover_sm.png" width="415" height="500" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><a href="https://bookdown.org/rdpeng/rprogdatascience/">R Programming for Data Science.</a></p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copiada");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
