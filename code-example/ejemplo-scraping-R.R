@@ -156,10 +156,11 @@ stop_words_spanish <- data.frame(word = stopwords("spanish"))
 ngrama <-
   df_noticias_col %>%
   select(titulo) %>%
-  unnest_tokens(output = "word", titulo, token = "ngrams", n = 1) %>% 
+  unnest_tokens(output = "word", titulo, token = "ngrams", n = 2) %>%
   anti_join(stop_words_spanish) %>% 
   count(word)
 
+x11()
 wordcloud(
   words = ngrama$word,
   freq = ngrama$n,
