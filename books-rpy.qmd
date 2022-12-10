@@ -82,6 +82,13 @@ title: "Libros"
 :::
 
 
+::: {layout-ncol=2}
+![[Spatial Data Science with R and “terra”](https://rspatial.org/index.html)](https://rspatial.org/terra/_images/glm-1.png)
+
+![[Geocomputation with R](https://geocompr.robinlovelace.net/)](https://geocompr.robinlovelace.net/images/cover.png)
+
+:::
+
 
 
 <center>

@@ -39,7 +39,7 @@
     "href": "books-rpy.html",
     "title": "Libros",
     "section": "",
-    "text": "Fundamentals of Data Visualization\n\n\n\n\n\n\n\nggplot2: Elegant Graphics for Data Analysis\n\n\n\n\n\n\n\n\n\n\n\nInteractive web-based data visualization with R, plotly, and shiny\n\n\n\n\n\n\n\nData Visualization A practical introduction\n\n\n\n\n\n\n\n\n\n\n\nHands-On Programming with R\n\n\n\n\n\n\n\nAdvanced R\n\n\n\n\n\n\n\n\n\n\n\nNatural Language Processing with Python\n\n\n\n\n\n\n\nWelcome to Text Mining with R\n\n\n\n\n\n\n\n\n\n\n\nR Markdown: The Definitive Guide\n\n\n\n\n\n\n\nMastering Shiny\n\n\n\n\n\n\n\n\n\n\n\nForecasting: Principles and Practice (3rd ed)\n\n\n\n\n\n\n\nStatistical Inference via Data Science\n\n\n\n\n\n\n\n\n\n\n\nSupervised Machine Learning for Text Analysis in R\n\n\n\n\n\n\n\nTidy Modeling with R\n\n\n\n\n\n\n\n\n\n\n\nDeep Learning\n\n\n\n\n\n\n\nHands-On Machine Learning with Scikit-Learn and TensorFlow: Concepts, Tools, and Techniques to Build Intelligent Systems\n\n\n\n\n\n\n\n\n\n\n\nDeep Learning with Python\n\n\n\n\n\n\n\nDeep Learning with R\n\n\n\n\n\n\n\n\n\n\n\nDeep Learning for Coders with Fastai and PyTorch\n\n\n\n\n\n\n\nMastering Spark with R\n\n\n\n\n\n\n\nPágina web construida con Quarto - Código fuente en Github."
+    "text": "Fundamentals of Data Visualization\n\n\n\n\n\n\n\nggplot2: Elegant Graphics for Data Analysis\n\n\n\n\n\n\n\n\n\n\n\nInteractive web-based data visualization with R, plotly, and shiny\n\n\n\n\n\n\n\nData Visualization A practical introduction\n\n\n\n\n\n\n\n\n\n\n\nHands-On Programming with R\n\n\n\n\n\n\n\nAdvanced R\n\n\n\n\n\n\n\n\n\n\n\nNatural Language Processing with Python\n\n\n\n\n\n\n\nWelcome to Text Mining with R\n\n\n\n\n\n\n\n\n\n\n\nR Markdown: The Definitive Guide\n\n\n\n\n\n\n\nMastering Shiny\n\n\n\n\n\n\n\n\n\n\n\nForecasting: Principles and Practice (3rd ed)\n\n\n\n\n\n\n\nStatistical Inference via Data Science\n\n\n\n\n\n\n\n\n\n\n\nSupervised Machine Learning for Text Analysis in R\n\n\n\n\n\n\n\nTidy Modeling with R\n\n\n\n\n\n\n\n\n\n\n\nDeep Learning\n\n\n\n\n\n\n\nHands-On Machine Learning with Scikit-Learn and TensorFlow: Concepts, Tools, and Techniques to Build Intelligent Systems\n\n\n\n\n\n\n\n\n\n\n\nDeep Learning with Python\n\n\n\n\n\n\n\nDeep Learning with R\n\n\n\n\n\n\n\n\n\n\n\nDeep Learning for Coders with Fastai and PyTorch\n\n\n\n\n\n\n\nMastering Spark with R\n\n\n\n\n\n\n\n\n\n\n\nSpatial Data Science with R and “terra”\n\n\n\n\n\n\n\nGeocomputation with R\n\n\n\n\n\n\n\nPágina web construida con Quarto - Código fuente en Github."
   },
   {
     "objectID": "ciclo1.html",
@@ -81,7 +81,21 @@
     "href": "ciclo2.html",
     "title": "Ciclo 02",
     "section": "",
-    "text": "Bienvenida e Introducción\nEjemplo aplicado: Web Scraping con R\nEjemplo aplicado: Web Scraping con Python\nR + Python en la nube\nInteroperabilidad R + Python: fundamentos de programación\nInteroperabilidad R + Python: manipulación de datos\nInteroperabilidad R + Python: visualización de datos\nInteroperabilidad R + Python: productos de datos\n\n\n\nPágina web construida con Quarto - Código fuente en Github."
+    "text": "Bienvenida e Introducción\nEjemplo aplicado: Web Scraping con R\nEjemplo aplicado: Web Scraping con Python\nR + Python en la nube\nInteroperabilidad R + Python: fundamentos de programación\nInteroperabilidad R + Python: manipulación de datos\nInteroperabilidad R + Python: visualización de datos\nInteroperabilidad R + Python: productos de datos"
+  },
+  {
+    "objectID": "ciclo2.html#ia-para-todos",
+    "href": "ciclo2.html#ia-para-todos",
+    "title": "Ciclo 02",
+    "section": "IA para todos",
+    "text": "IA para todos"
+  },
+  {
+    "objectID": "ciclo2.html#chatgpt",
+    "href": "ciclo2.html#chatgpt",
+    "title": "Ciclo 02",
+    "section": "ChatGPT",
+    "text": "ChatGPT\n\nSitio oficial OpenAI\n\n\n\n\n\nPágina web construida con Quarto - Código fuente en Github."
   },
   {
     "objectID": "examples-rpy.html",
@@ -152,6 +166,13 @@
     "title": "Guías - Herramientas",
     "section": "Creación de informes con Quarto",
     "text": "Creación de informes con Quarto\n\n\n\n\nPágina web construida con Quarto - Código fuente en Github."
+  },
+  {
+    "objectID": "guide-rpy.html#ejecución-de-scripts-deshabilitada-windows",
+    "href": "guide-rpy.html#ejecución-de-scripts-deshabilitada-windows",
+    "title": "Guías - Herramientas",
+    "section": "Ejecución de scripts deshabilitada (Windows)",
+    "text": "Ejecución de scripts deshabilitada (Windows)"
   },
   {
     "objectID": "index.html",

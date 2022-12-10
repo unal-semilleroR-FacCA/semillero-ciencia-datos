@@ -54,3 +54,6 @@ title: "Guías - Herramientas"
 <p>Página web construida con Quarto - <a href="https://github.com/web-edimer/unal-semilleror-facca.github.io">Código fuente en Github.</a></p>
 
 </center>
+
+## [Ejecución de scripts deshabilitada (*Windows*)](https://www.youtube.com/watch?v=gm0gexHWDy0&ab_channel=WilfredoAleman)
+

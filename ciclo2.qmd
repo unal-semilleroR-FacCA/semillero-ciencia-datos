@@ -2,9 +2,6 @@
 title: "Ciclo 02"
 ---
 
-<iframe width="800" height="500" src="https://www.youtube.com/embed/reUZRyXxUs4" frameborder="0" allowfullscreen></iframe>
-<center>
-
 ## Material de apoyo - 2022-02
 
 1. [Bienvenida e Introducción](https://rpubs.com/Edimer/975282)
@@ -16,6 +13,15 @@ title: "Ciclo 02"
 7. [Interoperabilidad R + Python: visualización de datos]()
 8. [Interoperabilidad R + Python: productos de datos]()
 
+## IA para todos
+
+<iframe width="800" height="500" src="https://www.youtube.com/embed/reUZRyXxUs4" frameborder="0" allowfullscreen></iframe>
+
+## [ChatGPT](https://en.wikipedia.org/wiki/ChatGPT)
+
+- [Sitio oficial OpenAI](https://openai.com/blog/chatgpt/)
+
+<iframe width="800" height="500" src="https://www.youtube.com/embed/c_PqM5lPvjY" frameborder="0" allowfullscreen></iframe>
 
 <center>
 
