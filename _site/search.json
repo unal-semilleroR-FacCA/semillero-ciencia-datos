@@ -39,7 +39,7 @@
     "href": "books-rpy.html",
     "title": "Libros",
     "section": "",
-    "text": "Fundamentals of Data Visualization\n\n\n\n\n\n\n\nggplot2: Elegant Graphics for Data Analysis\n\n\n\n\n\n\n\n\n\n\n\nInteractive web-based data visualization with R, plotly, and shiny\n\n\n\n\n\n\n\nData Visualization A practical introduction\n\n\n\n\n\n\n\n\n\n\n\nHands-On Programming with R\n\n\n\n\n\n\n\nAdvanced R\n\n\n\n\n\n\n\n\n\n\n\nNatural Language Processing with Python\n\n\n\n\n\n\n\nWelcome to Text Mining with R\n\n\n\n\n\n\n\n\n\n\n\nR Markdown: The Definitive Guide\n\n\n\n\n\n\n\nMastering Shiny\n\n\n\n\n\n\n\n\n\n\n\nForecasting: Principles and Practice (3rd ed)\n\n\n\n\n\n\n\nStatistical Inference via Data Science\n\n\n\n\n\n\n\n\n\n\n\nSupervised Machine Learning for Text Analysis in R\n\n\n\n\n\n\n\nTidy Modeling with R\n\n\n\n\n\n\n\n\n\n\n\nDeep Learning\n\n\n\n\n\n\n\nHands-On Machine Learning with Scikit-Learn and TensorFlow: Concepts, Tools, and Techniques to Build Intelligent Systems\n\n\n\n\n\n\n\n\n\n\n\nDeep Learning with Python\n\n\n\n\n\n\n\nDeep Learning with R\n\n\n\n\n\n\n\n\n\n\n\nDeep Learning for Coders with Fastai and PyTorch\n\n\n\n\n\n\n\nMastering Spark with R\n\n\n\n\n\n\n\n\n\n\n\nSpatial Data Science with R and “terra”\n\n\n\n\n\n\n\nGeocomputation with R\n\n\n\n\n\n\n\nPágina web construida con Quarto - Código fuente en Github."
+    "text": "R Para Ciencia de Datos\n\n\n\n\n\n\n\nPython for Data Analysis, 3E\n\n\n\n\n\n\n\n\n\n\n\nFundamentals of Data Visualization\n\n\n\n\n\n\n\nggplot2: Elegant Graphics for Data Analysis\n\n\n\n\n\n\n\n\n\n\n\nInteractive web-based data visualization with R, plotly, and shiny\n\n\n\n\n\n\n\nData Visualization A practical introduction\n\n\n\n\n\n\n\n\n\n\n\nHands-On Programming with R\n\n\n\n\n\n\n\nAdvanced R\n\n\n\n\n\n\n\n\n\n\n\nNatural Language Processing with Python\n\n\n\n\n\n\n\nWelcome to Text Mining with R\n\n\n\n\n\n\n\n\n\n\n\nR Markdown: The Definitive Guide\n\n\n\n\n\n\n\nMastering Shiny\n\n\n\n\n\n\n\n\n\n\n\nForecasting: Principles and Practice (3rd ed)\n\n\n\n\n\n\n\nStatistical Inference via Data Science\n\n\n\n\n\n\n\n\n\n\n\nSupervised Machine Learning for Text Analysis in R\n\n\n\n\n\n\n\nTidy Modeling with R\n\n\n\n\n\n\n\n\n\n\n\nDeep Learning\n\n\n\n\n\n\n\nHands-On Machine Learning with Scikit-Learn and TensorFlow: Concepts, Tools, and Techniques to Build Intelligent Systems\n\n\n\n\n\n\n\n\n\n\n\nDeep Learning with Python\n\n\n\n\n\n\n\nDeep Learning with R\n\n\n\n\n\n\n\n\n\n\n\nDeep Learning for Coders with Fastai and PyTorch\n\n\n\n\n\n\n\nMastering Spark with R\n\n\n\n\n\n\n\n\n\n\n\nSpatial Data Science with R and “terra”\n\n\n\n\n\n\n\nGeocomputation with R\n\n\n\n\n\n\n\nPágina web construida con Quarto - Código fuente en Github."
   },
   {
     "objectID": "ciclo1.html",
@@ -179,7 +179,7 @@
     "href": "index.html",
     "title": "Ciencia de Datos con R y Python",
     "section": "",
-    "text": "Página web construida con Quarto - Código fuente en Github."
+    "text": "¡Bienvenidos al Semillero de Ciencia de Datos!\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nPágina web construida con Quarto - Código fuente en Github."
   },
   {
     "objectID": "recursos-info.html",
