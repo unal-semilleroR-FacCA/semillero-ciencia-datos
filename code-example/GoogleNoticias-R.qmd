@@ -1,0 +1,417 @@
+---
+title: "Web Scraping con R"
+subtitle: "Google Noticias"
+author: "Semillero Ciencia de Datos con R y Python"
+lang: es 
+execute: 
+  eval: true
+  echo: true
+  warning: false
+format:
+  html:
+    page-layout: article
+    fig-width: 6
+    fig-height: 4.5
+    toc: true
+    toc-title: "Tabla de contenido"
+    smooth-scroll: true
+    code-fold: true
+    df-print: paged
+    toc-location: left
+    number-depth: 4
+    theme: yeti
+    code-copy: true
+    highlight-style: github
+    code-tools:
+      source: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(fig.align = "center", warning = FALSE, message = FALSE)
+```
+
+# Objetivo
+
+Este documento tiene como propósito ejemplificar técnicas de web scraping con R y análisis exploratorio de datos.
+
+# Requisitos previos
+
+Para ejecutar este documento es necesario tener instalado lo siguiente:
+
+- [`R`](https://cran.r-project.org/)
+- [`RStudio`](https://posit.co/downloads/)
+- [`Quarto`](https://quarto.org/)
+
+Para garantizar la reproducibilidad de este documento es necesario instalar las siguientes bibliotecas de R:
+
+- [`tidyverse`](https://www.tidyverse.org/)
+- [`rvest`](https://rvest.tidyverse.org/)
+- [`lubridate`](https://lubridate.tidyverse.org/)
+- [`tidytext`](https://juliasilge.github.io/tidytext/index.html)
+- [`tm`](https://cran.r-project.org/web/packages/tm/tm.pdf)
+- [`wordcloud2`](https://cran.r-project.org/web/packages/wordcloud2/wordcloud2.pdf)
+- [`wordcloud`](https://cran.r-project.org/web/packages/wordcloud/wordcloud.pdf)
+- [`reshape2`](https://cran.r-project.org/web/packages/reshape2/reshape2.pdf)
+
+Si aún no tiene instalada estas bibliotecas puede ejecutar el siguiente código para instalarlas:
+
+```{r}
+#| eval: false
+
+install.packages(c(
+  "tidyverse",
+  "rvest",
+  "lubridate",
+  "tidytext",
+  "tm",
+  "wordcloud",
+  "wordcloud2",
+  "reshape2"
+),
+dependencies = TRUE)
+```
+
+# Script completo
+
+Para ver el código completo de este documento puede dar clic donde señala la flecha roja de la siguiente imagen:
+
+![](img1.PNG)
+
+# Función `googleNoticiasR()`
+
+- La función aquí presentada fue previamente discutida en la [sesión 02 del semillero.](https://www.youtube.com/watch?v=XY4zhqAfaSs&ab_channel=RPyCol) Si desea ver las diapositivas de esta sesión pueden ser consultadas [aquí.](https://rpubs.com/Edimer/981979)
+- El código completo está en [Github](https://github.com/web-edimer/semillero-ciencia-datos/blob/master/code-example/ejemplo-scraping-R-completo.R)
+- La función recibe como entrada (argumento) la `url` de [Google Noticias](https://news.google.com/home?hl=es-419&gl=CO&ceid=CO:es-419) desde la cual el usuario desea obtener las noticias.
+
+```{r}
+googleNoticiasR <- function(url) {
+  titulo_noticia <-
+    url %>%
+    read_html() %>%
+    html_elements("body") %>%
+    html_elements(xpath = '//a[@class = "WwrzSb"]')  %>%
+    html_attr("aria-label")
+  
+  fuente_noticia <-
+    url %>%
+    read_html() %>%
+    html_elements("body") %>%
+    html_elements(xpath = '//span[@class = "vr1PYe"]') %>%
+    html_text()
+  
+  fecha_noticia <-
+    url %>%
+    read_html() %>%
+    html_elements("body") %>%
+    html_elements(xpath = '//time[@class = "hvbAAd"]') %>%
+    html_attr("datetime") %>%
+    ymd_hms()
+  
+  df_noticias <-
+    data.frame(
+      noticia = titulo_noticia,
+      fuente = fuente_noticia,
+      fecha = fecha_noticia,
+      fecha_consulta = Sys.time()
+    )
+  
+  return(df_noticias)
+  
+}
+```
+
+# Bibliotecas de R
+
+```{r}
+library(tidyverse)  # manipulación de datos
+library(rvest)      # web scraping
+library(lubridate)  # manipulación de fechas
+library(tidytext)   # procesamiento de texto
+library(tm)         # stopWords 
+library(wordcloud)  # Nube de palabras
+library(wordcloud2) # Nube de palabras
+library(reshape2)   # Remodelamiento de datos
+```
+
+# Noticias
+
+- El usuario es libre de elegir el tipo de noticias que desea. En este caso vamos a utilizar las siguientes noticias:
+  - [Colombia](https://news.google.com/topics/CAAqJggKIiBDQkFTRWdvSUwyMHZNREZzY3pJU0JtVnpMVFF4T1NnQVAB?hl=es-419&gl=CO&ceid=CO%3Aes-419)
+  - [Negocios](https://news.google.com/topics/CAAqLAgKIiZDQkFTRmdvSUwyMHZNRGx6TVdZU0JtVnpMVFF4T1JvQ1EwOG9BQVAB?hl=es-419&gl=CO&ceid=CO%3Aes-419)
+  - [Deportes](https://news.google.com/topics/CAAqLAgKIiZDQkFTRmdvSUwyMHZNRFp1ZEdvU0JtVnpMVFF4T1JvQ1EwOG9BQVAB?hl=es-419&gl=CO&ceid=CO%3Aes-419)
+- **Nota:** es posible ingresar cualquier otro tópico de interés, por ejemplo, [salud.](https://news.google.com/topics/CAAqJggKIiBDQkFTRWdvSUwyMHZNR3QwTlRFU0JtVnpMVFF4T1NnQVAB?hl=es-419&gl=CO&ceid=CO%3Aes-419)
+
+## Colombia
+
+Primero guardamos la URL para las noticas de Colombia en un objeto de nombre `url_colombia`. Cabe mencionar que este nombre lo asigna el usuario.
+
+```{r}
+url_colombia <- "https://news.google.com/topics/CAAqJggKIiBDQkFTRWdvSUwyMHZNREZzY3pJU0JtVnpMVFF4T1NnQVAB?hl=es-419&gl=CO&ceid=CO%3Aes-419"
+```
+
+Luego usamos la función `googleNoticiasR()` e ingresamos `url_colombia` como argumento de entrada. Guardamos este resultado en un objeto de nombre `noticias_colombia`.
+
+```{r}
+noticias_colombia <- googleNoticiasR(url = url_colombia)
+```
+
+La ejecución anterior devuelve un `dataframe` como se muestra a continuación. La función `head()` se utiliza para imprimir sólo las primeras 6 filas de la tabla.
+
+```{r}
+noticias_colombia %>% 
+  head()
+```
+
+Podemos consultar el total de noticias (número de filas):
+
+```{r}
+noticias_colombia %>% 
+  nrow()
+```
+
+Los nombres de la base de datos pueden ser consultados con la función `names()`:
+
+```{r}
+noticias_colombia %>% 
+  names()
+```
+
+
+## Negocios
+
+Primero guardamos la URL para las noticas de Colombia en un objeto de nombre `url_negocios`. Cabe mencionar que este nombre lo asigna el usuario.
+
+```{r}
+url_negocios <- "https://news.google.com/topics/CAAqLAgKIiZDQkFTRmdvSUwyMHZNRGx6TVdZU0JtVnpMVFF4T1JvQ1EwOG9BQVAB?hl=es-419&gl=CO&ceid=CO%3Aes-419"
+```
+
+Luego usamos la función `googleNoticiasR()` e ingresamos `url_negocios` como argumento de entrada. Guardamos este resultado en un objeto de nombre `noticias_negocios`.
+
+```{r}
+noticias_negocios <- googleNoticiasR(url = url_negocios)
+noticias_negocios %>% 
+  head()
+```
+
+## Deportes
+
+Primero guardamos la URL para las noticas de Colombia en un objeto de nombre `url_deportes`. Cabe mencionar que este nombre lo asigna el usuario.
+
+```{r}
+url_deportes <- "https://news.google.com/topics/CAAqLAgKIiZDQkFTRmdvSUwyMHZNRFp1ZEdvU0JtVnpMVFF4T1JvQ1EwOG9BQVAB?hl=es-419&gl=CO&ceid=CO%3Aes-419"
+```
+
+Luego usamos la función `googleNoticiasR()` e ingresamos `url_deportes` como argumento de entrada. Guardamos este resultado en un objeto de nombre `noticias_deportes`.
+
+```{r}
+noticias_deportes <- googleNoticiasR(url = url_deportes)
+noticias_deportes %>% 
+  head()
+```
+
+# Análisis exploratorio
+
+- **Todo el análisis exploratorio será ilustrado con noticias de Colombia**, el usuario podrá replicar el ejemplo con los otros tópicos de interés.
+- Generalmente el [análisis exploratorio de datos](https://en.wikipedia.org/wiki/Exploratory_data_analysis) tiene como propósito revelar patrones de comportamiento, validar hipótesis, generar nuevas preguntas de investigación, detectar atipicidades, entre otras.
+- Nuestro análisis exploratorio estará orientado a responder a las siguientes preguntas:
+  - ¿Cuántas noticias hay para cada medio de comunicación?
+  - ¿Cuáles son las palabras más frecuentes en las noticias?
+  - ¿Podemos asignar algún sentimiento a las noticias en función de las palabras que contienen? **Nota importante:** múltiples léxicos de sentimientos están disponibles en internet, no obstante, para el lenguaje **español** es un poco reducida la disponibilidad. Por este motivo y en aras de la sencillez, utilizaremos el léxico [AFINN](http://www2.imm.dtu.dk/pubdb/pubs/6010-full.html) con su [versión en español](https://raw.githubusercontent.com/jboscomendoza/rpubs/master/sentimientos_afinn/lexico_afinn.en.es.csv). El léxico AFINN asigna puntuaciones a las palabras, oscilando entre -5 y 5, donde las puntuaciones negativas indican un sentimiento negativo y las puntuaciones positivas indican un sentimiento positivo.
+
+
+## Noticias Colombia
+
+### Tokenización
+
+- El primer paso es convertir las noticias (*cadenas de texto*) en [tokens](https://en.wikipedia.org/wiki/Lexical_analysis#Tokenization), es decir, palabras individuales que aportan información a nuestro análisis. Este proceso se logra a través de la función `unnest_tokens()` de la biblioteca `tidytext`. 
+
+```{r}
+tokens_colombia <-
+  noticias_colombia %>% 
+  unnest_tokens(output = "token", input = noticia)
+
+tokens_colombia %>% 
+  head()
+```
+
+Algunas palabras en la columna `token` no tienen propiedades informativas, por ejemplo, conectores, artículos, pronombres, preposiciones, etc. Es común en la minería de texto utilizar [*stop words*](https://es.wikipedia.org/wiki/Palabra_vac%C3%ADa) para cada lenguaje, en este caso para el castellano. Podemos acceder a estas palabras a través de la función `stopwords()` de la biblioteca `tm`. Es importante mencionar que es posible que queden algunas palabras que no son informativas, de tal manera que se recomienda profundizar más en este tema. 
+
+Asignamos las *stop words* a un objeto de nombre `stop_spanish`:
+
+```{r}
+stop_spanish <- stopwords(kind = "spanish")
+```
+
+Tenemos en total el siguiente número de *stop words* en español:
+
+```{r}
+stop_spanish %>% 
+  length()
+```
+
+Ahoa filtramos las palabras de la columna `token` que están dentro de las palabras sin significado (*stop words*) y asignamos el resultado a un objeto de nombre `tokens_colombia_final`. Note que en la columna `token` quedan números, que eventualmente podrían ser filtrados para el análisis, no obstante, se recomienda profundizar en cuál debería ser la limpieza del texto más adecuada para su análisis. En este caso hacemos caso omiso de estos datos.
+
+```{r}
+tokens_colombia_final <-
+  tokens_colombia %>%
+  filter(!token %in% stop_spanish) 
+
+tokens_colombia_final %>% 
+  head()
+```
+
+
+### Preguntas
+
+#### Pregunta 1
+
+- ¿Cuántas noticias hay para cada medio de comunicación? **Nota:** para respondera a esta pregunta no es estrictamente necesario tokenizar el texto, por tal motivo obtendremos el conteo a través del dataframe de nombre `noticias_colombia`. Observe que algunas fuentes se repiten, por ejemplo, `El Tiempo` y `EL TIEMPO`, `R` los define como entidades diferentes porque no están escritas de la misma manera, aunque esta característica es fácil de resolver lo dejaremos así y cada usuario podrá direccionar la depuración bajo la estructura correcta.
+
+```{r}
+noticias_colombia %>% 
+  count(fuente, sort = TRUE)
+```
+
+Podemos graficar los 10 primeros medios de comunicación con mayor número de noticias:
+
+```{r}
+noticias_colombia %>% 
+  count(fuente, sort = TRUE) %>% 
+  slice(1:10) %>% 
+  ggplot(aes(x = reorder(fuente, n), y = n)) +
+  geom_col() +
+  coord_flip() +
+  labs(x = "", y = "Noticias (n)", title = "Google Noticias - Colombia")
+```
+
+#### Pregunta 2
+
+- ¿Cuáles son las palabras más frecuentes en las noticias? Para responder a estar preguna utilizaremos el dataframe que posee los tokens y sobre el cual ya pasamos el filtro de las palabras sin significado, es decir, `tokens_colombia_final`. Observamos que la palabra más frecuente en las noticias es "petro". 
+
+```{r}
+tokens_colombia_final %>% 
+  count(token, sort = TRUE)
+```
+
+Como son tantas palabras, es posible representar esta información a través de [nubes de palabras.](https://es.wikipedia.org/wiki/Nube_de_palabras) Este proceso lo llevamos a cabo con la biblioteca [`wordcloud2`.](https://cran.r-project.org/web/packages/wordcloud2/vignettes/wordcloud.html)
+
+```{r}
+tokens_colombia_final %>%
+  count(token, sort = TRUE) %>% 
+  wordcloud2(data = ., backgroundColor = "black")
+```
+
+#### Pregunta 3
+
+- ¿Podemos asignar algún sentimiento a las noticias en función de las palabras que contienen? Para responder a esta pregunta lo primero que vamos a hacer es descargar el archivo que contiene el sentimiento para las palabras en español. Se puede descargar [aquí.](https://raw.githubusercontent.com/jboscomendoza/rpubs/master/sentimientos_afinn/lexico_afinn.en.es.csv)
+- Agradecimiento especial a [Juan Bosco Mendoza Vega](https://rpubs.com/jboscomendoza/) por disponibilizar esta información.
+- Note que la base de datos tiene tres columnas, la variable `Palabra` denota la información en español, la variable `Word` es su traducción al inglés y la `Puntuacion` (sin tilde) denota el *score* determinado por el léxico AFINN.
+
+```{r}
+# URL
+url_sentimiento <- 
+  "https://raw.githubusercontent.com/jboscomendoza/rpubs/master/sentimientos_afinn/lexico_afinn.en.es.csv"
+
+# Lectura de datos
+df_sentimiento <-
+  read_csv(url_sentimiento)
+
+df_sentimiento %>% 
+  head()
+```
+
+Si usted desea descargar el archivo anterior puede ejecutar el siguiente código:
+
+```{r, eval = FALSE}
+download.file(url = url_sentimiento, destfile = "datos_sentimiento_spanish_AFINN.csv")
+```
+
+Vamos a cambiar el nombre `Palabra` por `token`, para que podamos unir a la tabla `tokens_colombia_final` y seleccionamos sólo las variables `token` y `Puntuacion`. Además, discretizamos la variable `Puntuacion` en una nueva variable llamada `sentimiento`, de tal manera que si la `Puntuacion` es mayor a 0 se le asigna el nivel `Positivo`, de lo contrario será `Negativo`. Asignamos este resultado a un nuevo objeto de nombre `sentimiento_spanish`. 
+
+```{r}
+sentimiento_spanish <-
+  df_sentimiento %>% 
+  rename(token = Palabra) %>% 
+  select(token, Puntuacion) %>% 
+  mutate(sentimiento = if_else(Puntuacion > 0, "Positivo", "Negativo"))
+
+sentimiento_spanish %>% 
+  head()
+```
+
+Ahora unimos los datos de sentimiento con la tabla `tokens_colombia_final`. La unión la realizamos con la función `inner_join()`, de tal manera que sólo serán tenidas en cuenta palabras que estén en ambas tablas. Note que la nueva tabla se reduce, ya que muchas palabras de las noticias no están presente en el dataframe `sentimiento_spanish`. Es importante mencionar que esta es una aproximación simple de análisis de sentimientos, sin embargo, podrían ser utilizadas técnicas más robustas, por ejemplo, [Deep Learning.](https://towardsdatascience.com/an-easy-tutorial-about-sentiment-analysis-with-deep-learning-and-keras-2bf52b9cba91)
+
+```{r}
+noticias_sentimiento <-
+  inner_join(x = tokens_colombia_final, y = sentimiento_spanish, by = "token")
+
+noticias_sentimiento %>% 
+  head()
+```
+
+Podemos consultar el número de filas de la nueva tabla.
+
+```{r}
+noticias_sentimiento %>% 
+  nrow()
+```
+
+Podemos responder a la siguiente pregunta, ¿Predominan las palabras positivas o negativas? Parece que son más las noticias que tiene palabras negativas que positivas.
+
+```{r}
+noticias_sentimiento %>% 
+  count(sentimiento)
+```
+
+¿Cuál medio de comunicación es más negativo o positivo en sus noticias?
+
+```{r}
+noticias_sentimiento %>% 
+  count(fuente, sentimiento, sort = TRUE)
+```
+
+Podemos representar el resultado anterior a través de un gráfico. Para tener una representación más transparente filtramos medios de comunicación con más de 3 noticias.
+
+```{r}
+noticias_sentimiento %>% 
+  count(fuente, sentimiento, sort = TRUE) %>% 
+  filter(n > 3) %>% 
+  ggplot(aes(x = reorder(fuente, n), y = n, fill = sentimiento)) +
+  geom_col(position = "fill") +
+  coord_flip() +
+  labs(x = "", y = "Frecuencia relativa", fill = "Sentimiento") +
+  theme(legend.position = "top")
+```
+
+Hasta ahora hemos usamos la variable `sentimiento`, pero también podríamos calcular alguna métrica estadística con la variable `Puntuacion`. En este caso calculamos la mediana de la `Puntuacion` y obtenemos el número de datos (`N`) con los cuales es calculada la métrica.
+
+```{r}
+noticias_sentimiento %>% 
+  group_by(fuente) %>% 
+  summarise(
+    mediana_sent = median(Puntuacion),
+    N = n()
+  ) %>% 
+  arrange(desc(mediana_sent))
+```
+
+Podemos graficar la nube de palabras para el sentimiento positivo y negativo a través de la biblioteca `wordcloud`. Para este proceso fíjese que "remodelamos" los datos a través de la función `acast()` de la biblioteca `reshape2`. Este proceso es necesario para obtener la nube de palabras comparativa con la función `comparison.cloud()`.
+
+```{r}
+noticias_sentimiento %>%
+  count(token, sentimiento, sort = TRUE) %>% 
+  acast(token ~ sentimiento, value.var = "n", fill = 0) %>%
+  comparison.cloud(colors = c("gray20", "forestgreen"),
+                   max.words = 100)
+```
+
+
+# Análisis de sentimientos
+
+Para tener contexto de lo que signfica el *análisis de sentimientos*, se recomienda revisar los siguientes recursos de información:
+
+- [Sentiment analysis (wikipedia)](https://en.wikipedia.org/wiki/Sentiment_analysis)
+- [Sentiment analysis with tidy data](https://www.tidytextmining.com/sentiment.html)
+- [Python Sentiment Analysis Tutorial](https://www.datacamp.com/tutorial/simplifying-sentiment-analysis-python)
+- [Análisis de texto (text mining) con Python](https://www.cienciadedatos.net/documentos/py25-text-mining-python.html)
+- [TEDx: Análisis de sentimientos](https://www.youtube.com/watch?v=n4L5hHFcGVk&ab_channel=TEDxTalks)
