@@ -1,0 +1,1473 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.313">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Semillero Ciencia de Datos con R y Python">
+
+<title>Ciencia de Datos con R y Python - Web Scraping con R</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../favicon.png" rel="icon" type="image/png">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "Sin resultados",
+    "search-matching-documents-text": "documentos encontrados",
+    "search-copy-link-title": "Copiar el enlace en la búsqueda",
+    "search-hide-matches-text": "Ocultar resultados adicionales",
+    "search-more-match-text": "resultado adicional en este documento",
+    "search-more-matches-text": "resultados adicionales en este documento",
+    "search-clear-button-title": "Borrar",
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+<script src="../site_libs/htmlwidgets-1.6.1/htmlwidgets.js"></script>
+<link href="../site_libs/wordcloud2-0.0.1/wordcloud.css" rel="stylesheet">
+<script src="../site_libs/wordcloud2-0.0.1/wordcloud2-all.js"></script>
+<script src="../site_libs/wordcloud2-0.0.1/hover.js"></script>
+<script src="../site_libs/wordcloud2-binding-0.2.1/wordcloud2.js"></script>
+<link href="../site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet">
+<script src="../site_libs/pagedtable-1.1/js/pagedtable.js"></script>
+
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Ciencia de Datos con R y Python</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html">
+ <span class="menu-text">Inicio</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html">
+ <span class="menu-text">Información</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-temas" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Temas</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-temas">    
+        <li>
+    <a class="dropdown-item" href="../ciclo1.html">
+ <span class="dropdown-text">Ciclo 01</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../ciclo2.html">
+ <span class="dropdown-text">Ciclo 02</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-documentación" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Documentación</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-documentación">    
+        <li>
+    <a class="dropdown-item" href="../recursos-info.html">
+ <span class="dropdown-text">Recursos Web</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../books-rpy.html">
+ <span class="dropdown-text">Libros</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../guide-rpy.html">
+ <span class="dropdown-text">Guías - Herramientas</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/web-edimer/unal-semilleror-facca.github.io"><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://www.youtube.com/@rpycol"><i class="bi bi-youtube" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+    <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Tabla de contenido</h2>
+   
+  <ul>
+  <li><a href="#objetivo" id="toc-objetivo" class="nav-link active" data-scroll-target="#objetivo">Objetivo</a></li>
+  <li><a href="#requisitos-previos" id="toc-requisitos-previos" class="nav-link" data-scroll-target="#requisitos-previos">Requisitos previos</a></li>
+  <li><a href="#script-completo" id="toc-script-completo" class="nav-link" data-scroll-target="#script-completo">Script completo</a></li>
+  <li><a href="#función-googlenoticiasr" id="toc-función-googlenoticiasr" class="nav-link" data-scroll-target="#función-googlenoticiasr">Función <code>googleNoticiasR()</code></a></li>
+  <li><a href="#bibliotecas-de-r" id="toc-bibliotecas-de-r" class="nav-link" data-scroll-target="#bibliotecas-de-r">Bibliotecas de R</a></li>
+  <li><a href="#noticias" id="toc-noticias" class="nav-link" data-scroll-target="#noticias">Noticias</a>
+  <ul class="collapse">
+  <li><a href="#colombia" id="toc-colombia" class="nav-link" data-scroll-target="#colombia">Colombia</a></li>
+  <li><a href="#negocios" id="toc-negocios" class="nav-link" data-scroll-target="#negocios">Negocios</a></li>
+  <li><a href="#deportes" id="toc-deportes" class="nav-link" data-scroll-target="#deportes">Deportes</a></li>
+  </ul></li>
+  <li><a href="#análisis-exploratorio" id="toc-análisis-exploratorio" class="nav-link" data-scroll-target="#análisis-exploratorio">Análisis exploratorio</a>
+  <ul class="collapse">
+  <li><a href="#noticias-colombia" id="toc-noticias-colombia" class="nav-link" data-scroll-target="#noticias-colombia">Noticias Colombia</a>
+  <ul class="collapse">
+  <li><a href="#tokenización" id="toc-tokenización" class="nav-link" data-scroll-target="#tokenización">Tokenización</a></li>
+  <li><a href="#preguntas" id="toc-preguntas" class="nav-link" data-scroll-target="#preguntas">Preguntas</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#análisis-de-sentimientos" id="toc-análisis-de-sentimientos" class="nav-link" data-scroll-target="#análisis-de-sentimientos">Análisis de sentimientos</a></li>
+  </ul>
+</nav>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title">Web Scraping con R</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Código</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Mostrar todo el código</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Ocultar todo el código</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">Ver el código fuente</a></li></ul></div></div>
+<p class="subtitle lead">Google Noticias</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Autor/a</div>
+    <div class="quarto-title-meta-contents">
+             <p>Semillero Ciencia de Datos con R y Python </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="objetivo" class="level1">
+<h1>Objetivo</h1>
+<p>Este documento tiene como propósito ejemplificar técnicas de web scraping con R y análisis exploratorio de datos.</p>
+</section>
+<section id="requisitos-previos" class="level1">
+<h1>Requisitos previos</h1>
+<p>Para ejecutar este documento es necesario tener instalado lo siguiente:</p>
+<ul>
+<li><a href="https://cran.r-project.org/"><code>R</code></a></li>
+<li><a href="https://posit.co/downloads/"><code>RStudio</code></a></li>
+<li><a href="https://quarto.org/"><code>Quarto</code></a></li>
+</ul>
+<p>Para garantizar la reproducibilidad de este documento es necesario instalar las siguientes bibliotecas de R:</p>
+<ul>
+<li><a href="https://www.tidyverse.org/"><code>tidyverse</code></a></li>
+<li><a href="https://rvest.tidyverse.org/"><code>rvest</code></a></li>
+<li><a href="https://lubridate.tidyverse.org/"><code>lubridate</code></a></li>
+<li><a href="https://juliasilge.github.io/tidytext/index.html"><code>tidytext</code></a></li>
+<li><a href="https://cran.r-project.org/web/packages/tm/tm.pdf"><code>tm</code></a></li>
+<li><a href="https://cran.r-project.org/web/packages/wordcloud2/wordcloud2.pdf"><code>wordcloud2</code></a></li>
+<li><a href="https://cran.r-project.org/web/packages/wordcloud/wordcloud.pdf"><code>wordcloud</code></a></li>
+<li><a href="https://cran.r-project.org/web/packages/reshape2/reshape2.pdf"><code>reshape2</code></a></li>
+</ul>
+<p>Si aún no tiene instalada estas bibliotecas puede ejecutar el siguiente código para instalarlas:</p>
+<div class="cell" data-layout-align="center">
+<details>
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"tidyverse"</span>,</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">"rvest"</span>,</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">"lubridate"</span>,</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">"tidytext"</span>,</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="st">"tm"</span>,</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="st">"wordcloud"</span>,</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="st">"wordcloud2"</span>,</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="st">"reshape2"</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>),</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="at">dependencies =</span> <span class="cn">TRUE</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="script-completo" class="level1">
+<h1>Script completo</h1>
+<p>Para ver el código completo de este documento puede dar clic donde señala la flecha roja de la siguiente imagen:</p>
+<p><img src="img1.PNG" class="img-fluid"></p>
+</section>
+<section id="función-googlenoticiasr" class="level1">
+<h1>Función <code>googleNoticiasR()</code></h1>
+<ul>
+<li>La función aquí presentada fue previamente discutida en la <a href="https://www.youtube.com/watch?v=XY4zhqAfaSs&amp;ab_channel=RPyCol">sesión 02 del semillero.</a> Si desea ver las diapositivas de esta sesión pueden ser consultadas <a href="https://rpubs.com/Edimer/981979">aquí.</a></li>
+<li>El código completo está en <a href="https://github.com/web-edimer/semillero-ciencia-datos/blob/master/code-example/ejemplo-scraping-R-completo.R">Github</a></li>
+<li>La función recibe como entrada (argumento) la <code>url</code> de <a href="https://news.google.com/home?hl=es-419&amp;gl=CO&amp;ceid=CO:es-419">Google Noticias</a> desde la cual el usuario desea obtener las noticias.</li>
+</ul>
+<div class="cell" data-layout-align="center">
+<details>
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>googleNoticiasR <span class="ot">&lt;-</span> <span class="cf">function</span>(url) {</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  titulo_noticia <span class="ot">&lt;-</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    url <span class="sc">%&gt;%</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">read_html</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">html_elements</span>(<span class="st">"body"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">html_elements</span>(<span class="at">xpath =</span> <span class="st">'//a[@class = "WwrzSb"]'</span>)  <span class="sc">%&gt;%</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">html_attr</span>(<span class="st">"aria-label"</span>)</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  fuente_noticia <span class="ot">&lt;-</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    url <span class="sc">%&gt;%</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">read_html</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">html_elements</span>(<span class="st">"body"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">html_elements</span>(<span class="at">xpath =</span> <span class="st">'//span[@class = "vr1PYe"]'</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">html_text</span>()</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>  fecha_noticia <span class="ot">&lt;-</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>    url <span class="sc">%&gt;%</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">read_html</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>    <span class="fu">html_elements</span>(<span class="st">"body"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>    <span class="fu">html_elements</span>(<span class="at">xpath =</span> <span class="st">'//time[@class = "hvbAAd"]'</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>    <span class="fu">html_attr</span>(<span class="st">"datetime"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ymd_hms</span>()</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>  df_noticias <span class="ot">&lt;-</span></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>    <span class="fu">data.frame</span>(</span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>      <span class="at">noticia =</span> titulo_noticia,</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>      <span class="at">fuente =</span> fuente_noticia,</span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>      <span class="at">fecha =</span> fecha_noticia,</span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>      <span class="at">fecha_consulta =</span> <span class="fu">Sys.time</span>()</span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(df_noticias)</span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="bibliotecas-de-r" class="level1">
+<h1>Bibliotecas de R</h1>
+<div class="cell" data-layout-align="center">
+<details>
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)  <span class="co"># manipulación de datos</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rvest)      <span class="co"># web scraping</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)  <span class="co"># manipulación de fechas</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidytext)   <span class="co"># procesamiento de texto</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tm)         <span class="co"># stopWords </span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(wordcloud)  <span class="co"># Nube de palabras</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(wordcloud2) <span class="co"># Nube de palabras</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(reshape2)   <span class="co"># Remodelamiento de datos</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="noticias" class="level1">
+<h1>Noticias</h1>
+<ul>
+<li>El usuario es libre de elegir el tipo de noticias que desea. En este caso vamos a utilizar las siguientes noticias:
+<ul>
+<li><a href="https://news.google.com/topics/CAAqJggKIiBDQkFTRWdvSUwyMHZNREZzY3pJU0JtVnpMVFF4T1NnQVAB?hl=es-419&amp;gl=CO&amp;ceid=CO%3Aes-419">Colombia</a></li>
+<li><a href="https://news.google.com/topics/CAAqLAgKIiZDQkFTRmdvSUwyMHZNRGx6TVdZU0JtVnpMVFF4T1JvQ1EwOG9BQVAB?hl=es-419&amp;gl=CO&amp;ceid=CO%3Aes-419">Negocios</a></li>
+<li><a href="https://news.google.com/topics/CAAqLAgKIiZDQkFTRmdvSUwyMHZNRFp1ZEdvU0JtVnpMVFF4T1JvQ1EwOG9BQVAB?hl=es-419&amp;gl=CO&amp;ceid=CO%3Aes-419">Deportes</a></li>
+</ul></li>
+<li><strong>Nota:</strong> es posible ingresar cualquier otro tópico de interés, por ejemplo, <a href="https://news.google.com/topics/CAAqJggKIiBDQkFTRWdvSUwyMHZNR3QwTlRFU0JtVnpMVFF4T1NnQVAB?hl=es-419&amp;gl=CO&amp;ceid=CO%3Aes-419">salud.</a></li>
+</ul>
+<section id="colombia" class="level2">
+<h2 class="anchored" data-anchor-id="colombia">Colombia</h2>
+<p>Primero guardamos la URL para las noticas de Colombia en un objeto de nombre <code>url_colombia</code>. Cabe mencionar que este nombre lo asigna el usuario.</p>
+<div class="cell" data-layout-align="center">
+<details>
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>url_colombia <span class="ot">&lt;-</span> <span class="st">"https://news.google.com/topics/CAAqJggKIiBDQkFTRWdvSUwyMHZNREZzY3pJU0JtVnpMVFF4T1NnQVAB?hl=es-419&amp;gl=CO&amp;ceid=CO%3Aes-419"</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>Luego usamos la función <code>googleNoticiasR()</code> e ingresamos <code>url_colombia</code> como argumento de entrada. Guardamos este resultado en un objeto de nombre <code>noticias_colombia</code>.</p>
+<div class="cell" data-layout-align="center">
+<details>
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>noticias_colombia <span class="ot">&lt;-</span> <span class="fu">googleNoticiasR</span>(<span class="at">url =</span> url_colombia)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>La ejecución anterior devuelve un <code>dataframe</code> como se muestra a continuación. La función <code>head()</code> se utiliza para imprimir sólo las primeras 6 filas de la tabla.</p>
+<div class="cell" data-layout-align="center">
+<details>
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>noticias_colombia <span class="sc">%&gt;%</span> </span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["noticia"],"name":[1],"type":["chr"],"align":["left"]},{"label":["fuente"],"name":[2],"type":["chr"],"align":["left"]},{"label":["fecha"],"name":[3],"type":["dttm"],"align":["right"]},{"label":["fecha_consulta"],"name":[4],"type":["dttm"],"align":["right"]}],"data":[{"1":"¡Volvió a temblar en Colombia! Santander y Cesar fueron los epicentros","2":"El Tiempo","3":"2023-03-11 09:01:33","4":"2023-03-11 09:25:27.17336","_rn_":"1"},{"1":"Sismo de 5.9 grados despertó a los cucuteños","2":"La Opinión Cúcuta","3":"2023-03-11 09:03:04","4":"2023-03-11 09:25:27.17336","_rn_":"2"},{"1":"Reacción de Claudia Bahamón por duro temblor de hoy: “La tierra nos habla”","2":"Pulzo.com","3":"2023-03-10 14:48:45","4":"2023-03-11 09:25:27.17336","_rn_":"3"},{"1":"Fuerte temblor en Colombia: Mañanas Blu, con Néstor Morales, programa completo, 10 de marzo","2":"Blu Radio","3":"2023-03-10 17:55:16","4":"2023-03-11 09:25:27.17336","_rn_":"4"},{"1":"Sin esposas y con bolso de lujo: la reo Aída Merlano pasó su primera noche en Colombia","2":"El Colombiano","3":"2023-03-11 06:03:42","4":"2023-03-11 09:25:27.17336","_rn_":"5"},{"1":"Así fue la llegada de Aida Merlano a Colombia","2":"W Radio Colombia","3":"2023-03-11 00:30:09","4":"2023-03-11 09:25:27.17336","_rn_":"6"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>Podemos consultar el total de noticias (número de filas):</p>
+<div class="cell" data-layout-align="center">
+<details>
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>noticias_colombia <span class="sc">%&gt;%</span> </span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">nrow</span>()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 232</code></pre>
+</div>
+</div>
+<p>Los nombres de la base de datos pueden ser consultados con la función <code>names()</code>:</p>
+<div class="cell" data-layout-align="center">
+<details>
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>noticias_colombia <span class="sc">%&gt;%</span> </span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">names</span>()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "noticia"        "fuente"         "fecha"          "fecha_consulta"</code></pre>
+</div>
+</div>
+</section>
+<section id="negocios" class="level2">
+<h2 class="anchored" data-anchor-id="negocios">Negocios</h2>
+<p>Primero guardamos la URL para las noticas de Colombia en un objeto de nombre <code>url_negocios</code>. Cabe mencionar que este nombre lo asigna el usuario.</p>
+<div class="cell" data-layout-align="center">
+<details>
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>url_negocios <span class="ot">&lt;-</span> <span class="st">"https://news.google.com/topics/CAAqLAgKIiZDQkFTRmdvSUwyMHZNRGx6TVdZU0JtVnpMVFF4T1JvQ1EwOG9BQVAB?hl=es-419&amp;gl=CO&amp;ceid=CO%3Aes-419"</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>Luego usamos la función <code>googleNoticiasR()</code> e ingresamos <code>url_negocios</code> como argumento de entrada. Guardamos este resultado en un objeto de nombre <code>noticias_negocios</code>.</p>
+<div class="cell" data-layout-align="center">
+<details>
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>noticias_negocios <span class="ot">&lt;-</span> <span class="fu">googleNoticiasR</span>(<span class="at">url =</span> url_negocios)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>noticias_negocios <span class="sc">%&gt;%</span> </span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["noticia"],"name":[1],"type":["chr"],"align":["left"]},{"label":["fuente"],"name":[2],"type":["chr"],"align":["left"]},{"label":["fecha"],"name":[3],"type":["dttm"],"align":["right"]},{"label":["fecha_consulta"],"name":[4],"type":["dttm"],"align":["right"]}],"data":[{"1":"¿Cuál es la tasa de interés de las tarjetas de crédito ahora que los bancos en Colombia las bajaron?","2":"Vanguardia","3":"2023-03-11 05:00:47","4":"2023-03-11 09:25:32.029321","_rn_":"1"},{"1":"“La comida no se financia”: analistas explican los riesgos del recorte de tasas de interés que anunciaron los bancos","2":"El Colombiano","3":"2023-03-11 06:03:42","4":"2023-03-11 09:25:32.029321","_rn_":"2"},{"1":"Banco de Bogotá baja tasa de interés para sus tarjetas de crédito","2":"El Tiempo","3":"2023-03-10 16:39:15","4":"2023-03-11 09:25:32.029321","_rn_":"3"},{"1":"Colpatria le dio golpe (duro) a Bancolombia con anuncio sobre tarjetas de crédito","2":"Pulzo.com","3":"2023-03-10 21:39:35","4":"2023-03-11 09:25:32.029321","_rn_":"4"},{"1":"Tarjeta de crédito con beneficios para mujeres, Banco Popular.","2":"Wintor ABC","3":"2023-03-11 10:00:00","4":"2023-03-11 09:25:32.029321","_rn_":"5"},{"1":"Lotería de Risaralda: resultados de hoy viernes 10 de marzo de 2023","2":"Blu Radio","3":"2023-03-11 00:32:04","4":"2023-03-11 09:25:32.029321","_rn_":"6"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+</section>
+<section id="deportes" class="level2">
+<h2 class="anchored" data-anchor-id="deportes">Deportes</h2>
+<p>Primero guardamos la URL para las noticas de Colombia en un objeto de nombre <code>url_deportes</code>. Cabe mencionar que este nombre lo asigna el usuario.</p>
+<div class="cell" data-layout-align="center">
+<details>
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>url_deportes <span class="ot">&lt;-</span> <span class="st">"https://news.google.com/topics/CAAqLAgKIiZDQkFTRmdvSUwyMHZNRFp1ZEdvU0JtVnpMVFF4T1JvQ1EwOG9BQVAB?hl=es-419&amp;gl=CO&amp;ceid=CO%3Aes-419"</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>Luego usamos la función <code>googleNoticiasR()</code> e ingresamos <code>url_deportes</code> como argumento de entrada. Guardamos este resultado en un objeto de nombre <code>noticias_deportes</code>.</p>
+<div class="cell" data-layout-align="center">
+<details>
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>noticias_deportes <span class="ot">&lt;-</span> <span class="fu">googleNoticiasR</span>(<span class="at">url =</span> url_deportes)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>noticias_deportes <span class="sc">%&gt;%</span> </span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["noticia"],"name":[1],"type":["chr"],"align":["left"]},{"label":["fuente"],"name":[2],"type":["chr"],"align":["left"]},{"label":["fecha"],"name":[3],"type":["dttm"],"align":["right"]},{"label":["fecha_consulta"],"name":[4],"type":["dttm"],"align":["right"]}],"data":[{"1":"Millonarios visita a Nacional con suplencia, para el clásico en Liga","2":"FutbolRed","3":"2023-03-11 02:55:12","4":"2023-03-11 09:25:40.449887","_rn_":"1"},{"1":"Llegó la hora de dejar atrás los casi 6 años de Nacional sin victorias sobre Millonarios en el Atanasio","2":"El Colombiano","3":"2023-03-11 01:35:26","4":"2023-03-11 09:25:40.449887","_rn_":"2"},{"1":"¿A qué hora juegan Nacional vs. Millonarios hoy y dónde verlo en vivo?","2":"El Espectador","3":"2023-03-11 11:00:00","4":"2023-03-11 09:25:40.449887","_rn_":"3"},{"1":"Millonarios, rumbo a Medellín con novedades: así afrontará el clásico","2":"FutbolRed","3":"2023-03-11 00:48:47","4":"2023-03-11 09:25:40.449887","_rn_":"4"},{"1":"Sofie Svava: “Baila, baila Linda Caicedo”","2":"AS Colombia","3":"2023-03-10 19:40:43","4":"2023-03-11 09:25:40.449887","_rn_":"5"},{"1":"Video | Linda Caicedo no cabe de la emoción por su primer gol con el Real Madrid","2":"Revista Semana","3":"2023-03-10 20:38:27","4":"2023-03-11 09:25:40.449887","_rn_":"6"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="análisis-exploratorio" class="level1">
+<h1>Análisis exploratorio</h1>
+<ul>
+<li><strong>Todo el análisis exploratorio será ilustrado con noticias de Colombia</strong>, el usuario podrá replicar el ejemplo con los otros tópicos de interés.</li>
+<li>Generalmente el <a href="https://en.wikipedia.org/wiki/Exploratory_data_analysis">análisis exploratorio de datos</a> tiene como propósito revelar patrones de comportamiento, validar hipótesis, generar nuevas preguntas de investigación, detectar atipicidades, entre otras.</li>
+<li>Nuestro análisis exploratorio estará orientado a responder a las siguientes preguntas:
+<ul>
+<li>¿Cuántas noticias hay para cada medio de comunicación?</li>
+<li>¿Cuáles son las palabras más frecuentes en las noticias?</li>
+<li>¿Podemos asignar algún sentimiento a las noticias en función de las palabras que contienen? <strong>Nota importante:</strong> múltiples léxicos de sentimientos están disponibles en internet, no obstante, para el lenguaje <strong>español</strong> es un poco reducida la disponibilidad. Por este motivo y en aras de la sencillez, utilizaremos el léxico <a href="http://www2.imm.dtu.dk/pubdb/pubs/6010-full.html">AFINN</a> con su <a href="https://raw.githubusercontent.com/jboscomendoza/rpubs/master/sentimientos_afinn/lexico_afinn.en.es.csv">versión en español</a>. El léxico AFINN asigna puntuaciones a las palabras, oscilando entre -5 y 5, donde las puntuaciones negativas indican un sentimiento negativo y las puntuaciones positivas indican un sentimiento positivo.</li>
+</ul></li>
+</ul>
+<section id="noticias-colombia" class="level2">
+<h2 class="anchored" data-anchor-id="noticias-colombia">Noticias Colombia</h2>
+<section id="tokenización" class="level3">
+<h3 class="anchored" data-anchor-id="tokenización">Tokenización</h3>
+<ul>
+<li>El primer paso es convertir las noticias (<em>cadenas de texto</em>) en <a href="https://en.wikipedia.org/wiki/Lexical_analysis#Tokenization">tokens</a>, es decir, palabras individuales que aportan información a nuestro análisis. Este proceso se logra a través de la función <code>unnest_tokens()</code> de la biblioteca <code>tidytext</code>.</li>
+</ul>
+<div class="cell" data-layout-align="center">
+<details>
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>tokens_colombia <span class="ot">&lt;-</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  noticias_colombia <span class="sc">%&gt;%</span> </span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unnest_tokens</span>(<span class="at">output =</span> <span class="st">"token"</span>, <span class="at">input =</span> noticia)</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>tokens_colombia <span class="sc">%&gt;%</span> </span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["fuente"],"name":[1],"type":["chr"],"align":["left"]},{"label":["fecha"],"name":[2],"type":["dttm"],"align":["right"]},{"label":["fecha_consulta"],"name":[3],"type":["dttm"],"align":["right"]},{"label":["token"],"name":[4],"type":["chr"],"align":["left"]}],"data":[{"1":"El Tiempo","2":"2023-03-11 09:01:33","3":"2023-03-11 09:25:27.17336","4":"volvió","_rn_":"1"},{"1":"El Tiempo","2":"2023-03-11 09:01:33","3":"2023-03-11 09:25:27.17336","4":"a","_rn_":"2"},{"1":"El Tiempo","2":"2023-03-11 09:01:33","3":"2023-03-11 09:25:27.17336","4":"temblar","_rn_":"3"},{"1":"El Tiempo","2":"2023-03-11 09:01:33","3":"2023-03-11 09:25:27.17336","4":"en","_rn_":"4"},{"1":"El Tiempo","2":"2023-03-11 09:01:33","3":"2023-03-11 09:25:27.17336","4":"colombia","_rn_":"5"},{"1":"El Tiempo","2":"2023-03-11 09:01:33","3":"2023-03-11 09:25:27.17336","4":"santander","_rn_":"6"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>Algunas palabras en la columna <code>token</code> no tienen propiedades informativas, por ejemplo, conectores, artículos, pronombres, preposiciones, etc. Es común en la minería de texto utilizar <a href="https://es.wikipedia.org/wiki/Palabra_vac%C3%ADa"><em>stop words</em></a> para cada lenguaje, en este caso para el castellano. Podemos acceder a estas palabras a través de la función <code>stopwords()</code> de la biblioteca <code>tm</code>. Es importante mencionar que es posible que queden algunas palabras que no son informativas, de tal manera que se recomienda profundizar más en este tema.</p>
+<p>Asignamos las <em>stop words</em> a un objeto de nombre <code>stop_spanish</code>:</p>
+<div class="cell" data-layout-align="center">
+<details>
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>stop_spanish <span class="ot">&lt;-</span> <span class="fu">stopwords</span>(<span class="at">kind =</span> <span class="st">"spanish"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>Tenemos en total el siguiente número de <em>stop words</em> en español:</p>
+<div class="cell" data-layout-align="center">
+<details>
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>stop_spanish <span class="sc">%&gt;%</span> </span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">length</span>()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 308</code></pre>
+</div>
+</div>
+<p>Ahoa filtramos las palabras de la columna <code>token</code> que están dentro de las palabras sin significado (<em>stop words</em>) y asignamos el resultado a un objeto de nombre <code>tokens_colombia_final</code>. Note que en la columna <code>token</code> quedan números, que eventualmente podrían ser filtrados para el análisis, no obstante, se recomienda profundizar en cuál debería ser la limpieza del texto más adecuada para su análisis. En este caso hacemos caso omiso de estos datos.</p>
+<div class="cell" data-layout-align="center">
+<details>
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>tokens_colombia_final <span class="ot">&lt;-</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  tokens_colombia <span class="sc">%&gt;%</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span>token <span class="sc">%in%</span> stop_spanish) </span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>tokens_colombia_final <span class="sc">%&gt;%</span> </span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["fuente"],"name":[1],"type":["chr"],"align":["left"]},{"label":["fecha"],"name":[2],"type":["dttm"],"align":["right"]},{"label":["fecha_consulta"],"name":[3],"type":["dttm"],"align":["right"]},{"label":["token"],"name":[4],"type":["chr"],"align":["left"]}],"data":[{"1":"El Tiempo","2":"2023-03-11 09:01:33","3":"2023-03-11 09:25:27.17336","4":"volvió","_rn_":"1"},{"1":"El Tiempo","2":"2023-03-11 09:01:33","3":"2023-03-11 09:25:27.17336","4":"temblar","_rn_":"2"},{"1":"El Tiempo","2":"2023-03-11 09:01:33","3":"2023-03-11 09:25:27.17336","4":"colombia","_rn_":"3"},{"1":"El Tiempo","2":"2023-03-11 09:01:33","3":"2023-03-11 09:25:27.17336","4":"santander","_rn_":"4"},{"1":"El Tiempo","2":"2023-03-11 09:01:33","3":"2023-03-11 09:25:27.17336","4":"cesar","_rn_":"5"},{"1":"El Tiempo","2":"2023-03-11 09:01:33","3":"2023-03-11 09:25:27.17336","4":"epicentros","_rn_":"6"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+</section>
+<section id="preguntas" class="level3">
+<h3 class="anchored" data-anchor-id="preguntas">Preguntas</h3>
+<section id="pregunta-1" class="level4">
+<h4 class="anchored" data-anchor-id="pregunta-1">Pregunta 1</h4>
+<ul>
+<li>¿Cuántas noticias hay para cada medio de comunicación? <strong>Nota:</strong> para respondera a esta pregunta no es estrictamente necesario tokenizar el texto, por tal motivo obtendremos el conteo a través del dataframe de nombre <code>noticias_colombia</code>. Observe que algunas fuentes se repiten, por ejemplo, <code>El Tiempo</code> y <code>EL TIEMPO</code>, <code>R</code> los define como entidades diferentes porque no están escritas de la misma manera, aunque esta característica es fácil de resolver lo dejaremos así y cada usuario podrá direccionar la depuración bajo la estructura correcta.</li>
+</ul>
+<div class="cell" data-layout-align="center">
+<details>
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>noticias_colombia <span class="sc">%&gt;%</span> </span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(fuente, <span class="at">sort =</span> <span class="cn">TRUE</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["fuente"],"name":[1],"type":["chr"],"align":["left"]},{"label":["n"],"name":[2],"type":["int"],"align":["right"]}],"data":[{"1":"El Tiempo","2":"26"},{"1":"Revista Semana","2":"25"},{"1":"Pulzo.com","2":"21"},{"1":"El Colombiano","2":"18"},{"1":"Blu Radio","2":"12"},{"1":"EL HERALDO","2":"12"},{"1":"RCN Radio","2":"11"},{"1":"Caracol Radio","2":"9"},{"1":"Vanguardia","2":"8"},{"1":"AS Colombia","2":"7"},{"1":"El Universal","2":"7"},{"1":"infobae","2":"7"},{"1":"Noticias Caracol","2":"7"},{"1":"Zona Cero","2":"7"},{"1":"El Espectador","2":"6"},{"1":"El País Cali","2":"6"},{"1":"Noticias RCN","2":"5"},{"1":"La FM","2":"4"},{"1":"La Opinión Cúcuta","2":"3"},{"1":"El Nuevo Siglo (Colombia)","2":"2"},{"1":"HOY DIARIO DEL MAGDALENA","2":"2"},{"1":"Portafolio","2":"2"},{"1":"Publimetro Colombia","2":"2"},{"1":"W Radio Colombia","2":"2"},{"1":"Alcaldía de Barranquilla","2":"1"},{"1":"BC Noticias","2":"1"},{"1":"Cambio Colombia","2":"1"},{"1":"Canal 1","2":"1"},{"1":"Canal1","2":"1"},{"1":"Citytv","2":"1"},{"1":"Diario del Huila","2":"1"},{"1":"Diario del Norte.net","2":"1"},{"1":"Diario Depor","2":"1"},{"1":"EL PAÍS América Colombia","2":"1"},{"1":"Invías","2":"1"},{"1":"LA NACION","2":"1"},{"1":"La Patria.com","2":"1"},{"1":"La Prensa Grafica","2":"1"},{"1":"La República","2":"1"},{"1":"Minuto30.com","2":"1"},{"1":"MiOriente","2":"1"},{"1":"periodicovirtual.com noticias de Popayán y el Cauca","2":"1"},{"1":"Qhubo Bucaramanga","2":"1"},{"1":"RTVC Noticias","2":"1"},{"1":"Valora Analitik","2":"1"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>Podemos graficar los 10 primeros medios de comunicación con mayor número de noticias:</p>
+<div class="cell" data-layout-align="center">
+<details>
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>noticias_colombia <span class="sc">%&gt;%</span> </span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(fuente, <span class="at">sort =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(fuente, n), <span class="at">y =</span> n)) <span class="sc">+</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">""</span>, <span class="at">y =</span> <span class="st">"Noticias (n)"</span>, <span class="at">title =</span> <span class="st">"Google Noticias - Colombia"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="GoogleNoticias-R_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid figure-img" width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="pregunta-2" class="level4">
+<h4 class="anchored" data-anchor-id="pregunta-2">Pregunta 2</h4>
+<ul>
+<li>¿Cuáles son las palabras más frecuentes en las noticias? Para responder a estar preguna utilizaremos el dataframe que posee los tokens y sobre el cual ya pasamos el filtro de las palabras sin significado, es decir, <code>tokens_colombia_final</code>. Observamos que la palabra más frecuente en las noticias es “petro”.</li>
+</ul>
+<div class="cell" data-layout-align="center">
+<details>
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>tokens_colombia_final <span class="sc">%&gt;%</span> </span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(token, <span class="at">sort =</span> <span class="cn">TRUE</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["token"],"name":[1],"type":["chr"],"align":["left"]},{"label":["n"],"name":[2],"type":["int"],"align":["right"]}],"data":[{"1":"bogotá","2":"21"},{"1":"colombia","2":"20"},{"1":"petro","2":"20"},{"1":"marzo","2":"15"},{"1":"medellín","2":"15"},{"1":"vía","2":"15"},{"1":"temblor","2":"13"},{"1":"tras","2":"13"},{"1":"video","2":"12"},{"1":"antioquia","2":"11"},{"1":"barranquilla","2":"11"},{"1":"hombre","2":"11"},{"1":"cauca","2":"9"},{"1":"merlano","2":"9"},{"1":"minero","2":"9"},{"1":"paro","2":"9"},{"1":"presidente","2":"9"},{"1":"tres","2":"9"},{"1":"así","2":"8"},{"1":"personas","2":"8"},{"1":"santander","2":"8"},{"1":"10","2":"7"},{"1":"capturados","2":"7"},{"1":"day","2":"7"},{"1":"gobierno","2":"7"},{"1":"hijo","2":"7"},{"1":"madres","2":"7"},{"1":"medicamentos","2":"7"},{"1":"policía","2":"7"},{"1":"resultados","2":"7"},{"1":"vásquez","2":"7"},{"1":"aida","2":"6"},{"1":"asesinado","2":"6"},{"1":"bajo","2":"6"},{"1":"bono","2":"6"},{"1":"coronel","2":"6"},{"1":"día","2":"6"},{"1":"ganadores","2":"6"},{"1":"hacer","2":"6"},{"1":"hoy","2":"6"},{"1":"mujer","2":"6"},{"1":"nicolás","2":"6"},{"1":"nueva","2":"6"},{"1":"presunto","2":"6"},{"1":"sismo","2":"6"},{"1":"va","2":"6"},{"1":"7","2":"5"},{"1":"9","2":"5"},{"1":"accidente","2":"5"},{"1":"años","2":"5"},{"1":"buriticá","2":"5"},{"1":"cartagena","2":"5"},{"1":"cierre","2":"5"},{"1":"colombiano","2":"5"},{"1":"ejército","2":"5"},{"1":"lotería","2":"5"},{"1":"militares","2":"5"},{"1":"números","2":"5"},{"1":"policías","2":"5"},{"1":"vida","2":"5"},{"1":"agua","2":"4"},{"1":"aída","2":"4"},{"1":"armas","2":"4"},{"1":"ataque","2":"4"},{"1":"atentado","2":"4"},{"1":"barreras","2":"4"},{"1":"bukele","2":"4"},{"1":"cali","2":"4"},{"1":"cáncer","2":"4"},{"1":"capturan","2":"4"},{"1":"caso","2":"4"},{"1":"char","2":"4"},{"1":"chiquinquirá","2":"4"},{"1":"director","2":"4"},{"1":"domingo","2":"4"},{"1":"ee","2":"4"},{"1":"escasez","2":"4"},{"1":"extorsión","2":"4"},{"1":"feminicida","2":"4"},{"1":"fuad","2":"4"},{"1":"heridos","2":"4"},{"1":"josé","2":"4"},{"1":"manifestantes","2":"4"},{"1":"maratón","2":"4"},{"1":"metro","2":"4"},{"1":"millón","2":"4"},{"1":"ofrecen","2":"4"},{"1":"pastrana","2":"4"},{"1":"perdió","2":"4"},{"1":"periodista","2":"4"},{"1":"pesos","2":"4"},{"1":"presenciar","2":"4"},{"1":"primer","2":"4"},{"1":"quién","2":"4"},{"1":"rector","2":"4"},{"1":"roy","2":"4"},{"1":"ruido","2":"4"},{"1":"salud","2":"4"},{"1":"serie","2":"4"},{"1":"severo","2":"4"},{"1":"sinvergüenza","2":"4"},{"1":"soacha","2":"4"},{"1":"sodoma","2":"4"},{"1":"trabajo","2":"4"},{"1":"tránsito","2":"4"},{"1":"unp","2":"4"},{"1":"uu","2":"4"},{"1":"viernes","2":"4"},{"1":"visita","2":"4"},{"1":"viva","2":"4"},{"1":"12","2":"3"},{"1":"17","2":"3"},{"1":"2","2":"3"},{"1":"2023","2":"3"},{"1":"500","2":"3"},{"1":"abusó","2":"3"},{"1":"afectados","2":"3"},{"1":"alerta","2":"3"},{"1":"antioqueño","2":"3"},{"1":"autoridades","2":"3"},{"1":"balacera","2":"3"},{"1":"bocagrande","2":"3"},{"1":"botero","2":"3"},{"1":"bus","2":"3"},{"1":"cárcel","2":"3"},{"1":"cascos","2":"3"},{"1":"choque","2":"3"},{"1":"ciclista","2":"3"},{"1":"cinco","2":"3"},{"1":"cobra","2":"3"},{"1":"conductor","2":"3"},{"1":"conmovedor","2":"3"},{"1":"conozca","2":"3"},{"1":"corrupción","2":"3"},{"1":"cuerpo","2":"3"},{"1":"deben","2":"3"},{"1":"dejó","2":"3"},{"1":"delincuentes","2":"3"},{"1":"deportación","2":"3"},{"1":"desaparecido","2":"3"},{"1":"droga","2":"3"},{"1":"estadounidense","2":"3"},{"1":"fechas","2":"3"},{"1":"guajira","2":"3"},{"1":"gustavo","2":"3"},{"1":"habla","2":"3"},{"1":"imperio","2":"3"},{"1":"ingreso","2":"3"},{"1":"investigación","2":"3"},{"1":"invima","2":"3"},{"1":"joven","2":"3"},{"1":"ladrón","2":"3"},{"1":"loterías","2":"3"},{"1":"marta","2":"3"},{"1":"medidas","2":"3"},{"1":"medio","2":"3"},{"1":"meses","2":"3"},{"1":"mil","2":"3"},{"1":"millones","2":"3"},{"1":"mineros","2":"3"},{"1":"montos","2":"3"},{"1":"motos","2":"3"},{"1":"muerto","2":"3"},{"1":"mujeres","2":"3"},{"1":"norte","2":"3"},{"1":"noticias","2":"3"},{"1":"pago","2":"3"},{"1":"pasó","2":"3"},{"1":"persona","2":"3"},{"1":"pide","2":"3"},{"1":"podrán","2":"3"},{"1":"podría","2":"3"},{"1":"primera","2":"3"},{"1":"quindío","2":"3"},{"1":"razones","2":"3"},{"1":"recompensa","2":"3"},{"1":"reencuentro","2":"3"},{"1":"reforma","2":"3"},{"1":"río","2":"3"},{"1":"risaralda","2":"3"},{"1":"rosas","2":"3"},{"1":"ruta","2":"3"},{"1":"samper","2":"3"},{"1":"santa","2":"3"},{"1":"sardinata","2":"3"},{"1":"según","2":"3"},{"1":"ser","2":"3"},{"1":"sociales","2":"3"},{"1":"solidario","2":"3"},{"1":"sorteo","2":"3"},{"1":"temblar","2":"3"},{"1":"toque","2":"3"},{"1":"total","2":"3"},{"1":"vías","2":"3"},{"1":"visa","2":"3"},{"1":"yagé","2":"3"},{"1":"200","2":"2"},{"1":"3","2":"2"},{"1":"5","2":"2"},{"1":"500.000","2":"2"},{"1":"aburrá","2":"2"},{"1":"abusado","2":"2"},{"1":"acoso","2":"2"},{"1":"afectaciones","2":"2"},{"1":"afectadas","2":"2"},{"1":"agarrón","2":"2"},{"1":"air","2":"2"},{"1":"alcalde","2":"2"},{"1":"andrés","2":"2"},{"1":"antonio","2":"2"},{"1":"aquí","2":"2"},{"1":"asesinaron","2":"2"},{"1":"bloqueos","2":"2"},{"1":"buscan","2":"2"},{"1":"cabeza","2":"2"},{"1":"cáceres","2":"2"},{"1":"caos","2":"2"},{"1":"casa","2":"2"},{"1":"cayeron","2":"2"},{"1":"ceja","2":"2"},{"1":"cerca","2":"2"},{"1":"chamán","2":"2"},{"1":"cierres","2":"2"},{"1":"civiles","2":"2"},{"1":"cocaína","2":"2"},{"1":"colegio","2":"2"},{"1":"cómplices","2":"2"},{"1":"contratos","2":"2"},{"1":"costeños","2":"2"},{"1":"crisis","2":"2"},{"1":"cuál","2":"2"},{"1":"cúcuta","2":"2"},{"1":"cuello","2":"2"},{"1":"debe","2":"2"},{"1":"deja","2":"2"},{"1":"desabastecimiento","2":"2"},{"1":"desbloqueo","2":"2"},{"1":"deslizamiento","2":"2"},{"1":"dijo","2":"2"},{"1":"dorada","2":"2"},{"1":"dos","2":"2"},{"1":"edad","2":"2"},{"1":"ee.uu","2":"2"},{"1":"efectos","2":"2"},{"1":"encapuchados","2":"2"},{"1":"enfrentamientos","2":"2"},{"1":"ernesto","2":"2"},{"1":"error","2":"2"},{"1":"escucha","2":"2"},{"1":"escucharon","2":"2"},{"1":"esculturas","2":"2"},{"1":"esmad","2":"2"},{"1":"explosivos","2":"2"},{"1":"extraditables","2":"2"},{"1":"extraño","2":"2"},{"1":"fuerte","2":"2"},{"1":"fuertes","2":"2"},{"1":"golpes","2":"2"},{"1":"graves","2":"2"},{"1":"hallado","2":"2"},{"1":"hogar","2":"2"},{"1":"importante","2":"2"},{"1":"intento","2":"2"},{"1":"j9","2":"2"},{"1":"laura","2":"2"},{"1":"ley","2":"2"},{"1":"líder","2":"2"},{"1":"llegada","2":"2"},{"1":"lourdes","2":"2"},{"1":"luz","2":"2"},{"1":"mayor","2":"2"},{"1":"menor","2":"2"},{"1":"minsalud","2":"2"},{"1":"muerta","2":"2"},{"1":"murió","2":"2"},{"1":"narcotráfico","2":"2"},{"1":"nayib","2":"2"},{"1":"niña","2":"2"},{"1":"niño","2":"2"},{"1":"nordeste","2":"2"},{"1":"novia","2":"2"},{"1":"ocampo","2":"2"},{"1":"oficiales","2":"2"},{"1":"oírse","2":"2"},{"1":"ojeda","2":"2"},{"1":"ordenó","2":"2"},{"1":"pájaros","2":"2"},{"1":"papá","2":"2"},{"1":"pasajeros","2":"2"},{"1":"paso","2":"2"},{"1":"pelea","2":"2"},{"1":"pensional","2":"2"},{"1":"playas","2":"2"},{"1":"plaza","2":"2"},{"1":"plena","2":"2"},{"1":"presunta","2":"2"},{"1":"prisión","2":"2"},{"1":"procuraduría","2":"2"},{"1":"programa","2":"2"},{"1":"proteger","2":"2"},{"1":"pruebas","2":"2"},{"1":"puede","2":"2"},{"1":"queda","2":"2"},{"1":"quería","2":"2"},{"1":"reacción","2":"2"},{"1":"recomendaciones","2":"2"},{"1":"reconocido","2":"2"},{"1":"redes","2":"2"},{"1":"requisitos","2":"2"},{"1":"riña","2":"2"},{"1":"rionegro","2":"2"},{"1":"ritual","2":"2"},{"1":"robo","2":"2"},{"1":"sábado","2":"2"},{"1":"saber","2":"2"},{"1":"salió","2":"2"},{"1":"seca","2":"2"},{"1":"seguridad","2":"2"},{"1":"señalado","2":"2"},{"1":"servicio","2":"2"},{"1":"sexual","2":"2"},{"1":"sexualmente","2":"2"},{"1":"sicario","2":"2"},{"1":"soledad","2":"2"},{"1":"subterráneo","2":"2"},{"1":"suceda","2":"2"},{"1":"supuesto","2":"2"},{"1":"sur","2":"2"},{"1":"tendero","2":"2"},{"1":"terminal","2":"2"},{"1":"terremoto","2":"2"},{"1":"último","2":"2"},{"1":"unidos","2":"2"},{"1":"valle","2":"2"},{"1":"vandalizaron","2":"2"},{"1":"volver","2":"2"},{"1":"1.300","2":"1"},{"1":"15","2":"1"},{"1":"20","2":"1"},{"1":"22","2":"1"},{"1":"29","2":"1"},{"1":"354.000","2":"1"},{"1":"400","2":"1"},{"1":"48","2":"1"},{"1":"5.000","2":"1"},{"1":"5.9","2":"1"},{"1":"52","2":"1"},{"1":"6","2":"1"},{"1":"6am","2":"1"},{"1":"8","2":"1"},{"1":"89","2":"1"},{"1":"8m","2":"1"},{"1":"aberrante","2":"1"},{"1":"abusaba","2":"1"},{"1":"abuso","2":"1"},{"1":"acá","2":"1"},{"1":"acceder","2":"1"},{"1":"acciones","2":"1"},{"1":"aceptó","2":"1"},{"1":"aclaró","2":"1"},{"1":"acosada","2":"1"},{"1":"acosó","2":"1"},{"1":"acusó","2":"1"},{"1":"adulto","2":"1"},{"1":"advertencia","2":"1"},{"1":"aerolínea","2":"1"},{"1":"aerolíneas","2":"1"},{"1":"agudizó","2":"1"},{"1":"airada","2":"1"},{"1":"albis","2":"1"},{"1":"alexander","2":"1"},{"1":"alias","2":"1"},{"1":"allá","2":"1"},{"1":"alquilarlas","2":"1"},{"1":"alquiler","2":"1"},{"1":"alterna","2":"1"},{"1":"alternas","2":"1"},{"1":"amenaza","2":"1"},{"1":"americana","2":"1"},{"1":"analizar","2":"1"},{"1":"anato","2":"1"},{"1":"antidrogas","2":"1"},{"1":"anuncia","2":"1"},{"1":"anuncian","2":"1"},{"1":"apertura","2":"1"},{"1":"aprobar","2":"1"},{"1":"aprovechó","2":"1"},{"1":"apuñaló","2":"1"},{"1":"armenia","2":"1"},{"1":"arrancó","2":"1"},{"1":"arremeter","2":"1"},{"1":"arrollado","2":"1"},{"1":"arsenal","2":"1"},{"1":"asegura","2":"1"},{"1":"aseguró","2":"1"},{"1":"asfixiado","2":"1"},{"1":"astilleros","2":"1"},{"1":"atacada","2":"1"},{"1":"atacaron","2":"1"},{"1":"atención","2":"1"},{"1":"atender","2":"1"},{"1":"atrapó","2":"1"},{"1":"atropellado","2":"1"},{"1":"avistó","2":"1"},{"1":"bahamón","2":"1"},{"1":"banda","2":"1"},{"1":"barrio","2":"1"},{"1":"beneficios","2":"1"},{"1":"bloqueadas","2":"1"},{"1":"bloquear","2":"1"},{"1":"blu","2":"1"},{"1":"bolso","2":"1"},{"1":"bordo","2":"1"},{"1":"borrachos","2":"1"},{"1":"botella","2":"1"},{"1":"buen","2":"1"},{"1":"buenas","2":"1"},{"1":"bueno","2":"1"},{"1":"buscaba","2":"1"},{"1":"caldas","2":"1"},{"1":"califica","2":"1"},{"1":"calles","2":"1"},{"1":"calumnió","2":"1"},{"1":"camacho","2":"1"},{"1":"cambiar","2":"1"},{"1":"cambiarlo","2":"1"},{"1":"canto","2":"1"},{"1":"caracol","2":"1"},{"1":"cardiólogo","2":"1"},{"1":"cargos","2":"1"},{"1":"caribe","2":"1"},{"1":"caro","2":"1"},{"1":"carta","2":"1"},{"1":"casi","2":"1"},{"1":"casos","2":"1"},{"1":"castillo","2":"1"},{"1":"causas","2":"1"},{"1":"cayó","2":"1"},{"1":"cazador","2":"1"},{"1":"celebración","2":"1"},{"1":"centro","2":"1"},{"1":"cerrado","2":"1"},{"1":"cerró","2":"1"},{"1":"cesan","2":"1"},{"1":"cesar","2":"1"},{"1":"chapinero","2":"1"},{"1":"chiste","2":"1"},{"1":"cierran","2":"1"},{"1":"citytv","2":"1"},{"1":"ciudad","2":"1"},{"1":"civil","2":"1"},{"1":"claro","2":"1"},{"1":"claudia","2":"1"},{"1":"clave","2":"1"},{"1":"clínica","2":"1"},{"1":"club","2":"1"},{"1":"coalición","2":"1"},{"1":"coincidido","2":"1"},{"1":"colectivero","2":"1"},{"1":"colectivos","2":"1"},{"1":"colombianos","2":"1"},{"1":"colpensiones","2":"1"},{"1":"comentarios","2":"1"},{"1":"cometió","2":"1"},{"1":"cómo","2":"1"},{"1":"compañeros","2":"1"},{"1":"compinches","2":"1"},{"1":"completo","2":"1"},{"1":"complicó","2":"1"},{"1":"comunidad","2":"1"},{"1":"concepto","2":"1"},{"1":"conceptos","2":"1"},{"1":"condenadas","2":"1"},{"1":"condenas","2":"1"},{"1":"condicional","2":"1"},{"1":"congelada","2":"1"},{"1":"congreso","2":"1"},{"1":"conjunto","2":"1"},{"1":"conmoción","2":"1"},{"1":"conoce","2":"1"},{"1":"consejo","2":"1"},{"1":"constante","2":"1"},{"1":"continuarán","2":"1"},{"1":"contradictor","2":"1"},{"1":"contrarreforma","2":"1"},{"1":"control","2":"1"},{"1":"controversia","2":"1"},{"1":"convertido","2":"1"},{"1":"convocó","2":"1"},{"1":"corren","2":"1"},{"1":"cortes","2":"1"},{"1":"cosas","2":"1"},{"1":"costo","2":"1"},{"1":"crespo","2":"1"},{"1":"cuándo","2":"1"},{"1":"cuánto","2":"1"},{"1":"cuchillo","2":"1"},{"1":"cucuteños","2":"1"},{"1":"cuenta","2":"1"},{"1":"cumplir","2":"1"},{"1":"dabeiba","2":"1"},{"1":"daños","2":"1"},{"1":"dar","2":"1"},{"1":"darán","2":"1"},{"1":"dardos","2":"1"},{"1":"days","2":"1"},{"1":"deberá","2":"1"},{"1":"deberán","2":"1"},{"1":"debo","2":"1"},{"1":"decisión","2":"1"},{"1":"decretan","2":"1"},{"1":"defensoría","2":"1"},{"1":"definirá","2":"1"},{"1":"demarcación","2":"1"},{"1":"dentro","2":"1"},{"1":"denuncia","2":"1"},{"1":"denuncias","2":"1"},{"1":"denunció","2":"1"},{"1":"derechos","2":"1"},{"1":"desafiaron","2":"1"},{"1":"desconcertados","2":"1"},{"1":"descubren","2":"1"},{"1":"deseados","2":"1"},{"1":"desmantelan","2":"1"},{"1":"despeje","2":"1"},{"1":"despertó","2":"1"},{"1":"después","2":"1"},{"1":"desvíos","2":"1"},{"1":"detalles","2":"1"},{"1":"detrás","2":"1"},{"1":"devolución","2":"1"},{"1":"dialogar","2":"1"},{"1":"diálogo","2":"1"},{"1":"diálogos","2":"1"},{"1":"diana","2":"1"},{"1":"dice","2":"1"},{"1":"dificultades","2":"1"},{"1":"dinero","2":"1"},{"1":"dio","2":"1"},{"1":"discoteca","2":"1"},{"1":"diseño","2":"1"},{"1":"disponibilidad","2":"1"},{"1":"distrito","2":"1"},{"1":"disturbios","2":"1"},{"1":"donado","2":"1"},{"1":"dónde","2":"1"},{"1":"dura","2":"1"},{"1":"duro","2":"1"},{"1":"echó","2":"1"},{"1":"eliminación","2":"1"},{"1":"embriaguez","2":"1"},{"1":"emergencia","2":"1"},{"1":"empeoró","2":"1"},{"1":"empleados","2":"1"},{"1":"encapuchado","2":"1"},{"1":"encontrado","2":"1"},{"1":"encontraron","2":"1"},{"1":"encuentran","2":"1"},{"1":"enfrentado","2":"1"},{"1":"enfrentaron","2":"1"},{"1":"enseñó","2":"1"},{"1":"entregado","2":"1"},{"1":"entrevista","2":"1"},{"1":"envian","2":"1"},{"1":"envió","2":"1"},{"1":"epicentro","2":"1"},{"1":"epicentros","2":"1"},{"1":"epstein","2":"1"},{"1":"equívoca","2":"1"},{"1":"erótica","2":"1"},{"1":"escasos","2":"1"},{"1":"espantoso","2":"1"},{"1":"espejo","2":"1"},{"1":"esposas","2":"1"},{"1":"estanterías","2":"1"},{"1":"estigmatizantes","2":"1"},{"1":"estudiante","2":"1"},{"1":"etiqueta","2":"1"},{"1":"evento","2":"1"},{"1":"evidencias","2":"1"},{"1":"exención","2":"1"},{"1":"exesposo","2":"1"},{"1":"existencia","2":"1"},{"1":"exmagistrado","2":"1"},{"1":"exnarco","2":"1"},{"1":"exnarcotraficante","2":"1"},{"1":"expersonero","2":"1"},{"1":"expertos","2":"1"},{"1":"explique","2":"1"},{"1":"exponerse","2":"1"},{"1":"expresidente","2":"1"},{"1":"exsenadora","2":"1"},{"1":"extradición","2":"1"},{"1":"extraditado","2":"1"},{"1":"extraordinario","2":"1"},{"1":"falleció","2":"1"},{"1":"familia","2":"1"},{"1":"famoso","2":"1"},{"1":"feliz","2":"1"},{"1":"fernando","2":"1"},{"1":"fiestas","2":"1"},{"1":"fiestón","2":"1"},{"1":"figura","2":"1"},{"1":"fin","2":"1"},{"1":"fiscal","2":"1"},{"1":"fiscalía","2":"1"},{"1":"formas","2":"1"},{"1":"fortalecen","2":"1"},{"1":"fuerza","2":"1"},{"1":"fuga","2":"1"},{"1":"funcionará","2":"1"},{"1":"funciones","2":"1"},{"1":"fundamentales","2":"1"},{"1":"furiosa","2":"1"},{"1":"futuro","2":"1"},{"1":"gabriel","2":"1"},{"1":"garrafal","2":"1"},{"1":"genera","2":"1"},{"1":"generó","2":"1"},{"1":"geológica","2":"1"},{"1":"gordas","2":"1"},{"1":"grados","2":"1"},{"1":"graduarse","2":"1"},{"1":"gráfica","2":"1"},{"1":"grafitis","2":"1"},{"1":"gringo","2":"1"},{"1":"gritos","2":"1"},{"1":"habló","2":"1"},{"1":"hace","2":"1"},{"1":"hacerlo","2":"1"},{"1":"halladas","2":"1"},{"1":"hallaron","2":"1"},{"1":"hidroituango","2":"1"},{"1":"hijos","2":"1"},{"1":"hipótesis","2":"1"},{"1":"histórico","2":"1"},{"1":"homicidio","2":"1"},{"1":"horarios","2":"1"},{"1":"humildes","2":"1"},{"1":"hurto","2":"1"},{"1":"icfes","2":"1"},{"1":"identifican","2":"1"},{"1":"identificaron","2":"1"},{"1":"iglesia","2":"1"},{"1":"imágenes","2":"1"},{"1":"impactante","2":"1"},{"1":"impactantes","2":"1"},{"1":"implementa","2":"1"},{"1":"implicado","2":"1"},{"1":"imputado","2":"1"},{"1":"incautación","2":"1"},{"1":"incautada","2":"1"},{"1":"incautó","2":"1"},{"1":"incluir","2":"1"},{"1":"indebida","2":"1"},{"1":"indefinido","2":"1"},{"1":"indignación","2":"1"},{"1":"indignante","2":"1"},{"1":"indirecta","2":"1"},{"1":"inestabilidad","2":"1"},{"1":"infarto","2":"1"},{"1":"información","2":"1"},{"1":"informar","2":"1"},{"1":"inicia","2":"1"},{"1":"iniciará","2":"1"},{"1":"iniciarse","2":"1"},{"1":"inició","2":"1"},{"1":"inmediatas","2":"1"},{"1":"insólito","2":"1"},{"1":"intenciones","2":"1"},{"1":"investigadores","2":"1"},{"1":"inviable","2":"1"},{"1":"invías","2":"1"},{"1":"jaime","2":"1"},{"1":"jeffrey","2":"1"},{"1":"joaquín","2":"1"},{"1":"judicializaron","2":"1"},{"1":"juega","2":"1"},{"1":"jueves","2":"1"},{"1":"jurídicamente","2":"1"},{"1":"jurídicos","2":"1"},{"1":"kilos","2":"1"},{"1":"laboral","2":"1"},{"1":"labores","2":"1"},{"1":"ladrones","2":"1"},{"1":"lafourie","2":"1"},{"1":"lanza","2":"1"},{"1":"lau","2":"1"},{"1":"liberadas","2":"1"},{"1":"libertad","2":"1"},{"1":"linchamiento","2":"1"},{"1":"línea","2":"1"},{"1":"llama","2":"1"},{"1":"llamado","2":"1"},{"1":"logrado","2":"1"},{"1":"lópez","2":"1"},{"1":"lucha","2":"1"},{"1":"luego","2":"1"},{"1":"lujo","2":"1"},{"1":"madrugada","2":"1"},{"1":"maestro","2":"1"},{"1":"mansalva","2":"1"},{"1":"mantiene","2":"1"},{"1":"mañanas","2":"1"},{"1":"marcha","2":"1"},{"1":"marcharán","2":"1"},{"1":"marido","2":"1"},{"1":"marlboro","2":"1"},{"1":"mascotas","2":"1"},{"1":"mata","2":"1"},{"1":"médico","2":"1"},{"1":"meléndez","2":"1"},{"1":"mes","2":"1"},{"1":"mesa","2":"1"},{"1":"meseros","2":"1"},{"1":"metiendo","2":"1"},{"1":"miembros","2":"1"},{"1":"milagro","2":"1"},{"1":"miles","2":"1"},{"1":"militar","2":"1"},{"1":"millonaria","2":"1"},{"1":"ministerio","2":"1"},{"1":"ministro","2":"1"},{"1":"minuto30","2":"1"},{"1":"mioriente","2":"1"},{"1":"misión","2":"1"},{"1":"mismo","2":"1"},{"1":"mismos","2":"1"},{"1":"mojigata","2":"1"},{"1":"molestia","2":"1"},{"1":"molesto","2":"1"},{"1":"momentos","2":"1"},{"1":"montaje","2":"1"},{"1":"morales","2":"1"},{"1":"movieron","2":"1"},{"1":"muere","2":"1"},{"1":"multa","2":"1"},{"1":"municipios","2":"1"},{"1":"muñequera","2":"1"},{"1":"nacional","2":"1"},{"1":"narco","2":"1"},{"1":"narcocaleta","2":"1"},{"1":"necesita","2":"1"},{"1":"negó","2":"1"},{"1":"negocio","2":"1"},{"1":"néstor","2":"1"},{"1":"ninguna","2":"1"},{"1":"noche","2":"1"},{"1":"novedades","2":"1"},{"1":"novelón","2":"1"},{"1":"nuevamente","2":"1"},{"1":"nuevo","2":"1"},{"1":"obras","2":"1"},{"1":"occidente","2":"1"},{"1":"octubre","2":"1"},{"1":"oficial","2":"1"},{"1":"ojo","2":"1"},{"1":"ojos","2":"1"},{"1":"olvidado","2":"1"},{"1":"olvidará","2":"1"},{"1":"operación","2":"1"},{"1":"orden","2":"1"},{"1":"orejuela","2":"1"},{"1":"organizadores","2":"1"},{"1":"oriente","2":"1"},{"1":"pacto","2":"1"},{"1":"padece","2":"1"},{"1":"padre","2":"1"},{"1":"pagar","2":"1"},{"1":"país","2":"1"},{"1":"palabras","2":"1"},{"1":"pánico","2":"1"},{"1":"panorama","2":"1"},{"1":"parece","2":"1"},{"1":"pareja","2":"1"},{"1":"parque","2":"1"},{"1":"parqueadero","2":"1"},{"1":"partidos","2":"1"},{"1":"pasará","2":"1"},{"1":"pastor","2":"1"},{"1":"pedófilo","2":"1"},{"1":"pedro","2":"1"},{"1":"pelearon","2":"1"},{"1":"peligroso","2":"1"},{"1":"pensión","2":"1"},{"1":"pensionarían","2":"1"},{"1":"peñalosa","2":"1"},{"1":"perro","2":"1"},{"1":"personal","2":"1"},{"1":"perú","2":"1"},{"1":"petrovideo","2":"1"},{"1":"pico","2":"1"},{"1":"pidan","2":"1"},{"1":"pidió","2":"1"},{"1":"pintaron","2":"1"},{"1":"pistola","2":"1"},{"1":"placa","2":"1"},{"1":"plan","2":"1"},{"1":"planeó","2":"1"},{"1":"polémico","2":"1"},{"1":"política","2":"1"},{"1":"político","2":"1"},{"1":"posible","2":"1"},{"1":"potable","2":"1"},{"1":"potencialmente","2":"1"},{"1":"prendieron","2":"1"},{"1":"prensa","2":"1"},{"1":"prepárese","2":"1"},{"1":"presas","2":"1"},{"1":"presentaron","2":"1"},{"1":"presidencia","2":"1"},{"1":"presión","2":"1"},{"1":"presionar","2":"1"},{"1":"presuntos","2":"1"},{"1":"principales","2":"1"},{"1":"proceso","2":"1"},{"1":"producto","2":"1"},{"1":"programado","2":"1"},{"1":"pronuncia","2":"1"},{"1":"propios","2":"1"},{"1":"protagonizaron","2":"1"},{"1":"protagonizó","2":"1"},{"1":"próximo","2":"1"},{"1":"pública","2":"1"},{"1":"público","2":"1"},{"1":"pueblo","2":"1"},{"1":"pulla","2":"1"},{"1":"pullas","2":"1"},{"1":"pumarejo","2":"1"},{"1":"quedar","2":"1"},{"1":"quedará","2":"1"},{"1":"quedaron","2":"1"},{"1":"quedé","2":"1"},{"1":"quemaron","2":"1"},{"1":"quintero","2":"1"},{"1":"quiroóanos","2":"1"},{"1":"quitar","2":"1"},{"1":"quitó","2":"1"},{"1":"rcn","2":"1"},{"1":"reabierta","2":"1"},{"1":"reabrir","2":"1"},{"1":"reacciona","2":"1"},{"1":"reaccionaron","2":"1"},{"1":"real","2":"1"},{"1":"realizar","2":"1"},{"1":"realmente","2":"1"},{"1":"rebajar","2":"1"},{"1":"reciben","2":"1"},{"1":"recibían","2":"1"},{"1":"recibirán","2":"1"},{"1":"reconocida","2":"1"},{"1":"recordaba","2":"1"},{"1":"reencontró","2":"1"},{"1":"reformas","2":"1"},{"1":"regreso","2":"1"},{"1":"reivindicar","2":"1"},{"1":"relaciones","2":"1"},{"1":"relato","2":"1"},{"1":"relató","2":"1"},{"1":"reo","2":"1"},{"1":"repatriación","2":"1"},{"1":"reportan","2":"1"},{"1":"responde","2":"1"},{"1":"responden","2":"1"},{"1":"restaurante","2":"1"},{"1":"restricciones","2":"1"},{"1":"resultado","2":"1"},{"1":"resultaron","2":"1"},{"1":"retrasa","2":"1"},{"1":"reubicación","2":"1"},{"1":"reveladoras","2":"1"},{"1":"revelan","2":"1"},{"1":"reveló","2":"1"},{"1":"revocan","2":"1"},{"1":"revólveres","2":"1"},{"1":"rifirrafe","2":"1"},{"1":"rodríguez","2":"1"},{"1":"rotación","2":"1"},{"1":"rutas","2":"1"},{"1":"sabía","2":"1"},{"1":"sacudió","2":"1"},{"1":"salarios","2":"1"},{"1":"salvador","2":"1"},{"1":"sanación","2":"1"},{"1":"seguir","2":"1"},{"1":"seis","2":"1"},{"1":"semana","2":"1"},{"1":"semanas","2":"1"},{"1":"senado","2":"1"},{"1":"sentencia","2":"1"},{"1":"sentencias","2":"1"},{"1":"señalamientos","2":"1"},{"1":"señalización","2":"1"},{"1":"sexuales","2":"1"},{"1":"si","2":"1"},{"1":"siga","2":"1"},{"1":"sigue","2":"1"},{"1":"sirve","2":"1"},{"1":"situación","2":"1"},{"1":"social","2":"1"},{"1":"solicitado","2":"1"},{"1":"solo","2":"1"},{"1":"subsidio","2":"1"},{"1":"sueldo","2":"1"},{"1":"suelto","2":"1"},{"1":"sufrió","2":"1"},{"1":"supermercado","2":"1"},{"1":"suspende","2":"1"},{"1":"tak","2":"1"},{"1":"tarde","2":"1"},{"1":"tener","2":"1"},{"1":"téngalas","2":"1"},{"1":"terminó","2":"1"},{"1":"terrorismo","2":"1"},{"1":"tiembla","2":"1"},{"1":"tierra","2":"1"},{"1":"tiesa","2":"1"},{"1":"tik","2":"1"},{"1":"tocó","2":"1"},{"1":"toda","2":"1"},{"1":"toma","2":"1"},{"1":"tomar","2":"1"},{"1":"toneladas","2":"1"},{"1":"trabaja","2":"1"},{"1":"trabajos","2":"1"},{"1":"tractomula","2":"1"},{"1":"tramo","2":"1"},{"1":"transitada","2":"1"},{"1":"transmetro","2":"1"},{"1":"traslado","2":"1"},{"1":"trató","2":"1"},{"1":"tremendo","2":"1"},{"1":"trino","2":"1"},{"1":"túnel","2":"1"},{"1":"twitter","2":"1"},{"1":"unión","2":"1"},{"1":"unirse","2":"1"},{"1":"urabá","2":"1"},{"1":"urgencias","2":"1"},{"1":"urgentes","2":"1"},{"1":"urnas","2":"1"},{"1":"uscátegui","2":"1"},{"1":"usuarios","2":"1"},{"1":"vandalismo","2":"1"},{"1":"varada","2":"1"},{"1":"veces","2":"1"},{"1":"vehicular","2":"1"},{"1":"vehículos","2":"1"},{"1":"veinte","2":"1"},{"1":"vélez","2":"1"},{"1":"venderse","2":"1"},{"1":"venezuela","2":"1"},{"1":"verán","2":"1"},{"1":"vez","2":"1"},{"1":"viajeros","2":"1"},{"1":"vial","2":"1"},{"1":"viales","2":"1"},{"1":"videos","2":"1"},{"1":"vinculado","2":"1"},{"1":"vinculados","2":"1"},{"1":"violar","2":"1"},{"1":"visado","2":"1"},{"1":"visto","2":"1"},{"1":"vivienda","2":"1"},{"1":"viviendas","2":"1"},{"1":"vivió","2":"1"},{"1":"volverán","2":"1"},{"1":"volvió","2":"1"},{"1":"vuelo","2":"1"},{"1":"vuelve","2":"1"},{"1":"wafflería","2":"1"},{"1":"zona","2":"1"},{"1":"zonas","2":"1"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>Como son tantas palabras, es posible representar esta información a través de <a href="https://es.wikipedia.org/wiki/Nube_de_palabras">nubes de palabras.</a> Este proceso lo llevamos a cabo con la biblioteca <a href="https://cran.r-project.org/web/packages/wordcloud2/vignettes/wordcloud.html"><code>wordcloud2</code>.</a></p>
+<div class="cell" data-layout-align="center">
+<details>
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>tokens_colombia_final <span class="sc">%&gt;%</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(token, <span class="at">sort =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">wordcloud2</span>(<span class="at">data =</span> ., <span class="at">backgroundColor =</span> <span class="st">"black"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+
+<div class="wordcloud2 html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-0160c6bb82a6af89ab56" style="width:100%;height:487px;"></div>
+<script type="application/json" data-for="htmlwidget-0160c6bb82a6af89ab56">{"x":{"word":["bogotá","colombia","petro","marzo","medellín","vía","temblor","tras","video","antioquia","barranquilla","hombre","cauca","merlano","minero","paro","presidente","tres","así","personas","santander","10","capturados","day","gobierno","hijo","madres","medicamentos","policía","resultados","vásquez","aida","asesinado","bajo","bono","coronel","día","ganadores","hacer","hoy","mujer","nicolás","nueva","presunto","sismo","va","7","9","accidente","años","buriticá","cartagena","cierre","colombiano","ejército","lotería","militares","números","policías","vida","agua","aída","armas","ataque","atentado","barreras","bukele","cali","cáncer","capturan","caso","char","chiquinquirá","director","domingo","ee","escasez","extorsión","feminicida","fuad","heridos","josé","manifestantes","maratón","metro","millón","ofrecen","pastrana","perdió","periodista","pesos","presenciar","primer","quién","rector","roy","ruido","salud","serie","severo","sinvergüenza","soacha","sodoma","trabajo","tránsito","unp","uu","viernes","visita","viva","12","17","2","2023","500","abusó","afectados","alerta","antioqueño","autoridades","balacera","bocagrande","botero","bus","cárcel","cascos","choque","ciclista","cinco","cobra","conductor","conmovedor","conozca","corrupción","cuerpo","deben","dejó","delincuentes","deportación","desaparecido","droga","estadounidense","fechas","guajira","gustavo","habla","imperio","ingreso","investigación","invima","joven","ladrón","loterías","marta","medidas","medio","meses","mil","millones","mineros","montos","motos","muerto","mujeres","norte","noticias","pago","pasó","persona","pide","podrán","podría","primera","quindío","razones","recompensa","reencuentro","reforma","río","risaralda","rosas","ruta","samper","santa","sardinata","según","ser","sociales","solidario","sorteo","temblar","toque","total","vías","visa","yagé","200","3","5","500.000","aburrá","abusado","acoso","afectaciones","afectadas","agarrón","air","alcalde","andrés","antonio","aquí","asesinaron","bloqueos","buscan","cabeza","cáceres","caos","casa","cayeron","ceja","cerca","chamán","cierres","civiles","cocaína","colegio","cómplices","contratos","costeños","crisis","cuál","cúcuta","cuello","debe","deja","desabastecimiento","desbloqueo","deslizamiento","dijo","dorada","dos","edad","ee.uu","efectos","encapuchados","enfrentamientos","ernesto","error","escucha","escucharon","esculturas","esmad","explosivos","extraditables","extraño","fuerte","fuertes","golpes","graves","hallado","hogar","importante","intento","j9","laura","ley","líder","llegada","lourdes","luz","mayor","menor","minsalud","muerta","murió","narcotráfico","nayib","niña","niño","nordeste","novia","ocampo","oficiales","oírse","ojeda","ordenó","pájaros","papá","pasajeros","paso","pelea","pensional","playas","plaza","plena","presunta","prisión","procuraduría","programa","proteger","pruebas","puede","queda","quería","reacción","recomendaciones","reconocido","redes","requisitos","riña","rionegro","ritual","robo","sábado","saber","salió","seca","seguridad","señalado","servicio","sexual","sexualmente","sicario","soledad","subterráneo","suceda","supuesto","sur","tendero","terminal","terremoto","último","unidos","valle","vandalizaron","volver","1.300","15","20","22","29","354.000","400","48","5.000","5.9","52","6","6am","8","89","8m","aberrante","abusaba","abuso","acá","acceder","acciones","aceptó","aclaró","acosada","acosó","acusó","adulto","advertencia","aerolínea","aerolíneas","agudizó","airada","albis","alexander","alias","allá","alquilarlas","alquiler","alterna","alternas","amenaza","americana","analizar","anato","antidrogas","anuncia","anuncian","apertura","aprobar","aprovechó","apuñaló","armenia","arrancó","arremeter","arrollado","arsenal","asegura","aseguró","asfixiado","astilleros","atacada","atacaron","atención","atender","atrapó","atropellado","avistó","bahamón","banda","barrio","beneficios","bloqueadas","bloquear","blu","bolso","bordo","borrachos","botella","buen","buenas","bueno","buscaba","caldas","califica","calles","calumnió","camacho","cambiar","cambiarlo","canto","caracol","cardiólogo","cargos","caribe","caro","carta","casi","casos","castillo","causas","cayó","cazador","celebración","centro","cerrado","cerró","cesan","cesar","chapinero","chiste","cierran","citytv","ciudad","civil","claro","claudia","clave","clínica","club","coalición","coincidido","colectivero","colectivos","colombianos","colpensiones","comentarios","cometió","cómo","compañeros","compinches","completo","complicó","comunidad","concepto","conceptos","condenadas","condenas","condicional","congelada","congreso","conjunto","conmoción","conoce","consejo","constante","continuarán","contradictor","contrarreforma","control","controversia","convertido","convocó","corren","cortes","cosas","costo","crespo","cuándo","cuánto","cuchillo","cucuteños","cuenta","cumplir","dabeiba","daños","dar","darán","dardos","days","deberá","deberán","debo","decisión","decretan","defensoría","definirá","demarcación","dentro","denuncia","denuncias","denunció","derechos","desafiaron","desconcertados","descubren","deseados","desmantelan","despeje","despertó","después","desvíos","detalles","detrás","devolución","dialogar","diálogo","diálogos","diana","dice","dificultades","dinero","dio","discoteca","diseño","disponibilidad","distrito","disturbios","donado","dónde","dura","duro","echó","eliminación","embriaguez","emergencia","empeoró","empleados","encapuchado","encontrado","encontraron","encuentran","enfrentado","enfrentaron","enseñó","entregado","entrevista","envian","envió","epicentro","epicentros","epstein","equívoca","erótica","escasos","espantoso","espejo","esposas","estanterías","estigmatizantes","estudiante","etiqueta","evento","evidencias","exención","exesposo","existencia","exmagistrado","exnarco","exnarcotraficante","expersonero","expertos","explique","exponerse","expresidente","exsenadora","extradición","extraditado","extraordinario","falleció","familia","famoso","feliz","fernando","fiestas","fiestón","figura","fin","fiscal","fiscalía","formas","fortalecen","fuerza","fuga","funcionará","funciones","fundamentales","furiosa","futuro","gabriel","garrafal","genera","generó","geológica","gordas","grados","graduarse","gráfica","grafitis","gringo","gritos","habló","hace","hacerlo","halladas","hallaron","hidroituango","hijos","hipótesis","histórico","homicidio","horarios","humildes","hurto","icfes","identifican","identificaron","iglesia","imágenes","impactante","impactantes","implementa","implicado","imputado","incautación","incautada","incautó","incluir","indebida","indefinido","indignación","indignante","indirecta","inestabilidad","infarto","información","informar","inicia","iniciará","iniciarse","inició","inmediatas","insólito","intenciones","investigadores","inviable","invías","jaime","jeffrey","joaquín","judicializaron","juega","jueves","jurídicamente","jurídicos","kilos","laboral","labores","ladrones","lafourie","lanza","lau","liberadas","libertad","linchamiento","línea","llama","llamado","logrado","lópez","lucha","luego","lujo","madrugada","maestro","mansalva","mantiene","mañanas","marcha","marcharán","marido","marlboro","mascotas","mata","médico","meléndez","mes","mesa","meseros","metiendo","miembros","milagro","miles","militar","millonaria","ministerio","ministro","minuto30","mioriente","misión","mismo","mismos","mojigata","molestia","molesto","momentos","montaje","morales","movieron","muere","multa","municipios","muñequera","nacional","narco","narcocaleta","necesita","negó","negocio","néstor","ninguna","noche","novedades","novelón","nuevamente","nuevo","obras","occidente","octubre","oficial","ojo","ojos","olvidado","olvidará","operación","orden","orejuela","organizadores","oriente","pacto","padece","padre","pagar","país","palabras","pánico","panorama","parece","pareja","parque","parqueadero","partidos","pasará","pastor","pedófilo","pedro","pelearon","peligroso","pensión","pensionarían","peñalosa","perro","personal","perú","petrovideo","pico","pidan","pidió","pintaron","pistola","placa","plan","planeó","polémico","política","político","posible","potable","potencialmente","prendieron","prensa","prepárese","presas","presentaron","presidencia","presión","presionar","presuntos","principales","proceso","producto","programado","pronuncia","propios","protagonizaron","protagonizó","próximo","pública","público","pueblo","pulla","pullas","pumarejo","quedar","quedará","quedaron","quedé","quemaron","quintero","quiroóanos","quitar","quitó","rcn","reabierta","reabrir","reacciona","reaccionaron","real","realizar","realmente","rebajar","reciben","recibían","recibirán","reconocida","recordaba","reencontró","reformas","regreso","reivindicar","relaciones","relato","relató","reo","repatriación","reportan","responde","responden","restaurante","restricciones","resultado","resultaron","retrasa","reubicación","reveladoras","revelan","reveló","revocan","revólveres","rifirrafe","rodríguez","rotación","rutas","sabía","sacudió","salarios","salvador","sanación","seguir","seis","semana","semanas","senado","sentencia","sentencias","señalamientos","señalización","sexuales","si","siga","sigue","sirve","situación","social","solicitado","solo","subsidio","sueldo","suelto","sufrió","supermercado","suspende","tak","tarde","tener","téngalas","terminó","terrorismo","tiembla","tierra","tiesa","tik","tocó","toda","toma","tomar","toneladas","trabaja","trabajos","tractomula","tramo","transitada","transmetro","traslado","trató","tremendo","trino","túnel","twitter","unión","unirse","urabá","urgencias","urgentes","urnas","uscátegui","usuarios","vandalismo","varada","veces","vehicular","vehículos","veinte","vélez","venderse","venezuela","verán","vez","viajeros","vial","viales","videos","vinculado","vinculados","violar","visado","visto","vivienda","viviendas","vivió","volverán","volvió","vuelo","vuelve","wafflería","zona","zonas"],"freq":[21,20,20,15,15,15,13,13,12,11,11,11,9,9,9,9,9,9,8,8,8,7,7,7,7,7,7,7,7,7,7,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,5,5,5,5,5,5,5,5,5,5,5,5,5,5,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],"fontFamily":"Segoe UI","fontWeight":"bold","color":"random-dark","minSize":0,"weightFactor":8.57142857142857,"backgroundColor":"black","gridSize":0,"minRotation":-0.785398163397448,"maxRotation":0.785398163397448,"shuffle":true,"rotateRatio":0.4,"shape":"circle","ellipticity":0.65,"figBase64":null,"hover":null},"evals":[],"jsHooks":{"render":[{"code":"function(el,x){\n                        console.log(123);\n                        if(!iii){\n                          window.location.reload();\n                          iii = False;\n\n                        }\n  }","data":null}]}}</script>
+</div>
+</div>
+</section>
+<section id="pregunta-3" class="level4">
+<h4 class="anchored" data-anchor-id="pregunta-3">Pregunta 3</h4>
+<ul>
+<li>¿Podemos asignar algún sentimiento a las noticias en función de las palabras que contienen? Para responder a esta pregunta lo primero que vamos a hacer es descargar el archivo que contiene el sentimiento para las palabras en español. Se puede descargar <a href="https://raw.githubusercontent.com/jboscomendoza/rpubs/master/sentimientos_afinn/lexico_afinn.en.es.csv">aquí.</a></li>
+<li>Agradecimiento especial a <a href="https://rpubs.com/jboscomendoza/">Juan Bosco Mendoza Vega</a> por disponibilizar esta información.</li>
+<li>Note que la base de datos tiene tres columnas, la variable <code>Palabra</code> denota la información en español, la variable <code>Word</code> es su traducción al inglés y la <code>Puntuacion</code> (sin tilde) denota el <em>score</em> determinado por el léxico AFINN.</li>
+</ul>
+<div class="cell" data-layout-align="center">
+<details>
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># URL</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>url_sentimiento <span class="ot">&lt;-</span> </span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">"https://raw.githubusercontent.com/jboscomendoza/rpubs/master/sentimientos_afinn/lexico_afinn.en.es.csv"</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Lectura de datos</span></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>df_sentimiento <span class="ot">&lt;-</span></span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">read_csv</span>(url_sentimiento)</span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>df_sentimiento <span class="sc">%&gt;%</span> </span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["Palabra"],"name":[1],"type":["chr"],"align":["left"]},{"label":["Puntuacion"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["Word"],"name":[3],"type":["chr"],"align":["left"]}],"data":[{"1":"a bordo","2":"1","3":"aboard"},{"1":"abandona","2":"-2","3":"abandons"},{"1":"abandonado","2":"-2","3":"abandoned"},{"1":"abandonar","2":"-2","3":"abandon"},{"1":"abatido","2":"-2","3":"dejected"},{"1":"abatido","2":"-3","3":"despondent"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>Si usted desea descargar el archivo anterior puede ejecutar el siguiente código:</p>
+<div class="cell" data-layout-align="center">
+<details>
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">download.file</span>(<span class="at">url =</span> url_sentimiento, <span class="at">destfile =</span> <span class="st">"datos_sentimiento_spanish_AFINN.csv"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>Vamos a cambiar el nombre <code>Palabra</code> por <code>token</code>, para que podamos unir a la tabla <code>tokens_colombia_final</code> y seleccionamos sólo las variables <code>token</code> y <code>Puntuacion</code>. Además, discretizamos la variable <code>Puntuacion</code> en una nueva variable llamada <code>sentimiento</code>, de tal manera que si la <code>Puntuacion</code> es mayor a 0 se le asigna el nivel <code>Positivo</code>, de lo contrario será <code>Negativo</code>. Asignamos este resultado a un nuevo objeto de nombre <code>sentimiento_spanish</code>.</p>
+<div class="cell" data-layout-align="center">
+<details>
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>sentimiento_spanish <span class="ot">&lt;-</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  df_sentimiento <span class="sc">%&gt;%</span> </span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">token =</span> Palabra) <span class="sc">%&gt;%</span> </span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(token, Puntuacion) <span class="sc">%&gt;%</span> </span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">sentimiento =</span> <span class="fu">if_else</span>(Puntuacion <span class="sc">&gt;</span> <span class="dv">0</span>, <span class="st">"Positivo"</span>, <span class="st">"Negativo"</span>))</span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>sentimiento_spanish <span class="sc">%&gt;%</span> </span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["token"],"name":[1],"type":["chr"],"align":["left"]},{"label":["Puntuacion"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["sentimiento"],"name":[3],"type":["chr"],"align":["left"]}],"data":[{"1":"a bordo","2":"1","3":"Positivo"},{"1":"abandona","2":"-2","3":"Negativo"},{"1":"abandonado","2":"-2","3":"Negativo"},{"1":"abandonar","2":"-2","3":"Negativo"},{"1":"abatido","2":"-2","3":"Negativo"},{"1":"abatido","2":"-3","3":"Negativo"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>Ahora unimos los datos de sentimiento con la tabla <code>tokens_colombia_final</code>. La unión la realizamos con la función <code>inner_join()</code>, de tal manera que sólo serán tenidas en cuenta palabras que estén en ambas tablas. Note que la nueva tabla se reduce, ya que muchas palabras de las noticias no están presente en el dataframe <code>sentimiento_spanish</code>. Es importante mencionar que esta es una aproximación simple de análisis de sentimientos, sin embargo, podrían ser utilizadas técnicas más robustas, por ejemplo, <a href="https://towardsdatascience.com/an-easy-tutorial-about-sentiment-analysis-with-deep-learning-and-keras-2bf52b9cba91">Deep Learning.</a></p>
+<div class="cell" data-layout-align="center">
+<details>
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>noticias_sentimiento <span class="ot">&lt;-</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">inner_join</span>(<span class="at">x =</span> tokens_colombia_final, <span class="at">y =</span> sentimiento_spanish, <span class="at">by =</span> <span class="st">"token"</span>)</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>noticias_sentimiento <span class="sc">%&gt;%</span> </span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["fuente"],"name":[1],"type":["chr"],"align":["left"]},{"label":["fecha"],"name":[2],"type":["dttm"],"align":["right"]},{"label":["fecha_consulta"],"name":[3],"type":["dttm"],"align":["right"]},{"label":["token"],"name":[4],"type":["chr"],"align":["left"]},{"label":["Puntuacion"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["sentimiento"],"name":[6],"type":["chr"],"align":["left"]}],"data":[{"1":"Pulzo.com","2":"2023-03-10 14:48:45","3":"2023-03-11 09:25:27.17336","4":"duro","5":"-2","6":"Negativo","_rn_":"1"},{"1":"Pulzo.com","2":"2023-03-10 14:48:45","3":"2023-03-11 09:25:27.17336","4":"temblor","5":"-2","6":"Negativo","_rn_":"2"},{"1":"Blu Radio","2":"2023-03-10 17:55:16","3":"2023-03-11 09:25:27.17336","4":"fuerte","5":"2","6":"Positivo","_rn_":"3"},{"1":"Blu Radio","2":"2023-03-10 17:55:16","3":"2023-03-11 09:25:27.17336","4":"temblor","5":"-2","6":"Negativo","_rn_":"4"},{"1":"El Colombiano","2":"2023-03-10 21:12:09","3":"2023-03-11 09:25:27.17336","4":"fuga","5":"-1","6":"Negativo","_rn_":"5"},{"1":"Pulzo.com","2":"2023-03-10 22:01:10","3":"2023-03-11 09:25:27.17336","4":"temblor","5":"-2","6":"Negativo","_rn_":"6"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>Podemos consultar el número de filas de la nueva tabla.</p>
+<div class="cell" data-layout-align="center">
+<details>
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>noticias_sentimiento <span class="sc">%&gt;%</span> </span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">nrow</span>()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 119</code></pre>
+</div>
+</div>
+<p>Podemos responder a la siguiente pregunta, ¿Predominan las palabras positivas o negativas? Parece que son más las noticias que tiene palabras negativas que positivas.</p>
+<div class="cell" data-layout-align="center">
+<details>
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>noticias_sentimiento <span class="sc">%&gt;%</span> </span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(sentimiento)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["sentimiento"],"name":[1],"type":["chr"],"align":["left"]},{"label":["n"],"name":[2],"type":["int"],"align":["right"]}],"data":[{"1":"Negativo","2":"89"},{"1":"Positivo","2":"30"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>¿Cuál medio de comunicación es más negativo o positivo en sus noticias?</p>
+<div class="cell" data-layout-align="center">
+<details>
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>noticias_sentimiento <span class="sc">%&gt;%</span> </span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(fuente, sentimiento, <span class="at">sort =</span> <span class="cn">TRUE</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["fuente"],"name":[1],"type":["chr"],"align":["left"]},{"label":["sentimiento"],"name":[2],"type":["chr"],"align":["left"]},{"label":["n"],"name":[3],"type":["int"],"align":["right"]}],"data":[{"1":"El Tiempo","2":"Negativo","3":"14"},{"1":"Pulzo.com","2":"Negativo","3":"13"},{"1":"Revista Semana","2":"Negativo","3":"9"},{"1":"Pulzo.com","2":"Positivo","3":"8"},{"1":"El Colombiano","2":"Negativo","3":"7"},{"1":"Blu Radio","2":"Negativo","3":"6"},{"1":"Caracol Radio","2":"Negativo","3":"6"},{"1":"El Espectador","2":"Negativo","3":"6"},{"1":"Revista Semana","2":"Positivo","3":"6"},{"1":"Vanguardia","2":"Negativo","3":"6"},{"1":"Blu Radio","2":"Positivo","3":"4"},{"1":"Noticias Caracol","2":"Negativo","3":"4"},{"1":"EL HERALDO","2":"Negativo","3":"3"},{"1":"RCN Radio","2":"Negativo","3":"3"},{"1":"EL PAÍS América Colombia","2":"Negativo","3":"2"},{"1":"Noticias RCN","2":"Positivo","3":"2"},{"1":"Caracol Radio","2":"Positivo","3":"1"},{"1":"Diario del Huila","2":"Negativo","3":"1"},{"1":"El Colombiano","2":"Positivo","3":"1"},{"1":"EL HERALDO","2":"Positivo","3":"1"},{"1":"El País Cali","2":"Negativo","3":"1"},{"1":"El País Cali","2":"Positivo","3":"1"},{"1":"El Tiempo","2":"Positivo","3":"1"},{"1":"El Universal","2":"Positivo","3":"1"},{"1":"infobae","2":"Positivo","3":"1"},{"1":"Invías","2":"Positivo","3":"1"},{"1":"LA NACION","2":"Negativo","3":"1"},{"1":"La Patria.com","2":"Negativo","3":"1"},{"1":"La Prensa Grafica","2":"Negativo","3":"1"},{"1":"Minuto30.com","2":"Negativo","3":"1"},{"1":"Noticias RCN","2":"Negativo","3":"1"},{"1":"Portafolio","2":"Negativo","3":"1"},{"1":"Publimetro Colombia","2":"Negativo","3":"1"},{"1":"RCN Radio","2":"Positivo","3":"1"},{"1":"Vanguardia","2":"Positivo","3":"1"},{"1":"Zona Cero","2":"Negativo","3":"1"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>Podemos representar el resultado anterior a través de un gráfico. Para tener una representación más transparente filtramos medios de comunicación con más de 3 noticias.</p>
+<div class="cell" data-layout-align="center">
+<details>
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>noticias_sentimiento <span class="sc">%&gt;%</span> </span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(fuente, sentimiento, <span class="at">sort =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(n <span class="sc">&gt;</span> <span class="dv">3</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(fuente, n), <span class="at">y =</span> n, <span class="at">fill =</span> sentimiento)) <span class="sc">+</span></span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">position =</span> <span class="st">"fill"</span>) <span class="sc">+</span></span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">""</span>, <span class="at">y =</span> <span class="st">"Frecuencia relativa"</span>, <span class="at">fill =</span> <span class="st">"Sentimiento"</span>) <span class="sc">+</span></span>
+<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"top"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="GoogleNoticias-R_files/figure-html/unnamed-chunk-28-1.png" class="img-fluid figure-img" width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Hasta ahora hemos usamos la variable <code>sentimiento</code>, pero también podríamos calcular alguna métrica estadística con la variable <code>Puntuacion</code>. En este caso calculamos la mediana de la <code>Puntuacion</code> y obtenemos el número de datos (<code>N</code>) con los cuales es calculada la métrica.</p>
+<div class="cell" data-layout-align="center">
+<details>
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>noticias_sentimiento <span class="sc">%&gt;%</span> </span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(fuente) <span class="sc">%&gt;%</span> </span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">mediana_sent =</span> <span class="fu">median</span>(Puntuacion),</span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">N =</span> <span class="fu">n</span>()</span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> </span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(mediana_sent))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["fuente"],"name":[1],"type":["chr"],"align":["left"]},{"label":["mediana_sent"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["N"],"name":[3],"type":["int"],"align":["right"]}],"data":[{"1":"El Universal","2":"3.0","3":"1"},{"1":"Invías","2":"2.0","3":"1"},{"1":"infobae","2":"1.0","3":"1"},{"1":"Noticias RCN","2":"1.0","3":"3"},{"1":"El País Cali","2":"-0.5","3":"2"},{"1":"Blu Radio","2":"-1.0","3":"10"},{"1":"Minuto30.com","2":"-1.0","3":"1"},{"1":"Portafolio","2":"-1.0","3":"1"},{"1":"Revista Semana","2":"-1.0","3":"15"},{"1":"RCN Radio","2":"-1.5","3":"4"},{"1":"Caracol Radio","2":"-2.0","3":"7"},{"1":"Diario del Huila","2":"-2.0","3":"1"},{"1":"El Colombiano","2":"-2.0","3":"8"},{"1":"El Espectador","2":"-2.0","3":"6"},{"1":"EL HERALDO","2":"-2.0","3":"4"},{"1":"EL PAÍS América Colombia","2":"-2.0","3":"2"},{"1":"El Tiempo","2":"-2.0","3":"15"},{"1":"LA NACION","2":"-2.0","3":"1"},{"1":"La Prensa Grafica","2":"-2.0","3":"1"},{"1":"Noticias Caracol","2":"-2.0","3":"4"},{"1":"Publimetro Colombia","2":"-2.0","3":"1"},{"1":"Pulzo.com","2":"-2.0","3":"21"},{"1":"Vanguardia","2":"-2.0","3":"7"},{"1":"La Patria.com","2":"-3.0","3":"1"},{"1":"Zona Cero","2":"-3.0","3":"1"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>Podemos graficar la nube de palabras para el sentimiento positivo y negativo a través de la biblioteca <code>wordcloud</code>. Para este proceso fíjese que “remodelamos” los datos a través de la función <code>acast()</code> de la biblioteca <code>reshape2</code>. Este proceso es necesario para obtener la nube de palabras comparativa con la función <code>comparison.cloud()</code>.</p>
+<div class="cell" data-layout-align="center">
+<details>
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>noticias_sentimiento <span class="sc">%&gt;%</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(token, sentimiento, <span class="at">sort =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">acast</span>(token <span class="sc">~</span> sentimiento, <span class="at">value.var =</span> <span class="st">"n"</span>, <span class="at">fill =</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">comparison.cloud</span>(<span class="at">colors =</span> <span class="fu">c</span>(<span class="st">"gray20"</span>, <span class="st">"forestgreen"</span>),</span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>                   <span class="at">max.words =</span> <span class="dv">100</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="GoogleNoticias-R_files/figure-html/unnamed-chunk-30-1.png" class="img-fluid figure-img" width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+</section>
+<section id="análisis-de-sentimientos" class="level1">
+<h1>Análisis de sentimientos</h1>
+<p>Para tener contexto de lo que signfica el <em>análisis de sentimientos</em>, se recomienda revisar los siguientes recursos de información:</p>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Sentiment_analysis">Sentiment analysis (wikipedia)</a></li>
+<li><a href="https://www.tidytextmining.com/sentiment.html">Sentiment analysis with tidy data</a></li>
+<li><a href="https://www.datacamp.com/tutorial/simplifying-sentiment-analysis-python">Python Sentiment Analysis Tutorial</a></li>
+<li><a href="https://www.cienciadedatos.net/documentos/py25-text-mining-python.html">Análisis de texto (text mining) con Python</a></li>
+<li><a href="https://www.youtube.com/watch?v=n4L5hHFcGVk&amp;ab_channel=TEDxTalks">TEDx: Análisis de sentimientos</a></li>
+</ul>
+
+
+<!-- -->
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copiado");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copiado");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  const viewSource = window.document.getElementById('quarto-view-source') ||
+                     window.document.getElementById('quarto-code-tools-source');
+  if (viewSource) {
+    const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+    viewSource.addEventListener("click", function(e) {
+      if (sourceUrl) {
+        // rstudio viewer pane
+        if (/\bcapabilities=\b/.test(window.location)) {
+          window.open(sourceUrl);
+        } else {
+          window.location.href = sourceUrl;
+        }
+      } else {
+        const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+        modal.show();
+      }
+      return false;
+    });
+  }
+  function toggleCodeHandler(show) {
+    return function(e) {
+      const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+      for (let i=0; i<detailsSrc.length; i++) {
+        const details = detailsSrc[i].parentElement;
+        if (show) {
+          details.open = true;
+        } else {
+          details.removeAttribute("open");
+        }
+      }
+      const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+      const fromCls = show ? "hidden" : "unhidden";
+      const toCls = show ? "unhidden" : "hidden";
+      for (let i=0; i<cellCodeDivs.length; i++) {
+        const codeDiv = cellCodeDivs[i];
+        if (codeDiv.classList.contains(fromCls)) {
+          codeDiv.classList.remove(fromCls);
+          codeDiv.classList.add(toCls);
+        } 
+      }
+      return false;
+    }
+  }
+  const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+  if (hideAllCode) {
+    hideAllCode.addEventListener("click", toggleCodeHandler(false));
+  }
+  const showAllCode = window.document.getElementById("quarto-show-all-code");
+  if (showAllCode) {
+    showAllCode.addEventListener("click", toggleCodeHandler(true));
+  }
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Ejecutar el código</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="sourceCode" id="cb35" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Web Scraping con R"</span></span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a><span class="an">subtitle:</span><span class="co"> "Google Noticias"</span></span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> "Semillero Ciencia de Datos con R y Python"</span></span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a><span class="an">lang:</span><span class="co"> es </span></span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a><span class="an">execute:</span><span class="co"> </span></span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a><span class="co">  eval: true</span></span>
+<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a><span class="co">  echo: true</span></span>
+<span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a><span class="co">  warning: false</span></span>
+<span id="cb35-10"><a href="#cb35-10" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
+<span id="cb35-11"><a href="#cb35-11" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
+<span id="cb35-12"><a href="#cb35-12" aria-hidden="true" tabindex="-1"></a><span class="co">    page-layout: article</span></span>
+<span id="cb35-13"><a href="#cb35-13" aria-hidden="true" tabindex="-1"></a><span class="co">    fig-width: 6</span></span>
+<span id="cb35-14"><a href="#cb35-14" aria-hidden="true" tabindex="-1"></a><span class="co">    fig-height: 4.5</span></span>
+<span id="cb35-15"><a href="#cb35-15" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: true</span></span>
+<span id="cb35-16"><a href="#cb35-16" aria-hidden="true" tabindex="-1"></a><span class="co">    toc-title: "Tabla de contenido"</span></span>
+<span id="cb35-17"><a href="#cb35-17" aria-hidden="true" tabindex="-1"></a><span class="co">    smooth-scroll: true</span></span>
+<span id="cb35-18"><a href="#cb35-18" aria-hidden="true" tabindex="-1"></a><span class="co">    code-fold: true</span></span>
+<span id="cb35-19"><a href="#cb35-19" aria-hidden="true" tabindex="-1"></a><span class="co">    df-print: paged</span></span>
+<span id="cb35-20"><a href="#cb35-20" aria-hidden="true" tabindex="-1"></a><span class="co">    toc-location: left</span></span>
+<span id="cb35-21"><a href="#cb35-21" aria-hidden="true" tabindex="-1"></a><span class="co">    number-depth: 4</span></span>
+<span id="cb35-22"><a href="#cb35-22" aria-hidden="true" tabindex="-1"></a><span class="co">    theme: yeti</span></span>
+<span id="cb35-23"><a href="#cb35-23" aria-hidden="true" tabindex="-1"></a><span class="co">    code-copy: true</span></span>
+<span id="cb35-24"><a href="#cb35-24" aria-hidden="true" tabindex="-1"></a><span class="co">    highlight-style: github</span></span>
+<span id="cb35-25"><a href="#cb35-25" aria-hidden="true" tabindex="-1"></a><span class="co">    code-tools:</span></span>
+<span id="cb35-26"><a href="#cb35-26" aria-hidden="true" tabindex="-1"></a><span class="co">      source: true</span></span>
+<span id="cb35-27"><a href="#cb35-27" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb35-28"><a href="#cb35-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-29"><a href="#cb35-29" aria-hidden="true" tabindex="-1"></a><span class="in">```{r setup, include=FALSE}</span></span>
+<span id="cb35-30"><a href="#cb35-30" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">fig.align =</span> <span class="st">"center"</span>, <span class="at">warning =</span> <span class="cn">FALSE</span>, <span class="at">message =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb35-31"><a href="#cb35-31" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb35-32"><a href="#cb35-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-33"><a href="#cb35-33" aria-hidden="true" tabindex="-1"></a><span class="fu"># Objetivo</span></span>
+<span id="cb35-34"><a href="#cb35-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-35"><a href="#cb35-35" aria-hidden="true" tabindex="-1"></a>Este documento tiene como propósito ejemplificar técnicas de web scraping con R y análisis exploratorio de datos.</span>
+<span id="cb35-36"><a href="#cb35-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-37"><a href="#cb35-37" aria-hidden="true" tabindex="-1"></a><span class="fu"># Requisitos previos</span></span>
+<span id="cb35-38"><a href="#cb35-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-39"><a href="#cb35-39" aria-hidden="true" tabindex="-1"></a>Para ejecutar este documento es necesario tener instalado lo siguiente:</span>
+<span id="cb35-40"><a href="#cb35-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-41"><a href="#cb35-41" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">`R`</span><span class="co">](https://cran.r-project.org/)</span></span>
+<span id="cb35-42"><a href="#cb35-42" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">`RStudio`</span><span class="co">](https://posit.co/downloads/)</span></span>
+<span id="cb35-43"><a href="#cb35-43" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">`Quarto`</span><span class="co">](https://quarto.org/)</span></span>
+<span id="cb35-44"><a href="#cb35-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-45"><a href="#cb35-45" aria-hidden="true" tabindex="-1"></a>Para garantizar la reproducibilidad de este documento es necesario instalar las siguientes bibliotecas de R:</span>
+<span id="cb35-46"><a href="#cb35-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-47"><a href="#cb35-47" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">`tidyverse`</span><span class="co">](https://www.tidyverse.org/)</span></span>
+<span id="cb35-48"><a href="#cb35-48" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">`rvest`</span><span class="co">](https://rvest.tidyverse.org/)</span></span>
+<span id="cb35-49"><a href="#cb35-49" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">`lubridate`</span><span class="co">](https://lubridate.tidyverse.org/)</span></span>
+<span id="cb35-50"><a href="#cb35-50" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">`tidytext`</span><span class="co">](https://juliasilge.github.io/tidytext/index.html)</span></span>
+<span id="cb35-51"><a href="#cb35-51" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">`tm`</span><span class="co">](https://cran.r-project.org/web/packages/tm/tm.pdf)</span></span>
+<span id="cb35-52"><a href="#cb35-52" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">`wordcloud2`</span><span class="co">](https://cran.r-project.org/web/packages/wordcloud2/wordcloud2.pdf)</span></span>
+<span id="cb35-53"><a href="#cb35-53" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">`wordcloud`</span><span class="co">](https://cran.r-project.org/web/packages/wordcloud/wordcloud.pdf)</span></span>
+<span id="cb35-54"><a href="#cb35-54" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">`reshape2`</span><span class="co">](https://cran.r-project.org/web/packages/reshape2/reshape2.pdf)</span></span>
+<span id="cb35-55"><a href="#cb35-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-56"><a href="#cb35-56" aria-hidden="true" tabindex="-1"></a>Si aún no tiene instalada estas bibliotecas puede ejecutar el siguiente código para instalarlas:</span>
+<span id="cb35-57"><a href="#cb35-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-60"><a href="#cb35-60" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb35-61"><a href="#cb35-61" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb35-62"><a href="#cb35-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-63"><a href="#cb35-63" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(</span>
+<span id="cb35-64"><a href="#cb35-64" aria-hidden="true" tabindex="-1"></a>  <span class="st">"tidyverse"</span>,</span>
+<span id="cb35-65"><a href="#cb35-65" aria-hidden="true" tabindex="-1"></a>  <span class="st">"rvest"</span>,</span>
+<span id="cb35-66"><a href="#cb35-66" aria-hidden="true" tabindex="-1"></a>  <span class="st">"lubridate"</span>,</span>
+<span id="cb35-67"><a href="#cb35-67" aria-hidden="true" tabindex="-1"></a>  <span class="st">"tidytext"</span>,</span>
+<span id="cb35-68"><a href="#cb35-68" aria-hidden="true" tabindex="-1"></a>  <span class="st">"tm"</span>,</span>
+<span id="cb35-69"><a href="#cb35-69" aria-hidden="true" tabindex="-1"></a>  <span class="st">"wordcloud"</span>,</span>
+<span id="cb35-70"><a href="#cb35-70" aria-hidden="true" tabindex="-1"></a>  <span class="st">"wordcloud2"</span>,</span>
+<span id="cb35-71"><a href="#cb35-71" aria-hidden="true" tabindex="-1"></a>  <span class="st">"reshape2"</span></span>
+<span id="cb35-72"><a href="#cb35-72" aria-hidden="true" tabindex="-1"></a>),</span>
+<span id="cb35-73"><a href="#cb35-73" aria-hidden="true" tabindex="-1"></a><span class="at">dependencies =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb35-74"><a href="#cb35-74" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb35-75"><a href="#cb35-75" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-76"><a href="#cb35-76" aria-hidden="true" tabindex="-1"></a><span class="fu"># Script completo</span></span>
+<span id="cb35-77"><a href="#cb35-77" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-78"><a href="#cb35-78" aria-hidden="true" tabindex="-1"></a>Para ver el código completo de este documento puede dar clic donde señala la flecha roja de la siguiente imagen:</span>
+<span id="cb35-79"><a href="#cb35-79" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-80"><a href="#cb35-80" aria-hidden="true" tabindex="-1"></a><span class="al">![](img1.PNG)</span></span>
+<span id="cb35-81"><a href="#cb35-81" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-82"><a href="#cb35-82" aria-hidden="true" tabindex="-1"></a><span class="fu"># Función `googleNoticiasR()`</span></span>
+<span id="cb35-83"><a href="#cb35-83" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-84"><a href="#cb35-84" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>La función aquí presentada fue previamente discutida en la <span class="co">[</span><span class="ot">sesión 02 del semillero.</span><span class="co">](https://www.youtube.com/watch?v=XY4zhqAfaSs&amp;ab_channel=RPyCol)</span> Si desea ver las diapositivas de esta sesión pueden ser consultadas <span class="co">[</span><span class="ot">aquí.</span><span class="co">](https://rpubs.com/Edimer/981979)</span></span>
+<span id="cb35-85"><a href="#cb35-85" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>El código completo está en <span class="co">[</span><span class="ot">Github</span><span class="co">](https://github.com/web-edimer/semillero-ciencia-datos/blob/master/code-example/ejemplo-scraping-R-completo.R)</span></span>
+<span id="cb35-86"><a href="#cb35-86" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>La función recibe como entrada (argumento) la <span class="in">`url`</span> de <span class="co">[</span><span class="ot">Google Noticias</span><span class="co">](https://news.google.com/home?hl=es-419&amp;gl=CO&amp;ceid=CO:es-419)</span> desde la cual el usuario desea obtener las noticias.</span>
+<span id="cb35-87"><a href="#cb35-87" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-90"><a href="#cb35-90" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb35-91"><a href="#cb35-91" aria-hidden="true" tabindex="-1"></a>googleNoticiasR <span class="ot">&lt;-</span> <span class="cf">function</span>(url) {</span>
+<span id="cb35-92"><a href="#cb35-92" aria-hidden="true" tabindex="-1"></a>  titulo_noticia <span class="ot">&lt;-</span></span>
+<span id="cb35-93"><a href="#cb35-93" aria-hidden="true" tabindex="-1"></a>    url <span class="sc">%&gt;%</span></span>
+<span id="cb35-94"><a href="#cb35-94" aria-hidden="true" tabindex="-1"></a>    <span class="fu">read_html</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb35-95"><a href="#cb35-95" aria-hidden="true" tabindex="-1"></a>    <span class="fu">html_elements</span>(<span class="st">"body"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb35-96"><a href="#cb35-96" aria-hidden="true" tabindex="-1"></a>    <span class="fu">html_elements</span>(<span class="at">xpath =</span> <span class="st">'//a[@class = "WwrzSb"]'</span>)  <span class="sc">%&gt;%</span></span>
+<span id="cb35-97"><a href="#cb35-97" aria-hidden="true" tabindex="-1"></a>    <span class="fu">html_attr</span>(<span class="st">"aria-label"</span>)</span>
+<span id="cb35-98"><a href="#cb35-98" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb35-99"><a href="#cb35-99" aria-hidden="true" tabindex="-1"></a>  fuente_noticia <span class="ot">&lt;-</span></span>
+<span id="cb35-100"><a href="#cb35-100" aria-hidden="true" tabindex="-1"></a>    url <span class="sc">%&gt;%</span></span>
+<span id="cb35-101"><a href="#cb35-101" aria-hidden="true" tabindex="-1"></a>    <span class="fu">read_html</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb35-102"><a href="#cb35-102" aria-hidden="true" tabindex="-1"></a>    <span class="fu">html_elements</span>(<span class="st">"body"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb35-103"><a href="#cb35-103" aria-hidden="true" tabindex="-1"></a>    <span class="fu">html_elements</span>(<span class="at">xpath =</span> <span class="st">'//span[@class = "vr1PYe"]'</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb35-104"><a href="#cb35-104" aria-hidden="true" tabindex="-1"></a>    <span class="fu">html_text</span>()</span>
+<span id="cb35-105"><a href="#cb35-105" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb35-106"><a href="#cb35-106" aria-hidden="true" tabindex="-1"></a>  fecha_noticia <span class="ot">&lt;-</span></span>
+<span id="cb35-107"><a href="#cb35-107" aria-hidden="true" tabindex="-1"></a>    url <span class="sc">%&gt;%</span></span>
+<span id="cb35-108"><a href="#cb35-108" aria-hidden="true" tabindex="-1"></a>    <span class="fu">read_html</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb35-109"><a href="#cb35-109" aria-hidden="true" tabindex="-1"></a>    <span class="fu">html_elements</span>(<span class="st">"body"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb35-110"><a href="#cb35-110" aria-hidden="true" tabindex="-1"></a>    <span class="fu">html_elements</span>(<span class="at">xpath =</span> <span class="st">'//time[@class = "hvbAAd"]'</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb35-111"><a href="#cb35-111" aria-hidden="true" tabindex="-1"></a>    <span class="fu">html_attr</span>(<span class="st">"datetime"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb35-112"><a href="#cb35-112" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ymd_hms</span>()</span>
+<span id="cb35-113"><a href="#cb35-113" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb35-114"><a href="#cb35-114" aria-hidden="true" tabindex="-1"></a>  df_noticias <span class="ot">&lt;-</span></span>
+<span id="cb35-115"><a href="#cb35-115" aria-hidden="true" tabindex="-1"></a>    <span class="fu">data.frame</span>(</span>
+<span id="cb35-116"><a href="#cb35-116" aria-hidden="true" tabindex="-1"></a>      <span class="at">noticia =</span> titulo_noticia,</span>
+<span id="cb35-117"><a href="#cb35-117" aria-hidden="true" tabindex="-1"></a>      <span class="at">fuente =</span> fuente_noticia,</span>
+<span id="cb35-118"><a href="#cb35-118" aria-hidden="true" tabindex="-1"></a>      <span class="at">fecha =</span> fecha_noticia,</span>
+<span id="cb35-119"><a href="#cb35-119" aria-hidden="true" tabindex="-1"></a>      <span class="at">fecha_consulta =</span> <span class="fu">Sys.time</span>()</span>
+<span id="cb35-120"><a href="#cb35-120" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb35-121"><a href="#cb35-121" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb35-122"><a href="#cb35-122" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(df_noticias)</span>
+<span id="cb35-123"><a href="#cb35-123" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb35-124"><a href="#cb35-124" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb35-125"><a href="#cb35-125" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb35-126"><a href="#cb35-126" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-127"><a href="#cb35-127" aria-hidden="true" tabindex="-1"></a><span class="fu"># Bibliotecas de R</span></span>
+<span id="cb35-128"><a href="#cb35-128" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-131"><a href="#cb35-131" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb35-132"><a href="#cb35-132" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)  <span class="co"># manipulación de datos</span></span>
+<span id="cb35-133"><a href="#cb35-133" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rvest)      <span class="co"># web scraping</span></span>
+<span id="cb35-134"><a href="#cb35-134" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)  <span class="co"># manipulación de fechas</span></span>
+<span id="cb35-135"><a href="#cb35-135" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidytext)   <span class="co"># procesamiento de texto</span></span>
+<span id="cb35-136"><a href="#cb35-136" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tm)         <span class="co"># stopWords </span></span>
+<span id="cb35-137"><a href="#cb35-137" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(wordcloud)  <span class="co"># Nube de palabras</span></span>
+<span id="cb35-138"><a href="#cb35-138" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(wordcloud2) <span class="co"># Nube de palabras</span></span>
+<span id="cb35-139"><a href="#cb35-139" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(reshape2)   <span class="co"># Remodelamiento de datos</span></span>
+<span id="cb35-140"><a href="#cb35-140" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb35-141"><a href="#cb35-141" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-142"><a href="#cb35-142" aria-hidden="true" tabindex="-1"></a><span class="fu"># Noticias</span></span>
+<span id="cb35-143"><a href="#cb35-143" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-144"><a href="#cb35-144" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>El usuario es libre de elegir el tipo de noticias que desea. En este caso vamos a utilizar las siguientes noticias:</span>
+<span id="cb35-145"><a href="#cb35-145" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span><span class="co">[</span><span class="ot">Colombia</span><span class="co">](https://news.google.com/topics/CAAqJggKIiBDQkFTRWdvSUwyMHZNREZzY3pJU0JtVnpMVFF4T1NnQVAB?hl=es-419&amp;gl=CO&amp;ceid=CO%3Aes-419)</span></span>
+<span id="cb35-146"><a href="#cb35-146" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span><span class="co">[</span><span class="ot">Negocios</span><span class="co">](https://news.google.com/topics/CAAqLAgKIiZDQkFTRmdvSUwyMHZNRGx6TVdZU0JtVnpMVFF4T1JvQ1EwOG9BQVAB?hl=es-419&amp;gl=CO&amp;ceid=CO%3Aes-419)</span></span>
+<span id="cb35-147"><a href="#cb35-147" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span><span class="co">[</span><span class="ot">Deportes</span><span class="co">](https://news.google.com/topics/CAAqLAgKIiZDQkFTRmdvSUwyMHZNRFp1ZEdvU0JtVnpMVFF4T1JvQ1EwOG9BQVAB?hl=es-419&amp;gl=CO&amp;ceid=CO%3Aes-419)</span></span>
+<span id="cb35-148"><a href="#cb35-148" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Nota:** es posible ingresar cualquier otro tópico de interés, por ejemplo, <span class="co">[</span><span class="ot">salud.</span><span class="co">](https://news.google.com/topics/CAAqJggKIiBDQkFTRWdvSUwyMHZNR3QwTlRFU0JtVnpMVFF4T1NnQVAB?hl=es-419&amp;gl=CO&amp;ceid=CO%3Aes-419)</span></span>
+<span id="cb35-149"><a href="#cb35-149" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-150"><a href="#cb35-150" aria-hidden="true" tabindex="-1"></a><span class="fu">## Colombia</span></span>
+<span id="cb35-151"><a href="#cb35-151" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-152"><a href="#cb35-152" aria-hidden="true" tabindex="-1"></a>Primero guardamos la URL para las noticas de Colombia en un objeto de nombre <span class="in">`url_colombia`</span>. Cabe mencionar que este nombre lo asigna el usuario.</span>
+<span id="cb35-153"><a href="#cb35-153" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-156"><a href="#cb35-156" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb35-157"><a href="#cb35-157" aria-hidden="true" tabindex="-1"></a>url_colombia <span class="ot">&lt;-</span> <span class="st">"https://news.google.com/topics/CAAqJggKIiBDQkFTRWdvSUwyMHZNREZzY3pJU0JtVnpMVFF4T1NnQVAB?hl=es-419&amp;gl=CO&amp;ceid=CO%3Aes-419"</span></span>
+<span id="cb35-158"><a href="#cb35-158" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb35-159"><a href="#cb35-159" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-160"><a href="#cb35-160" aria-hidden="true" tabindex="-1"></a>Luego usamos la función <span class="in">`googleNoticiasR()`</span> e ingresamos <span class="in">`url_colombia`</span> como argumento de entrada. Guardamos este resultado en un objeto de nombre <span class="in">`noticias_colombia`</span>.</span>
+<span id="cb35-161"><a href="#cb35-161" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-164"><a href="#cb35-164" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb35-165"><a href="#cb35-165" aria-hidden="true" tabindex="-1"></a>noticias_colombia <span class="ot">&lt;-</span> <span class="fu">googleNoticiasR</span>(<span class="at">url =</span> url_colombia)</span>
+<span id="cb35-166"><a href="#cb35-166" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb35-167"><a href="#cb35-167" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-168"><a href="#cb35-168" aria-hidden="true" tabindex="-1"></a>La ejecución anterior devuelve un <span class="in">`dataframe`</span> como se muestra a continuación. La función <span class="in">`head()`</span> se utiliza para imprimir sólo las primeras 6 filas de la tabla.</span>
+<span id="cb35-169"><a href="#cb35-169" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-172"><a href="#cb35-172" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb35-173"><a href="#cb35-173" aria-hidden="true" tabindex="-1"></a>noticias_colombia <span class="sc">%&gt;%</span> </span>
+<span id="cb35-174"><a href="#cb35-174" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>()</span>
+<span id="cb35-175"><a href="#cb35-175" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb35-176"><a href="#cb35-176" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-177"><a href="#cb35-177" aria-hidden="true" tabindex="-1"></a>Podemos consultar el total de noticias (número de filas):</span>
+<span id="cb35-178"><a href="#cb35-178" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-181"><a href="#cb35-181" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb35-182"><a href="#cb35-182" aria-hidden="true" tabindex="-1"></a>noticias_colombia <span class="sc">%&gt;%</span> </span>
+<span id="cb35-183"><a href="#cb35-183" aria-hidden="true" tabindex="-1"></a>  <span class="fu">nrow</span>()</span>
+<span id="cb35-184"><a href="#cb35-184" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb35-185"><a href="#cb35-185" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-186"><a href="#cb35-186" aria-hidden="true" tabindex="-1"></a>Los nombres de la base de datos pueden ser consultados con la función <span class="in">`names()`</span>:</span>
+<span id="cb35-187"><a href="#cb35-187" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-190"><a href="#cb35-190" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb35-191"><a href="#cb35-191" aria-hidden="true" tabindex="-1"></a>noticias_colombia <span class="sc">%&gt;%</span> </span>
+<span id="cb35-192"><a href="#cb35-192" aria-hidden="true" tabindex="-1"></a>  <span class="fu">names</span>()</span>
+<span id="cb35-193"><a href="#cb35-193" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb35-194"><a href="#cb35-194" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-195"><a href="#cb35-195" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-196"><a href="#cb35-196" aria-hidden="true" tabindex="-1"></a><span class="fu">## Negocios</span></span>
+<span id="cb35-197"><a href="#cb35-197" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-198"><a href="#cb35-198" aria-hidden="true" tabindex="-1"></a>Primero guardamos la URL para las noticas de Colombia en un objeto de nombre <span class="in">`url_negocios`</span>. Cabe mencionar que este nombre lo asigna el usuario.</span>
+<span id="cb35-199"><a href="#cb35-199" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-202"><a href="#cb35-202" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb35-203"><a href="#cb35-203" aria-hidden="true" tabindex="-1"></a>url_negocios <span class="ot">&lt;-</span> <span class="st">"https://news.google.com/topics/CAAqLAgKIiZDQkFTRmdvSUwyMHZNRGx6TVdZU0JtVnpMVFF4T1JvQ1EwOG9BQVAB?hl=es-419&amp;gl=CO&amp;ceid=CO%3Aes-419"</span></span>
+<span id="cb35-204"><a href="#cb35-204" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb35-205"><a href="#cb35-205" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-206"><a href="#cb35-206" aria-hidden="true" tabindex="-1"></a>Luego usamos la función <span class="in">`googleNoticiasR()`</span> e ingresamos <span class="in">`url_negocios`</span> como argumento de entrada. Guardamos este resultado en un objeto de nombre <span class="in">`noticias_negocios`</span>.</span>
+<span id="cb35-207"><a href="#cb35-207" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-210"><a href="#cb35-210" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb35-211"><a href="#cb35-211" aria-hidden="true" tabindex="-1"></a>noticias_negocios <span class="ot">&lt;-</span> <span class="fu">googleNoticiasR</span>(<span class="at">url =</span> url_negocios)</span>
+<span id="cb35-212"><a href="#cb35-212" aria-hidden="true" tabindex="-1"></a>noticias_negocios <span class="sc">%&gt;%</span> </span>
+<span id="cb35-213"><a href="#cb35-213" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>()</span>
+<span id="cb35-214"><a href="#cb35-214" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb35-215"><a href="#cb35-215" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-216"><a href="#cb35-216" aria-hidden="true" tabindex="-1"></a><span class="fu">## Deportes</span></span>
+<span id="cb35-217"><a href="#cb35-217" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-218"><a href="#cb35-218" aria-hidden="true" tabindex="-1"></a>Primero guardamos la URL para las noticas de Colombia en un objeto de nombre <span class="in">`url_deportes`</span>. Cabe mencionar que este nombre lo asigna el usuario.</span>
+<span id="cb35-219"><a href="#cb35-219" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-222"><a href="#cb35-222" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb35-223"><a href="#cb35-223" aria-hidden="true" tabindex="-1"></a>url_deportes <span class="ot">&lt;-</span> <span class="st">"https://news.google.com/topics/CAAqLAgKIiZDQkFTRmdvSUwyMHZNRFp1ZEdvU0JtVnpMVFF4T1JvQ1EwOG9BQVAB?hl=es-419&amp;gl=CO&amp;ceid=CO%3Aes-419"</span></span>
+<span id="cb35-224"><a href="#cb35-224" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb35-225"><a href="#cb35-225" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-226"><a href="#cb35-226" aria-hidden="true" tabindex="-1"></a>Luego usamos la función <span class="in">`googleNoticiasR()`</span> e ingresamos <span class="in">`url_deportes`</span> como argumento de entrada. Guardamos este resultado en un objeto de nombre <span class="in">`noticias_deportes`</span>.</span>
+<span id="cb35-227"><a href="#cb35-227" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-230"><a href="#cb35-230" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb35-231"><a href="#cb35-231" aria-hidden="true" tabindex="-1"></a>noticias_deportes <span class="ot">&lt;-</span> <span class="fu">googleNoticiasR</span>(<span class="at">url =</span> url_deportes)</span>
+<span id="cb35-232"><a href="#cb35-232" aria-hidden="true" tabindex="-1"></a>noticias_deportes <span class="sc">%&gt;%</span> </span>
+<span id="cb35-233"><a href="#cb35-233" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>()</span>
+<span id="cb35-234"><a href="#cb35-234" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb35-235"><a href="#cb35-235" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-236"><a href="#cb35-236" aria-hidden="true" tabindex="-1"></a><span class="fu"># Análisis exploratorio</span></span>
+<span id="cb35-237"><a href="#cb35-237" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-238"><a href="#cb35-238" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Todo el análisis exploratorio será ilustrado con noticias de Colombia**, el usuario podrá replicar el ejemplo con los otros tópicos de interés.</span>
+<span id="cb35-239"><a href="#cb35-239" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Generalmente el <span class="co">[</span><span class="ot">análisis exploratorio de datos</span><span class="co">](https://en.wikipedia.org/wiki/Exploratory_data_analysis)</span> tiene como propósito revelar patrones de comportamiento, validar hipótesis, generar nuevas preguntas de investigación, detectar atipicidades, entre otras.</span>
+<span id="cb35-240"><a href="#cb35-240" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Nuestro análisis exploratorio estará orientado a responder a las siguientes preguntas:</span>
+<span id="cb35-241"><a href="#cb35-241" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>¿Cuántas noticias hay para cada medio de comunicación?</span>
+<span id="cb35-242"><a href="#cb35-242" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>¿Cuáles son las palabras más frecuentes en las noticias?</span>
+<span id="cb35-243"><a href="#cb35-243" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>¿Podemos asignar algún sentimiento a las noticias en función de las palabras que contienen? **Nota importante:** múltiples léxicos de sentimientos están disponibles en internet, no obstante, para el lenguaje **español** es un poco reducida la disponibilidad. Por este motivo y en aras de la sencillez, utilizaremos el léxico <span class="co">[</span><span class="ot">AFINN</span><span class="co">](http://www2.imm.dtu.dk/pubdb/pubs/6010-full.html)</span> con su <span class="co">[</span><span class="ot">versión en español</span><span class="co">](https://raw.githubusercontent.com/jboscomendoza/rpubs/master/sentimientos_afinn/lexico_afinn.en.es.csv)</span>. El léxico AFINN asigna puntuaciones a las palabras, oscilando entre -5 y 5, donde las puntuaciones negativas indican un sentimiento negativo y las puntuaciones positivas indican un sentimiento positivo.</span>
+<span id="cb35-244"><a href="#cb35-244" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-245"><a href="#cb35-245" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-246"><a href="#cb35-246" aria-hidden="true" tabindex="-1"></a><span class="fu">## Noticias Colombia</span></span>
+<span id="cb35-247"><a href="#cb35-247" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-248"><a href="#cb35-248" aria-hidden="true" tabindex="-1"></a><span class="fu">### Tokenización</span></span>
+<span id="cb35-249"><a href="#cb35-249" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-250"><a href="#cb35-250" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>El primer paso es convertir las noticias (*cadenas de texto*) en <span class="co">[</span><span class="ot">tokens</span><span class="co">](https://en.wikipedia.org/wiki/Lexical_analysis#Tokenization)</span>, es decir, palabras individuales que aportan información a nuestro análisis. Este proceso se logra a través de la función <span class="in">`unnest_tokens()`</span> de la biblioteca <span class="in">`tidytext`</span>. </span>
+<span id="cb35-251"><a href="#cb35-251" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-254"><a href="#cb35-254" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb35-255"><a href="#cb35-255" aria-hidden="true" tabindex="-1"></a>tokens_colombia <span class="ot">&lt;-</span></span>
+<span id="cb35-256"><a href="#cb35-256" aria-hidden="true" tabindex="-1"></a>  noticias_colombia <span class="sc">%&gt;%</span> </span>
+<span id="cb35-257"><a href="#cb35-257" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unnest_tokens</span>(<span class="at">output =</span> <span class="st">"token"</span>, <span class="at">input =</span> noticia)</span>
+<span id="cb35-258"><a href="#cb35-258" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-259"><a href="#cb35-259" aria-hidden="true" tabindex="-1"></a>tokens_colombia <span class="sc">%&gt;%</span> </span>
+<span id="cb35-260"><a href="#cb35-260" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>()</span>
+<span id="cb35-261"><a href="#cb35-261" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb35-262"><a href="#cb35-262" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-263"><a href="#cb35-263" aria-hidden="true" tabindex="-1"></a>Algunas palabras en la columna <span class="in">`token`</span> no tienen propiedades informativas, por ejemplo, conectores, artículos, pronombres, preposiciones, etc. Es común en la minería de texto utilizar <span class="co">[</span><span class="ot">*stop words*</span><span class="co">](https://es.wikipedia.org/wiki/Palabra_vac%C3%ADa)</span> para cada lenguaje, en este caso para el castellano. Podemos acceder a estas palabras a través de la función <span class="in">`stopwords()`</span> de la biblioteca <span class="in">`tm`</span>. Es importante mencionar que es posible que queden algunas palabras que no son informativas, de tal manera que se recomienda profundizar más en este tema. </span>
+<span id="cb35-264"><a href="#cb35-264" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-265"><a href="#cb35-265" aria-hidden="true" tabindex="-1"></a>Asignamos las *stop words* a un objeto de nombre <span class="in">`stop_spanish`</span>:</span>
+<span id="cb35-266"><a href="#cb35-266" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-269"><a href="#cb35-269" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb35-270"><a href="#cb35-270" aria-hidden="true" tabindex="-1"></a>stop_spanish <span class="ot">&lt;-</span> <span class="fu">stopwords</span>(<span class="at">kind =</span> <span class="st">"spanish"</span>)</span>
+<span id="cb35-271"><a href="#cb35-271" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb35-272"><a href="#cb35-272" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-273"><a href="#cb35-273" aria-hidden="true" tabindex="-1"></a>Tenemos en total el siguiente número de *stop words* en español:</span>
+<span id="cb35-274"><a href="#cb35-274" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-277"><a href="#cb35-277" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb35-278"><a href="#cb35-278" aria-hidden="true" tabindex="-1"></a>stop_spanish <span class="sc">%&gt;%</span> </span>
+<span id="cb35-279"><a href="#cb35-279" aria-hidden="true" tabindex="-1"></a>  <span class="fu">length</span>()</span>
+<span id="cb35-280"><a href="#cb35-280" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb35-281"><a href="#cb35-281" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-282"><a href="#cb35-282" aria-hidden="true" tabindex="-1"></a>Ahoa filtramos las palabras de la columna <span class="in">`token`</span> que están dentro de las palabras sin significado (*stop words*) y asignamos el resultado a un objeto de nombre <span class="in">`tokens_colombia_final`</span>. Note que en la columna <span class="in">`token`</span> quedan números, que eventualmente podrían ser filtrados para el análisis, no obstante, se recomienda profundizar en cuál debería ser la limpieza del texto más adecuada para su análisis. En este caso hacemos caso omiso de estos datos.</span>
+<span id="cb35-283"><a href="#cb35-283" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-286"><a href="#cb35-286" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb35-287"><a href="#cb35-287" aria-hidden="true" tabindex="-1"></a>tokens_colombia_final <span class="ot">&lt;-</span></span>
+<span id="cb35-288"><a href="#cb35-288" aria-hidden="true" tabindex="-1"></a>  tokens_colombia <span class="sc">%&gt;%</span></span>
+<span id="cb35-289"><a href="#cb35-289" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span>token <span class="sc">%in%</span> stop_spanish) </span>
+<span id="cb35-290"><a href="#cb35-290" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-291"><a href="#cb35-291" aria-hidden="true" tabindex="-1"></a>tokens_colombia_final <span class="sc">%&gt;%</span> </span>
+<span id="cb35-292"><a href="#cb35-292" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>()</span>
+<span id="cb35-293"><a href="#cb35-293" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb35-294"><a href="#cb35-294" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-295"><a href="#cb35-295" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-296"><a href="#cb35-296" aria-hidden="true" tabindex="-1"></a><span class="fu">### Preguntas</span></span>
+<span id="cb35-297"><a href="#cb35-297" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-298"><a href="#cb35-298" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Pregunta 1</span></span>
+<span id="cb35-299"><a href="#cb35-299" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-300"><a href="#cb35-300" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>¿Cuántas noticias hay para cada medio de comunicación? **Nota:** para respondera a esta pregunta no es estrictamente necesario tokenizar el texto, por tal motivo obtendremos el conteo a través del dataframe de nombre <span class="in">`noticias_colombia`</span>. Observe que algunas fuentes se repiten, por ejemplo, <span class="in">`El Tiempo`</span> y <span class="in">`EL TIEMPO`</span>, <span class="in">`R`</span> los define como entidades diferentes porque no están escritas de la misma manera, aunque esta característica es fácil de resolver lo dejaremos así y cada usuario podrá direccionar la depuración bajo la estructura correcta.</span>
+<span id="cb35-301"><a href="#cb35-301" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-304"><a href="#cb35-304" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb35-305"><a href="#cb35-305" aria-hidden="true" tabindex="-1"></a>noticias_colombia <span class="sc">%&gt;%</span> </span>
+<span id="cb35-306"><a href="#cb35-306" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(fuente, <span class="at">sort =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb35-307"><a href="#cb35-307" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb35-308"><a href="#cb35-308" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-309"><a href="#cb35-309" aria-hidden="true" tabindex="-1"></a>Podemos graficar los 10 primeros medios de comunicación con mayor número de noticias:</span>
+<span id="cb35-310"><a href="#cb35-310" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-313"><a href="#cb35-313" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb35-314"><a href="#cb35-314" aria-hidden="true" tabindex="-1"></a>noticias_colombia <span class="sc">%&gt;%</span> </span>
+<span id="cb35-315"><a href="#cb35-315" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(fuente, <span class="at">sort =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb35-316"><a href="#cb35-316" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb35-317"><a href="#cb35-317" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(fuente, n), <span class="at">y =</span> n)) <span class="sc">+</span></span>
+<span id="cb35-318"><a href="#cb35-318" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
+<span id="cb35-319"><a href="#cb35-319" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb35-320"><a href="#cb35-320" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">""</span>, <span class="at">y =</span> <span class="st">"Noticias (n)"</span>, <span class="at">title =</span> <span class="st">"Google Noticias - Colombia"</span>)</span>
+<span id="cb35-321"><a href="#cb35-321" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb35-322"><a href="#cb35-322" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-323"><a href="#cb35-323" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Pregunta 2</span></span>
+<span id="cb35-324"><a href="#cb35-324" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-325"><a href="#cb35-325" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>¿Cuáles son las palabras más frecuentes en las noticias? Para responder a estar preguna utilizaremos el dataframe que posee los tokens y sobre el cual ya pasamos el filtro de las palabras sin significado, es decir, <span class="in">`tokens_colombia_final`</span>. Observamos que la palabra más frecuente en las noticias es "petro". </span>
+<span id="cb35-326"><a href="#cb35-326" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-329"><a href="#cb35-329" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb35-330"><a href="#cb35-330" aria-hidden="true" tabindex="-1"></a>tokens_colombia_final <span class="sc">%&gt;%</span> </span>
+<span id="cb35-331"><a href="#cb35-331" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(token, <span class="at">sort =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb35-332"><a href="#cb35-332" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb35-333"><a href="#cb35-333" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-334"><a href="#cb35-334" aria-hidden="true" tabindex="-1"></a>Como son tantas palabras, es posible representar esta información a través de <span class="co">[</span><span class="ot">nubes de palabras.</span><span class="co">](https://es.wikipedia.org/wiki/Nube_de_palabras)</span> Este proceso lo llevamos a cabo con la biblioteca <span class="co">[</span><span class="ot">`wordcloud2`.</span><span class="co">](https://cran.r-project.org/web/packages/wordcloud2/vignettes/wordcloud.html)</span></span>
+<span id="cb35-335"><a href="#cb35-335" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-338"><a href="#cb35-338" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb35-339"><a href="#cb35-339" aria-hidden="true" tabindex="-1"></a>tokens_colombia_final <span class="sc">%&gt;%</span></span>
+<span id="cb35-340"><a href="#cb35-340" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(token, <span class="at">sort =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb35-341"><a href="#cb35-341" aria-hidden="true" tabindex="-1"></a>  <span class="fu">wordcloud2</span>(<span class="at">data =</span> ., <span class="at">backgroundColor =</span> <span class="st">"black"</span>)</span>
+<span id="cb35-342"><a href="#cb35-342" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb35-343"><a href="#cb35-343" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-344"><a href="#cb35-344" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Pregunta 3</span></span>
+<span id="cb35-345"><a href="#cb35-345" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-346"><a href="#cb35-346" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>¿Podemos asignar algún sentimiento a las noticias en función de las palabras que contienen? Para responder a esta pregunta lo primero que vamos a hacer es descargar el archivo que contiene el sentimiento para las palabras en español. Se puede descargar <span class="co">[</span><span class="ot">aquí.</span><span class="co">](https://raw.githubusercontent.com/jboscomendoza/rpubs/master/sentimientos_afinn/lexico_afinn.en.es.csv)</span></span>
+<span id="cb35-347"><a href="#cb35-347" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Agradecimiento especial a <span class="co">[</span><span class="ot">Juan Bosco Mendoza Vega</span><span class="co">](https://rpubs.com/jboscomendoza/)</span> por disponibilizar esta información.</span>
+<span id="cb35-348"><a href="#cb35-348" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Note que la base de datos tiene tres columnas, la variable <span class="in">`Palabra`</span> denota la información en español, la variable <span class="in">`Word`</span> es su traducción al inglés y la <span class="in">`Puntuacion`</span> (sin tilde) denota el *score* determinado por el léxico AFINN.</span>
+<span id="cb35-349"><a href="#cb35-349" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-352"><a href="#cb35-352" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb35-353"><a href="#cb35-353" aria-hidden="true" tabindex="-1"></a><span class="co"># URL</span></span>
+<span id="cb35-354"><a href="#cb35-354" aria-hidden="true" tabindex="-1"></a>url_sentimiento <span class="ot">&lt;-</span> </span>
+<span id="cb35-355"><a href="#cb35-355" aria-hidden="true" tabindex="-1"></a>  <span class="st">"https://raw.githubusercontent.com/jboscomendoza/rpubs/master/sentimientos_afinn/lexico_afinn.en.es.csv"</span></span>
+<span id="cb35-356"><a href="#cb35-356" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-357"><a href="#cb35-357" aria-hidden="true" tabindex="-1"></a><span class="co"># Lectura de datos</span></span>
+<span id="cb35-358"><a href="#cb35-358" aria-hidden="true" tabindex="-1"></a>df_sentimiento <span class="ot">&lt;-</span></span>
+<span id="cb35-359"><a href="#cb35-359" aria-hidden="true" tabindex="-1"></a>  <span class="fu">read_csv</span>(url_sentimiento)</span>
+<span id="cb35-360"><a href="#cb35-360" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-361"><a href="#cb35-361" aria-hidden="true" tabindex="-1"></a>df_sentimiento <span class="sc">%&gt;%</span> </span>
+<span id="cb35-362"><a href="#cb35-362" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>()</span>
+<span id="cb35-363"><a href="#cb35-363" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb35-364"><a href="#cb35-364" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-365"><a href="#cb35-365" aria-hidden="true" tabindex="-1"></a>Si usted desea descargar el archivo anterior puede ejecutar el siguiente código:</span>
+<span id="cb35-366"><a href="#cb35-366" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-367"><a href="#cb35-367" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, eval = FALSE}</span></span>
+<span id="cb35-368"><a href="#cb35-368" aria-hidden="true" tabindex="-1"></a><span class="fu">download.file</span>(<span class="at">url =</span> url_sentimiento, <span class="at">destfile =</span> <span class="st">"datos_sentimiento_spanish_AFINN.csv"</span>)</span>
+<span id="cb35-369"><a href="#cb35-369" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb35-370"><a href="#cb35-370" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-371"><a href="#cb35-371" aria-hidden="true" tabindex="-1"></a>Vamos a cambiar el nombre <span class="in">`Palabra`</span> por <span class="in">`token`</span>, para que podamos unir a la tabla <span class="in">`tokens_colombia_final`</span> y seleccionamos sólo las variables <span class="in">`token`</span> y <span class="in">`Puntuacion`</span>. Además, discretizamos la variable <span class="in">`Puntuacion`</span> en una nueva variable llamada <span class="in">`sentimiento`</span>, de tal manera que si la <span class="in">`Puntuacion`</span> es mayor a 0 se le asigna el nivel <span class="in">`Positivo`</span>, de lo contrario será <span class="in">`Negativo`</span>. Asignamos este resultado a un nuevo objeto de nombre <span class="in">`sentimiento_spanish`</span>. </span>
+<span id="cb35-372"><a href="#cb35-372" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-375"><a href="#cb35-375" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb35-376"><a href="#cb35-376" aria-hidden="true" tabindex="-1"></a>sentimiento_spanish <span class="ot">&lt;-</span></span>
+<span id="cb35-377"><a href="#cb35-377" aria-hidden="true" tabindex="-1"></a>  df_sentimiento <span class="sc">%&gt;%</span> </span>
+<span id="cb35-378"><a href="#cb35-378" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">token =</span> Palabra) <span class="sc">%&gt;%</span> </span>
+<span id="cb35-379"><a href="#cb35-379" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(token, Puntuacion) <span class="sc">%&gt;%</span> </span>
+<span id="cb35-380"><a href="#cb35-380" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">sentimiento =</span> <span class="fu">if_else</span>(Puntuacion <span class="sc">&gt;</span> <span class="dv">0</span>, <span class="st">"Positivo"</span>, <span class="st">"Negativo"</span>))</span>
+<span id="cb35-381"><a href="#cb35-381" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-382"><a href="#cb35-382" aria-hidden="true" tabindex="-1"></a>sentimiento_spanish <span class="sc">%&gt;%</span> </span>
+<span id="cb35-383"><a href="#cb35-383" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>()</span>
+<span id="cb35-384"><a href="#cb35-384" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb35-385"><a href="#cb35-385" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-386"><a href="#cb35-386" aria-hidden="true" tabindex="-1"></a>Ahora unimos los datos de sentimiento con la tabla <span class="in">`tokens_colombia_final`</span>. La unión la realizamos con la función <span class="in">`inner_join()`</span>, de tal manera que sólo serán tenidas en cuenta palabras que estén en ambas tablas. Note que la nueva tabla se reduce, ya que muchas palabras de las noticias no están presente en el dataframe <span class="in">`sentimiento_spanish`</span>. Es importante mencionar que esta es una aproximación simple de análisis de sentimientos, sin embargo, podrían ser utilizadas técnicas más robustas, por ejemplo, <span class="co">[</span><span class="ot">Deep Learning.</span><span class="co">](https://towardsdatascience.com/an-easy-tutorial-about-sentiment-analysis-with-deep-learning-and-keras-2bf52b9cba91)</span></span>
+<span id="cb35-387"><a href="#cb35-387" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-390"><a href="#cb35-390" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb35-391"><a href="#cb35-391" aria-hidden="true" tabindex="-1"></a>noticias_sentimiento <span class="ot">&lt;-</span></span>
+<span id="cb35-392"><a href="#cb35-392" aria-hidden="true" tabindex="-1"></a>  <span class="fu">inner_join</span>(<span class="at">x =</span> tokens_colombia_final, <span class="at">y =</span> sentimiento_spanish, <span class="at">by =</span> <span class="st">"token"</span>)</span>
+<span id="cb35-393"><a href="#cb35-393" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-394"><a href="#cb35-394" aria-hidden="true" tabindex="-1"></a>noticias_sentimiento <span class="sc">%&gt;%</span> </span>
+<span id="cb35-395"><a href="#cb35-395" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>()</span>
+<span id="cb35-396"><a href="#cb35-396" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb35-397"><a href="#cb35-397" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-398"><a href="#cb35-398" aria-hidden="true" tabindex="-1"></a>Podemos consultar el número de filas de la nueva tabla.</span>
+<span id="cb35-399"><a href="#cb35-399" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-402"><a href="#cb35-402" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb35-403"><a href="#cb35-403" aria-hidden="true" tabindex="-1"></a>noticias_sentimiento <span class="sc">%&gt;%</span> </span>
+<span id="cb35-404"><a href="#cb35-404" aria-hidden="true" tabindex="-1"></a>  <span class="fu">nrow</span>()</span>
+<span id="cb35-405"><a href="#cb35-405" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb35-406"><a href="#cb35-406" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-407"><a href="#cb35-407" aria-hidden="true" tabindex="-1"></a>Podemos responder a la siguiente pregunta, ¿Predominan las palabras positivas o negativas? Parece que son más las noticias que tiene palabras negativas que positivas.</span>
+<span id="cb35-408"><a href="#cb35-408" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-411"><a href="#cb35-411" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb35-412"><a href="#cb35-412" aria-hidden="true" tabindex="-1"></a>noticias_sentimiento <span class="sc">%&gt;%</span> </span>
+<span id="cb35-413"><a href="#cb35-413" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(sentimiento)</span>
+<span id="cb35-414"><a href="#cb35-414" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb35-415"><a href="#cb35-415" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-416"><a href="#cb35-416" aria-hidden="true" tabindex="-1"></a>¿Cuál medio de comunicación es más negativo o positivo en sus noticias?</span>
+<span id="cb35-417"><a href="#cb35-417" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-420"><a href="#cb35-420" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb35-421"><a href="#cb35-421" aria-hidden="true" tabindex="-1"></a>noticias_sentimiento <span class="sc">%&gt;%</span> </span>
+<span id="cb35-422"><a href="#cb35-422" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(fuente, sentimiento, <span class="at">sort =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb35-423"><a href="#cb35-423" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb35-424"><a href="#cb35-424" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-425"><a href="#cb35-425" aria-hidden="true" tabindex="-1"></a>Podemos representar el resultado anterior a través de un gráfico. Para tener una representación más transparente filtramos medios de comunicación con más de 3 noticias.</span>
+<span id="cb35-426"><a href="#cb35-426" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-429"><a href="#cb35-429" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb35-430"><a href="#cb35-430" aria-hidden="true" tabindex="-1"></a>noticias_sentimiento <span class="sc">%&gt;%</span> </span>
+<span id="cb35-431"><a href="#cb35-431" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(fuente, sentimiento, <span class="at">sort =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb35-432"><a href="#cb35-432" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(n <span class="sc">&gt;</span> <span class="dv">3</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb35-433"><a href="#cb35-433" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(fuente, n), <span class="at">y =</span> n, <span class="at">fill =</span> sentimiento)) <span class="sc">+</span></span>
+<span id="cb35-434"><a href="#cb35-434" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">position =</span> <span class="st">"fill"</span>) <span class="sc">+</span></span>
+<span id="cb35-435"><a href="#cb35-435" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb35-436"><a href="#cb35-436" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">""</span>, <span class="at">y =</span> <span class="st">"Frecuencia relativa"</span>, <span class="at">fill =</span> <span class="st">"Sentimiento"</span>) <span class="sc">+</span></span>
+<span id="cb35-437"><a href="#cb35-437" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"top"</span>)</span>
+<span id="cb35-438"><a href="#cb35-438" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb35-439"><a href="#cb35-439" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-440"><a href="#cb35-440" aria-hidden="true" tabindex="-1"></a>Hasta ahora hemos usamos la variable <span class="in">`sentimiento`</span>, pero también podríamos calcular alguna métrica estadística con la variable <span class="in">`Puntuacion`</span>. En este caso calculamos la mediana de la <span class="in">`Puntuacion`</span> y obtenemos el número de datos (<span class="in">`N`</span>) con los cuales es calculada la métrica.</span>
+<span id="cb35-441"><a href="#cb35-441" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-444"><a href="#cb35-444" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb35-445"><a href="#cb35-445" aria-hidden="true" tabindex="-1"></a>noticias_sentimiento <span class="sc">%&gt;%</span> </span>
+<span id="cb35-446"><a href="#cb35-446" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(fuente) <span class="sc">%&gt;%</span> </span>
+<span id="cb35-447"><a href="#cb35-447" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb35-448"><a href="#cb35-448" aria-hidden="true" tabindex="-1"></a>    <span class="at">mediana_sent =</span> <span class="fu">median</span>(Puntuacion),</span>
+<span id="cb35-449"><a href="#cb35-449" aria-hidden="true" tabindex="-1"></a>    <span class="at">N =</span> <span class="fu">n</span>()</span>
+<span id="cb35-450"><a href="#cb35-450" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> </span>
+<span id="cb35-451"><a href="#cb35-451" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(mediana_sent))</span>
+<span id="cb35-452"><a href="#cb35-452" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb35-453"><a href="#cb35-453" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-454"><a href="#cb35-454" aria-hidden="true" tabindex="-1"></a>Podemos graficar la nube de palabras para el sentimiento positivo y negativo a través de la biblioteca <span class="in">`wordcloud`</span>. Para este proceso fíjese que "remodelamos" los datos a través de la función <span class="in">`acast()`</span> de la biblioteca <span class="in">`reshape2`</span>. Este proceso es necesario para obtener la nube de palabras comparativa con la función <span class="in">`comparison.cloud()`</span>.</span>
+<span id="cb35-455"><a href="#cb35-455" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-458"><a href="#cb35-458" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb35-459"><a href="#cb35-459" aria-hidden="true" tabindex="-1"></a>noticias_sentimiento <span class="sc">%&gt;%</span></span>
+<span id="cb35-460"><a href="#cb35-460" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(token, sentimiento, <span class="at">sort =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb35-461"><a href="#cb35-461" aria-hidden="true" tabindex="-1"></a>  <span class="fu">acast</span>(token <span class="sc">~</span> sentimiento, <span class="at">value.var =</span> <span class="st">"n"</span>, <span class="at">fill =</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb35-462"><a href="#cb35-462" aria-hidden="true" tabindex="-1"></a>  <span class="fu">comparison.cloud</span>(<span class="at">colors =</span> <span class="fu">c</span>(<span class="st">"gray20"</span>, <span class="st">"forestgreen"</span>),</span>
+<span id="cb35-463"><a href="#cb35-463" aria-hidden="true" tabindex="-1"></a>                   <span class="at">max.words =</span> <span class="dv">100</span>)</span>
+<span id="cb35-464"><a href="#cb35-464" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb35-465"><a href="#cb35-465" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-466"><a href="#cb35-466" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-467"><a href="#cb35-467" aria-hidden="true" tabindex="-1"></a><span class="fu"># Análisis de sentimientos</span></span>
+<span id="cb35-468"><a href="#cb35-468" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-469"><a href="#cb35-469" aria-hidden="true" tabindex="-1"></a>Para tener contexto de lo que signfica el *análisis de sentimientos*, se recomienda revisar los siguientes recursos de información:</span>
+<span id="cb35-470"><a href="#cb35-470" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-471"><a href="#cb35-471" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Sentiment analysis (wikipedia)</span><span class="co">](https://en.wikipedia.org/wiki/Sentiment_analysis)</span></span>
+<span id="cb35-472"><a href="#cb35-472" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Sentiment analysis with tidy data</span><span class="co">](https://www.tidytextmining.com/sentiment.html)</span></span>
+<span id="cb35-473"><a href="#cb35-473" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Python Sentiment Analysis Tutorial</span><span class="co">](https://www.datacamp.com/tutorial/simplifying-sentiment-analysis-python)</span></span>
+<span id="cb35-474"><a href="#cb35-474" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Análisis de texto (text mining) con Python</span><span class="co">](https://www.cienciadedatos.net/documentos/py25-text-mining-python.html)</span></span>
+<span id="cb35-475"><a href="#cb35-475" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">TEDx: Análisis de sentimientos</span><span class="co">](https://www.youtube.com/watch?v=n4L5hHFcGVk&amp;ab_channel=TEDxTalks)</span></span>
+</code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></div></div></div></div>
+</div> <!-- /content -->
+
+
+
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

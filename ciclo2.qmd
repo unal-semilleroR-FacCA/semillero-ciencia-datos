@@ -8,7 +8,7 @@ title: "Ciclo 02"
 2. [Ejemplo aplicado: Web Scraping con R](https://rpubs.com/Edimer/981979)
 3. [Ejemplo aplicado: Web Scraping con Python](https://rpubs.com/Edimer/981980)
 4. [R + Python en la nube](https://rpubs.com/Edimer/985185)
-5. [Interoperabilidad R + Python: fundamentos de programación]()
+5. [Fundamentos básicos de R y Python](https://rpubs.com/Edimer/1014123)
 6. [Interoperabilidad R + Python: manipulación de datos]()
 7. [Interoperabilidad R + Python: visualización de datos]()
 8. [Interoperabilidad R + Python: productos de datos]()

@@ -124,13 +124,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   }
 }</script>
 
-<script src="../site_libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+<script src="../site_libs/htmlwidgets-1.6.1/htmlwidgets.js"></script>
 <link href="../site_libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet">
-<script src="../site_libs/datatables-binding-0.25/datatables.js"></script>
+<script src="../site_libs/datatables-binding-0.27/datatables.js"></script>
 <script src="../site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
-<link href="../site_libs/dt-core-1.11.3/css/jquery.dataTables.min.css" rel="stylesheet">
-<link href="../site_libs/dt-core-1.11.3/css/jquery.dataTables.extra.css" rel="stylesheet">
-<script src="../site_libs/dt-core-1.11.3/js/jquery.dataTables.min.js"></script>
+<link href="../site_libs/dt-core-1.12.1/css/jquery.dataTables.min.css" rel="stylesheet">
+<link href="../site_libs/dt-core-1.12.1/css/jquery.dataTables.extra.css" rel="stylesheet">
+<script src="../site_libs/dt-core-1.12.1/js/jquery.dataTables.min.js"></script>
 <link href="../site_libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet">
 <script src="../site_libs/crosstalk-1.2.0/js/crosstalk.min.js"></script>
 
@@ -257,221 +257,221 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>datos <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"Datos/Datos_Continentes.csv"</span>)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>datos</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>                                               pais  cajeros17 camas14
-1                                       AfganistÃ¡n   1.274667    0.50
-2                                           Albania  31.471579      NA
-3                                          Alemania         NA      NA
-4                                           Andorra         NA      NA
-5                                            Angola         NA      NA
-6                                 Antigua y Barbuda  63.114237    3.80
-7                                    Arabia Saudita  74.375035    2.70
-8                                           Argelia   9.384573      NA
-9                                         Argentina  59.391257    5.00
-10                                          Armenia  63.690056      NA
-11                                            Aruba 124.985534      NA
-12                                        Australia 162.006414    3.80
-13                                          Austria 115.303521      NA
-14                                      AzerbaiyÃ¡n  32.127577      NA
-15                                          Bahamas 115.105535      NA
-16                                          Bahrein         NA    2.00
-17                                       Bangladesh   8.072708    0.60
-18                                         Barbados         NA    5.80
-19                                         BelarÃºs  55.633457      NA
-20                                         BÃ©lgica         NA    6.20
-21                                           Belice  38.917623    1.30
-22                                            Benin         NA      NA
-23                                         Bermudas         NA      NA
-24                                          BhutÃ¡n  36.581871      NA
-25                                          Bolivia  40.225490    1.10
-26                             Bosnia y Herzegovina  51.104169      NA
-27                                         Botswana  32.571156      NA
-28                                           Brasil 106.780646    2.20
-29                                Brunei Darussalam  68.486509      NA
-30                                         Bulgaria  95.128845      NA
-31                                     Burkina Faso   3.972802      NA
-32                                          Burundi         NA    0.80
-33                                       Cabo Verde  46.938877      NA
-34                                          Camboya  16.728591      NA
-35                                         CamerÃºn         NA      NA
-36                                          CanadÃ¡ 227.823571      NA
-37                                             Chad   1.536362      NA
-38                                            Chile  52.979853      NA
-39                                            China         NA      NA
-40                                           Chipre  48.520334      NA
-41                                         Colombia  41.840115    1.50
-42                                          Comoras   4.896051      NA
-43                            Congo, RepÃºblica del         NA      NA
-44               Congo, RepÃºblica DemocrÃ¡tica del         NA      NA
-45                             Corea, RepÃºblica de         NA      NA
-46        Corea, RepÃºblica Popular DemocrÃ¡tica de         NA      NA
-47                                       Costa Rica  64.883624    1.10
-48                                   CÃ´te d'Ivoire         NA      NA
-49                                          Croacia 140.381651    5.89
-50                                             Cuba         NA    5.20
-51                                          Curacao         NA      NA
-52                                        Dinamarca  50.057355      NA
-53                                         Djibouti  12.130586    1.40
-54                                         Dominica  36.279455      NA
-55                                          Ecuador  50.280612      NA
-56                     Egipto, RepÃºblica Ã\201rabe de         NA    1.60
-57                                      El Salvador  37.264356    1.30
-58                          Emiratos Ã\201rabes Unidos  65.505847      NA
-59                                        Eslovenia  93.655056      NA
-60                                          EspaÃ±a 111.834936      NA
-61                                   Estados Unidos         NA      NA
-62                                          Estonia  67.989627      NA
-63                                         Eswatini  30.040870      NA
-64                                         EtiopÃ­a         NA      NA
-65                             FederaciÃ³n de Rusia 163.926125      NA
-66                                             Fiji  50.177164      NA
-67                                        Filipinas  28.305813      NA
-68                                        Finlandia  32.515116      NA
-69                                          Francia         NA      NA
-70                                           GabÃ³n         NA      NA
-71                                           Gambia         NA      NA
-72                                          Georgia  75.930531      NA
-73                                            Ghana  11.530873      NA
-74                                        Gibraltar         NA      NA
-75                                          Granada  44.067839    3.70
-76                                           Grecia  61.532615      NA
-77                                      Groenlandia         NA      NA
-78                                             Guam         NA      NA
-79                                        Guatemala  36.057779    0.60
-80                                           Guinea   2.247021      NA
-81                                Guinea Ecuatorial         NA      NA
-82                                    Guinea-Bissau         NA      NA
-83                                           Guyana  20.278907    1.60
-84                                           HaitÃ­   1.969990      NA
-85                                         Honduras  23.889901    0.70
-86       Hong Kong, RegiÃ³n Administrativa Especial         NA      NA
-87                                         HungrÃ­a  60.937153      NA
-88                                            India  22.065116      NA
-89                                        Indonesia  55.614194      NA
-90                  IrÃ¡n, RepÃºblica IslÃ¡mica del  76.488143    1.50
-91                                             Iraq   2.678396    1.40
-92                                          Irlanda  89.500261      NA
-93                                      Isla de Man         NA      NA
-94             Isla de San MartÃ­n (parte francesa)         NA      NA
-95                                         Islandia  89.470869    3.20
-96                                    Islas CaimÃ¡n         NA      NA
-97                                  Islas del Canal         NA      NA
-98                                      Islas Feroe         NA      NA
-99                                   Islas Marshall         NA      NA
-100                                  Islas SalomÃ³n  12.035851      NA
-101                           Islas Turcas y Caicos         NA      NA
-102                        Islas VÃ­rgenes (EE.UU.)         NA      NA
-103                     Islas VÃ­rgenes BritÃ¡nicas         NA      NA
-104                                          Israel 121.258372      NA
-105                                          Italia  92.400919      NA
-106                                         Jamaica  31.789783      NA
-107                                          JapÃ³n 127.766988      NA
-108                                        Jordania  27.998151    1.90
-109                                      KazajstÃ¡n  74.599741      NA
-110                                           Kenya         NA      NA
-111                                     KirguistÃ¡n  33.430396      NA
-112                                        Kiribati         NA      NA
-113                                          Kosovo  36.010919      NA
-114                                          Kuwait  64.428607    2.00
-115                                         Lesotho         NA      NA
-116                                         Letonia  61.884893      NA
-117                                         LÃ­bano  40.658488    2.90
-118                                         Liberia         NA      NA
-119                                           Libia   3.755819    3.70
-120                                   Liechtenstein         NA      NA
-121                                        Lituania  46.749891      NA
-122                                      Luxemburgo 115.396650    4.90
-123                             Macedonia del Norte  59.407401      NA
-124                                      Madagascar   2.795703      NA
-125                                         Malasia  46.751131      NA
-126                                          Malawi         NA      NA
-127                                        Maldivas  35.010339      NA
-128                                           MalÃ­         NA      NA
-129                                           Malta  55.254084    4.70
-130                                         Mariana         NA      NA
-131                                       Marruecos  26.979311    1.10
-132                                        Mauricio  43.504273      NA
-133                                      Mauritania         NA      NA
-134                                         MÃ©xico  53.532271      NA
-135                                         MÃ³naco         NA      NA
-136                                        Mongolia         NA      NA
-137                                      Montenegro  80.832711      NA
-138                                      Mozambique   8.931567      NA
-139                                         Myanmar   4.378925      NA
-140                                         Namibia         NA      NA
-141                                           Nauru         NA      NA
-142                                           Nepal  10.275601      NA
-143                                       Nicaragua  17.654647    0.90
-144                                          NÃ­ger         NA      NA
-145                                         Nigeria  16.320860      NA
-146                                         Noruega  36.377238      NA
-147                                 Nueva Caledonia         NA      NA
-148                                  Nueva Zelandia  65.880694      NA
-149                                           OmÃ¡n  37.710615    1.60
-150                                   PaÃ­ses Bajos  44.613599      NA
-151                                       PakistÃ¡n  10.435218    0.60
-152                                           Palau  45.845272      NA
-153                                         PanamÃ¡  70.663779      NA
-154                              Papua Nueva Guinea         NA      NA
-155                                        Paraguay  27.116665      NA
-156                                           PerÃº 106.572408    1.60
-157                              Polinesia Francesa         NA      NA
-158                                         Polonia         NA      NA
-159                                        Portugal 168.039179      NA
-160                                     Puerto Rico         NA      NA
-161                                           Qatar  59.041954    1.20
-162 RegiÃ³n Administrativa Especial de Macao, China 313.152787      NA
-163                                     Reino Unido 128.126941      NA
-164                         RepÃºblica Ã\201rabe Siria         NA    1.50
-165                       RepÃºblica Centroafricana   1.322474      NA
-166                                RepÃºblica Checa  55.650985      NA
-167                           RepÃºblica de Moldova  36.743286      NA
-168             RepÃºblica DemocrÃ¡tica Popular Lao  26.092450      NA
-169                           RepÃºblica Dominicana  39.015209    1.60
-170                             RepÃºblica Eslovaca  60.688374      NA
-171                        Ribera Occidental y Gaza         NA      NA
-172                                         Rumania  66.693235      NA
-173                                          Rwanda   5.555326      NA
-174                             Saint Kitts y Nevis  88.439385      NA
-175                                           Samoa  49.770813      NA
-176                                 Samoa Americana         NA      NA
-177                                      San Marino 182.892515      NA
-178                    San Vicente y las Granadinas  35.821323    2.60
-179                                    Santa LucÃ­a  43.426712      NA
-180                         Santo TomÃ© y PrÃ­ncipe  27.398668      NA
-181                                         Senegal         NA      NA
-182                                          Serbia  45.765899      NA
-183                                      Seychelles  79.163770      NA
-184                                    Sierra Leona         NA      NA
-185                                        Singapur  65.158486      NA
-186                       Sint Maarten (Dutch part)         NA      NA
-187                                         Somalia         NA    0.90
-188                                       Sri Lanka         NA      NA
-189                                      SudÃ¡frica  67.930858      NA
-190                                          SudÃ¡n   5.423853      NA
-191                                          Suecia  31.978818      NA
-192                                           Suiza  97.769823      NA
-193                                        Suriname         NA      NA
-194                                       Tailandia 117.279135      NA
-195                                       TanzanÃ­a         NA      NA
-196                                     TayikistÃ¡n         NA      NA
-197                                     Timor-Leste  12.584690      NA
-198                                            Togo   3.929497      NA
-199                                           Tonga  36.067229      NA
-200                               Trinidad y Tobago  43.083965    3.00
-201                                          TÃºnez         NA    2.20
-202                                   TurkmenistÃ¡n         NA      NA
-203                                        TurquÃ­a  78.124179      NA
-204                                          Tuvalu         NA      NA
-205                                         Ucrania  97.670667      NA
-206                                          Uganda   4.060236      NA
-207                                         Uruguay  84.726290    2.80
-208                                     UzbekistÃ¡n  24.147006      NA
-209                                         Vanuatu         NA      NA
-210                                       Venezuela         NA    0.80
-211                                        Viet Nam  24.336015    2.60
-212                                 Yemen, Rep. del         NA    0.70
-213                                          Zambia  11.293390      NA
-214                                        Zimbabwe   5.792911      NA
+<pre><code>                                              pais  cajeros17 camas14
+1                                       Afganistán   1.274667    0.50
+2                                          Albania  31.471579      NA
+3                                         Alemania         NA      NA
+4                                          Andorra         NA      NA
+5                                           Angola         NA      NA
+6                                Antigua y Barbuda  63.114237    3.80
+7                                   Arabia Saudita  74.375035    2.70
+8                                          Argelia   9.384573      NA
+9                                        Argentina  59.391257    5.00
+10                                         Armenia  63.690056      NA
+11                                           Aruba 124.985534      NA
+12                                       Australia 162.006414    3.80
+13                                         Austria 115.303521      NA
+14                                      Azerbaiyán  32.127577      NA
+15                                         Bahamas 115.105535      NA
+16                                         Bahrein         NA    2.00
+17                                      Bangladesh   8.072708    0.60
+18                                        Barbados         NA    5.80
+19                                         Belarús  55.633457      NA
+20                                         Bélgica         NA    6.20
+21                                          Belice  38.917623    1.30
+22                                           Benin         NA      NA
+23                                        Bermudas         NA      NA
+24                                          Bhután  36.581871      NA
+25                                         Bolivia  40.225490    1.10
+26                            Bosnia y Herzegovina  51.104169      NA
+27                                        Botswana  32.571156      NA
+28                                          Brasil 106.780646    2.20
+29                               Brunei Darussalam  68.486509      NA
+30                                        Bulgaria  95.128845      NA
+31                                    Burkina Faso   3.972802      NA
+32                                         Burundi         NA    0.80
+33                                      Cabo Verde  46.938877      NA
+34                                         Camboya  16.728591      NA
+35                                         Camerún         NA      NA
+36                                          Canadá 227.823571      NA
+37                                            Chad   1.536362      NA
+38                                           Chile  52.979853      NA
+39                                           China         NA      NA
+40                                          Chipre  48.520334      NA
+41                                        Colombia  41.840115    1.50
+42                                         Comoras   4.896051      NA
+43                            Congo, República del         NA      NA
+44                Congo, República Democrática del         NA      NA
+45                             Corea, República de         NA      NA
+46         Corea, República Popular Democrática de         NA      NA
+47                                      Costa Rica  64.883624    1.10
+48                                   Côte d'Ivoire         NA      NA
+49                                         Croacia 140.381651    5.89
+50                                            Cuba         NA    5.20
+51                                         Curacao         NA      NA
+52                                       Dinamarca  50.057355      NA
+53                                        Djibouti  12.130586    1.40
+54                                        Dominica  36.279455      NA
+55                                         Ecuador  50.280612      NA
+56                      Egipto, República Árabe de         NA    1.60
+57                                     El Salvador  37.264356    1.30
+58                          Emiratos Árabes Unidos  65.505847      NA
+59                                       Eslovenia  93.655056      NA
+60                                          España 111.834936      NA
+61                                  Estados Unidos         NA      NA
+62                                         Estonia  67.989627      NA
+63                                        Eswatini  30.040870      NA
+64                                         Etiopía         NA      NA
+65                             Federación de Rusia 163.926125      NA
+66                                            Fiji  50.177164      NA
+67                                       Filipinas  28.305813      NA
+68                                       Finlandia  32.515116      NA
+69                                         Francia         NA      NA
+70                                           Gabón         NA      NA
+71                                          Gambia         NA      NA
+72                                         Georgia  75.930531      NA
+73                                           Ghana  11.530873      NA
+74                                       Gibraltar         NA      NA
+75                                         Granada  44.067839    3.70
+76                                          Grecia  61.532615      NA
+77                                     Groenlandia         NA      NA
+78                                            Guam         NA      NA
+79                                       Guatemala  36.057779    0.60
+80                                          Guinea   2.247021      NA
+81                               Guinea Ecuatorial         NA      NA
+82                                   Guinea-Bissau         NA      NA
+83                                          Guyana  20.278907    1.60
+84                                           Haití   1.969990      NA
+85                                        Honduras  23.889901    0.70
+86       Hong Kong, Región Administrativa Especial         NA      NA
+87                                         Hungría  60.937153      NA
+88                                           India  22.065116      NA
+89                                       Indonesia  55.614194      NA
+90                    Irán, República Islámica del  76.488143    1.50
+91                                            Iraq   2.678396    1.40
+92                                         Irlanda  89.500261      NA
+93                                     Isla de Man         NA      NA
+94             Isla de San Martín (parte francesa)         NA      NA
+95                                        Islandia  89.470869    3.20
+96                                    Islas Caimán         NA      NA
+97                                 Islas del Canal         NA      NA
+98                                     Islas Feroe         NA      NA
+99                                  Islas Marshall         NA      NA
+100                                  Islas Salomón  12.035851      NA
+101                          Islas Turcas y Caicos         NA      NA
+102                        Islas Vírgenes (EE.UU.)         NA      NA
+103                      Islas Vírgenes Británicas         NA      NA
+104                                         Israel 121.258372      NA
+105                                         Italia  92.400919      NA
+106                                        Jamaica  31.789783      NA
+107                                          Japón 127.766988      NA
+108                                       Jordania  27.998151    1.90
+109                                      Kazajstán  74.599741      NA
+110                                          Kenya         NA      NA
+111                                     Kirguistán  33.430396      NA
+112                                       Kiribati         NA      NA
+113                                         Kosovo  36.010919      NA
+114                                         Kuwait  64.428607    2.00
+115                                        Lesotho         NA      NA
+116                                        Letonia  61.884893      NA
+117                                         Líbano  40.658488    2.90
+118                                        Liberia         NA      NA
+119                                          Libia   3.755819    3.70
+120                                  Liechtenstein         NA      NA
+121                                       Lituania  46.749891      NA
+122                                     Luxemburgo 115.396650    4.90
+123                            Macedonia del Norte  59.407401      NA
+124                                     Madagascar   2.795703      NA
+125                                        Malasia  46.751131      NA
+126                                         Malawi         NA      NA
+127                                       Maldivas  35.010339      NA
+128                                           Malí         NA      NA
+129                                          Malta  55.254084    4.70
+130                                        Mariana         NA      NA
+131                                      Marruecos  26.979311    1.10
+132                                       Mauricio  43.504273      NA
+133                                     Mauritania         NA      NA
+134                                         México  53.532271      NA
+135                                         Mónaco         NA      NA
+136                                       Mongolia         NA      NA
+137                                     Montenegro  80.832711      NA
+138                                     Mozambique   8.931567      NA
+139                                        Myanmar   4.378925      NA
+140                                        Namibia         NA      NA
+141                                          Nauru         NA      NA
+142                                          Nepal  10.275601      NA
+143                                      Nicaragua  17.654647    0.90
+144                                          Níger         NA      NA
+145                                        Nigeria  16.320860      NA
+146                                        Noruega  36.377238      NA
+147                                Nueva Caledonia         NA      NA
+148                                 Nueva Zelandia  65.880694      NA
+149                                           Omán  37.710615    1.60
+150                                   Países Bajos  44.613599      NA
+151                                       Pakistán  10.435218    0.60
+152                                          Palau  45.845272      NA
+153                                         Panamá  70.663779      NA
+154                             Papua Nueva Guinea         NA      NA
+155                                       Paraguay  27.116665      NA
+156                                           Perú 106.572408    1.60
+157                             Polinesia Francesa         NA      NA
+158                                        Polonia         NA      NA
+159                                       Portugal 168.039179      NA
+160                                    Puerto Rico         NA      NA
+161                                          Qatar  59.041954    1.20
+162 Región Administrativa Especial de Macao, China 313.152787      NA
+163                                    Reino Unido 128.126941      NA
+164                          República Árabe Siria         NA    1.50
+165                       República Centroafricana   1.322474      NA
+166                                República Checa  55.650985      NA
+167                           República de Moldova  36.743286      NA
+168              República Democrática Popular Lao  26.092450      NA
+169                           República Dominicana  39.015209    1.60
+170                             República Eslovaca  60.688374      NA
+171                       Ribera Occidental y Gaza         NA      NA
+172                                        Rumania  66.693235      NA
+173                                         Rwanda   5.555326      NA
+174                            Saint Kitts y Nevis  88.439385      NA
+175                                          Samoa  49.770813      NA
+176                                Samoa Americana         NA      NA
+177                                     San Marino 182.892515      NA
+178                   San Vicente y las Granadinas  35.821323    2.60
+179                                    Santa Lucía  43.426712      NA
+180                          Santo Tomé y Príncipe  27.398668      NA
+181                                        Senegal         NA      NA
+182                                         Serbia  45.765899      NA
+183                                     Seychelles  79.163770      NA
+184                                   Sierra Leona         NA      NA
+185                                       Singapur  65.158486      NA
+186                      Sint Maarten (Dutch part)         NA      NA
+187                                        Somalia         NA    0.90
+188                                      Sri Lanka         NA      NA
+189                                      Sudáfrica  67.930858      NA
+190                                          Sudán   5.423853      NA
+191                                         Suecia  31.978818      NA
+192                                          Suiza  97.769823      NA
+193                                       Suriname         NA      NA
+194                                      Tailandia 117.279135      NA
+195                                       Tanzanía         NA      NA
+196                                     Tayikistán         NA      NA
+197                                    Timor-Leste  12.584690      NA
+198                                           Togo   3.929497      NA
+199                                          Tonga  36.067229      NA
+200                              Trinidad y Tobago  43.083965    3.00
+201                                          Túnez         NA    2.20
+202                                   Turkmenistán         NA      NA
+203                                        Turquía  78.124179      NA
+204                                         Tuvalu         NA      NA
+205                                        Ucrania  97.670667      NA
+206                                         Uganda   4.060236      NA
+207                                        Uruguay  84.726290    2.80
+208                                     Uzbekistán  24.147006      NA
+209                                        Vanuatu         NA      NA
+210                                      Venezuela         NA    0.80
+211                                       Viet Nam  24.336015    2.60
+212                                Yemen, Rep. del         NA    0.70
+213                                         Zambia  11.293390      NA
+214                                       Zimbabwe   5.792911      NA
       cto_pib16   densidad17 desempleo17 deuda16  electri16     fertil16
 1     2.2603142 5.442221e+01       1.559      NA  84.137138 1.218230e+01
 2     3.3500000 1.048707e+02      13.750      NA 100.000000 1.261385e+02
@@ -908,29 +908,29 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 3     33.67013968     Europa
 4      1.65957441     Europa
 5      3.93037619     Africa
-6      9.09090909   AmÃ©rica
+6      9.09090909    América
 7      1.61744251       Asia
 8      3.10873571     Africa
-9     14.32387300   AmÃ©rica
+9     14.32387300    América
 10    15.67966259       Asia
-11    11.11111111   AmÃ©rica
-12     5.98646389   OceanÃ­a
+11    11.11111111    América
+12     5.98646389    Oceanía
 13    16.29230665     Europa
 14    24.18047659       Asia
-15     0.79920080   AmÃ©rica
+15     0.79920080    América
 16     2.05655522       Asia
 17    59.64669249       Asia
-18    16.27906977   AmÃ©rica
+18    16.27906977    América
 19    28.00066795     Europa
 20    28.05151996     Europa
-21     3.41955283   AmÃ©rica
+21     3.41955283    América
 22    23.94466123     Africa
-23     5.55555568   AmÃ©rica
+23     5.55555568    América
 24     2.62164436       Asia
-25     4.11058802   AmÃ©rica
+25     4.11058802    América
 26    20.03906250     Europa
 27     0.45806646     Africa
-28     9.68827993   AmÃ©rica
+28     9.68827993    América
 29     0.94876660       Asia
 30    32.20338983     Europa
 31    21.92982456     Africa
@@ -938,37 +938,37 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 33    12.40694789     Africa
 34    21.52730569       Asia
 35    13.11586385     Africa
-36     4.81288303   AmÃ©rica
+36     4.81288303    América
 37     3.89135959     Africa
-38     1.70779468   AmÃ©rica
+38     1.70779468    América
 39    12.66482109       Asia
 40     9.15909061     Europa
-41     1.52194680   AmÃ©rica
+41     1.52194680    América
 42    34.92745721     Africa
 43     1.61054173     Africa
 44     3.13182329     Africa
 45    14.57600286       Asia
 46    19.51665144       Asia
-47     4.84723854   AmÃ©rica
+47     4.84723854    América
 48     9.11949686     Africa
 49    15.58255897     Europa
-50    28.73870316   AmÃ©rica
-51             NA   AmÃ©rica
+50    28.73870316    América
+51             NA    América
 52    56.56108597     Europa
 53     0.08628128     Africa
-54     8.00000000   AmÃ©rica
-55     3.92977935   AmÃ©rica
+54     8.00000000    América
+55     3.92977935    América
 56     2.79950778     Africa
-57    35.56949807   AmÃ©rica
+57    35.56949807    América
 58     0.62658406       Asia
 59     9.12918327     Europa
 60    24.69589497     Europa
-61    16.64540384   AmÃ©rica
+61    16.64540384    América
 62    16.01104210     Europa
 63    10.17441860     Africa
 64    15.11900000     Africa
 65     7.51803124       Asia
-66     9.03119869   OceanÃ­a
+66     9.03119869    Oceanía
 67    18.74769427       Asia
 68     7.39034583     Europa
 69    33.52330476     Europa
@@ -977,17 +977,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 72     4.95035257       Asia
 73    20.65570889     Africa
 74             NA     Europa
-75     8.82352941   AmÃ©rica
+75     8.82352941    América
 76    16.60201707     Europa
-77             NA   AmÃ©rica
-78     1.85185185   OceanÃ­a
-79     8.04404629   AmÃ©rica
+77             NA    América
+78     1.85185185    Oceanía
+79     8.04404629    América
 80    12.61598567     Africa
 81     4.27807487     Africa
 82    10.66856330     Africa
-83     2.13360427   AmÃ©rica
-84    38.82438316   AmÃ©rica
-85     9.11609617   AmÃ©rica
+83     2.13360427    América
+84    38.82438316    América
+85     9.11609617    América
 86     2.85714286       Asia
 87    47.76317243     Europa
 88    52.62462204       Asia
@@ -996,25 +996,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 91    11.51734030       Asia
 92     6.47408913     Europa
 93    41.22807018     Europa
-94             NA   AmÃ©rica
+94             NA    América
 95     1.20698254     Europa
-96     0.83333335   AmÃ©rica
+96     0.83333335    América
 97    19.69697094     Europa
 98     2.14899704     Europa
-99    11.11111111   OceanÃ­a
-100    0.71454091   OceanÃ­a
-101    1.05263158   AmÃ©rica
-102    2.85714286   AmÃ©rica
-103    6.66666667   AmÃ©rica
+99    11.11111111    Oceanía
+100    0.71454091    Oceanía
+101    1.05263158    América
+102    2.85714286    América
+103    6.66666667    América
 104   13.63216266       Asia
 105   22.44509417     Europa
-106   11.08033241   AmÃ©rica
+106   11.08033241    América
 107   11.47684880       Asia
 108    2.67244869       Asia
 109   10.88824684       Asia
 110   10.19081421     Africa
 111    6.71532847       Asia
-112    2.46913580   OceanÃ­a
+112    2.46913580    Oceanía
 113            NA     Europa
 114    0.44893378       Asia
 115   11.59420290     Africa
@@ -1032,37 +1032,37 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 127   13.00000032       Asia
 128    5.25409977     Africa
 129   28.34374905     Europa
-130    2.17391304   OceanÃ­a
+130    2.17391304    Oceanía
 131   18.21644634     Africa
 132   36.94581281     Africa
 133    0.43659649     Africa
-134   11.60626559   AmÃ©rica
+134   11.60626559    América
 135            NA     Europa
 136    0.36509695       Asia
 137    0.66914498     Europa
 138    7.18482159     Africa
 139   16.70239481       Asia
 140    0.97171106     Africa
-141            NA   OceanÃ­a
+141            NA    Oceanía
 142   14.74502931       Asia
-143   12.49792255   AmÃ©rica
+143   12.49792255    América
 144   13.26280887     Africa
 145   37.33104955     Africa
 146    2.20509250     Europa
-147    0.34135666   OceanÃ­a
-148    2.16474878   OceanÃ­a
+147    0.34135666    Oceanía
+148    2.16474878    Oceanía
 149    0.18129241       Asia
 150   30.51350549     Europa
 151   40.26567040       Asia
-152    2.17391304   OceanÃ­a
-153    7.57331181   AmÃ©rica
-154    0.66245639   OceanÃ­a
-155   12.08155047   AmÃ©rica
-156    2.74062500   AmÃ©rica
-157    0.68306011   OceanÃ­a
+152    2.17391304    Oceanía
+153    7.57331181    América
+154    0.66245639    Oceanía
+155   12.08155047    América
+156    2.74062500    América
+157    0.68306011    Oceanía
 158   35.29181227     Europa
 159   10.68351748     Europa
-160    6.87711387   AmÃ©rica
+160    6.87711387    América
 161    1.23169683       Asia
 162            NA       Asia
 163   24.90807161     Europa
@@ -1071,48 +1071,48 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 166   32.29733230     Europa
 167   55.55792183     Europa
 168    6.60745234       Asia
-169   16.55971848   AmÃ©rica
+169   16.55971848    América
 170   28.01580699     Europa
 171    8.44186041       Asia
 172   37.30006954     Europa
 173   46.68422988     Africa
-174   19.23076923   AmÃ©rica
-175    2.82685512   OceanÃ­a
-176   15.00000000   OceanÃ­a
+174   19.23076923    América
+175    2.82685512    Oceanía
+176   15.00000000    Oceanía
 177   16.66666667     Europa
-178   12.82051282   AmÃ©rica
-179    4.91803279   AmÃ©rica
+178   12.82051282    América
+179    4.91803279    América
 180    9.06249980     Africa
 181   16.62078637     Africa
 182   29.70500800     Europa
 183    0.32608697     Africa
 184   21.94513716     Africa
 185    0.78984484       Asia
-186            NA   AmÃ©rica
+186            NA    América
 187    1.75343514     Africa
 188   20.73034604       Asia
 189   10.30426432     Africa
 190            NA     Africa
 191    6.32098426     Europa
 192   10.08958403     Europa
-193    0.41666667   AmÃ©rica
+193    0.41666667    América
 194   32.90336472       Asia
 195   15.24046060     Africa
 196    5.25974494       Asia
 197   10.42367182       Asia
 198   48.72219158     Africa
-199   25.00000000   OceanÃ­a
-200    4.87329435   AmÃ©rica
+199   25.00000000    Oceanía
+200    4.87329435    América
 201   18.66632338     Africa
 202    4.12827442       Asia
 203   26.48155607     Europa
-204            NA   OceanÃ­a
+204            NA    Oceanía
 205   56.57960607     Europa
 206   34.41053262     Africa
-207   13.77328361   AmÃ©rica
+207   13.77328361    América
 208   10.34320639       Asia
-209    1.64068909   OceanÃ­a
-210    3.06105096   AmÃ©rica
+209    1.64068909    Oceanía
+210    3.06105096    América
 211   22.56909730       Asia
 212    2.36377067     Africa
 213    5.11171794     Africa
@@ -1148,7 +1148,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>            <span class="at">Max =</span> <span class="fu">max</span>(valor, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
 <span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>            <span class="at">Mediana =</span> <span class="fu">median</span>(valor, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 15 x 6
+<pre><code># A tibble: 15 × 6
    variable        Promedio      DE           Min     Max  Mediana
    &lt;chr&gt;              &lt;dbl&gt;   &lt;dbl&gt;         &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;
  1 cajeros17        5.51e 1 4.69e 1        1.27   3.13e 2 4.58e+ 1
@@ -1188,8 +1188,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">datatable</span>()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
-<div id="htmlwidget-773aecf33070f2a5588f" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-773aecf33070f2a5588f">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15"],["cajeros17","camas14","cto_pib16","densidad17","desempleo17","deuda16","electri16","fertil16","gasto_edu16","gasto_id16","gasto_militar17","pib16","pm2517","pobRural17","tierrasCult16"],[55.1196036377194,2.29163265306122,3.02640099479596,449.387043752041,7.35891895640541,1.03477384615385,84.3502905575734,417.605786272689,4.53041608612259,1.03477384615385,1.863973927737,378862320893.031,26.9594007355736,39.0181367924528,14.175274204095],[46.9290679842077,1.57165431279005,3.75187392717875,2051.62952192388,5.53297052970703,1.02358403615596,26.38333302863,2442.77179288074,1.53418432589205,1.02358403615596,1.6150458230517,1633312267229.77,18.8299906160669,23.8268893116642,13.4963277685366],[1.27466705619395,0.5,-13.621458438417,0.136852235351444,0.140000000596046,0.01498,7.58847713470459,0.402090467725481,1.37101995944977,0.01498,0,36572611.8853148,5.86133100081928,0,0.0862812769628991],[313.152787448703,6.2,28.2238442822384,20479.1778885587,27.4440002441406,4.25121,100,30237.8556190309,10.2931299209595,4.25121,12.0727196538761,18707189000000,99.7343737198505,87.294,59.646692486268],[45.7658986412207,1.6,3.06260036695409,94.6730948993107,5.76000022888184,0.654185,100,119.309633027523,4.44098997116089,0.654185,1.43693076288569,26958567380.3348,21.5689865956858,38.269,10.4236718224613]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>variable<\/th>\n      <th>Promedio<\/th>\n      <th>DE<\/th>\n      <th>Min<\/th>\n      <th>Max<\/th>\n      <th>Mediana<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[2,3,4,5,6]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<div class="datatables html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-ac0bffd9bd48882af833" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-ac0bffd9bd48882af833">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15"],["cajeros17","camas14","cto_pib16","densidad17","desempleo17","deuda16","electri16","fertil16","gasto_edu16","gasto_id16","gasto_militar17","pib16","pm2517","pobRural17","tierrasCult16"],[55.1196036377194,2.29163265306122,3.02640099479596,449.387043752041,7.35891895640541,1.03477384615385,84.3502905575734,417.605786272689,4.53041608612259,1.03477384615385,1.863973927737,378862320893.031,26.9594007355736,39.0181367924528,14.175274204095],[46.9290679842077,1.57165431279005,3.75187392717875,2051.62952192388,5.53297052970703,1.02358403615596,26.38333302863,2442.77179288074,1.53418432589205,1.02358403615596,1.6150458230517,1633312267229.77,18.8299906160669,23.8268893116642,13.4963277685366],[1.27466705619395,0.5,-13.621458438417,0.136852235351444,0.140000000596046,0.01498,7.58847713470459,0.402090467725481,1.37101995944977,0.01498,0,36572611.8853148,5.86133100081928,0,0.0862812769628991],[313.152787448703,6.2,28.2238442822384,20479.1778885587,27.4440002441406,4.25121,100,30237.8556190309,10.2931299209595,4.25121,12.0727196538761,18707189000000,99.7343737198505,87.294,59.646692486268],[45.7658986412207,1.6,3.06260036695409,94.6730948993107,5.76000022888184,0.654185,100,119.309633027523,4.44098997116089,0.654185,1.43693076288569,26958567380.3348,21.5689865956858,38.269,10.4236718224613]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>variable<\/th>\n      <th>Promedio<\/th>\n      <th>DE<\/th>\n      <th>Min<\/th>\n      <th>Max<\/th>\n      <th>Mediana<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[2,3,4,5,6]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </section>
