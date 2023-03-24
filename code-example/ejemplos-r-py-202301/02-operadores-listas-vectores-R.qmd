@@ -1,0 +1,210 @@
+---
+title: "Operadores, listas y vectores"
+format: html
+---
+
+# Tipos de datos básicos
+
+- Numéricos
+- Enteros
+- Texto
+- Booleanos
+
+# Operadores ariméticos
+
+## Suma
+
+```{r}
+2 + 2
+```
+```{r}
+a <- 10
+b <- 20
+a + b
+```
+
+```{r}
+a + 100
+```
+
+## Resta
+
+```{r}
+a - 200
+```
+
+
+## Multiplicación
+
+```{r}
+a * b
+```
+
+
+## División
+
+```{r}
+a / b
+```
+
+
+## Potencia
+
+```{r}
+2 ^ 2
+```
+
+
+# Operadores de comparación
+
+## Mayor que
+
+```{r}
+a > b
+```
+
+```{r}
+a > 5
+```
+
+
+## Menor que
+
+```{r}
+a < 10
+```
+
+
+## Mayor o igual que
+
+```{r}
+a >= 10
+```
+
+
+## Menor o igual que
+
+```{r}
+a <= 10
+```
+
+
+## Igualdad
+
+```{r}
+a == b
+```
+
+```{r}
+a == a
+```
+
+
+## Diferencia (no igual)
+
+```{r}
+a != b 
+```
+
+```{r}
+2 != 3
+```
+
+
+# Listas (`list()`)
+
+```{r}
+lista1 <- list(1, 2, 3)
+lista1
+```
+
+```{r}
+lista2 <- list("a", 20, TRUE)
+lista2
+```
+
+```{r}
+class(lista2)
+```
+
+```{r}
+length(lista2)
+```
+
+```{r, eval=FALSE}
+# Error: no es posible sumar a los elementos de la lista el número 3
+lista1 + 3
+```
+
+```{r}
+# En R sí es posible comparar los elementos de la lista con algún número o elemento de interés
+lista1 > 2
+```
+
+
+
+# Vectoes (array 1D)
+
+```{r}
+vector1 <- c(1, 2, 3)
+vector1
+```
+
+```{r}
+class(vector1)
+```
+
+```{r}
+length(vector1)
+```
+
+```{r}
+# En los vectores sí es posible realizar operaciones aritméticas elemento a elemento
+vector1 + 10
+```
+
+```{r}
+# En los vectores también es posible comparar los elementos 
+vector1 > 2
+```
+
+```{r}
+# En los vectores (arrays) no es posible mezclar los tipos de datos
+vector2 = c(1, 2, 3, "a")
+vector2
+```
+
+# Indexación (subconjuntos)
+
+- La indexación en R comienza desde el número 1.
+
+```{r}
+vector2[1]
+```
+
+```{r}
+vector2[-4]
+```
+
+```{r}
+# 1: incluyente
+# 2: incluyente
+vector2[1:2]
+```
+
+```{r, eval=FALSE}
+# Error: no es posible en R usar los dos puntos para recuperar más de un elemento
+vector2[1:]
+```
+
+```{r, eval=FALSE}
+# Error: no es posible en R usar los dos puntos para recuperar más de un elemento
+vector2[:1]
+```
+
+```{r}
+# Obtenemos NA (no disponible) porque no hay nada en la posición 5 del vector
+vector2[5]
+```
+
+
