@@ -1,0 +1,72 @@
+---
+title: "Manipulando listas con R"
+format: html
+---
+
+## Tipos de datos básicos
+
+```{r}
+numero_decimal <- 23.13
+numero_entero <- 73
+texto <- "Hola mundo!"
+booleano <- TRUE
+```
+
+## Creando una lista
+
+```{r}
+mi_lista = list(numero_decimal, numero_entero, texto, booleano)
+mi_lista
+```
+
+## Indexación o subconjuntos
+
+```{r}
+mi_lista[1]
+```
+
+```{r}
+mi_lista[1:2]
+```
+
+## Cambiando elementos de la lista
+
+```{r}
+mi_lista[1] <- "Colombia"
+mi_lista
+```
+
+```{r}
+mi_lista[1:2] <- list("América Latina", 3.1416)
+mi_lista
+```
+
+## Agregando elementos a la lista
+
+```{r}
+c(mi_lista, "2023-01-01")
+```
+
+```{r}
+mi_lista[5] <- "2023-01-01"
+mi_lista
+```
+
+## Concatenando (combinando) listas
+
+```{r}
+otra_lista <- list(0.1, 0.2, 0.3)
+c(mi_lista, otra_lista)
+```
+
+## Removiendo elementos de la lista
+
+```{r}
+mi_lista[-5]
+```
+
+## Generando repeticiones con listas
+
+```{r}
+rep(mi_lista, 3)
+```

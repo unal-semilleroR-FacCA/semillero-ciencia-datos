@@ -81,7 +81,7 @@
     "href": "ciclo2.html",
     "title": "Ciclo 02",
     "section": "",
-    "text": "Bienvenida e Introducción\nEjemplo aplicado: Web Scraping con R\nEjemplo aplicado: Web Scraping con Python\nR + Python en la nube\nFundamentos básicos de R y Python\nInteroperabilidad R + Python: manipulación de datos\nInteroperabilidad R + Python: visualización de datos\nInteroperabilidad R + Python: productos de datos"
+    "text": "Bienvenida e Introducción\nEjemplo aplicado: Web Scraping con R\nEjemplo aplicado: Web Scraping con Python\nR + Python en la nube\nFundamentos básicos de R y Python\nOperadores, listas y vectores\nInteroperabilidad R + Python: visualización de datos\nInteroperabilidad R + Python: productos de datos"
   },
   {
     "objectID": "ciclo2.html#ia-para-todos",
@@ -98,6 +98,167 @@
     "text": "ChatGPT\n\nSitio oficial OpenAI\n\n\n\n\n\nPágina web construida con Quarto - Código fuente en Github."
   },
   {
+    "objectID": "code-example/ejemplos-r-py-202301/02-operadores-listas-vectores-Py.html#suma",
+    "href": "code-example/ejemplos-r-py-202301/02-operadores-listas-vectores-Py.html#suma",
+    "title": "Ciencia de Datos con R y Python",
+    "section": "Suma",
+    "text": "Suma\n\n2 + 2\n\n4\n\n\n\na = 10\nb = 20\na + b\n\n30\n\n\n\na + 100\n\n110"
+  },
+  {
+    "objectID": "code-example/ejemplos-r-py-202301/02-operadores-listas-vectores-Py.html#resta",
+    "href": "code-example/ejemplos-r-py-202301/02-operadores-listas-vectores-Py.html#resta",
+    "title": "Ciencia de Datos con R y Python",
+    "section": "Resta",
+    "text": "Resta\n\na - 200\n\n-190"
+  },
+  {
+    "objectID": "code-example/ejemplos-r-py-202301/02-operadores-listas-vectores-Py.html#multiplicación",
+    "href": "code-example/ejemplos-r-py-202301/02-operadores-listas-vectores-Py.html#multiplicación",
+    "title": "Ciencia de Datos con R y Python",
+    "section": "Multiplicación",
+    "text": "Multiplicación\n\na * b\n\n200"
+  },
+  {
+    "objectID": "code-example/ejemplos-r-py-202301/02-operadores-listas-vectores-Py.html#división",
+    "href": "code-example/ejemplos-r-py-202301/02-operadores-listas-vectores-Py.html#división",
+    "title": "Ciencia de Datos con R y Python",
+    "section": "División",
+    "text": "División\n\na / b\n\n0.5"
+  },
+  {
+    "objectID": "code-example/ejemplos-r-py-202301/02-operadores-listas-vectores-Py.html#potencia",
+    "href": "code-example/ejemplos-r-py-202301/02-operadores-listas-vectores-Py.html#potencia",
+    "title": "Ciencia de Datos con R y Python",
+    "section": "Potencia",
+    "text": "Potencia\n\n2 ** 2\n\n4"
+  },
+  {
+    "objectID": "code-example/ejemplos-r-py-202301/02-operadores-listas-vectores-Py.html#mayor-que",
+    "href": "code-example/ejemplos-r-py-202301/02-operadores-listas-vectores-Py.html#mayor-que",
+    "title": "Ciencia de Datos con R y Python",
+    "section": "Mayor que",
+    "text": "Mayor que\n\na > b\n\nFalse\n\n\n\na > 5\n\nTrue"
+  },
+  {
+    "objectID": "code-example/ejemplos-r-py-202301/02-operadores-listas-vectores-Py.html#menor-que",
+    "href": "code-example/ejemplos-r-py-202301/02-operadores-listas-vectores-Py.html#menor-que",
+    "title": "Ciencia de Datos con R y Python",
+    "section": "Menor que",
+    "text": "Menor que\n\na < 10\n\nFalse"
+  },
+  {
+    "objectID": "code-example/ejemplos-r-py-202301/02-operadores-listas-vectores-Py.html#mayor-o-igual-que",
+    "href": "code-example/ejemplos-r-py-202301/02-operadores-listas-vectores-Py.html#mayor-o-igual-que",
+    "title": "Ciencia de Datos con R y Python",
+    "section": "Mayor o igual que",
+    "text": "Mayor o igual que\n\na >= 10\n\nTrue"
+  },
+  {
+    "objectID": "code-example/ejemplos-r-py-202301/02-operadores-listas-vectores-Py.html#menor-o-igual-que",
+    "href": "code-example/ejemplos-r-py-202301/02-operadores-listas-vectores-Py.html#menor-o-igual-que",
+    "title": "Ciencia de Datos con R y Python",
+    "section": "Menor o igual que",
+    "text": "Menor o igual que\n\na <= 10\n\nTrue"
+  },
+  {
+    "objectID": "code-example/ejemplos-r-py-202301/02-operadores-listas-vectores-Py.html#igualdad",
+    "href": "code-example/ejemplos-r-py-202301/02-operadores-listas-vectores-Py.html#igualdad",
+    "title": "Ciencia de Datos con R y Python",
+    "section": "Igualdad",
+    "text": "Igualdad\n\na == b\n\nFalse\n\n\n\na == a\n\nTrue"
+  },
+  {
+    "objectID": "code-example/ejemplos-r-py-202301/02-operadores-listas-vectores-Py.html#diferencia-no-igual",
+    "href": "code-example/ejemplos-r-py-202301/02-operadores-listas-vectores-Py.html#diferencia-no-igual",
+    "title": "Ciencia de Datos con R y Python",
+    "section": "Diferencia (no igual)",
+    "text": "Diferencia (no igual)\n\na != b\n\nTrue\n\n\n\n2 != 3\n\nTrue"
+  },
+  {
+    "objectID": "code-example/ejemplos-r-py-202301/02-operadores-listas-vectores-R.html",
+    "href": "code-example/ejemplos-r-py-202301/02-operadores-listas-vectores-R.html",
+    "title": "Operadores, listas y vectores",
+    "section": "",
+    "text": "Numéricos\nEnteros\nTexto\nBooleanos"
+  },
+  {
+    "objectID": "code-example/ejemplos-r-py-202301/02-operadores-listas-vectores-R.html#suma",
+    "href": "code-example/ejemplos-r-py-202301/02-operadores-listas-vectores-R.html#suma",
+    "title": "Operadores, listas y vectores",
+    "section": "Suma",
+    "text": "Suma\n\n2 + 2\n\n[1] 4\n\n\n\na <- 10\nb <- 20\na + b\n\n[1] 30\n\n\n\na + 100\n\n[1] 110"
+  },
+  {
+    "objectID": "code-example/ejemplos-r-py-202301/02-operadores-listas-vectores-R.html#resta",
+    "href": "code-example/ejemplos-r-py-202301/02-operadores-listas-vectores-R.html#resta",
+    "title": "Operadores, listas y vectores",
+    "section": "Resta",
+    "text": "Resta\n\na - 200\n\n[1] -190"
+  },
+  {
+    "objectID": "code-example/ejemplos-r-py-202301/02-operadores-listas-vectores-R.html#multiplicación",
+    "href": "code-example/ejemplos-r-py-202301/02-operadores-listas-vectores-R.html#multiplicación",
+    "title": "Operadores, listas y vectores",
+    "section": "Multiplicación",
+    "text": "Multiplicación\n\na * b\n\n[1] 200"
+  },
+  {
+    "objectID": "code-example/ejemplos-r-py-202301/02-operadores-listas-vectores-R.html#división",
+    "href": "code-example/ejemplos-r-py-202301/02-operadores-listas-vectores-R.html#división",
+    "title": "Operadores, listas y vectores",
+    "section": "División",
+    "text": "División\n\na / b\n\n[1] 0.5"
+  },
+  {
+    "objectID": "code-example/ejemplos-r-py-202301/02-operadores-listas-vectores-R.html#potencia",
+    "href": "code-example/ejemplos-r-py-202301/02-operadores-listas-vectores-R.html#potencia",
+    "title": "Operadores, listas y vectores",
+    "section": "Potencia",
+    "text": "Potencia\n\n2 ^ 2\n\n[1] 4"
+  },
+  {
+    "objectID": "code-example/ejemplos-r-py-202301/02-operadores-listas-vectores-R.html#mayor-que",
+    "href": "code-example/ejemplos-r-py-202301/02-operadores-listas-vectores-R.html#mayor-que",
+    "title": "Operadores, listas y vectores",
+    "section": "Mayor que",
+    "text": "Mayor que\n\na > b\n\n[1] FALSE\n\n\n\na > 5\n\n[1] TRUE"
+  },
+  {
+    "objectID": "code-example/ejemplos-r-py-202301/02-operadores-listas-vectores-R.html#menor-que",
+    "href": "code-example/ejemplos-r-py-202301/02-operadores-listas-vectores-R.html#menor-que",
+    "title": "Operadores, listas y vectores",
+    "section": "Menor que",
+    "text": "Menor que\n\na < 10\n\n[1] FALSE"
+  },
+  {
+    "objectID": "code-example/ejemplos-r-py-202301/02-operadores-listas-vectores-R.html#mayor-o-igual-que",
+    "href": "code-example/ejemplos-r-py-202301/02-operadores-listas-vectores-R.html#mayor-o-igual-que",
+    "title": "Operadores, listas y vectores",
+    "section": "Mayor o igual que",
+    "text": "Mayor o igual que\n\na >= 10\n\n[1] TRUE"
+  },
+  {
+    "objectID": "code-example/ejemplos-r-py-202301/02-operadores-listas-vectores-R.html#menor-o-igual-que",
+    "href": "code-example/ejemplos-r-py-202301/02-operadores-listas-vectores-R.html#menor-o-igual-que",
+    "title": "Operadores, listas y vectores",
+    "section": "Menor o igual que",
+    "text": "Menor o igual que\n\na <= 10\n\n[1] TRUE"
+  },
+  {
+    "objectID": "code-example/ejemplos-r-py-202301/02-operadores-listas-vectores-R.html#igualdad",
+    "href": "code-example/ejemplos-r-py-202301/02-operadores-listas-vectores-R.html#igualdad",
+    "title": "Operadores, listas y vectores",
+    "section": "Igualdad",
+    "text": "Igualdad\n\na == b\n\n[1] FALSE\n\n\n\na == a\n\n[1] TRUE"
+  },
+  {
+    "objectID": "code-example/ejemplos-r-py-202301/02-operadores-listas-vectores-R.html#diferencia-no-igual",
+    "href": "code-example/ejemplos-r-py-202301/02-operadores-listas-vectores-R.html#diferencia-no-igual",
+    "title": "Operadores, listas y vectores",
+    "section": "Diferencia (no igual)",
+    "text": "Diferencia (no igual)\n\na != b \n\n[1] TRUE\n\n\n\n2 != 3\n\n[1] TRUE"
+  },
+  {
     "objectID": "code-example/GoogleNoticias-R.html",
     "href": "code-example/GoogleNoticias-R.html",
     "title": "Web Scraping con R",
@@ -109,7 +270,7 @@
     "href": "code-example/GoogleNoticias-R.html#colombia",
     "title": "Web Scraping con R",
     "section": "Colombia",
-    "text": "Colombia\nPrimero guardamos la URL para las noticas de Colombia en un objeto de nombre url_colombia. Cabe mencionar que este nombre lo asigna el usuario.\n\n\nCódigo\nurl_colombia <- \"https://news.google.com/topics/CAAqJggKIiBDQkFTRWdvSUwyMHZNREZzY3pJU0JtVnpMVFF4T1NnQVAB?hl=es-419&gl=CO&ceid=CO%3Aes-419\"\n\n\nLuego usamos la función googleNoticiasR() e ingresamos url_colombia como argumento de entrada. Guardamos este resultado en un objeto de nombre noticias_colombia.\n\n\nCódigo\nnoticias_colombia <- googleNoticiasR(url = url_colombia)\n\n\nLa ejecución anterior devuelve un dataframe como se muestra a continuación. La función head() se utiliza para imprimir sólo las primeras 6 filas de la tabla.\n\n\nCódigo\nnoticias_colombia %>% \n  head()\n\n\n\n\n  \n\n\n\nPodemos consultar el total de noticias (número de filas):\n\n\nCódigo\nnoticias_colombia %>% \n  nrow()\n\n\n[1] 232\n\n\nLos nombres de la base de datos pueden ser consultados con la función names():\n\n\nCódigo\nnoticias_colombia %>% \n  names()\n\n\n[1] \"noticia\"        \"fuente\"         \"fecha\"          \"fecha_consulta\""
+    "text": "Colombia\nPrimero guardamos la URL para las noticas de Colombia en un objeto de nombre url_colombia. Cabe mencionar que este nombre lo asigna el usuario.\n\n\nCódigo\nurl_colombia <- \"https://news.google.com/topics/CAAqJggKIiBDQkFTRWdvSUwyMHZNREZzY3pJU0JtVnpMVFF4T1NnQVAB?hl=es-419&gl=CO&ceid=CO%3Aes-419\"\n\n\nLuego usamos la función googleNoticiasR() e ingresamos url_colombia como argumento de entrada. Guardamos este resultado en un objeto de nombre noticias_colombia.\n\n\nCódigo\nnoticias_colombia <- googleNoticiasR(url = url_colombia)\n\n\nLa ejecución anterior devuelve un dataframe como se muestra a continuación. La función head() se utiliza para imprimir sólo las primeras 6 filas de la tabla.\n\n\nCódigo\nnoticias_colombia %>% \n  head()\n\n\nPodemos consultar el total de noticias (número de filas):\n\n\nCódigo\nnoticias_colombia %>% \n  nrow()\n\n\nLos nombres de la base de datos pueden ser consultados con la función names():\n\n\nCódigo\nnoticias_colombia %>% \n  names()"
   },
   {
     "objectID": "code-example/GoogleNoticias-R.html#negocios",
@@ -130,7 +291,7 @@
     "href": "code-example/GoogleNoticias-R.html#noticias-colombia",
     "title": "Web Scraping con R",
     "section": "Noticias Colombia",
-    "text": "Noticias Colombia\n\nTokenización\n\nEl primer paso es convertir las noticias (cadenas de texto) en tokens, es decir, palabras individuales que aportan información a nuestro análisis. Este proceso se logra a través de la función unnest_tokens() de la biblioteca tidytext.\n\n\n\nCódigo\ntokens_colombia <-\n  noticias_colombia %>% \n  unnest_tokens(output = \"token\", input = noticia)\n\ntokens_colombia %>% \n  head()\n\n\n\n\n  \n\n\n\nAlgunas palabras en la columna token no tienen propiedades informativas, por ejemplo, conectores, artículos, pronombres, preposiciones, etc. Es común en la minería de texto utilizar stop words para cada lenguaje, en este caso para el castellano. Podemos acceder a estas palabras a través de la función stopwords() de la biblioteca tm. Es importante mencionar que es posible que queden algunas palabras que no son informativas, de tal manera que se recomienda profundizar más en este tema.\nAsignamos las stop words a un objeto de nombre stop_spanish:\n\n\nCódigo\nstop_spanish <- stopwords(kind = \"spanish\")\n\n\nTenemos en total el siguiente número de stop words en español:\n\n\nCódigo\nstop_spanish %>% \n  length()\n\n\n[1] 308\n\n\nAhoa filtramos las palabras de la columna token que están dentro de las palabras sin significado (stop words) y asignamos el resultado a un objeto de nombre tokens_colombia_final. Note que en la columna token quedan números, que eventualmente podrían ser filtrados para el análisis, no obstante, se recomienda profundizar en cuál debería ser la limpieza del texto más adecuada para su análisis. En este caso hacemos caso omiso de estos datos.\n\n\nCódigo\ntokens_colombia_final <-\n  tokens_colombia %>%\n  filter(!token %in% stop_spanish) \n\ntokens_colombia_final %>% \n  head()\n\n\n\n\n  \n\n\n\n\n\nPreguntas\n\nPregunta 1\n\n¿Cuántas noticias hay para cada medio de comunicación? Nota: para respondera a esta pregunta no es estrictamente necesario tokenizar el texto, por tal motivo obtendremos el conteo a través del dataframe de nombre noticias_colombia. Observe que algunas fuentes se repiten, por ejemplo, El Tiempo y EL TIEMPO, R los define como entidades diferentes porque no están escritas de la misma manera, aunque esta característica es fácil de resolver lo dejaremos así y cada usuario podrá direccionar la depuración bajo la estructura correcta.\n\n\n\nCódigo\nnoticias_colombia %>% \n  count(fuente, sort = TRUE)\n\n\n\n\n  \n\n\n\nPodemos graficar los 10 primeros medios de comunicación con mayor número de noticias:\n\n\nCódigo\nnoticias_colombia %>% \n  count(fuente, sort = TRUE) %>% \n  slice(1:10) %>% \n  ggplot(aes(x = reorder(fuente, n), y = n)) +\n  geom_col() +\n  coord_flip() +\n  labs(x = \"\", y = \"Noticias (n)\", title = \"Google Noticias - Colombia\")\n\n\n\n\n\n\n\n\n\n\n\nPregunta 2\n\n¿Cuáles son las palabras más frecuentes en las noticias? Para responder a estar preguna utilizaremos el dataframe que posee los tokens y sobre el cual ya pasamos el filtro de las palabras sin significado, es decir, tokens_colombia_final. Observamos que la palabra más frecuente en las noticias es “petro”.\n\n\n\nCódigo\ntokens_colombia_final %>% \n  count(token, sort = TRUE)\n\n\n\n\n  \n\n\n\nComo son tantas palabras, es posible representar esta información a través de nubes de palabras. Este proceso lo llevamos a cabo con la biblioteca wordcloud2.\n\n\nCódigo\ntokens_colombia_final %>%\n  count(token, sort = TRUE) %>% \n  wordcloud2(data = ., backgroundColor = \"black\")\n\n\n\n\n\n\n\n\n\nPregunta 3\n\n¿Podemos asignar algún sentimiento a las noticias en función de las palabras que contienen? Para responder a esta pregunta lo primero que vamos a hacer es descargar el archivo que contiene el sentimiento para las palabras en español. Se puede descargar aquí.\nAgradecimiento especial a Juan Bosco Mendoza Vega por disponibilizar esta información.\nNote que la base de datos tiene tres columnas, la variable Palabra denota la información en español, la variable Word es su traducción al inglés y la Puntuacion (sin tilde) denota el score determinado por el léxico AFINN.\n\n\n\nCódigo\n# URL\nurl_sentimiento <- \n  \"https://raw.githubusercontent.com/jboscomendoza/rpubs/master/sentimientos_afinn/lexico_afinn.en.es.csv\"\n\n# Lectura de datos\ndf_sentimiento <-\n  read_csv(url_sentimiento)\n\ndf_sentimiento %>% \n  head()\n\n\n\n\n  \n\n\n\nSi usted desea descargar el archivo anterior puede ejecutar el siguiente código:\n\n\nCódigo\ndownload.file(url = url_sentimiento, destfile = \"datos_sentimiento_spanish_AFINN.csv\")\n\n\nVamos a cambiar el nombre Palabra por token, para que podamos unir a la tabla tokens_colombia_final y seleccionamos sólo las variables token y Puntuacion. Además, discretizamos la variable Puntuacion en una nueva variable llamada sentimiento, de tal manera que si la Puntuacion es mayor a 0 se le asigna el nivel Positivo, de lo contrario será Negativo. Asignamos este resultado a un nuevo objeto de nombre sentimiento_spanish.\n\n\nCódigo\nsentimiento_spanish <-\n  df_sentimiento %>% \n  rename(token = Palabra) %>% \n  select(token, Puntuacion) %>% \n  mutate(sentimiento = if_else(Puntuacion > 0, \"Positivo\", \"Negativo\"))\n\nsentimiento_spanish %>% \n  head()\n\n\n\n\n  \n\n\n\nAhora unimos los datos de sentimiento con la tabla tokens_colombia_final. La unión la realizamos con la función inner_join(), de tal manera que sólo serán tenidas en cuenta palabras que estén en ambas tablas. Note que la nueva tabla se reduce, ya que muchas palabras de las noticias no están presente en el dataframe sentimiento_spanish. Es importante mencionar que esta es una aproximación simple de análisis de sentimientos, sin embargo, podrían ser utilizadas técnicas más robustas, por ejemplo, Deep Learning.\n\n\nCódigo\nnoticias_sentimiento <-\n  inner_join(x = tokens_colombia_final, y = sentimiento_spanish, by = \"token\")\n\nnoticias_sentimiento %>% \n  head()\n\n\n\n\n  \n\n\n\nPodemos consultar el número de filas de la nueva tabla.\n\n\nCódigo\nnoticias_sentimiento %>% \n  nrow()\n\n\n[1] 119\n\n\nPodemos responder a la siguiente pregunta, ¿Predominan las palabras positivas o negativas? Parece que son más las noticias que tiene palabras negativas que positivas.\n\n\nCódigo\nnoticias_sentimiento %>% \n  count(sentimiento)\n\n\n\n\n  \n\n\n\n¿Cuál medio de comunicación es más negativo o positivo en sus noticias?\n\n\nCódigo\nnoticias_sentimiento %>% \n  count(fuente, sentimiento, sort = TRUE)\n\n\n\n\n  \n\n\n\nPodemos representar el resultado anterior a través de un gráfico. Para tener una representación más transparente filtramos medios de comunicación con más de 3 noticias.\n\n\nCódigo\nnoticias_sentimiento %>% \n  count(fuente, sentimiento, sort = TRUE) %>% \n  filter(n > 3) %>% \n  ggplot(aes(x = reorder(fuente, n), y = n, fill = sentimiento)) +\n  geom_col(position = \"fill\") +\n  coord_flip() +\n  labs(x = \"\", y = \"Frecuencia relativa\", fill = \"Sentimiento\") +\n  theme(legend.position = \"top\")\n\n\n\n\n\n\n\n\n\nHasta ahora hemos usamos la variable sentimiento, pero también podríamos calcular alguna métrica estadística con la variable Puntuacion. En este caso calculamos la mediana de la Puntuacion y obtenemos el número de datos (N) con los cuales es calculada la métrica.\n\n\nCódigo\nnoticias_sentimiento %>% \n  group_by(fuente) %>% \n  summarise(\n    mediana_sent = median(Puntuacion),\n    N = n()\n  ) %>% \n  arrange(desc(mediana_sent))\n\n\n\n\n  \n\n\n\nPodemos graficar la nube de palabras para el sentimiento positivo y negativo a través de la biblioteca wordcloud. Para este proceso fíjese que “remodelamos” los datos a través de la función acast() de la biblioteca reshape2. Este proceso es necesario para obtener la nube de palabras comparativa con la función comparison.cloud().\n\n\nCódigo\nnoticias_sentimiento %>%\n  count(token, sentimiento, sort = TRUE) %>% \n  acast(token ~ sentimiento, value.var = \"n\", fill = 0) %>%\n  comparison.cloud(colors = c(\"gray20\", \"forestgreen\"),\n                   max.words = 100)"
+    "text": "Noticias Colombia\n\nTokenización\n\nEl primer paso es convertir las noticias (cadenas de texto) en tokens, es decir, palabras individuales que aportan información a nuestro análisis. Este proceso se logra a través de la función unnest_tokens() de la biblioteca tidytext.\n\n\n\nCódigo\ntokens_colombia <-\n  noticias_colombia %>% \n  unnest_tokens(output = \"token\", input = noticia)\n\ntokens_colombia %>% \n  head()\n\n\nAlgunas palabras en la columna token no tienen propiedades informativas, por ejemplo, conectores, artículos, pronombres, preposiciones, etc. Es común en la minería de texto utilizar stop words para cada lenguaje, en este caso para el castellano. Podemos acceder a estas palabras a través de la función stopwords() de la biblioteca tm. Es importante mencionar que es posible que queden algunas palabras que no son informativas, de tal manera que se recomienda profundizar más en este tema.\nAsignamos las stop words a un objeto de nombre stop_spanish:\n\n\nCódigo\nstop_spanish <- stopwords(kind = \"spanish\")\n\n\nTenemos en total el siguiente número de stop words en español:\n\n\nCódigo\nstop_spanish %>% \n  length()\n\n\nAhoa filtramos las palabras de la columna token que están dentro de las palabras sin significado (stop words) y asignamos el resultado a un objeto de nombre tokens_colombia_final. Note que en la columna token quedan números, que eventualmente podrían ser filtrados para el análisis, no obstante, se recomienda profundizar en cuál debería ser la limpieza del texto más adecuada para su análisis. En este caso hacemos caso omiso de estos datos.\n\n\nCódigo\ntokens_colombia_final <-\n  tokens_colombia %>%\n  filter(!token %in% stop_spanish) \n\ntokens_colombia_final %>% \n  head()\n\n\n\n\nPreguntas\n\nPregunta 1\n\n¿Cuántas noticias hay para cada medio de comunicación? Nota: para respondera a esta pregunta no es estrictamente necesario tokenizar el texto, por tal motivo obtendremos el conteo a través del dataframe de nombre noticias_colombia. Observe que algunas fuentes se repiten, por ejemplo, El Tiempo y EL TIEMPO, R los define como entidades diferentes porque no están escritas de la misma manera, aunque esta característica es fácil de resolver lo dejaremos así y cada usuario podrá direccionar la depuración bajo la estructura correcta.\n\n\n\nCódigo\nnoticias_colombia %>% \n  count(fuente, sort = TRUE)\n\n\nPodemos graficar los 10 primeros medios de comunicación con mayor número de noticias:\n\n\nCódigo\nnoticias_colombia %>% \n  count(fuente, sort = TRUE) %>% \n  slice(1:10) %>% \n  ggplot(aes(x = reorder(fuente, n), y = n)) +\n  geom_col() +\n  coord_flip() +\n  labs(x = \"\", y = \"Noticias (n)\", title = \"Google Noticias - Colombia\")\n\n\n\n\nPregunta 2\n\n¿Cuáles son las palabras más frecuentes en las noticias? Para responder a estar preguna utilizaremos el dataframe que posee los tokens y sobre el cual ya pasamos el filtro de las palabras sin significado, es decir, tokens_colombia_final. Observamos que la palabra más frecuente en las noticias es “petro”.\n\n\n\nCódigo\ntokens_colombia_final %>% \n  count(token, sort = TRUE)\n\n\nComo son tantas palabras, es posible representar esta información a través de nubes de palabras. Este proceso lo llevamos a cabo con la biblioteca wordcloud2.\n\n\nCódigo\ntokens_colombia_final %>%\n  count(token, sort = TRUE) %>% \n  wordcloud2(data = ., backgroundColor = \"black\")\n\n\n\n\nPregunta 3\n\n¿Podemos asignar algún sentimiento a las noticias en función de las palabras que contienen? Para responder a esta pregunta lo primero que vamos a hacer es descargar el archivo que contiene el sentimiento para las palabras en español. Se puede descargar aquí.\nAgradecimiento especial a Juan Bosco Mendoza Vega por disponibilizar esta información.\nNote que la base de datos tiene tres columnas, la variable Palabra denota la información en español, la variable Word es su traducción al inglés y la Puntuacion (sin tilde) denota el score determinado por el léxico AFINN.\n\n\n\nCódigo\n# URL\nurl_sentimiento <- \n  \"https://raw.githubusercontent.com/jboscomendoza/rpubs/master/sentimientos_afinn/lexico_afinn.en.es.csv\"\n\n# Lectura de datos\ndf_sentimiento <-\n  read_csv(url_sentimiento)\n\ndf_sentimiento %>% \n  head()\n\n\nSi usted desea descargar el archivo anterior puede ejecutar el siguiente código:\n\n\nCódigo\ndownload.file(url = url_sentimiento, destfile = \"datos_sentimiento_spanish_AFINN.csv\")\n\n\nVamos a cambiar el nombre Palabra por token, para que podamos unir a la tabla tokens_colombia_final y seleccionamos sólo las variables token y Puntuacion. Además, discretizamos la variable Puntuacion en una nueva variable llamada sentimiento, de tal manera que si la Puntuacion es mayor a 0 se le asigna el nivel Positivo, de lo contrario será Negativo. Asignamos este resultado a un nuevo objeto de nombre sentimiento_spanish.\n\n\nCódigo\nsentimiento_spanish <-\n  df_sentimiento %>% \n  rename(token = Palabra) %>% \n  select(token, Puntuacion) %>% \n  mutate(sentimiento = if_else(Puntuacion > 0, \"Positivo\", \"Negativo\"))\n\nsentimiento_spanish %>% \n  head()\n\n\nAhora unimos los datos de sentimiento con la tabla tokens_colombia_final. La unión la realizamos con la función inner_join(), de tal manera que sólo serán tenidas en cuenta palabras que estén en ambas tablas. Note que la nueva tabla se reduce, ya que muchas palabras de las noticias no están presente en el dataframe sentimiento_spanish. Es importante mencionar que esta es una aproximación simple de análisis de sentimientos, sin embargo, podrían ser utilizadas técnicas más robustas, por ejemplo, Deep Learning.\n\n\nCódigo\nnoticias_sentimiento <-\n  inner_join(x = tokens_colombia_final, y = sentimiento_spanish, by = \"token\")\n\nnoticias_sentimiento %>% \n  head()\n\n\nPodemos consultar el número de filas de la nueva tabla.\n\n\nCódigo\nnoticias_sentimiento %>% \n  nrow()\n\n\nPodemos responder a la siguiente pregunta, ¿Predominan las palabras positivas o negativas? Parece que son más las noticias que tiene palabras negativas que positivas.\n\n\nCódigo\nnoticias_sentimiento %>% \n  count(sentimiento)\n\n\n¿Cuál medio de comunicación es más negativo o positivo en sus noticias?\n\n\nCódigo\nnoticias_sentimiento %>% \n  count(fuente, sentimiento, sort = TRUE)\n\n\nPodemos representar el resultado anterior a través de un gráfico. Para tener una representación más transparente filtramos medios de comunicación con más de 3 noticias.\n\n\nCódigo\nnoticias_sentimiento %>% \n  count(fuente, sentimiento, sort = TRUE) %>% \n  filter(n > 3) %>% \n  ggplot(aes(x = reorder(fuente, n), y = n, fill = sentimiento)) +\n  geom_col(position = \"fill\") +\n  coord_flip() +\n  labs(x = \"\", y = \"Frecuencia relativa\", fill = \"Sentimiento\") +\n  theme(legend.position = \"top\")\n\n\nHasta ahora hemos usamos la variable sentimiento, pero también podríamos calcular alguna métrica estadística con la variable Puntuacion. En este caso calculamos la mediana de la Puntuacion y obtenemos el número de datos (N) con los cuales es calculada la métrica.\n\n\nCódigo\nnoticias_sentimiento %>% \n  group_by(fuente) %>% \n  summarise(\n    mediana_sent = median(Puntuacion),\n    N = n()\n  ) %>% \n  arrange(desc(mediana_sent))\n\n\nPodemos graficar la nube de palabras para el sentimiento positivo y negativo a través de la biblioteca wordcloud. Para este proceso fíjese que “remodelamos” los datos a través de la función acast() de la biblioteca reshape2. Este proceso es necesario para obtener la nube de palabras comparativa con la función comparison.cloud().\n\n\nCódigo\nnoticias_sentimiento %>%\n  count(token, sentimiento, sort = TRUE) %>% \n  acast(token ~ sentimiento, value.var = \"n\", fill = 0) %>%\n  comparison.cloud(colors = c(\"gray20\", \"forestgreen\"),\n                   max.words = 100)"
   },
   {
     "objectID": "examples-rpy.html",

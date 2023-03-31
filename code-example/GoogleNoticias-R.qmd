@@ -7,6 +7,7 @@ execute:
   eval: true
   echo: true
   warning: false
+  freeze: auto
 format:
   html:
     page-layout: article
@@ -27,7 +28,8 @@ format:
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(fig.align = "center", warning = FALSE, message = FALSE)
+knitr::opts_chunk$set(fig.align = "center", warning = FALSE, message = FALSE,
+                      eval = FALSE)
 ```
 
 # Objetivo

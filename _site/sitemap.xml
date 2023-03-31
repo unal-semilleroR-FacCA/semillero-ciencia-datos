@@ -2,78 +2,86 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://semillerorpy.netlify.app/about.html</loc>
-    <lastmod>2023-03-11T14:25:12.917Z</lastmod>
+    <lastmod>2023-03-24T16:43:01.645Z</lastmod>
   </url>
   <url>
     <loc>https://semillerorpy.netlify.app/books-rpy.html</loc>
-    <lastmod>2023-03-11T14:25:13.410Z</lastmod>
+    <lastmod>2023-03-24T16:43:02.147Z</lastmod>
   </url>
   <url>
     <loc>https://semillerorpy.netlify.app/ciclo1.html</loc>
-    <lastmod>2023-03-11T14:25:13.850Z</lastmod>
+    <lastmod>2023-03-24T16:43:02.591Z</lastmod>
   </url>
   <url>
     <loc>https://semillerorpy.netlify.app/ciclo2.html</loc>
-    <lastmod>2023-03-11T14:25:14.274Z</lastmod>
+    <lastmod>2023-03-24T16:43:03.015Z</lastmod>
+  </url>
+  <url>
+    <loc>https://semillerorpy.netlify.app/code-example/ejemplos-r-py-202301/02-operadores-listas-vectores-Py.html</loc>
+    <lastmod>2023-03-24T16:43:03.538Z</lastmod>
+  </url>
+  <url>
+    <loc>https://semillerorpy.netlify.app/code-example/ejemplos-r-py-202301/02-operadores-listas-vectores-R.html</loc>
+    <lastmod>2023-03-24T16:43:06.680Z</lastmod>
   </url>
   <url>
     <loc>https://semillerorpy.netlify.app/code-example/GoogleNoticias-R.html</loc>
-    <lastmod>2023-03-11T14:25:45.898Z</lastmod>
+    <lastmod>2023-03-24T16:43:10.595Z</lastmod>
   </url>
   <url>
     <loc>https://semillerorpy.netlify.app/examples-rpy.html</loc>
-    <lastmod>2023-03-11T14:25:46.987Z</lastmod>
+    <lastmod>2023-03-24T16:43:11.692Z</lastmod>
   </url>
   <url>
     <loc>https://semillerorpy.netlify.app/guide-rpy.html</loc>
-    <lastmod>2023-03-11T14:25:47.445Z</lastmod>
+    <lastmod>2023-03-24T16:43:12.287Z</lastmod>
   </url>
   <url>
     <loc>https://semillerorpy.netlify.app/index.html</loc>
-    <lastmod>2023-03-11T14:25:49.489Z</lastmod>
+    <lastmod>2023-03-24T16:43:14.001Z</lastmod>
   </url>
   <url>
     <loc>https://semillerorpy.netlify.app/recursos-info.html</loc>
-    <lastmod>2023-03-11T14:25:50.031Z</lastmod>
+    <lastmod>2023-03-24T16:43:14.443Z</lastmod>
   </url>
   <url>
     <loc>https://semillerorpy.netlify.app/slides-ciclo01/0_Bienvenida.html</loc>
-    <lastmod>2023-03-11T14:25:51.749Z</lastmod>
+    <lastmod>2023-03-24T16:43:15.942Z</lastmod>
   </url>
   <url>
     <loc>https://semillerorpy.netlify.app/slides-ciclo01/1.2_RMarkdown.html</loc>
-    <lastmod>2023-03-11T14:25:53.635Z</lastmod>
+    <lastmod>2023-03-24T16:43:17.729Z</lastmod>
   </url>
   <url>
     <loc>https://semillerorpy.netlify.app/slides-ciclo01/1_Intro.html</loc>
-    <lastmod>2023-03-11T14:25:55.736Z</lastmod>
+    <lastmod>2023-03-24T16:43:19.857Z</lastmod>
   </url>
   <url>
     <loc>https://semillerorpy.netlify.app/slides-ciclo01/1_RMarkdown.html</loc>
-    <lastmod>2023-03-11T14:25:57.657Z</lastmod>
+    <lastmod>2023-03-24T16:43:21.739Z</lastmod>
   </url>
   <url>
     <loc>https://semillerorpy.netlify.app/slides-ciclo01/2_MundoR.html</loc>
-    <lastmod>2023-03-11T14:26:01.827Z</lastmod>
+    <lastmod>2023-03-24T16:43:25.508Z</lastmod>
   </url>
   <url>
     <loc>https://semillerorpy.netlify.app/slides-ciclo01/2_MundoR_tidy.html</loc>
-    <lastmod>2023-03-11T14:26:03.873Z</lastmod>
+    <lastmod>2023-03-24T16:43:27.427Z</lastmod>
   </url>
   <url>
     <loc>https://semillerorpy.netlify.app/slides-ciclo01/cor-rls.html</loc>
-    <lastmod>2023-03-11T14:26:16.028Z</lastmod>
+    <lastmod>2023-03-24T16:43:38.935Z</lastmod>
   </url>
   <url>
     <loc>https://semillerorpy.netlify.app/slides-ciclo01/Ejercicio1.html</loc>
-    <lastmod>2023-03-11T14:26:17.669Z</lastmod>
+    <lastmod>2023-03-24T16:43:40.516Z</lastmod>
   </url>
   <url>
     <loc>https://semillerorpy.netlify.app/slides-ciclo01/Recordatorio.html</loc>
-    <lastmod>2023-03-11T14:26:19.361Z</lastmod>
+    <lastmod>2023-03-24T16:43:42.240Z</lastmod>
   </url>
   <url>
     <loc>https://semillerorpy.netlify.app/slides-ciclo01/regsimple.html</loc>
-    <lastmod>2023-03-11T14:26:28.249Z</lastmod>
+    <lastmod>2023-03-24T16:43:51.726Z</lastmod>
   </url>
 </urlset>
