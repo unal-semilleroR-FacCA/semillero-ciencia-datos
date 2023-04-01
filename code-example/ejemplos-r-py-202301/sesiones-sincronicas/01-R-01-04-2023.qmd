@@ -1,0 +1,133 @@
+---
+title: "Sesión sincrónica 01-04-2023"
+format: html
+---
+
+# Funciones - Métodos
+
+```{r}
+a <- list(2, 1, 4)
+a
+```
+
+```{r}
+length(a)
+```
+
+```{r}
+class(a)
+```
+
+```{r}
+round(1.345, 1)
+```
+
+```{r}
+help(round)
+```
+
+# Arrays en R
+
+## Vectores
+
+```{r}
+peso_kg <- c(65.3, 82.5, 57.5, 82, 77.7)
+altura_m <- c(1.68, 1.75, 1.62, 1.80, 1.72)
+
+peso_kg / altura_m^2
+```
+
+```{r}
+altura_m > 1.70
+```
+
+```{r}
+altura_m[altura_m > 1.70]
+```
+
+
+## Diccionarios (listas)
+
+```{r}
+diccionario <- list(
+  Nombre = c('Pepito', 'Juanita', 'Pepita', 'Bill', 'Jenny'),
+  Peso = peso_kg,
+  Altura = altura_m
+)
+
+diccionario
+```
+
+```{r}
+names(diccionario)
+```
+
+
+# Introducción al [`tidyverse`](https://www.tidyverse.org/)
+
+```{r}
+library(tidyverse)
+```
+
+## Dataframes desde una lista (diccionario)
+
+```{r}
+data.frame(diccionario)
+```
+
+```{r}
+tabla <- data.frame(diccionario)
+head(tabla, 2)
+```
+
+```{r}
+rownames(tabla) <- c("P1", "P2", "P3", "P4", "P5")
+tabla
+```
+
+```{r}
+colnames(tabla)
+```
+
+
+## Dataframe desde un archivo *.csv*
+
+- [1000 Empresas más grandes de Colombia (2017-2018)](https://www.datos.gov.co/Econom-a-y-Finanzas/1000-Empresas-mas-grandes-del-pa-s/8hn7-rpp8)
+
+```{r}
+df_csv <- read_csv("1000_Empresas_mas_grandes_del_pa_s.csv")
+head(df_csv)
+```
+
+- Exportamos este archivo a excel:
+
+```{r}
+library(writexl)
+write_xlsx(df_csv, "empresas_colombia2.xlsx")
+```
+
+
+## Dataframe desde un archivo de excel
+
+```{r}
+library(readxl)
+df_excel <- read_excel("empresas_colombia2.xlsx")
+head(df_excel, 5)
+```
+
+## Resumen descriptivo rápido
+
+### Summary()
+
+```{r}
+summary(df_csv)
+```
+
+
+### skimr
+
+```{r}
+library(skimr)
+skim(df_csv)
+```
+
