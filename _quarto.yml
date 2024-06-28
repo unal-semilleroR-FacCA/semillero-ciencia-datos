@@ -32,4 +32,5 @@ format:
     css: styles.css
     lang: es
 
-
+execute: 
+  freeze: auto

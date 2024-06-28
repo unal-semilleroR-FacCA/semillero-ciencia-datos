@@ -10,8 +10,6 @@ title: "Ciclo 02"
 4. [R + Python en la nube](https://rpubs.com/Edimer/985185)
 5. [Fundamentos básicos de R y Python](https://rpubs.com/Edimer/1014123)
 6. [Operadores, listas y vectores](https://rpubs.com/Edimer/1019540)
-7. [Interoperabilidad R + Python: visualización de datos]()
-8. [Interoperabilidad R + Python: productos de datos]()
 
 
 ## IA para todos

@@ -95,6 +95,7 @@ colnames(tabla)
 - [1000 Empresas más grandes de Colombia (2017-2018)](https://www.datos.gov.co/Econom-a-y-Finanzas/1000-Empresas-mas-grandes-del-pa-s/8hn7-rpp8)
 
 ```{r}
+#| eval: false
 df_csv <- read_csv("1000_Empresas_mas_grandes_del_pa_s.csv")
 head(df_csv)
 ```
@@ -102,6 +103,7 @@ head(df_csv)
 - Exportamos este archivo a excel:
 
 ```{r}
+#| eval: false
 library(writexl)
 write_xlsx(df_csv, "empresas_colombia2.xlsx")
 ```
@@ -110,24 +112,9 @@ write_xlsx(df_csv, "empresas_colombia2.xlsx")
 ## Dataframe desde un archivo de excel
 
 ```{r}
+#| eval: false
 library(readxl)
 df_excel <- read_excel("empresas_colombia2.xlsx")
 head(df_excel, 5)
-```
-
-## Resumen descriptivo rápido
-
-### Summary()
-
-```{r}
-summary(df_csv)
-```
-
-
-### skimr
-
-```{r}
-library(skimr)
-skim(df_csv)
 ```
 

@@ -81,11 +81,9 @@ frutos <- c(6, 7, 3)
 
 # Conjunción
 (flores > 3) & (frutos <= 2)
-(flores > 3) && (frutos <= 2)
 
 # Disyunción
 (flores > 3) | (frutos <= 2)
-(flores > 3) || (frutos <= 2)
 ```
 
 ## Elementos básicos con R {data-background="lengR.png"}

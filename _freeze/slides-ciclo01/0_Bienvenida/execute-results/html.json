@@ -1,0 +1,15 @@
+{
+  "hash": "d94ca9d65621dc8985c096b4fa713c1b",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\noutput: \n  revealjs::revealjs_presentation:\n    theme: simple\n    highlight: haddock\n    center: true\n    transition: slide\n    css: estilo.css\n    self_contained: false\n    reveal_options:\n      slideNumber: true\n      previewLinks: true\n---\n\n\n\n\n# Semillero de R - FacCA {data-background=\"fondo1.png\"}\n\n# ¡Bienvenidos! {data-background=\"fondo2.png\"}\n\n## **Participantes**\n\n### ¿Cuál es su nombre completo?\n\n### ¿Qué carrera está estudiando?\n\n### ¿Cuáles son sus expectativas del semillero?\n\n# Propósitos del semillero\n\n##\n\n>  - Fomentar la discusión de temas relacionados con estadística computacional.\n>  - Promover la formulación y ejecución de proyectos de investigación.\n>  - Estimular el uso de herramientas tecnológicas que viabilicen el ejercicio académico y profesional.\n>  - Impulsar la utilización de herramientas de código abierto ([software libre](https://en.wikipedia.org/wiki/Free_software)).\n>  - <textred>Potenciar la sinergía entre tecnología, agricultura y datos; como pilar fundamental de la toma de decisiones.</textred>\n\n# ¡Éxitos! {data-background=\"exitos.png\"}\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}
