@@ -2,7 +2,7 @@
 title: "Guías - Herramientas"
 ---
 
-## Herramientas de software
+# Herramientas de software
 
 - [Descargar R](https://cran.r-project.org/)
 - [Descargar Python](https://www.python.org/downloads/)
@@ -10,11 +10,203 @@ title: "Guías - Herramientas"
 - [Descargar Visual Studio Code](https://code.visualstudio.com/download)
 - [Descargar Quarto](https://quarto.org/docs/get-started/)
 
-## Guías
+# Posit Cloud
+
+::: {.panel-tabset}
+
+## Crear proyecto
+
+  1. Ingresar a [Posit Cloud](https://posit.cloud/)
+  2. Dar clic en *New Project* y seleccione la opción *New RStudio Project*
+
+![](images/proyecto-posit-cloud.png){fig-align="center"}
+
+Aparecerá un cuadro de diálogo indicando que el proyecto se está desplegando.
+
+![](images/cargando-proyecto-posit.png){fig-align="center"}
+
+Podrá editar el nombre de su proyecto en la parte superior izquierda.
+
+![](images/nombre-proyecto-posit.png){fig-align="center"}
+
+Finalmente, para salir del proyecto dar clic en la parte superior derecha encima del nombre de su cuenta y luego dar clic en *Log Out*.
+
+![](images/logout-posit.png){fig-align="center"}
+
+## Configuración R Markdown
+
+  1. Dar clic *File* &#x2192; *New File* &#x2192; *R Markdown*
+
+![](images/posit-rmarkdown.png){fig-align="center"}
+
+  2. Si es la primera vez que realiza este proceso (ya sea en la nube de Posit o de forma local en su computador) aparecerá un cuadro de diálogo informando que es necesario instalar y/o actualizar algunas bibliotecas. Dar clic en *Yes*.
+  
+![](images/posit-rmarkdown-install.png){fig-align="center"}  
+
+  3. En la consola (parte inferior izquierda) iniciará el proceso de actualización.
+
+![](images/posit-rmarkdown-instalando.png){fig-align="center"}
+
+  4. Cuando el proceso de instalación y/o actualización haya terminado aparecerá una ventana emergente donde podrá ingresar el título, autor y fecha. Por defecto estará seleccionado el formato de salida en *HTML*, sin embargo, es posible seleccionar *PDF* o *Word*. Dar clic en *Ok* cuando haya ingresado la información requerida.
+  
+![](images/posit-rmarkdown-titulo-autor.png){fig-align="center"}  
+
+  5. Aparecerá una plantilla que siempre tendrá la misma estructura. Borre la información de la plantilla desde el título `## R Markdown` hacia abajo, es decir, mantenga solo los metadatos (título, autor y fecha) y el fragmento de código que dice `{r setup, inclue=FALSE}`.
+  
+![](images/posit-rmarkdown-plantilla.png){fig-align="center"}  
+
+  6. Dar clic en el disquete para guardar el archivo. También puede usar las teclas de acceso rápido `CTRL + S`.
+
+![](images/posit-rmarkdown-clic-guardar.png){fig-align="center"} 
+
+  7. Agregue un nombre a su archivo. **Recomendación:** no use tildes, tampoco la letra `ñ` y no deje espacios en blanco en el nombre de sus archivos. Dar clic en *Save* para guardar.
+  
+![](images/posit-rmarkdown-guardar.png){fig-align="center"}   
+
+  8. En la pestaña `Files` de la parte inferior derecha podrá ver que su archivo de extensión `.Rmd` (R Markdown) está disponible.
+
+![](images/posit-rmarkdown-archivo-guardado.png){fig-align="center"}   
+
+  9. Para exportar su archivo (o varios archivos) seleccione el documento deseado y a continuación dar clic en *More* &#x2192; *Export*.
+  
+![](images/posit-rmarkdown-exportar1.png){fig-align="center"}  
+
+  10. Finalmente, dar clic en *Download* para descargar el archivo. Si selecciona más de un archivo se dará cuenta que se comprimirá en un *.zip*.
+  
+![](images/posit-rmarkdown-exportar2.png){fig-align="center"}  
+
+  11. **¿Cómo compilar el documento HTML?** dar clic en la parte superior del editor en la opción *Knit* o utilice las teclás de acceso rápido `CTRL + SHIFT + K`. Al finalizar la compilación podrá notar que hay un nuevo archivo de extensión *.html* en sus archivos.
+  
+![](images/posit-rmarkdown-compilar.png){fig-align="center"}   
+
+![](images/html-rmarkdown.png){fig-align="center"} 
+
+## Configuración Quarto - (R y Python)
+
+  1. Dar clic *File* &#x2192; *New File* &#x2192; *Quarto Document*
+
+![](images/quarto-document.png){fig-align="center"} 
+
+  2. Agregar un título y nombre de autor para el documento. Además, seleccione el motor o kernel (*Engine*) con el cual desea trabajar, puede ser **Knitr** para R o **Jupyter** para Python. Dar clic en *Create*.
+
+![](images/quarto-engine.png){fig-align="center"} 
+
+  3. En caso de seleccionar el kernel de R (**Knitr**) y si es la primera vez que está ejecutando un documento de Quarto verá un aviso de color amarillo en la parte superior del editor de RStudio, el cual le notificará que es necesario instalar algunas bibliotecas para que funcione de forma correcta. Dar clic en *Install* y esperar que se instalen las bibliotecas necesarias (ver segunda imagen).
+  
+![](images/quarto-install.png){fig-align="center"}   
+
+![](images/quarto-r-install.png){fig-align="center"}  
+
+  4. En caso de seleccionar el kernel de Python (**Jupyter**) verá que el *Kernel* automáticamente toma la versión de Python 3. Dar clic en *Create*. Además, notará que cuando crea el documento aparecerá en los metadatos (parte inicial del documento) `Jupyter: python3` (ver segunda imagen). Para garantizar que 
+
+![](images/quarto-kernel-python.png){fig-align="center"} 
+
+
+
+![](images/quarto-metadata-python.png){fig-align="center"} 
+
+  5. Independientemente de que use R o Python, aparecerá una plantilla que siempre tendrá la misma estructura. Borre la información de la plantilla desde el título `Quarto` hacia abajo, es decir, mantenga solo los metadatos (título, autor y editor).
+  
+![](images/quarto-plantilla.png){fig-align="center"}  
+
+  6. Dar clic en el disquete para guardar el archivo. También puede usar las teclas de acceso rápido `CTRL + S`.
+
+![](images/quarto-guardar-r.png){fig-align="center"} 
+
+![](images/quarto-guardar-python.png){fig-align="center"} 
+
+  7. Agregue un nombre a su archivo. **Recomendación:** no use tildes, tampoco la letra `ñ` y no deje espacios en blanco en el nombre de sus archivos. Dar clic en *Save* para guardar.
+  
+![](images/quarto-guardar-archivo.png){fig-align="center"}   
+
+  8. En la pestaña `Files` de la parte inferior derecha podrá ver que sus archivos de extensión `.qmd` (Quarto) están disponibles.
+
+![](images/quarto-archivos-guardados.png){fig-align="center"}   
+
+  9. Para exportar su archivo (o varios archivos) seleccione el documento deseado y a continuación dar clic en *More* &#x2192; *Export*.
+  
+![](images/quarto-exportar-archivo.png){fig-align="center"}  
+
+  10. Finalmente, dar clic en *Download* para descargar el archivo. Si selecciona más de un archivo se dará cuenta que se comprimirá en un *.zip*.
+  
+![](images/quarto-exportar-final.png){fig-align="center"} 
+
+  11. **¿Cómo compilar el documento HTML?** dar clic en la parte superior del editor en la opción *Render* o utilice las teclás de acceso rápido `CTRL + SHIFT + K`. Al finalizar la compilación podrá notar que hay un nuevo archivo de extensión *.html* en sus archivos.
+  
+![](images/quarto-render.png){fig-align="center"}   
+
+![](images/html-quarto.png){fig-align="center"} 
+
+  12. **Configuración adicional en Python:** se dará cuenta que, cuando intenta renderizar el documento HTML por primera vez desde Quarto con Python, aparecerá un error en la consola informando que no se encuentra el módulo de nombre `yaml`. Para solucionar este error debemos instalar la biblioteca `jupyter` (automáticamente instalará otras dependecias, incluida `yaml`). Diríjase a la **terminal** y luego ejecuta el siguiente código presionando la tecla *Enter*: `python3 -m pip install jupyter`. Al terminar la instalcación, nuevamente dar clic en *Render* y se dará cuenta que ahora compila el documento sin ningún problema.
+  
+![](images/quarto-install-jupuyter-python.png){fig-align="center"}   
+
+:::
+
+# Extensiones recomendadas en Visual Studio Code - Python
+
+- autopep8
+- Auto Complete Tag
+- autoDocstring - Python Docstring
+- Code Runner
+- Jupyter
+- Jupyter Cell Tags
+- Jupyter Keymap
+- Jupyter Notebook Renderers
+- Jupyter Slide Show
+- My Jupyter Notebook Previewer
+- Path Autocomplete
+- Pylance
+- Python
+- Python Debugger
+- Python Docs
+- Python Environment Manager
+- Python Path
+- Quarto
+- VS Code Jupyter Notebook Previewer
+
+Para instalar una extensión en *Visual Studio Code* puede seguir los siguientes pasos:
+
+  0. Instalar *Visual Studio Code*
+  1. Abrir *Visual Studio Code*
+  2. En la barra lateral izquierda dar clic en *Extensions* o use las teclas de acceso rápido `CTRL + SHIFT + X`
+
+![](images/visual-extensiones.png){fig-align="center"}   
+
+  3. En el rectángulo de búsqueda escriba el nombre de la extensión que desea instalar.
+  
+![](images/visual-barra-extensiones.png){fig-align="center"}
+
+  4. Finalmente, notará que las extensiones que no están instaladas aparecerán con un botón que dice **Install**, dar clic en este botón para instalar la extensión de interés. 
+
+![](images/visual-install.png){fig-align="center"}
+
+# Guías
 
 - [Guía de actualización de versión R](https://rpubs.com/Edimer/978394)
 - [Actualización de bibliotecas de R con RStudio](https://rpubs.com/Edimer/978395)
-- [Guías R, R Markdown, Git y Github](/guias/GuiasR.html)
+- [Guías R, R Markdown, Git y Github](https://semillerorpy.netlify.app/guias/guiasr)
+
+# Componentes básicos de Markdown
+
+| Comando | Sintaxis | Ejemplo | Descripción |
+| --- | --- | --- | --- |
+| Título de nivel 1 | `# Título de nivel 1` | # Título de nivel 1 | Crea un título de nivel 1 (el más grande) |
+| Título de nivel 2 | `## Título de nivel 2` | ## Título de nivel 2 | Crea un título de nivel 2 |
+| Negrita | `**texto en negrita**` | **texto en negrita** | Formatea el texto en negrita |
+| Cursiva | `*texto en cursiva*` | *texto en cursiva* | Formatea el texto en cursiva |
+| Tachado | `~~texto tachado~~` | ~~texto tachado~~ | Formatea el texto como tachado |
+| Código en línea | `` `código en línea` `` | `código en línea` | Formatea el texto como código en línea |
+| Bloque de código | ```<lenguaje> <br> código <br> ``` | ```python <br> print("Hola, mundo!") <br> ``` | Crea un bloque de código con resaltado de sintaxis |
+| Insertar imagen | `![texto alternativo](url_de_la_imagen)` | ![texto alternativo](url_de_la_imagen) | Inserta una imagen con un texto alternativo |
+| Insertar hipervínculo | `[texto del enlace](url_del_enlace)` | [texto del enlace](url_del_enlace) | Inserta un hipervínculo con un texto personalizado |
+| Viñetas | `- elemento 1` <br> `- elemento 2` | - elemento 1 <br> - elemento 2 | Crea una lista con viñetas |
+| Numeración | `1. elemento 1` <br> `2. elemento 2` | 1. elemento 1 <br> 2. elemento 2 | Crea una lista numerada |
+| Cita | `> texto de la cita` | > texto de la cita | Crea una cita |
+| Línea horizontal | `---` | --- | Crea una línea horizontal |
+
+
+# Videos YouTube
 
 ## Instalación de R y RStudio
 
@@ -51,9 +243,97 @@ title: "Guías - Herramientas"
 <iframe width="800" height="500" src="https://www.youtube.com/embed/0SE_XjWJLvA" frameborder="0" allowfullscreen></iframe>
 <center>
 
-<p>Página web construida con Quarto - <a href="https://github.com/web-edimer/unal-semilleror-facca.github.io">Código fuente en Github.</a></p>
+# Artículos
 
-</center>
+- [Statistical Modeling: The Two Cultures - Leo Breiman](https://projecteuclid.org/journals/statistical-science/volume-16/issue-3/Statistical-Modeling--The-Two-Cultures-with-comments-and-a/10.1214/ss/1009213726.full)
+- [Tidy Data - Hadley Wickham](https://vita.had.co.nz/papers/tidy-data.pdf)
 
-## [Ejecución de scripts deshabilitada (*Windows*)](https://www.youtube.com/watch?v=gm0gexHWDy0&ab_channel=WilfredoAleman)
+# Libros
+
+::: {layout-ncol=2}
+![[R Para Ciencia de Datos](https://es.r4ds.hadley.nz/)](https://images-na.ssl-images-amazon.com/images/I/512BRANyRxS._SX600_.jpg)
+
+![[Python for Data Analysis, 3E](https://wesmckinney.com/book/)](https://wesmckinney.com/book/images/cover.png)
+
+:::
+
+::: {layout-ncol=2}
+![[Fundamentals of Data Visualization](https://clauswilke.com/dataviz/)](https://clauswilke.com/dataviz/cover.png)
+
+![[ggplot2: Elegant Graphics for Data Analysis](https://ggplot2-book.org/index.html)](https://ggplot2-book.org/cover.jpg)
+
+:::
+
+::: {layout-ncol=2}
+![[Interactive web-based data visualization with R, plotly, and shiny](https://plotly-r.com/index.html)](https://plotly-r.com/crc-cover.png)
+
+![[Data Visualization A practical introduction](https://socviz.co/index.html)](https://socviz.co/assets/dv-cover-pupress.jpg)
+
+:::
+
+::: {layout-ncol=2}
+![[Hands-On Programming with R](https://jjallaire.github.io/hopr/)](https://jjallaire.github.io/hopr/cover.png)
+
+![[Advanced R](https://adv-r.hadley.nz/index.html)](https://d33wubrfki0l68.cloudfront.net/565916198b0be51bf88b36f94b80c7ea67cafe7c/7f70b/cover.png)
+
+:::
+
+::: {layout-ncol=2}
+![[Natural Language Processing with Python](https://sites.pitt.edu/~naraehan/ling1330/nltk_book.html)](https://covers.oreilly.com/images/9780596516499/cat.gif)
+
+![[Welcome to Text Mining with R](https://www.tidytextmining.com/index.html)](https://www.tidytextmining.com/images/cover.png)
+
+:::
+
+::: {layout-ncol=2}
+![[R Markdown: The Definitive Guide](https://bookdown.org/yihui/rmarkdown/)](https://bookdown.org/yihui/rmarkdown/images/cover.png)
+
+![[Mastering Shiny](https://mastering-shiny.org/index.html)](https://d33wubrfki0l68.cloudfront.net/0c97eee3d8fc820f3a8d670c08b286e8a524257b/e426c/cover.png)
+
+:::
+
+::: {layout-ncol=2}
+
+![[Forecasting: Principles and Practice (3rd ed)](https://otexts.com/fpp3/)](https://otexts.com/fpp3/figs/fpp3_front_cover.jpg)
+
+
+![[Statistical Inference via Data Science](https://moderndive.com/)](https://d33wubrfki0l68.cloudfront.net/19dafd10a53785f1407566a1f3a09b29a6bab847/1e5f0/images/logos/book_cover.png)
+
+:::
+
+::: {layout-ncol=2}
+![[Supervised Machine Learning for Text Analysis in R](https://smltar.com/)](https://m.media-amazon.com/images/I/31+mpS8w44L._AC_SY780_.jpg)
+
+![[Tidy Modeling with R](https://www.tmwr.org/)](https://www.tmwr.org/images/cover.png)
+
+:::
+
+::: {layout-ncol=2}
+![[Deep Learning](https://www.deeplearningbook.org/)](https://m.media-amazon.com/images/I/A1GbblX7rOL.jpg)
+
+![[Hands-On Machine Learning with Scikit-Learn and TensorFlow: Concepts, Tools, and Techniques to Build Intelligent Systems](https://bcebakhtiyarpur.org/wp-content/uploads/2020/03/file_5e748501c810d.pdf)](https://m.media-amazon.com/images/S/aplus-media-library-service-media/e81bbfe4-5c61-4b4d-ae33-8c259509e678.__CR38,38,353,470_PT0_SX300_V1___.png)
+
+:::
+
+::: {layout-ncol=2}
+![[Deep Learning with Python](https://unica.it/static/resources/cms/documents/DeepLearningWithPython.pdf)](https://images.manning.com/book/7/65fca1c-6826-472d-bbea-c1d4a7b3c570/Chollet-DLP-HI.png)
+
+![[Deep Learning with R](https://manning-content.s3.amazonaws.com/download/9/9a3b0d8-e651-4239-8c4f-94267be64fee/SampleCh03.pdf)](https://images.manning.com/book/a/4e5e97f-4e8d-4d97-a715-f6c2b0eb95f5/Allaire-DLwithR-HI.png)
+
+:::
+
+::: {layout-ncol=2}
+![[Deep Learning for Coders with Fastai and PyTorch](https://dl.ebooksworld.ir/books/Deep.Learning.for.Coders.with.fastai.and.PyTorch.Howard.Gugger.OReilly.9781492045526.EBooksWorld.ir.pdf)](https://course.fast.ai/images/book.png)
+
+![[Mastering Spark with R](https://therinspark.com/)](https://therinspark.s3-us-west-2.amazonaws.com/mastering-spark-with-r.png)
+
+:::
+
+
+::: {layout-ncol=2}
+![[Spatial Data Science with R and “terra”](https://rspatial.org/index.html)](https://rspatial.org/terra/_images/glm-1.png)
+
+![[Geocomputation with R](https://geocompr.robinlovelace.net/)](https://geocompr.robinlovelace.net/images/cover.png)
+
+:::
 

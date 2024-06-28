@@ -18,15 +18,15 @@ title: ""
 
 - **Lugar:** reuniones virtuales.
 - **Canal de Youtube:** [RPyCol- @rpycol](https://www.youtube.com/@rpycol)
-- **Hora:** sábados 10:00 am a 12:00 pm - Colombia.
 
 ## Dirección del semillero
 
-- [Luis Gabriel González Herrera](https://scholar.google.es/citations?user=6H65sOoAAAAJ&hl=es)
 - [Edimer David Jaramillo](https://edimer.netlify.app/)  
 
 ## Contacto
 
-- Escríbenos a [semillerorpy@gmail.com]()
-
+- Escríbenos a cualquiera de estos correos:
+  - <edavidja@unal.edu.co>
+  - <edimer.davidj@udea.edu.co>
+  
 <center> <p>Página web construida con Quarto - <a href="https://github.com/web-edimer/unal-semilleror-facca.github.io">Código fuente en Github.</a></p></center>

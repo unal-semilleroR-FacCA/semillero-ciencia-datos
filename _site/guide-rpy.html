@@ -177,8 +177,8 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="herramientas-de-software" class="level2">
-<h2 class="anchored" data-anchor-id="herramientas-de-software">Herramientas de software</h2>
+<section id="herramientas-de-software" class="level1">
+<h1>Herramientas de software</h1>
 <ul>
 <li><a href="https://cran.r-project.org/">Descargar R</a></li>
 <li><a href="https://www.python.org/downloads/">Descargar Python</a></li>
@@ -187,14 +187,410 @@ ul.task-list li input[type="checkbox"] {
 <li><a href="https://quarto.org/docs/get-started/">Descargar Quarto</a></li>
 </ul>
 </section>
-<section id="guías" class="level2">
-<h2 class="anchored" data-anchor-id="guías">Guías</h2>
+<section id="posit-cloud" class="level1">
+<h1>Posit Cloud</h1>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">Crear proyecto</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Configuración R Markdown</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false">Configuración Quarto - (R y Python)</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<ol type="1">
+<li>Ingresar a <a href="https://posit.cloud/">Posit Cloud</a></li>
+<li>Dar clic en <em>New Project</em> y seleccione la opción <em>New RStudio Project</em></li>
+</ol>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/proyecto-posit-cloud.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<p>Aparecerá un cuadro de diálogo indicando que el proyecto se está desplegando.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/cargando-proyecto-posit.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<p>Podrá editar el nombre de su proyecto en la parte superior izquierda.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/nombre-proyecto-posit.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<p>Finalmente, para salir del proyecto dar clic en la parte superior derecha encima del nombre de su cuenta y luego dar clic en <em>Log Out</em>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/logout-posit.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<ol type="1">
+<li>Dar clic <em>File</em> → <em>New File</em> → <em>R Markdown</em></li>
+</ol>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/posit-rmarkdown.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<ol start="2" type="1">
+<li>Si es la primera vez que realiza este proceso (ya sea en la nube de Posit o de forma local en su computador) aparecerá un cuadro de diálogo informando que es necesario instalar y/o actualizar algunas bibliotecas. Dar clic en <em>Yes</em>.</li>
+</ol>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/posit-rmarkdown-install.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<ol start="3" type="1">
+<li>En la consola (parte inferior izquierda) iniciará el proceso de actualización.</li>
+</ol>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/posit-rmarkdown-instalando.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<ol start="4" type="1">
+<li>Cuando el proceso de instalación y/o actualización haya terminado aparecerá una ventana emergente donde podrá ingresar el título, autor y fecha. Por defecto estará seleccionado el formato de salida en <em>HTML</em>, sin embargo, es posible seleccionar <em>PDF</em> o <em>Word</em>. Dar clic en <em>Ok</em> cuando haya ingresado la información requerida.</li>
+</ol>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/posit-rmarkdown-titulo-autor.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<ol start="5" type="1">
+<li>Aparecerá una plantilla que siempre tendrá la misma estructura. Borre la información de la plantilla desde el título <code>## R Markdown</code> hacia abajo, es decir, mantenga solo los metadatos (título, autor y fecha) y el fragmento de código que dice <code>{r setup, inclue=FALSE}</code>.</li>
+</ol>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/posit-rmarkdown-plantilla.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<ol start="6" type="1">
+<li>Dar clic en el disquete para guardar el archivo. También puede usar las teclas de acceso rápido <code>CTRL + S</code>.</li>
+</ol>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/posit-rmarkdown-clic-guardar.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<ol start="7" type="1">
+<li>Agregue un nombre a su archivo. <strong>Recomendación:</strong> no use tildes, tampoco la letra <code>ñ</code> y no deje espacios en blanco en el nombre de sus archivos. Dar clic en <em>Save</em> para guardar.</li>
+</ol>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/posit-rmarkdown-guardar.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<ol start="8" type="1">
+<li>En la pestaña <code>Files</code> de la parte inferior derecha podrá ver que su archivo de extensión <code>.Rmd</code> (R Markdown) está disponible.</li>
+</ol>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/posit-rmarkdown-archivo-guardado.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<ol start="9" type="1">
+<li>Para exportar su archivo (o varios archivos) seleccione el documento deseado y a continuación dar clic en <em>More</em> → <em>Export</em>.</li>
+</ol>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/posit-rmarkdown-exportar1.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<ol start="10" type="1">
+<li>Finalmente, dar clic en <em>Download</em> para descargar el archivo. Si selecciona más de un archivo se dará cuenta que se comprimirá en un <em>.zip</em>.</li>
+</ol>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/posit-rmarkdown-exportar2.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<ol start="11" type="1">
+<li><strong>¿Cómo compilar el documento HTML?</strong> dar clic en la parte superior del editor en la opción <em>Knit</em> o utilice las teclás de acceso rápido <code>CTRL + SHIFT + K</code>. Al finalizar la compilación podrá notar que hay un nuevo archivo de extensión <em>.html</em> en sus archivos.</li>
+</ol>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/posit-rmarkdown-compilar.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/html-rmarkdown.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+</div>
+<div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
+<ol type="1">
+<li>Dar clic <em>File</em> → <em>New File</em> → <em>Quarto Document</em></li>
+</ol>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/quarto-document.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<ol start="2" type="1">
+<li>Agregar un título y nombre de autor para el documento. Además, seleccione el motor o kernel (<em>Engine</em>) con el cual desea trabajar, puede ser <strong>Knitr</strong> para R o <strong>Jupyter</strong> para Python. Dar clic en <em>Create</em>.</li>
+</ol>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/quarto-engine.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<ol start="3" type="1">
+<li>En caso de seleccionar el kernel de R (<strong>Knitr</strong>) y si es la primera vez que está ejecutando un documento de Quarto verá un aviso de color amarillo en la parte superior del editor de RStudio, el cual le notificará que es necesario instalar algunas bibliotecas para que funcione de forma correcta. Dar clic en <em>Install</em> y esperar que se instalen las bibliotecas necesarias (ver segunda imagen).</li>
+</ol>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/quarto-install.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/quarto-r-install.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<ol start="4" type="1">
+<li>En caso de seleccionar el kernel de Python (<strong>Jupyter</strong>) verá que el <em>Kernel</em> automáticamente toma la versión de Python 3. Dar clic en <em>Create</em>. Además, notará que cuando crea el documento aparecerá en los metadatos (parte inicial del documento) <code>Jupyter: python3</code> (ver segunda imagen). Para garantizar que</li>
+</ol>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/quarto-kernel-python.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/quarto-metadata-python.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<ol start="5" type="1">
+<li>Independientemente de que use R o Python, aparecerá una plantilla que siempre tendrá la misma estructura. Borre la información de la plantilla desde el título <code>Quarto</code> hacia abajo, es decir, mantenga solo los metadatos (título, autor y editor).</li>
+</ol>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/quarto-plantilla.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<ol start="6" type="1">
+<li>Dar clic en el disquete para guardar el archivo. También puede usar las teclas de acceso rápido <code>CTRL + S</code>.</li>
+</ol>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/quarto-guardar-r.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/quarto-guardar-python.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<ol start="7" type="1">
+<li>Agregue un nombre a su archivo. <strong>Recomendación:</strong> no use tildes, tampoco la letra <code>ñ</code> y no deje espacios en blanco en el nombre de sus archivos. Dar clic en <em>Save</em> para guardar.</li>
+</ol>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/quarto-guardar-archivo.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<ol start="8" type="1">
+<li>En la pestaña <code>Files</code> de la parte inferior derecha podrá ver que sus archivos de extensión <code>.qmd</code> (Quarto) están disponibles.</li>
+</ol>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/quarto-archivos-guardados.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<ol start="9" type="1">
+<li>Para exportar su archivo (o varios archivos) seleccione el documento deseado y a continuación dar clic en <em>More</em> → <em>Export</em>.</li>
+</ol>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/quarto-exportar-archivo.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<ol start="10" type="1">
+<li>Finalmente, dar clic en <em>Download</em> para descargar el archivo. Si selecciona más de un archivo se dará cuenta que se comprimirá en un <em>.zip</em>.</li>
+</ol>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/quarto-exportar-final.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<ol start="11" type="1">
+<li><strong>¿Cómo compilar el documento HTML?</strong> dar clic en la parte superior del editor en la opción <em>Render</em> o utilice las teclás de acceso rápido <code>CTRL + SHIFT + K</code>. Al finalizar la compilación podrá notar que hay un nuevo archivo de extensión <em>.html</em> en sus archivos.</li>
+</ol>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/quarto-render.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/html-quarto.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<ol start="12" type="1">
+<li><strong>Configuración adicional en Python:</strong> se dará cuenta que, cuando intenta renderizar el documento HTML por primera vez desde Quarto con Python, aparecerá un error en la consola informando que no se encuentra el módulo de nombre <code>yaml</code>. Para solucionar este error debemos instalar la biblioteca <code>jupyter</code> (automáticamente instalará otras dependecias, incluida <code>yaml</code>). Diríjase a la <strong>terminal</strong> y luego ejecuta el siguiente código presionando la tecla <em>Enter</em>: <code>python3 -m pip install jupyter</code>. Al terminar la instalcación, nuevamente dar clic en <em>Render</em> y se dará cuenta que ahora compila el documento sin ningún problema.</li>
+</ol>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/quarto-install-jupuyter-python.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="extensiones-recomendadas-en-visual-studio-code---python" class="level1">
+<h1>Extensiones recomendadas en Visual Studio Code - Python</h1>
+<ul>
+<li>autopep8</li>
+<li>Auto Complete Tag</li>
+<li>autoDocstring - Python Docstring</li>
+<li>Code Runner</li>
+<li>Jupyter</li>
+<li>Jupyter Cell Tags</li>
+<li>Jupyter Keymap</li>
+<li>Jupyter Notebook Renderers</li>
+<li>Jupyter Slide Show</li>
+<li>My Jupyter Notebook Previewer</li>
+<li>Path Autocomplete</li>
+<li>Pylance</li>
+<li>Python</li>
+<li>Python Debugger</li>
+<li>Python Docs</li>
+<li>Python Environment Manager</li>
+<li>Python Path</li>
+<li>Quarto</li>
+<li>VS Code Jupyter Notebook Previewer</li>
+</ul>
+<p>Para instalar una extensión en <em>Visual Studio Code</em> puede seguir los siguientes pasos:</p>
+<ol start="0" type="1">
+<li>Instalar <em>Visual Studio Code</em></li>
+<li>Abrir <em>Visual Studio Code</em></li>
+<li>En la barra lateral izquierda dar clic en <em>Extensions</em> o use las teclas de acceso rápido <code>CTRL + SHIFT + X</code></li>
+</ol>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/visual-extensiones.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<ol start="3" type="1">
+<li>En el rectángulo de búsqueda escriba el nombre de la extensión que desea instalar.</li>
+</ol>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/visual-barra-extensiones.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<ol start="4" type="1">
+<li>Finalmente, notará que las extensiones que no están instaladas aparecerán con un botón que dice <strong>Install</strong>, dar clic en este botón para instalar la extensión de interés.</li>
+</ol>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/visual-install.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+</section>
+<section id="guías" class="level1">
+<h1>Guías</h1>
 <ul>
 <li><a href="https://rpubs.com/Edimer/978394">Guía de actualización de versión R</a></li>
 <li><a href="https://rpubs.com/Edimer/978395">Actualización de bibliotecas de R con RStudio</a></li>
-<li><a href=".\guias/GuiasR.html">Guías R, R Markdown, Git y Github</a></li>
+<li><a href="https://semillerorpy.netlify.app/guias/guiasr">Guías R, R Markdown, Git y Github</a></li>
 </ul>
 </section>
+<section id="componentes-básicos-de-markdown" class="level1">
+<h1>Componentes básicos de Markdown</h1>
+<table class="table">
+<thead>
+<tr class="header">
+<th>Comando</th>
+<th>Sintaxis</th>
+<th>Ejemplo</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Título de nivel 1</td>
+<td><code># Título de nivel 1</code></td>
+<td># Título de nivel 1</td>
+<td>Crea un título de nivel 1 (el más grande)</td>
+</tr>
+<tr class="even">
+<td>Título de nivel 2</td>
+<td><code>## Título de nivel 2</code></td>
+<td>## Título de nivel 2</td>
+<td>Crea un título de nivel 2</td>
+</tr>
+<tr class="odd">
+<td>Negrita</td>
+<td><code>**texto en negrita**</code></td>
+<td><strong>texto en negrita</strong></td>
+<td>Formatea el texto en negrita</td>
+</tr>
+<tr class="even">
+<td>Cursiva</td>
+<td><code>*texto en cursiva*</code></td>
+<td><em>texto en cursiva</em></td>
+<td>Formatea el texto en cursiva</td>
+</tr>
+<tr class="odd">
+<td>Tachado</td>
+<td><code>~~texto tachado~~</code></td>
+<td><del>texto tachado</del></td>
+<td>Formatea el texto como tachado</td>
+</tr>
+<tr class="even">
+<td>Código en línea</td>
+<td><code>`código en línea`</code></td>
+<td><code>código en línea</code></td>
+<td>Formatea el texto como código en línea</td>
+</tr>
+<tr class="odd">
+<td>Bloque de código</td>
+<td><code>&lt;lenguaje&gt; &lt;br&gt; código &lt;br&gt;</code></td>
+<td><code>python &lt;br&gt; print("Hola, mundo!") &lt;br&gt;</code></td>
+<td>Crea un bloque de código con resaltado de sintaxis</td>
+</tr>
+<tr class="even">
+<td>Insertar imagen</td>
+<td><code>![texto alternativo](url_de_la_imagen)</code></td>
+<td><img src="url_de_la_imagen.png" class="img-fluid" alt="texto alternativo"></td>
+<td>Inserta una imagen con un texto alternativo</td>
+</tr>
+<tr class="odd">
+<td>Insertar hipervínculo</td>
+<td><code>[texto del enlace](url_del_enlace)</code></td>
+<td><a href="url_del_enlace">texto del enlace</a></td>
+<td>Inserta un hipervínculo con un texto personalizado</td>
+</tr>
+<tr class="even">
+<td>Viñetas</td>
+<td><code>- elemento 1</code> <br> <code>- elemento 2</code></td>
+<td>- elemento 1 <br> - elemento 2</td>
+<td>Crea una lista con viñetas</td>
+</tr>
+<tr class="odd">
+<td>Numeración</td>
+<td><code>1. elemento 1</code> <br> <code>2. elemento 2</code></td>
+<td>1. elemento 1 <br> 2. elemento 2</td>
+<td>Crea una lista numerada</td>
+</tr>
+<tr class="even">
+<td>Cita</td>
+<td><code>&gt; texto de la cita</code></td>
+<td>&gt; texto de la cita</td>
+<td>Crea una cita</td>
+</tr>
+<tr class="odd">
+<td>Línea horizontal</td>
+<td><code>---</code></td>
+<td>—</td>
+<td>Crea una línea horizontal</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="videos-youtube" class="level1">
+<h1>Videos YouTube</h1>
 <section id="instalación-de-r-y-rstudio" class="level2">
 <h2 class="anchored" data-anchor-id="instalación-de-r-y-rstudio">Instalación de R y RStudio</h2>
 <iframe width="800" height="500" src="https://www.youtube.com/embed/q5ICvuU_qqY" frameborder="0" allowfullscreen="">
@@ -236,13 +632,293 @@ ul.task-list li input[type="checkbox"] {
 <iframe width="800" height="500" src="https://www.youtube.com/embed/0SE_XjWJLvA" frameborder="0" allowfullscreen="">
 </iframe>
 <center>
-<p>
-Página web construida con Quarto - <a href="https://github.com/web-edimer/unal-semilleror-facca.github.io">Código fuente en Github.</a>
-</p>
-</center>
+</center></section>
 </section>
-<section id="ejecución-de-scripts-deshabilitada-windows" class="level2">
-<h2 class="anchored" data-anchor-id="ejecución-de-scripts-deshabilitada-windows"><a href="https://www.youtube.com/watch?v=gm0gexHWDy0&amp;ab_channel=WilfredoAleman">Ejecución de scripts deshabilitada (<em>Windows</em>)</a></h2>
+<section id="artículos" class="level1">
+<h1>Artículos</h1>
+<ul>
+<li><a href="https://projecteuclid.org/journals/statistical-science/volume-16/issue-3/Statistical-Modeling--The-Two-Cultures-with-comments-and-a/10.1214/ss/1009213726.full">Statistical Modeling: The Two Cultures - Leo Breiman</a></li>
+<li><a href="https://vita.had.co.nz/papers/tidy-data.pdf">Tidy Data - Hadley Wickham</a></li>
+</ul>
+</section>
+<section id="libros" class="level1">
+<h1>Libros</h1>
+<div>
+
+</div>
+<div class="quarto-layout-panel" data-layout-ncol="2">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://images-na.ssl-images-amazon.com/images/I/512BRANyRxS._SX600_.jpg" class="img-fluid figure-img"></p>
+<figcaption><a href="https://es.r4ds.hadley.nz/">R Para Ciencia de Datos</a></figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://wesmckinney.com/book/images/cover.png" class="img-fluid figure-img"></p>
+<figcaption><a href="https://wesmckinney.com/book/">Python for Data Analysis, 3E</a></figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div>
+
+</div>
+<div class="quarto-layout-panel" data-layout-ncol="2">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://clauswilke.com/dataviz/cover.png" class="img-fluid figure-img"></p>
+<figcaption><a href="https://clauswilke.com/dataviz/">Fundamentals of Data Visualization</a></figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://ggplot2-book.org/cover.jpg" class="img-fluid figure-img"></p>
+<figcaption><a href="https://ggplot2-book.org/index.html">ggplot2: Elegant Graphics for Data Analysis</a></figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div>
+
+</div>
+<div class="quarto-layout-panel" data-layout-ncol="2">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://plotly-r.com/crc-cover.png" class="img-fluid figure-img"></p>
+<figcaption><a href="https://plotly-r.com/index.html">Interactive web-based data visualization with R, plotly, and shiny</a></figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://socviz.co/assets/dv-cover-pupress.jpg" class="img-fluid figure-img"></p>
+<figcaption><a href="https://socviz.co/index.html">Data Visualization A practical introduction</a></figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div>
+
+</div>
+<div class="quarto-layout-panel" data-layout-ncol="2">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://jjallaire.github.io/hopr/cover.png" class="img-fluid figure-img"></p>
+<figcaption><a href="https://jjallaire.github.io/hopr/">Hands-On Programming with R</a></figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://d33wubrfki0l68.cloudfront.net/565916198b0be51bf88b36f94b80c7ea67cafe7c/7f70b/cover.png" class="img-fluid figure-img"></p>
+<figcaption><a href="https://adv-r.hadley.nz/index.html">Advanced R</a></figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div>
+
+</div>
+<div class="quarto-layout-panel" data-layout-ncol="2">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://covers.oreilly.com/images/9780596516499/cat.gif" class="img-fluid figure-img"></p>
+<figcaption><a href="https://sites.pitt.edu/~naraehan/ling1330/nltk_book.html">Natural Language Processing with Python</a></figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://www.tidytextmining.com/images/cover.png" class="img-fluid figure-img"></p>
+<figcaption><a href="https://www.tidytextmining.com/index.html">Welcome to Text Mining with R</a></figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div>
+
+</div>
+<div class="quarto-layout-panel" data-layout-ncol="2">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://bookdown.org/yihui/rmarkdown/images/cover.png" class="img-fluid figure-img"></p>
+<figcaption><a href="https://bookdown.org/yihui/rmarkdown/">R Markdown: The Definitive Guide</a></figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://d33wubrfki0l68.cloudfront.net/0c97eee3d8fc820f3a8d670c08b286e8a524257b/e426c/cover.png" class="img-fluid figure-img"></p>
+<figcaption><a href="https://mastering-shiny.org/index.html">Mastering Shiny</a></figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div>
+
+</div>
+<div class="quarto-layout-panel" data-layout-ncol="2">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://otexts.com/fpp3/figs/fpp3_front_cover.jpg" class="img-fluid figure-img"></p>
+<figcaption><a href="https://otexts.com/fpp3/">Forecasting: Principles and Practice (3rd ed)</a></figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://d33wubrfki0l68.cloudfront.net/19dafd10a53785f1407566a1f3a09b29a6bab847/1e5f0/images/logos/book_cover.png" class="img-fluid figure-img"></p>
+<figcaption><a href="https://moderndive.com/">Statistical Inference via Data Science</a></figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div>
+
+</div>
+<div class="quarto-layout-panel" data-layout-ncol="2">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://m.media-amazon.com/images/I/31+mpS8w44L._AC_SY780_.jpg" class="img-fluid figure-img"></p>
+<figcaption><a href="https://smltar.com/">Supervised Machine Learning for Text Analysis in R</a></figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://www.tmwr.org/images/cover.png" class="img-fluid figure-img"></p>
+<figcaption><a href="https://www.tmwr.org/">Tidy Modeling with R</a></figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div>
+
+</div>
+<div class="quarto-layout-panel" data-layout-ncol="2">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://m.media-amazon.com/images/I/A1GbblX7rOL.jpg" class="img-fluid figure-img"></p>
+<figcaption><a href="https://www.deeplearningbook.org/">Deep Learning</a></figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://m.media-amazon.com/images/S/aplus-media-library-service-media/e81bbfe4-5c61-4b4d-ae33-8c259509e678.__CR38,38,353,470_PT0_SX300_V1___.png" class="img-fluid figure-img"></p>
+<figcaption><a href="https://bcebakhtiyarpur.org/wp-content/uploads/2020/03/file_5e748501c810d.pdf">Hands-On Machine Learning with Scikit-Learn and TensorFlow: Concepts, Tools, and Techniques to Build Intelligent Systems</a></figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div>
+
+</div>
+<div class="quarto-layout-panel" data-layout-ncol="2">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://images.manning.com/book/7/65fca1c-6826-472d-bbea-c1d4a7b3c570/Chollet-DLP-HI.png" class="img-fluid figure-img"></p>
+<figcaption><a href="https://unica.it/static/resources/cms/documents/DeepLearningWithPython.pdf">Deep Learning with Python</a></figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://images.manning.com/book/a/4e5e97f-4e8d-4d97-a715-f6c2b0eb95f5/Allaire-DLwithR-HI.png" class="img-fluid figure-img"></p>
+<figcaption><a href="https://manning-content.s3.amazonaws.com/download/9/9a3b0d8-e651-4239-8c4f-94267be64fee/SampleCh03.pdf">Deep Learning with R</a></figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div>
+
+</div>
+<div class="quarto-layout-panel" data-layout-ncol="2">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://course.fast.ai/images/book.png" class="img-fluid figure-img"></p>
+<figcaption><a href="https://dl.ebooksworld.ir/books/Deep.Learning.for.Coders.with.fastai.and.PyTorch.Howard.Gugger.OReilly.9781492045526.EBooksWorld.ir.pdf">Deep Learning for Coders with Fastai and PyTorch</a></figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://therinspark.s3-us-west-2.amazonaws.com/mastering-spark-with-r.png" class="img-fluid figure-img"></p>
+<figcaption><a href="https://therinspark.com/">Mastering Spark with R</a></figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div>
+
+</div>
+<div class="quarto-layout-panel" data-layout-ncol="2">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://rspatial.org/terra/_images/glm-1.png" class="img-fluid figure-img"></p>
+<figcaption><a href="https://rspatial.org/index.html">Spatial Data Science with R and “terra”</a></figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://geocompr.robinlovelace.net/images/cover.png" class="img-fluid figure-img"></p>
+<figcaption><a href="https://geocompr.robinlovelace.net/">Geocomputation with R</a></figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
 
 
 </section>

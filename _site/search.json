@@ -567,20 +567,6 @@
     "text": "Descargar R\nDescargar Python\nDescargar RStudio\nDescargar Visual Studio Code\nDescargar Quarto"
   },
   {
-    "objectID": "guide-rpy.html#herramientas-de-software",
-    "href": "guide-rpy.html#herramientas-de-software",
-    "title": "Guías - Herramientas",
-    "section": "",
-    "text": "Descargar R\nDescargar Python\nDescargar RStudio\nDescargar Visual Studio Code\nDescargar Quarto"
-  },
-  {
-    "objectID": "guide-rpy.html#guías",
-    "href": "guide-rpy.html#guías",
-    "title": "Guías - Herramientas",
-    "section": "Guías",
-    "text": "Guías\n\nGuía de actualización de versión R\nActualización de bibliotecas de R con RStudio\nGuías R, R Markdown, Git y Github"
-  },
-  {
     "objectID": "guide-rpy.html#instalación-de-r-y-rstudio",
     "href": "guide-rpy.html#instalación-de-r-y-rstudio",
     "title": "Guías - Herramientas",
@@ -627,14 +613,7 @@
     "href": "guide-rpy.html#creación-de-informes-con-quarto",
     "title": "Guías - Herramientas",
     "section": "Creación de informes con Quarto",
-    "text": "Creación de informes con Quarto\n\n\n\n\nPágina web construida con Quarto - Código fuente en Github."
-  },
-  {
-    "objectID": "guide-rpy.html#ejecución-de-scripts-deshabilitada-windows",
-    "href": "guide-rpy.html#ejecución-de-scripts-deshabilitada-windows",
-    "title": "Guías - Herramientas",
-    "section": "Ejecución de scripts deshabilitada (Windows)",
-    "text": "Ejecución de scripts deshabilitada (Windows)"
+    "text": "Creación de informes con Quarto"
   },
   {
     "objectID": "code-example/GoogleNoticias-R.html",
@@ -949,21 +928,21 @@
     "href": "about.html#horario",
     "title": "Ciencia de Datos con R y Python",
     "section": "Horario",
-    "text": "Horario\n\nLugar: reuniones virtuales.\nCanal de Youtube: RPyCol- @rpycol\nHora: sábados 10:00 am a 12:00 pm - Colombia."
+    "text": "Horario\n\nLugar: reuniones virtuales.\nCanal de Youtube: RPyCol- @rpycol"
   },
   {
     "objectID": "about.html#dirección-del-semillero",
     "href": "about.html#dirección-del-semillero",
     "title": "Ciencia de Datos con R y Python",
     "section": "Dirección del semillero",
-    "text": "Dirección del semillero\n\nLuis Gabriel González Herrera\nEdimer David Jaramillo"
+    "text": "Dirección del semillero\n\nEdimer David Jaramillo"
   },
   {
     "objectID": "about.html#contacto",
     "href": "about.html#contacto",
     "title": "Ciencia de Datos con R y Python",
     "section": "Contacto",
-    "text": "Contacto\n\nEscríbenos a semillerorpy@gmail.com\n\n\n\nPágina web construida con Quarto - Código fuente en Github."
+    "text": "Contacto\n\nEscríbenos a cualquiera de estos correos:\n\nedavidja@unal.edu.co\nedimer.davidj@udea.edu.co\n\n\n\n\nPágina web construida con Quarto - Código fuente en Github."
   },
   {
     "objectID": "books-rpy.html",
