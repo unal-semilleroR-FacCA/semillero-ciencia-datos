@@ -185,7 +185,7 @@ Para instalar una extensión en *Visual Studio Code* puede seguir los siguientes
 
 - [Guía de actualización de versión R](https://rpubs.com/Edimer/978394)
 - [Actualización de bibliotecas de R con RStudio](https://rpubs.com/Edimer/978395)
-- [Guías R, R Markdown, Git y Github](https://semillerorpy.netlify.app/guias/guiasr)
+- [Guías R, R Markdown, Git y Github](/guias/GuiasR.html)
 
 # Componentes básicos de Markdown
 
