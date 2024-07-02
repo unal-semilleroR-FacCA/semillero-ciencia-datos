@@ -1,0 +1,21 @@
+---
+title: "Ciclo 03"
+---
+
+## Material de apoyo - 2024-01
+
+1. [Introducción a la *Ciencia de Datos*](https://edimer.quarto.pub/intro-semillero/#/title-slide)
+
+
+## La Ciencia de Datos tiene que ver más con personas que con datos
+
+<iframe width="800" height="500" src="https://www.youtube.com/embed/wfWWWhVsv78" frameborder="0" allowfullscreen>
+
+</iframe>
+
+
+<center>
+
+<p>Página web construida con Quarto - <a href="https://github.com/web-edimer/unal-semilleror-facca.github.io">Código fuente en Github.</a></p>
+
+</center>

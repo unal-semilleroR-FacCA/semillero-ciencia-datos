@@ -861,46 +861,39 @@
     "text": "Diferencia (no igual)\n\na != b\n\nTrue\n\n\n\n2 != 3\n\nTrue"
   },
   {
-    "objectID": "ciclo1.html",
-    "href": "ciclo1.html",
-    "title": "Ciclo 01",
+    "objectID": "ciclo2.html",
+    "href": "ciclo2.html",
+    "title": "Ciclo 02",
     "section": "",
-    "text": "Este ciclo se desarrolló durante los años 2018 a 2022.\nLos temas principales fueron:\n\nInvestigación reproducible con R: Ecosistema R Markdown\nFundamentos de manipulación de datos con R: tidyverse\nFundamentos de visualización de datos con R: ggplot2\nGeneración de tableros con R: flexdashboard\nIntroducción al desarrollo de aplicaciones con R: shiny\nIntroducción al Machine Learning con R: tidymodels"
+    "text": "Bienvenida e Introducción\nEjemplo aplicado: Web Scraping con R\nEjemplo aplicado: Web Scraping con Python\nR + Python en la nube\nFundamentos básicos de R y Python\nOperadores, listas y vectores"
   },
   {
-    "objectID": "ciclo1.html#temas-desarrollados",
-    "href": "ciclo1.html#temas-desarrollados",
-    "title": "Ciclo 01",
+    "objectID": "ciclo2.html#material-de-apoyo---2022-02",
+    "href": "ciclo2.html#material-de-apoyo---2022-02",
+    "title": "Ciclo 02",
     "section": "",
-    "text": "Este ciclo se desarrolló durante los años 2018 a 2022.\nLos temas principales fueron:\n\nInvestigación reproducible con R: Ecosistema R Markdown\nFundamentos de manipulación de datos con R: tidyverse\nFundamentos de visualización de datos con R: ggplot2\nGeneración de tableros con R: flexdashboard\nIntroducción al desarrollo de aplicaciones con R: shiny\nIntroducción al Machine Learning con R: tidymodels"
+    "text": "Bienvenida e Introducción\nEjemplo aplicado: Web Scraping con R\nEjemplo aplicado: Web Scraping con Python\nR + Python en la nube\nFundamentos básicos de R y Python\nOperadores, listas y vectores"
   },
   {
-    "objectID": "ciclo1.html#material-de-apoyo---2019-01",
-    "href": "ciclo1.html#material-de-apoyo---2019-01",
-    "title": "Ciclo 01",
-    "section": "Material de apoyo - 2019-01",
-    "text": "Material de apoyo - 2019-01\n\nBienvenida\nIntroducción a R y RStudio\nEcosistema R Markdown (1/2)\nEcosistema R Markdown (2/2)\nMundo R + tidyverse (1/2)\nMundo R + tidyverse (2/2)"
+    "objectID": "ciclo2.html#ia-para-todos",
+    "href": "ciclo2.html#ia-para-todos",
+    "title": "Ciclo 02",
+    "section": "IA para todos",
+    "text": "IA para todos"
   },
   {
-    "objectID": "ciclo1.html#material-de-apoyo---2019-02",
-    "href": "ciclo1.html#material-de-apoyo---2019-02",
-    "title": "Ciclo 01",
-    "section": "Material de apoyo - 2019-02",
-    "text": "Material de apoyo - 2019-02\n\nRepaso: R + tidyverse\nEjercicio\nCorrelaciones\nRegresión Lineal Simple\nEncuesta rday 2019"
+    "objectID": "ciclo2.html#chatgpt",
+    "href": "ciclo2.html#chatgpt",
+    "title": "Ciclo 02",
+    "section": "ChatGPT",
+    "text": "ChatGPT\n\nSitio oficial OpenAI\n\n\n\n\n\nPágina web construida con Quarto - Código fuente en Github."
   },
   {
-    "objectID": "ciclo1.html#material-de-apoyo---2021-01",
-    "href": "ciclo1.html#material-de-apoyo---2021-01",
-    "title": "Ciclo 01",
-    "section": "Material de apoyo - 2021-01",
-    "text": "Material de apoyo - 2021-01\n\nRepaso R-Markdown y Tidyverse\nNovedades en el tidyverse y bibliotecas auxiliares\nVisualización con R: parte 1\nVisualización con R: parte 2\nTableros: flexdashboard 1\nTableros: flexdashboard 2\nShiny: Introducción\nDescargar ejemplos .Rmd y datos"
-  },
-  {
-    "objectID": "ciclo1.html#material-de-apoyo---2022-01",
-    "href": "ciclo1.html#material-de-apoyo---2022-01",
-    "title": "Ciclo 01",
-    "section": "Material de apoyo - 2022-01",
-    "text": "Material de apoyo - 2022-01\n\nMachine Learning con R: introducción a tidymodels\nRemuestreo con rsample y modelos con parsnip\nAjuste de modelos con tune e Ingeniería de características con recipes\nOptimización de hiperparámetros con R: tune\nFlujos de trabajo para Machine Learning con R: workflow (pipelines)\nDescargar ejemplos .Rmd y datos\n\n\n\nPágina web construida con Quarto - Código fuente en Github."
+    "objectID": "books-rpy.html",
+    "href": "books-rpy.html",
+    "title": "Libros",
+    "section": "",
+    "text": "R Para Ciencia de Datos\n\n\n\n\n\n\n\nPython for Data Analysis, 3E\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nFundamentals of Data Visualization\n\n\n\n\n\n\n\nggplot2: Elegant Graphics for Data Analysis\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nInteractive web-based data visualization with R, plotly, and shiny\n\n\n\n\n\n\n\nData Visualization A practical introduction\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nHands-On Programming with R\n\n\n\n\n\n\n\nAdvanced R\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNatural Language Processing with Python\n\n\n\n\n\n\n\nWelcome to Text Mining with R\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nR Markdown: The Definitive Guide\n\n\n\n\n\n\n\nMastering Shiny\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nForecasting: Principles and Practice (3rd ed)\n\n\n\n\n\n\n\nStatistical Inference via Data Science\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nSupervised Machine Learning for Text Analysis in R\n\n\n\n\n\n\n\nTidy Modeling with R\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nDeep Learning\n\n\n\n\n\n\n\nHands-On Machine Learning with Scikit-Learn and TensorFlow: Concepts, Tools, and Techniques to Build Intelligent Systems\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nDeep Learning with Python\n\n\n\n\n\n\n\nDeep Learning with R\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nDeep Learning for Coders with Fastai and PyTorch\n\n\n\n\n\n\n\nMastering Spark with R\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nSpatial Data Science with R and “terra”\n\n\n\n\n\n\n\nGeocomputation with R\n\n\n\n\n\n\n\nPágina web construida con Quarto - Código fuente en Github."
   },
   {
     "objectID": "about.html",
@@ -945,39 +938,67 @@
     "text": "Contacto\n\nEscríbenos a cualquiera de estos correos:\n\nedavidja@unal.edu.co\nedimer.davidj@udea.edu.co\n\n\n\n\nPágina web construida con Quarto - Código fuente en Github."
   },
   {
-    "objectID": "books-rpy.html",
-    "href": "books-rpy.html",
-    "title": "Libros",
+    "objectID": "ciclo1.html",
+    "href": "ciclo1.html",
+    "title": "Ciclo 01",
     "section": "",
-    "text": "R Para Ciencia de Datos\n\n\n\n\n\n\n\nPython for Data Analysis, 3E\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nFundamentals of Data Visualization\n\n\n\n\n\n\n\nggplot2: Elegant Graphics for Data Analysis\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nInteractive web-based data visualization with R, plotly, and shiny\n\n\n\n\n\n\n\nData Visualization A practical introduction\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nHands-On Programming with R\n\n\n\n\n\n\n\nAdvanced R\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNatural Language Processing with Python\n\n\n\n\n\n\n\nWelcome to Text Mining with R\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nR Markdown: The Definitive Guide\n\n\n\n\n\n\n\nMastering Shiny\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nForecasting: Principles and Practice (3rd ed)\n\n\n\n\n\n\n\nStatistical Inference via Data Science\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nSupervised Machine Learning for Text Analysis in R\n\n\n\n\n\n\n\nTidy Modeling with R\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nDeep Learning\n\n\n\n\n\n\n\nHands-On Machine Learning with Scikit-Learn and TensorFlow: Concepts, Tools, and Techniques to Build Intelligent Systems\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nDeep Learning with Python\n\n\n\n\n\n\n\nDeep Learning with R\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nDeep Learning for Coders with Fastai and PyTorch\n\n\n\n\n\n\n\nMastering Spark with R\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nSpatial Data Science with R and “terra”\n\n\n\n\n\n\n\nGeocomputation with R\n\n\n\n\n\n\n\nPágina web construida con Quarto - Código fuente en Github."
+    "text": "Este ciclo se desarrolló durante los años 2018 a 2022.\nLos temas principales fueron:\n\nInvestigación reproducible con R: Ecosistema R Markdown\nFundamentos de manipulación de datos con R: tidyverse\nFundamentos de visualización de datos con R: ggplot2\nGeneración de tableros con R: flexdashboard\nIntroducción al desarrollo de aplicaciones con R: shiny\nIntroducción al Machine Learning con R: tidymodels"
   },
   {
-    "objectID": "ciclo2.html",
-    "href": "ciclo2.html",
-    "title": "Ciclo 02",
+    "objectID": "ciclo1.html#temas-desarrollados",
+    "href": "ciclo1.html#temas-desarrollados",
+    "title": "Ciclo 01",
     "section": "",
-    "text": "Bienvenida e Introducción\nEjemplo aplicado: Web Scraping con R\nEjemplo aplicado: Web Scraping con Python\nR + Python en la nube\nFundamentos básicos de R y Python\nOperadores, listas y vectores"
+    "text": "Este ciclo se desarrolló durante los años 2018 a 2022.\nLos temas principales fueron:\n\nInvestigación reproducible con R: Ecosistema R Markdown\nFundamentos de manipulación de datos con R: tidyverse\nFundamentos de visualización de datos con R: ggplot2\nGeneración de tableros con R: flexdashboard\nIntroducción al desarrollo de aplicaciones con R: shiny\nIntroducción al Machine Learning con R: tidymodels"
   },
   {
-    "objectID": "ciclo2.html#material-de-apoyo---2022-02",
-    "href": "ciclo2.html#material-de-apoyo---2022-02",
-    "title": "Ciclo 02",
+    "objectID": "ciclo1.html#material-de-apoyo---2019-01",
+    "href": "ciclo1.html#material-de-apoyo---2019-01",
+    "title": "Ciclo 01",
+    "section": "Material de apoyo - 2019-01",
+    "text": "Material de apoyo - 2019-01\n\nBienvenida\nIntroducción a R y RStudio\nEcosistema R Markdown (1/2)\nEcosistema R Markdown (2/2)\nMundo R + tidyverse (1/2)\nMundo R + tidyverse (2/2)"
+  },
+  {
+    "objectID": "ciclo1.html#material-de-apoyo---2019-02",
+    "href": "ciclo1.html#material-de-apoyo---2019-02",
+    "title": "Ciclo 01",
+    "section": "Material de apoyo - 2019-02",
+    "text": "Material de apoyo - 2019-02\n\nRepaso: R + tidyverse\nEjercicio\nCorrelaciones\nRegresión Lineal Simple\nEncuesta rday 2019"
+  },
+  {
+    "objectID": "ciclo1.html#material-de-apoyo---2021-01",
+    "href": "ciclo1.html#material-de-apoyo---2021-01",
+    "title": "Ciclo 01",
+    "section": "Material de apoyo - 2021-01",
+    "text": "Material de apoyo - 2021-01\n\nRepaso R-Markdown y Tidyverse\nNovedades en el tidyverse y bibliotecas auxiliares\nVisualización con R: parte 1\nVisualización con R: parte 2\nTableros: flexdashboard 1\nTableros: flexdashboard 2\nShiny: Introducción\nDescargar ejemplos .Rmd y datos"
+  },
+  {
+    "objectID": "ciclo1.html#material-de-apoyo---2022-01",
+    "href": "ciclo1.html#material-de-apoyo---2022-01",
+    "title": "Ciclo 01",
+    "section": "Material de apoyo - 2022-01",
+    "text": "Material de apoyo - 2022-01\n\nMachine Learning con R: introducción a tidymodels\nRemuestreo con rsample y modelos con parsnip\nAjuste de modelos con tune e Ingeniería de características con recipes\nOptimización de hiperparámetros con R: tune\nFlujos de trabajo para Machine Learning con R: workflow (pipelines)\nDescargar ejemplos .Rmd y datos\n\n\n\nPágina web construida con Quarto - Código fuente en Github."
+  },
+  {
+    "objectID": "ciclo3.html",
+    "href": "ciclo3.html",
+    "title": "Ciclo 03",
     "section": "",
-    "text": "Bienvenida e Introducción\nEjemplo aplicado: Web Scraping con R\nEjemplo aplicado: Web Scraping con Python\nR + Python en la nube\nFundamentos básicos de R y Python\nOperadores, listas y vectores"
+    "text": "Introducción a la Ciencia de Datos"
   },
   {
-    "objectID": "ciclo2.html#ia-para-todos",
-    "href": "ciclo2.html#ia-para-todos",
-    "title": "Ciclo 02",
-    "section": "IA para todos",
-    "text": "IA para todos"
+    "objectID": "ciclo3.html#material-de-apoyo---2024-01",
+    "href": "ciclo3.html#material-de-apoyo---2024-01",
+    "title": "Ciclo 03",
+    "section": "",
+    "text": "Introducción a la Ciencia de Datos"
   },
   {
-    "objectID": "ciclo2.html#chatgpt",
-    "href": "ciclo2.html#chatgpt",
-    "title": "Ciclo 02",
-    "section": "ChatGPT",
-    "text": "ChatGPT\n\nSitio oficial OpenAI\n\n\n\n\n\nPágina web construida con Quarto - Código fuente en Github."
+    "objectID": "ciclo3.html#la-ciencia-de-datos-tiene-que-ver-más-con-personas-que-con-datos",
+    "href": "ciclo3.html#la-ciencia-de-datos-tiene-que-ver-más-con-personas-que-con-datos",
+    "title": "Ciclo 03",
+    "section": "La Ciencia de Datos tiene que ver más con personas que con datos",
+    "text": "La Ciencia de Datos tiene que ver más con personas que con datos\n\n\n\n\nPágina web construida con Quarto - Código fuente en Github."
   },
   {
     "objectID": "code-example/ejemplos-r-py-202301/02-operadores-listas-vectores-R.html",
