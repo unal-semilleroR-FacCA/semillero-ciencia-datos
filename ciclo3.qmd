@@ -4,8 +4,14 @@ title: "Ciclo 03"
 
 ## Material de apoyo - 2024-01
 
-1. [Introducción a la *Ciencia de Datos*](https://edimer.quarto.pub/intro-semillero/#/title-slide)
+### Diapositivas
 
+1. [Introducción a la *Ciencia de Datos*](https://edimer.quarto.pub/intro-semillero/#/title-slide)
+2. [Fundamentos de R y Python - Parte 1](https://edimer.quarto.pub/fundamentos-rpy-p1/#/title-slide)
+
+### Datos
+
+- [Colocaciones de Crédito Sector Agropecuario 2024](/code-example/ejemplos-r-py-202401/colocaciones_créditos_agropecuarios_2024.csv)
 
 ## La Ciencia de Datos tiene que ver más con personas que con datos
 

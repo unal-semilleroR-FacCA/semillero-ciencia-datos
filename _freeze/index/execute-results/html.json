@@ -2,7 +2,7 @@
   "hash": "6fea6690d0c572df1c7375b4fc991787",
   "result": {
     "engine": "knitr",
-    "markdown": "---\ntitle: \"\"\n---\n\n\n<center> <h2> ¡Bienvenidos al Semillero de Ciencia de Datos! </h2> </center>\n\n\n::: {layout-ncol=2}\n\n\n::: {.cell layout-align=\"center\"}\n::: {.cell-output-display}\n![](images/pub.gif){fig-align='center' height=250}\n:::\n:::\n\n::: {.cell layout-align=\"center\"}\n::: {.cell-output-display}\n![](images/gif_py.gif){fig-align='center' height=250}\n:::\n:::\n\n\n:::\n\n<center> <p>Página web construida con Quarto - <a href=\"https://github.com/web-edimer/unal-semilleror-facca.github.io\">Código fuente en Github.</a></p></center>",
+    "markdown": "---\ntitle: \"\"\n---\n\n\n\n<center> <h2> ¡Bienvenidos al Semillero de Ciencia de Datos! </h2> </center>\n\n\n::: {layout-ncol=2}\n\n\n\n::: {.cell layout-align=\"center\"}\n::: {.cell-output-display}\n![](images/pub.gif){fig-align='center' height=250}\n:::\n:::\n\n::: {.cell layout-align=\"center\"}\n::: {.cell-output-display}\n![](images/gif_py.gif){fig-align='center' height=250}\n:::\n:::\n\n\n\n:::\n\n<center> <p>Página web construida con Quarto - <a href=\"https://github.com/web-edimer/unal-semilleror-facca.github.io\">Código fuente en Github.</a></p></center>",
     "supporting": [],
     "filters": [
       "rmarkdown/pagebreak.lua"

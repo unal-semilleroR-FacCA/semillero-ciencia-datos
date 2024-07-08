@@ -2,13 +2,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.554">
+<meta name="generator" content="quarto-1.5.53">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Edimer David Jaramillo">
 
-<title>Ciencia de Datos con R y Python - Correlación: visualizaciones</title>
+<title>Correlación: visualizaciones – Ciencia de Datos con R y Python</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -34,7 +34,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -139,7 +139,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </a>
   </div>
             <div id="quarto-search" class="" title="Buscar"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Navegación de palanca" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Navegación de palanca" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
@@ -153,7 +153,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="menu-text">Información</span></a>
   </li>  
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-temas" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-temas" role="link" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Temas</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-temas">    
@@ -172,7 +172,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </ul>
   </li>
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-documentación" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-documentación" role="link" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Documentación</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-documentación">    
@@ -204,7 +204,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
-          <div class="quarto-navbar-tools">
+            <div class="quarto-navbar-tools">
 </div>
       </div> <!-- /container-fluid -->
     </nav>
@@ -1184,8 +1184,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>            <span class="at">Mediana =</span> <span class="fu">median</span>(valor, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span> </span>
 <span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">datatable</span>()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div class="datatables html-widget html-fill-item" id="htmlwidget-83db6b953c9a448d4bdf" style="width:100%;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-83db6b953c9a448d4bdf">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15"],["cajeros17","camas14","cto_pib16","densidad17","desempleo17","deuda16","electri16","fertil16","gasto_edu16","gasto_id16","gasto_militar17","pib16","pm2517","pobRural17","tierrasCult16"],[55.11960363771944,2.291632653061225,3.026400994795956,449.3870437520414,7.358918956405407,1.034773846153846,84.35029055757343,417.6057862726893,4.530416086122588,1.034773846153846,1.863973927737,378862320893.0314,26.95940073557363,39.01813679245283,14.17527420409496],[46.92906798420772,1.57165431279005,3.751873927178753,2051.629521923885,5.532970529707026,1.02358403615596,26.38333302862997,2442.771792880743,1.534184325892051,1.02358403615596,1.615045823051703,1633312267229.77,18.82999061606689,23.82688931166422,13.49632776853656],[1.27466705619395,0.5,-13.621458438417,0.136852235351444,0.140000000596046,0.01498,7.58847713470459,0.402090467725481,1.37101995944977,0.01498,0,36572611.8853148,5.86133100081928,0,0.0862812769628991],[313.152787448703,6.2,28.2238442822384,20479.1778885587,27.4440002441406,4.25121,100,30237.8556190309,10.2931299209595,4.25121,12.0727196538761,18707189000000,99.7343737198505,87.294,59.646692486268],[45.7658986412207,1.6,3.06260036695409,94.67309489931066,5.76000022888184,0.654185,100,119.309633027523,4.44098997116089,0.654185,1.43693076288569,26958567380.3348,21.5689865956858,38.26900000000001,10.4236718224613]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>variable<\/th>\n      <th>Promedio<\/th>\n      <th>DE<\/th>\n      <th>Min<\/th>\n      <th>Max<\/th>\n      <th>Mediana<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[2,3,4,5,6]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"variable","targets":1},{"name":"Promedio","targets":2},{"name":"DE","targets":3},{"name":"Min","targets":4},{"name":"Max","targets":5},{"name":"Mediana","targets":6}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<div class="datatables html-widget html-fill-item" id="htmlwidget-e4dc16b9de041d29adc2" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-e4dc16b9de041d29adc2">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15"],["cajeros17","camas14","cto_pib16","densidad17","desempleo17","deuda16","electri16","fertil16","gasto_edu16","gasto_id16","gasto_militar17","pib16","pm2517","pobRural17","tierrasCult16"],[55.11960363771944,2.291632653061225,3.026400994795956,449.3870437520414,7.358918956405407,1.034773846153846,84.35029055757343,417.6057862726893,4.530416086122588,1.034773846153846,1.863973927737,378862320893.0314,26.95940073557363,39.01813679245283,14.17527420409496],[46.92906798420772,1.57165431279005,3.751873927178753,2051.629521923885,5.532970529707026,1.02358403615596,26.38333302862997,2442.771792880743,1.534184325892051,1.02358403615596,1.615045823051703,1633312267229.77,18.82999061606689,23.82688931166422,13.49632776853656],[1.27466705619395,0.5,-13.621458438417,0.136852235351444,0.140000000596046,0.01498,7.58847713470459,0.402090467725481,1.37101995944977,0.01498,0,36572611.8853148,5.86133100081928,0,0.0862812769628991],[313.152787448703,6.2,28.2238442822384,20479.1778885587,27.4440002441406,4.25121,100,30237.8556190309,10.2931299209595,4.25121,12.0727196538761,18707189000000,99.7343737198505,87.294,59.646692486268],[45.7658986412207,1.6,3.06260036695409,94.67309489931066,5.76000022888184,0.654185,100,119.309633027523,4.44098997116089,0.654185,1.43693076288569,26958567380.3348,21.5689865956858,38.26900000000001,10.4236718224613]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>variable<\/th>\n      <th>Promedio<\/th>\n      <th>DE<\/th>\n      <th>Min<\/th>\n      <th>Max<\/th>\n      <th>Mediana<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[2,3,4,5,6]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"variable","targets":1},{"name":"Promedio","targets":2},{"name":"DE","targets":3},{"name":"Min","targets":4},{"name":"Max","targets":5},{"name":"Mediana","targets":6}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </section>
@@ -1207,7 +1207,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>            <span class="at">Mediana =</span> <span class="fu">median</span>(valor, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span> </span>
 <span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<table class="table table-sm table-striped small">
+<table class="caption-top table table-sm table-striped small">
 <colgroup>
 <col style="width: 19%">
 <col style="width: 15%">
@@ -1565,18 +1565,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -1608,7 +1597,29 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
       var filterRegex = new RegExp("https:\/\/semillerorpy\.netlify\.app");
@@ -1616,7 +1627,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
     // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {
