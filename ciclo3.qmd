@@ -13,12 +13,21 @@ title: "Ciclo 03"
 
 - [Colocaciones de Crédito Sector Agropecuario 2024](/code-example/ejemplos-r-py-202401/colocaciones_créditos_agropecuarios_2024.csv)
 
+### Ejemplos
+
+- [Google Colab: ejemplo biblioteca `dtale` en Python](https://colab.research.google.com/drive/1B1OtHDRmIT78h_K0F6yBQFl-266QL6L2?usp=sharing)
+- [Script: ejemplo biblioteca `esquisse` en R](https://github.com/unal-semilleroR-FacCA/semillero-ciencia-datos/blob/master/code-example/ejemplos-r-py-202401/01-ejemplo-esquisse.R)
+- [Notebook: ejemplo biblioteca `dtale` en Python](https://github.com/unal-semilleroR-FacCA/semillero-ciencia-datos/blob/master/code-example/ejemplos-r-py-202401/02-visualizacion-py-jupyter.ipynb)
+
 ## La Ciencia de Datos tiene que ver más con personas que con datos
 
-<iframe width="800" height="500" src="https://www.youtube.com/embed/wfWWWhVsv78" frameborder="0" allowfullscreen>
+<center>
+
+<iframe src="https://www.youtube.com/embed/wfWWWhVsv78" frameborder="0" allowfullscreen>
 
 </iframe>
 
+</center>
 
 <center>
 

@@ -196,11 +196,21 @@ ul.task-list li input[type="checkbox"] {
 <li><a href=".\code-example/ejemplos-r-py-202401/colocaciones_créditos_agropecuarios_2024.csv">Colocaciones de Crédito Sector Agropecuario 2024</a></li>
 </ul>
 </section>
+<section id="ejemplos" class="level3">
+<h3 class="anchored" data-anchor-id="ejemplos">Ejemplos</h3>
+<ul>
+<li><a href="https://colab.research.google.com/drive/1B1OtHDRmIT78h_K0F6yBQFl-266QL6L2?usp=sharing">Google Colab: ejemplo biblioteca <code>dtale</code> en Python</a></li>
+<li><a href="https://github.com/unal-semilleroR-FacCA/semillero-ciencia-datos/blob/master/code-example/ejemplos-r-py-202401/01-ejemplo-esquisse.R">Script: ejemplo biblioteca <code>esquisse</code> en R</a></li>
+<li><a href="https://github.com/unal-semilleroR-FacCA/semillero-ciencia-datos/blob/master/code-example/ejemplos-r-py-202401/02-visualizacion-py-jupyter.ipynb">Notebook: ejemplo biblioteca <code>dtale</code> en Python</a></li>
+</ul>
+</section>
 </section>
 <section id="la-ciencia-de-datos-tiene-que-ver-más-con-personas-que-con-datos" class="level2">
 <h2 class="anchored" data-anchor-id="la-ciencia-de-datos-tiene-que-ver-más-con-personas-que-con-datos">La Ciencia de Datos tiene que ver más con personas que con datos</h2>
-<iframe width="800" height="500" src="https://www.youtube.com/embed/wfWWWhVsv78" frameborder="0" allowfullscreen="">
+<center>
+<iframe src="https://www.youtube.com/embed/wfWWWhVsv78" frameborder="0" allowfullscreen="">
 </iframe>
+</center>
 <center>
 <p>
 Página web construida con Quarto - <a href="https://github.com/web-edimer/unal-semilleror-facca.github.io">Código fuente en Github.</a>
@@ -303,7 +313,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp("https:\/\/semillerorpy\.netlify\.app\/");
+      var filterRegex = new RegExp("https:\/\/semillerorpy\.netlify\.app");
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }

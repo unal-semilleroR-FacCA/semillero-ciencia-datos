@@ -651,354 +651,109 @@
     "text": "Noticias Colombia\n\nTokenización\n\nEl primer paso es convertir las noticias (cadenas de texto) en tokens, es decir, palabras individuales que aportan información a nuestro análisis. Este proceso se logra a través de la función unnest_tokens() de la biblioteca tidytext.\n\n\n\nCódigo\ntokens_colombia &lt;-\n  noticias_colombia %&gt;% \n  unnest_tokens(output = \"token\", input = noticia)\n\ntokens_colombia %&gt;% \n  head()\n\n\nAlgunas palabras en la columna token no tienen propiedades informativas, por ejemplo, conectores, artículos, pronombres, preposiciones, etc. Es común en la minería de texto utilizar stop words para cada lenguaje, en este caso para el castellano. Podemos acceder a estas palabras a través de la función stopwords() de la biblioteca tm. Es importante mencionar que es posible que queden algunas palabras que no son informativas, de tal manera que se recomienda profundizar más en este tema.\nAsignamos las stop words a un objeto de nombre stop_spanish:\n\n\nCódigo\nstop_spanish &lt;- stopwords(kind = \"spanish\")\n\n\nTenemos en total el siguiente número de stop words en español:\n\n\nCódigo\nstop_spanish %&gt;% \n  length()\n\n\nAhoa filtramos las palabras de la columna token que están dentro de las palabras sin significado (stop words) y asignamos el resultado a un objeto de nombre tokens_colombia_final. Note que en la columna token quedan números, que eventualmente podrían ser filtrados para el análisis, no obstante, se recomienda profundizar en cuál debería ser la limpieza del texto más adecuada para su análisis. En este caso hacemos caso omiso de estos datos.\n\n\nCódigo\ntokens_colombia_final &lt;-\n  tokens_colombia %&gt;%\n  filter(!token %in% stop_spanish) \n\ntokens_colombia_final %&gt;% \n  head()\n\n\n\n\nPreguntas\n\nPregunta 1\n\n¿Cuántas noticias hay para cada medio de comunicación? Nota: para respondera a esta pregunta no es estrictamente necesario tokenizar el texto, por tal motivo obtendremos el conteo a través del dataframe de nombre noticias_colombia. Observe que algunas fuentes se repiten, por ejemplo, El Tiempo y EL TIEMPO, R los define como entidades diferentes porque no están escritas de la misma manera, aunque esta característica es fácil de resolver lo dejaremos así y cada usuario podrá direccionar la depuración bajo la estructura correcta.\n\n\n\nCódigo\nnoticias_colombia %&gt;% \n  count(fuente, sort = TRUE)\n\n\nPodemos graficar los 10 primeros medios de comunicación con mayor número de noticias:\n\n\nCódigo\nnoticias_colombia %&gt;% \n  count(fuente, sort = TRUE) %&gt;% \n  slice(1:10) %&gt;% \n  ggplot(aes(x = reorder(fuente, n), y = n)) +\n  geom_col() +\n  coord_flip() +\n  labs(x = \"\", y = \"Noticias (n)\", title = \"Google Noticias - Colombia\")\n\n\n\n\nPregunta 2\n\n¿Cuáles son las palabras más frecuentes en las noticias? Para responder a estar preguna utilizaremos el dataframe que posee los tokens y sobre el cual ya pasamos el filtro de las palabras sin significado, es decir, tokens_colombia_final. Observamos que la palabra más frecuente en las noticias es “petro”.\n\n\n\nCódigo\ntokens_colombia_final %&gt;% \n  count(token, sort = TRUE)\n\n\nComo son tantas palabras, es posible representar esta información a través de nubes de palabras. Este proceso lo llevamos a cabo con la biblioteca wordcloud2.\n\n\nCódigo\ntokens_colombia_final %&gt;%\n  count(token, sort = TRUE) %&gt;% \n  wordcloud2(data = ., backgroundColor = \"black\")\n\n\n\n\nPregunta 3\n\n¿Podemos asignar algún sentimiento a las noticias en función de las palabras que contienen? Para responder a esta pregunta lo primero que vamos a hacer es descargar el archivo que contiene el sentimiento para las palabras en español. Se puede descargar aquí.\nAgradecimiento especial a Juan Bosco Mendoza Vega por disponibilizar esta información.\nNote que la base de datos tiene tres columnas, la variable Palabra denota la información en español, la variable Word es su traducción al inglés y la Puntuacion (sin tilde) denota el score determinado por el léxico AFINN.\n\n\n\nCódigo\n# URL\nurl_sentimiento &lt;- \n  \"https://raw.githubusercontent.com/jboscomendoza/rpubs/master/sentimientos_afinn/lexico_afinn.en.es.csv\"\n\n# Lectura de datos\ndf_sentimiento &lt;-\n  read_csv(url_sentimiento)\n\ndf_sentimiento %&gt;% \n  head()\n\n\nSi usted desea descargar el archivo anterior puede ejecutar el siguiente código:\n\n\nCódigo\ndownload.file(url = url_sentimiento, destfile = \"datos_sentimiento_spanish_AFINN.csv\")\n\n\nVamos a cambiar el nombre Palabra por token, para que podamos unir a la tabla tokens_colombia_final y seleccionamos sólo las variables token y Puntuacion. Además, discretizamos la variable Puntuacion en una nueva variable llamada sentimiento, de tal manera que si la Puntuacion es mayor a 0 se le asigna el nivel Positivo, de lo contrario será Negativo. Asignamos este resultado a un nuevo objeto de nombre sentimiento_spanish.\n\n\nCódigo\nsentimiento_spanish &lt;-\n  df_sentimiento %&gt;% \n  rename(token = Palabra) %&gt;% \n  select(token, Puntuacion) %&gt;% \n  mutate(sentimiento = if_else(Puntuacion &gt; 0, \"Positivo\", \"Negativo\"))\n\nsentimiento_spanish %&gt;% \n  head()\n\n\nAhora unimos los datos de sentimiento con la tabla tokens_colombia_final. La unión la realizamos con la función inner_join(), de tal manera que sólo serán tenidas en cuenta palabras que estén en ambas tablas. Note que la nueva tabla se reduce, ya que muchas palabras de las noticias no están presente en el dataframe sentimiento_spanish. Es importante mencionar que esta es una aproximación simple de análisis de sentimientos, sin embargo, podrían ser utilizadas técnicas más robustas, por ejemplo, Deep Learning.\n\n\nCódigo\nnoticias_sentimiento &lt;-\n  inner_join(x = tokens_colombia_final, y = sentimiento_spanish, by = \"token\")\n\nnoticias_sentimiento %&gt;% \n  head()\n\n\nPodemos consultar el número de filas de la nueva tabla.\n\n\nCódigo\nnoticias_sentimiento %&gt;% \n  nrow()\n\n\nPodemos responder a la siguiente pregunta, ¿Predominan las palabras positivas o negativas? Parece que son más las noticias que tiene palabras negativas que positivas.\n\n\nCódigo\nnoticias_sentimiento %&gt;% \n  count(sentimiento)\n\n\n¿Cuál medio de comunicación es más negativo o positivo en sus noticias?\n\n\nCódigo\nnoticias_sentimiento %&gt;% \n  count(fuente, sentimiento, sort = TRUE)\n\n\nPodemos representar el resultado anterior a través de un gráfico. Para tener una representación más transparente filtramos medios de comunicación con más de 3 noticias.\n\n\nCódigo\nnoticias_sentimiento %&gt;% \n  count(fuente, sentimiento, sort = TRUE) %&gt;% \n  filter(n &gt; 3) %&gt;% \n  ggplot(aes(x = reorder(fuente, n), y = n, fill = sentimiento)) +\n  geom_col(position = \"fill\") +\n  coord_flip() +\n  labs(x = \"\", y = \"Frecuencia relativa\", fill = \"Sentimiento\") +\n  theme(legend.position = \"top\")\n\n\nHasta ahora hemos usamos la variable sentimiento, pero también podríamos calcular alguna métrica estadística con la variable Puntuacion. En este caso calculamos la mediana de la Puntuacion y obtenemos el número de datos (N) con los cuales es calculada la métrica.\n\n\nCódigo\nnoticias_sentimiento %&gt;% \n  group_by(fuente) %&gt;% \n  summarise(\n    mediana_sent = median(Puntuacion),\n    N = n()\n  ) %&gt;% \n  arrange(desc(mediana_sent))\n\n\nPodemos graficar la nube de palabras para el sentimiento positivo y negativo a través de la biblioteca wordcloud. Para este proceso fíjese que “remodelamos” los datos a través de la función acast() de la biblioteca reshape2. Este proceso es necesario para obtener la nube de palabras comparativa con la función comparison.cloud().\n\n\nCódigo\nnoticias_sentimiento %&gt;%\n  count(token, sentimiento, sort = TRUE) %&gt;% \n  acast(token ~ sentimiento, value.var = \"n\", fill = 0) %&gt;%\n  comparison.cloud(colors = c(\"gray20\", \"forestgreen\"),\n                   max.words = 100)"
   },
   {
-    "objectID": "code-example/ejemplos-r-py-202301/sesiones-sincronicas/01-python-01-04-2023.html#funciones",
-    "href": "code-example/ejemplos-r-py-202301/sesiones-sincronicas/01-python-01-04-2023.html#funciones",
+    "objectID": "code-example/ejemplos-r-py-202301/sesiones-sincronicas/01-R-01-04-2023.html",
+    "href": "code-example/ejemplos-r-py-202301/sesiones-sincronicas/01-R-01-04-2023.html",
     "title": "Sesión sincrónica 01-04-2023",
-    "section": "Funciones",
-    "text": "Funciones\n\na = [2, 1, 4]\n\n\nlen(a)\n\n\ntype(a)\n\n\nround(1.345, 1)\n\n\nhelp(round)"
+    "section": "",
+    "text": "a &lt;- list(2, 1, 4)\na\n\n[[1]]\n[1] 2\n\n[[2]]\n[1] 1\n\n[[3]]\n[1] 4\n\n\n\nlength(a)\n\n[1] 3\n\n\n\nclass(a)\n\n[1] \"list\"\n\n\n\nround(1.345, 1)\n\n[1] 1.3\n\n\n\nhelp(round)\n\nstarting httpd help server ... done"
   },
   {
-    "objectID": "code-example/ejemplos-r-py-202301/sesiones-sincronicas/01-python-01-04-2023.html#métodos",
-    "href": "code-example/ejemplos-r-py-202301/sesiones-sincronicas/01-python-01-04-2023.html#métodos",
+    "objectID": "code-example/ejemplos-r-py-202301/sesiones-sincronicas/01-R-01-04-2023.html#vectores",
+    "href": "code-example/ejemplos-r-py-202301/sesiones-sincronicas/01-R-01-04-2023.html#vectores",
     "title": "Sesión sincrónica 01-04-2023",
-    "section": "Métodos",
-    "text": "Métodos\n\na.sort()\na\n\n\na.reverse()\na\n\n\ntexto = \"¡hola mundo cruel!\"\n\n\ntexto.upper()\n\n\ntexto.lower()\n\n\ntexto.capitalize()\n\n\ntexto.count(\"a\")\n\n\ntexto.count(\"l\")"
+    "section": "Vectores",
+    "text": "Vectores\n\npeso_kg &lt;- c(65.3, 82.5, 57.5, 82, 77.7)\naltura_m &lt;- c(1.68, 1.75, 1.62, 1.80, 1.72)\n\npeso_kg / altura_m^2\n\n[1] 23.13634 26.93878 21.90977 25.30864 26.26420\n\n\n\naltura_m &gt; 1.70\n\n[1] FALSE  TRUE FALSE  TRUE  TRUE\n\n\n\naltura_m[altura_m &gt; 1.70]\n\n[1] 1.75 1.80 1.72"
   },
   {
-    "objectID": "code-example/ejemplos-r-py-202301/sesiones-sincronicas/01-python-01-04-2023.html#arrays-con-numpy",
-    "href": "code-example/ejemplos-r-py-202301/sesiones-sincronicas/01-python-01-04-2023.html#arrays-con-numpy",
+    "objectID": "code-example/ejemplos-r-py-202301/sesiones-sincronicas/01-R-01-04-2023.html#diccionarios-listas",
+    "href": "code-example/ejemplos-r-py-202301/sesiones-sincronicas/01-R-01-04-2023.html#diccionarios-listas",
     "title": "Sesión sincrónica 01-04-2023",
-    "section": "Arrays con numpy",
-    "text": "Arrays con numpy\n\nimport numpy as np\n\n\nArrays 1D (vectores) vs Listas\n\npeso_kg = [65.3, 82.5, 57.5, 82, 77.7]\naltura_m = [1.68, 1.75, 1.62, 1.80, 1.72]\n\nCalculemos el índice de masa corporal para estas tres personas:\n\npeso_kg / altura_m ** 2\n\n\npeso_kg_array = np.array(peso_kg)\naltura_m_array = np.array(altura_m)\n\npeso_kg_array / altura_m_array ** 2\n\n\n¿Cómo extraer sólo personas con alturas mayores a 1.70 m?\n\n\naltura_m &gt; 1.70\n\n\naltura_m_array &gt; 1.70\n\n\naltura_m_array[altura_m_array &gt; 1.70]"
+    "section": "Diccionarios (listas)",
+    "text": "Diccionarios (listas)\n\ndiccionario &lt;- list(\n  Nombre = c('Pepito', 'Juanita', 'Pepita', 'Bill', 'Jenny'),\n  Peso = peso_kg,\n  Altura = altura_m\n)\n\ndiccionario\n\n$Nombre\n[1] \"Pepito\"  \"Juanita\" \"Pepita\"  \"Bill\"    \"Jenny\"  \n\n$Peso\n[1] 65.3 82.5 57.5 82.0 77.7\n\n$Altura\n[1] 1.68 1.75 1.62 1.80 1.72\n\n\n\nnames(diccionario)\n\n[1] \"Nombre\" \"Peso\"   \"Altura\""
   },
   {
-    "objectID": "code-example/ejemplos-r-py-202301/sesiones-sincronicas/01-python-01-04-2023.html#diccionarios",
-    "href": "code-example/ejemplos-r-py-202301/sesiones-sincronicas/01-python-01-04-2023.html#diccionarios",
+    "objectID": "code-example/ejemplos-r-py-202301/sesiones-sincronicas/01-R-01-04-2023.html#dataframes-desde-una-lista-diccionario",
+    "href": "code-example/ejemplos-r-py-202301/sesiones-sincronicas/01-R-01-04-2023.html#dataframes-desde-una-lista-diccionario",
     "title": "Sesión sincrónica 01-04-2023",
-    "section": "Diccionarios",
-    "text": "Diccionarios\n\ndiccionario = {'Nombre': ['Pepito', 'Juanita', 'Pepita', 'Bill', 'Jenny'],\n               'Peso': peso_kg,\n               'Altura': altura_m}\n\ndiccionario\n\n\ndiccionario.keys()\n\n\ndiccionario.values()\n\n\ndiccionario.items()\n\n\ndiccionario[\"Peso\"]"
+    "section": "Dataframes desde una lista (diccionario)",
+    "text": "Dataframes desde una lista (diccionario)\n\ndata.frame(diccionario)\n\n   Nombre Peso Altura\n1  Pepito 65.3   1.68\n2 Juanita 82.5   1.75\n3  Pepita 57.5   1.62\n4    Bill 82.0   1.80\n5   Jenny 77.7   1.72\n\n\n\ntabla &lt;- data.frame(diccionario)\nhead(tabla, 2)\n\n   Nombre Peso Altura\n1  Pepito 65.3   1.68\n2 Juanita 82.5   1.75\n\n\n\nrownames(tabla) &lt;- c(\"P1\", \"P2\", \"P3\", \"P4\", \"P5\")\ntabla\n\n    Nombre Peso Altura\nP1  Pepito 65.3   1.68\nP2 Juanita 82.5   1.75\nP3  Pepita 57.5   1.62\nP4    Bill 82.0   1.80\nP5   Jenny 77.7   1.72\n\n\n\ncolnames(tabla)\n\n[1] \"Nombre\" \"Peso\"   \"Altura\""
   },
   {
-    "objectID": "code-example/ejemplos-r-py-202301/sesiones-sincronicas/01-python-01-04-2023.html#introducción-a-pandas",
-    "href": "code-example/ejemplos-r-py-202301/sesiones-sincronicas/01-python-01-04-2023.html#introducción-a-pandas",
-    "title": "Sesión sincrónica 01-04-2023",
-    "section": "Introducción a pandas",
-    "text": "Introducción a pandas\n\nimport pandas as pd"
-  },
-  {
-    "objectID": "code-example/ejemplos-r-py-202301/sesiones-sincronicas/01-python-01-04-2023.html#dataframe-desde-un-diccionario",
-    "href": "code-example/ejemplos-r-py-202301/sesiones-sincronicas/01-python-01-04-2023.html#dataframe-desde-un-diccionario",
-    "title": "Sesión sincrónica 01-04-2023",
-    "section": "Dataframe desde un diccionario",
-    "text": "Dataframe desde un diccionario\n\nkeys: nombres o etiquetas de columnas\nvalues: valores (columna por columna)\n\n\npd.DataFrame(diccionario)\n\n\ntabla = pd.DataFrame(diccionario)\ntabla.head(2)\n\n\ntabla.index = [\"P1\", \"P2\", \"P3\", \"P4\", \"P5\"]\ntabla\n\n\ntabla.columns"
-  },
-  {
-    "objectID": "code-example/ejemplos-r-py-202301/sesiones-sincronicas/01-python-01-04-2023.html#dataframe-desde-un-archivo-.csv",
-    "href": "code-example/ejemplos-r-py-202301/sesiones-sincronicas/01-python-01-04-2023.html#dataframe-desde-un-archivo-.csv",
+    "objectID": "code-example/ejemplos-r-py-202301/sesiones-sincronicas/01-R-01-04-2023.html#dataframe-desde-un-archivo-.csv",
+    "href": "code-example/ejemplos-r-py-202301/sesiones-sincronicas/01-R-01-04-2023.html#dataframe-desde-un-archivo-.csv",
     "title": "Sesión sincrónica 01-04-2023",
     "section": "Dataframe desde un archivo .csv",
-    "text": "Dataframe desde un archivo .csv\n\n1000 Empresas más grandes de Colombia (2017-2018)\n\n\ndf_csv = pd.read_csv(\"1000_Empresas_mas_grandes_del_pa_s.csv\")\ndf_csv.head(5)\n\n\nExportemos este archivo a excel:\n\n\ndf_csv.to_excel(\"empresas_colombia.xlsx\")"
+    "text": "Dataframe desde un archivo .csv\n\n1000 Empresas más grandes de Colombia (2017-2018)\n\n\ndf_csv &lt;- read_csv(\"1000_Empresas_mas_grandes_del_pa_s.csv\")\nhead(df_csv)\n\n\nExportamos este archivo a excel:\n\n\nlibrary(writexl)\nwrite_xlsx(df_csv, \"empresas_colombia2.xlsx\")"
   },
   {
-    "objectID": "code-example/ejemplos-r-py-202301/sesiones-sincronicas/01-python-01-04-2023.html#dataframe-desde-un-archivo-de-excel",
-    "href": "code-example/ejemplos-r-py-202301/sesiones-sincronicas/01-python-01-04-2023.html#dataframe-desde-un-archivo-de-excel",
+    "objectID": "code-example/ejemplos-r-py-202301/sesiones-sincronicas/01-R-01-04-2023.html#dataframe-desde-un-archivo-de-excel",
+    "href": "code-example/ejemplos-r-py-202301/sesiones-sincronicas/01-R-01-04-2023.html#dataframe-desde-un-archivo-de-excel",
     "title": "Sesión sincrónica 01-04-2023",
     "section": "Dataframe desde un archivo de excel",
-    "text": "Dataframe desde un archivo de excel\n\ndf_excel = pd.read_excel(\"empresas_colombia.xlsx\")\ndf_excel.head(5)"
+    "text": "Dataframe desde un archivo de excel\n\nlibrary(readxl)\ndf_excel &lt;- read_excel(\"empresas_colombia2.xlsx\")\nhead(df_excel, 5)"
   },
   {
-    "objectID": "code-example/ejemplos-r-py-202301/sesiones-sincronicas/01-python-01-04-2023.html#resumen-descriptivo-rápido",
-    "href": "code-example/ejemplos-r-py-202301/sesiones-sincronicas/01-python-01-04-2023.html#resumen-descriptivo-rápido",
-    "title": "Sesión sincrónica 01-04-2023",
-    "section": "Resumen descriptivo rápido",
-    "text": "Resumen descriptivo rápido\n\ndf_csv.describe()\n\n\n# df_csv.describe(include = [float])\ndf_csv.describe(include = [np.number])\n\n\ndf_csv.describe(include = [object])"
-  },
-  {
-    "objectID": "code-example/ejemplos-r-py-202301/03-manipulando-listas-python.html",
-    "href": "code-example/ejemplos-r-py-202301/03-manipulando-listas-python.html",
-    "title": "Manipulando listas con Python",
+    "objectID": "code-example/ejemplos-r-py-202301/03-manipulando-listas-r.html",
+    "href": "code-example/ejemplos-r-py-202301/03-manipulando-listas-r.html",
+    "title": "Manipulando listas con R",
     "section": "",
-    "text": "numero_decimal = 23.13\nnumero_entero = 73\ntexto = \"Hola mundo!\"\nbooleano = True"
+    "text": "numero_decimal &lt;- 23.13\nnumero_entero &lt;- 73\ntexto &lt;- \"Hola mundo!\"\nbooleano &lt;- TRUE"
   },
   {
-    "objectID": "code-example/ejemplos-r-py-202301/03-manipulando-listas-python.html#tipos-de-datos",
-    "href": "code-example/ejemplos-r-py-202301/03-manipulando-listas-python.html#tipos-de-datos",
-    "title": "Manipulando listas con Python",
+    "objectID": "code-example/ejemplos-r-py-202301/03-manipulando-listas-r.html#tipos-de-datos-básicos",
+    "href": "code-example/ejemplos-r-py-202301/03-manipulando-listas-r.html#tipos-de-datos-básicos",
+    "title": "Manipulando listas con R",
     "section": "",
-    "text": "numero_decimal = 23.13\nnumero_entero = 73\ntexto = \"Hola mundo!\"\nbooleano = True"
+    "text": "numero_decimal &lt;- 23.13\nnumero_entero &lt;- 73\ntexto &lt;- \"Hola mundo!\"\nbooleano &lt;- TRUE"
   },
   {
-    "objectID": "code-example/ejemplos-r-py-202301/03-manipulando-listas-python.html#creando-una-lista",
-    "href": "code-example/ejemplos-r-py-202301/03-manipulando-listas-python.html#creando-una-lista",
-    "title": "Manipulando listas con Python",
+    "objectID": "code-example/ejemplos-r-py-202301/03-manipulando-listas-r.html#creando-una-lista",
+    "href": "code-example/ejemplos-r-py-202301/03-manipulando-listas-r.html#creando-una-lista",
+    "title": "Manipulando listas con R",
     "section": "Creando una lista",
-    "text": "Creando una lista\n\nmi_lista = [numero_decimal, numero_entero, texto, booleano]\nmi_lista\n\n[23.13, 73, 'Hola mundo!', True]\n\n\n\nmi_lista2 = list([numero_decimal, numero_entero, texto, booleano])\nmi_lista2\n\n[23.13, 73, 'Hola mundo!', True]"
+    "text": "Creando una lista\n\nmi_lista = list(numero_decimal, numero_entero, texto, booleano)\nmi_lista\n\n[[1]]\n[1] 23.13\n\n[[2]]\n[1] 73\n\n[[3]]\n[1] \"Hola mundo!\"\n\n[[4]]\n[1] TRUE"
   },
   {
-    "objectID": "code-example/ejemplos-r-py-202301/03-manipulando-listas-python.html#indexación-o-sobconjuntos",
-    "href": "code-example/ejemplos-r-py-202301/03-manipulando-listas-python.html#indexación-o-sobconjuntos",
-    "title": "Manipulando listas con Python",
-    "section": "Indexación o sobconjuntos",
-    "text": "Indexación o sobconjuntos\n\nmi_lista[0]\n\n23.13\n\n\n\nmi_lista[-4]\n\n23.13\n\n\n\nmi_lista[0:3]\n\n[23.13, 73, 'Hola mundo!']"
+    "objectID": "code-example/ejemplos-r-py-202301/03-manipulando-listas-r.html#indexación-o-subconjuntos",
+    "href": "code-example/ejemplos-r-py-202301/03-manipulando-listas-r.html#indexación-o-subconjuntos",
+    "title": "Manipulando listas con R",
+    "section": "Indexación o subconjuntos",
+    "text": "Indexación o subconjuntos\n\nmi_lista[1]\n\n[[1]]\n[1] 23.13\n\n\n\nmi_lista[1:2]\n\n[[1]]\n[1] 23.13\n\n[[2]]\n[1] 73"
   },
   {
-    "objectID": "code-example/ejemplos-r-py-202301/03-manipulando-listas-python.html#cambiando-elementos-de-la-lista",
-    "href": "code-example/ejemplos-r-py-202301/03-manipulando-listas-python.html#cambiando-elementos-de-la-lista",
-    "title": "Manipulando listas con Python",
+    "objectID": "code-example/ejemplos-r-py-202301/03-manipulando-listas-r.html#cambiando-elementos-de-la-lista",
+    "href": "code-example/ejemplos-r-py-202301/03-manipulando-listas-r.html#cambiando-elementos-de-la-lista",
+    "title": "Manipulando listas con R",
     "section": "Cambiando elementos de la lista",
-    "text": "Cambiando elementos de la lista\n\nmi_lista[0] = \"Colombia\"\nmi_lista\n\n['Colombia', 73, 'Hola mundo!', True]\n\n\n\nmi_lista[0:2] = [\"América Latina\", 3.1416]\nmi_lista\n\n['América Latina', 3.1416, 'Hola mundo!', True]"
+    "text": "Cambiando elementos de la lista\n\nmi_lista[1] &lt;- \"Colombia\"\nmi_lista\n\n[[1]]\n[1] \"Colombia\"\n\n[[2]]\n[1] 73\n\n[[3]]\n[1] \"Hola mundo!\"\n\n[[4]]\n[1] TRUE\n\n\n\nmi_lista[1:2] &lt;- list(\"América Latina\", 3.1416)\nmi_lista\n\n[[1]]\n[1] \"América Latina\"\n\n[[2]]\n[1] 3.1416\n\n[[3]]\n[1] \"Hola mundo!\"\n\n[[4]]\n[1] TRUE"
   },
   {
-    "objectID": "code-example/ejemplos-r-py-202301/03-manipulando-listas-python.html#agregando-elementos-a-la-lista",
-    "href": "code-example/ejemplos-r-py-202301/03-manipulando-listas-python.html#agregando-elementos-a-la-lista",
-    "title": "Manipulando listas con Python",
+    "objectID": "code-example/ejemplos-r-py-202301/03-manipulando-listas-r.html#agregando-elementos-a-la-lista",
+    "href": "code-example/ejemplos-r-py-202301/03-manipulando-listas-r.html#agregando-elementos-a-la-lista",
+    "title": "Manipulando listas con R",
     "section": "Agregando elementos a la lista",
-    "text": "Agregando elementos a la lista\n\nmi_lista + [\"2023-01-01\"]\n\n['América Latina', 3.1416, 'Hola mundo!', True, '2023-01-01']"
+    "text": "Agregando elementos a la lista\n\nc(mi_lista, \"2023-01-01\")\n\n[[1]]\n[1] \"América Latina\"\n\n[[2]]\n[1] 3.1416\n\n[[3]]\n[1] \"Hola mundo!\"\n\n[[4]]\n[1] TRUE\n\n[[5]]\n[1] \"2023-01-01\"\n\n\n\nmi_lista[5] &lt;- \"2023-01-01\"\nmi_lista\n\n[[1]]\n[1] \"América Latina\"\n\n[[2]]\n[1] 3.1416\n\n[[3]]\n[1] \"Hola mundo!\"\n\n[[4]]\n[1] TRUE\n\n[[5]]\n[1] \"2023-01-01\""
   },
   {
-    "objectID": "code-example/ejemplos-r-py-202301/03-manipulando-listas-python.html#concatenando-combinando-listas",
-    "href": "code-example/ejemplos-r-py-202301/03-manipulando-listas-python.html#concatenando-combinando-listas",
-    "title": "Manipulando listas con Python",
+    "objectID": "code-example/ejemplos-r-py-202301/03-manipulando-listas-r.html#concatenando-combinando-listas",
+    "href": "code-example/ejemplos-r-py-202301/03-manipulando-listas-r.html#concatenando-combinando-listas",
+    "title": "Manipulando listas con R",
     "section": "Concatenando (combinando) listas",
-    "text": "Concatenando (combinando) listas\n\notra_lista = [0.1, 0.2, 0.3]\nmi_lista + otra_lista\n\n['América Latina', 3.1416, 'Hola mundo!', True, 0.1, 0.2, 0.3]"
+    "text": "Concatenando (combinando) listas\n\notra_lista &lt;- list(0.1, 0.2, 0.3)\nc(mi_lista, otra_lista)\n\n[[1]]\n[1] \"América Latina\"\n\n[[2]]\n[1] 3.1416\n\n[[3]]\n[1] \"Hola mundo!\"\n\n[[4]]\n[1] TRUE\n\n[[5]]\n[1] \"2023-01-01\"\n\n[[6]]\n[1] 0.1\n\n[[7]]\n[1] 0.2\n\n[[8]]\n[1] 0.3"
   },
   {
-    "objectID": "code-example/ejemplos-r-py-202301/03-manipulando-listas-python.html#removiendo-elementos-de-la-lista",
-    "href": "code-example/ejemplos-r-py-202301/03-manipulando-listas-python.html#removiendo-elementos-de-la-lista",
-    "title": "Manipulando listas con Python",
+    "objectID": "code-example/ejemplos-r-py-202301/03-manipulando-listas-r.html#removiendo-elementos-de-la-lista",
+    "href": "code-example/ejemplos-r-py-202301/03-manipulando-listas-r.html#removiendo-elementos-de-la-lista",
+    "title": "Manipulando listas con R",
     "section": "Removiendo elementos de la lista",
-    "text": "Removiendo elementos de la lista\n\ndel(mi_lista[0])\nmi_lista\n\n[3.1416, 'Hola mundo!', True]"
+    "text": "Removiendo elementos de la lista\n\nmi_lista[-5]\n\n[[1]]\n[1] \"América Latina\"\n\n[[2]]\n[1] 3.1416\n\n[[3]]\n[1] \"Hola mundo!\"\n\n[[4]]\n[1] TRUE"
   },
   {
-    "objectID": "code-example/ejemplos-r-py-202301/03-manipulando-listas-python.html#generando-repeticiones-con-listas",
-    "href": "code-example/ejemplos-r-py-202301/03-manipulando-listas-python.html#generando-repeticiones-con-listas",
-    "title": "Manipulando listas con Python",
+    "objectID": "code-example/ejemplos-r-py-202301/03-manipulando-listas-r.html#generando-repeticiones-con-listas",
+    "href": "code-example/ejemplos-r-py-202301/03-manipulando-listas-r.html#generando-repeticiones-con-listas",
+    "title": "Manipulando listas con R",
     "section": "Generando repeticiones con listas",
-    "text": "Generando repeticiones con listas\n\nmi_lista * 3\n\n[3.1416,\n 'Hola mundo!',\n True,\n 3.1416,\n 'Hola mundo!',\n True,\n 3.1416,\n 'Hola mundo!',\n True]"
-  },
-  {
-    "objectID": "code-example/ejemplos-r-py-202301/02-operadores-listas-vectores-Py.html",
-    "href": "code-example/ejemplos-r-py-202301/02-operadores-listas-vectores-Py.html",
-    "title": "Operadores, listas y vectores",
-    "section": "",
-    "text": "Numéricos\nEnteros\nTexto\nBooleanos"
-  },
-  {
-    "objectID": "code-example/ejemplos-r-py-202301/02-operadores-listas-vectores-Py.html#suma",
-    "href": "code-example/ejemplos-r-py-202301/02-operadores-listas-vectores-Py.html#suma",
-    "title": "Operadores, listas y vectores",
-    "section": "Suma",
-    "text": "Suma\n\n2 + 2\n\n4\n\n\n\na = 10\nb = 20\na + b\n\n30\n\n\n\na + 100\n\n110"
-  },
-  {
-    "objectID": "code-example/ejemplos-r-py-202301/02-operadores-listas-vectores-Py.html#resta",
-    "href": "code-example/ejemplos-r-py-202301/02-operadores-listas-vectores-Py.html#resta",
-    "title": "Operadores, listas y vectores",
-    "section": "Resta",
-    "text": "Resta\n\na - 200\n\n-190"
-  },
-  {
-    "objectID": "code-example/ejemplos-r-py-202301/02-operadores-listas-vectores-Py.html#multiplicación",
-    "href": "code-example/ejemplos-r-py-202301/02-operadores-listas-vectores-Py.html#multiplicación",
-    "title": "Operadores, listas y vectores",
-    "section": "Multiplicación",
-    "text": "Multiplicación\n\na * b\n\n200"
-  },
-  {
-    "objectID": "code-example/ejemplos-r-py-202301/02-operadores-listas-vectores-Py.html#división",
-    "href": "code-example/ejemplos-r-py-202301/02-operadores-listas-vectores-Py.html#división",
-    "title": "Operadores, listas y vectores",
-    "section": "División",
-    "text": "División\n\na / b\n\n0.5"
-  },
-  {
-    "objectID": "code-example/ejemplos-r-py-202301/02-operadores-listas-vectores-Py.html#potencia",
-    "href": "code-example/ejemplos-r-py-202301/02-operadores-listas-vectores-Py.html#potencia",
-    "title": "Operadores, listas y vectores",
-    "section": "Potencia",
-    "text": "Potencia\n\n2 ** 2\n\n4"
-  },
-  {
-    "objectID": "code-example/ejemplos-r-py-202301/02-operadores-listas-vectores-Py.html#mayor-que",
-    "href": "code-example/ejemplos-r-py-202301/02-operadores-listas-vectores-Py.html#mayor-que",
-    "title": "Operadores, listas y vectores",
-    "section": "Mayor que",
-    "text": "Mayor que\n\na &gt; b\n\nFalse\n\n\n\na &gt; 5\n\nTrue"
-  },
-  {
-    "objectID": "code-example/ejemplos-r-py-202301/02-operadores-listas-vectores-Py.html#menor-que",
-    "href": "code-example/ejemplos-r-py-202301/02-operadores-listas-vectores-Py.html#menor-que",
-    "title": "Operadores, listas y vectores",
-    "section": "Menor que",
-    "text": "Menor que\n\na &lt; 10\n\nFalse"
-  },
-  {
-    "objectID": "code-example/ejemplos-r-py-202301/02-operadores-listas-vectores-Py.html#mayor-o-igual-que",
-    "href": "code-example/ejemplos-r-py-202301/02-operadores-listas-vectores-Py.html#mayor-o-igual-que",
-    "title": "Operadores, listas y vectores",
-    "section": "Mayor o igual que",
-    "text": "Mayor o igual que\n\na &gt;= 10\n\nTrue"
-  },
-  {
-    "objectID": "code-example/ejemplos-r-py-202301/02-operadores-listas-vectores-Py.html#menor-o-igual-que",
-    "href": "code-example/ejemplos-r-py-202301/02-operadores-listas-vectores-Py.html#menor-o-igual-que",
-    "title": "Operadores, listas y vectores",
-    "section": "Menor o igual que",
-    "text": "Menor o igual que\n\na &lt;= 10\n\nTrue"
-  },
-  {
-    "objectID": "code-example/ejemplos-r-py-202301/02-operadores-listas-vectores-Py.html#igualdad",
-    "href": "code-example/ejemplos-r-py-202301/02-operadores-listas-vectores-Py.html#igualdad",
-    "title": "Operadores, listas y vectores",
-    "section": "Igualdad",
-    "text": "Igualdad\n\na == b\n\nFalse\n\n\n\na == a\n\nTrue"
-  },
-  {
-    "objectID": "code-example/ejemplos-r-py-202301/02-operadores-listas-vectores-Py.html#diferencia-no-igual",
-    "href": "code-example/ejemplos-r-py-202301/02-operadores-listas-vectores-Py.html#diferencia-no-igual",
-    "title": "Operadores, listas y vectores",
-    "section": "Diferencia (no igual)",
-    "text": "Diferencia (no igual)\n\na != b\n\nTrue\n\n\n\n2 != 3\n\nTrue"
-  },
-  {
-    "objectID": "ciclo2.html",
-    "href": "ciclo2.html",
-    "title": "Ciclo 02",
-    "section": "",
-    "text": "Bienvenida e Introducción\nEjemplo aplicado: Web Scraping con R\nEjemplo aplicado: Web Scraping con Python\nR + Python en la nube\nFundamentos básicos de R y Python\nOperadores, listas y vectores"
-  },
-  {
-    "objectID": "ciclo2.html#material-de-apoyo---2022-02",
-    "href": "ciclo2.html#material-de-apoyo---2022-02",
-    "title": "Ciclo 02",
-    "section": "",
-    "text": "Bienvenida e Introducción\nEjemplo aplicado: Web Scraping con R\nEjemplo aplicado: Web Scraping con Python\nR + Python en la nube\nFundamentos básicos de R y Python\nOperadores, listas y vectores"
-  },
-  {
-    "objectID": "ciclo2.html#ia-para-todos",
-    "href": "ciclo2.html#ia-para-todos",
-    "title": "Ciclo 02",
-    "section": "IA para todos",
-    "text": "IA para todos"
-  },
-  {
-    "objectID": "ciclo2.html#chatgpt",
-    "href": "ciclo2.html#chatgpt",
-    "title": "Ciclo 02",
-    "section": "ChatGPT",
-    "text": "ChatGPT\n\nSitio oficial OpenAI\n\n\n\n\n\nPágina web construida con Quarto - Código fuente en Github."
-  },
-  {
-    "objectID": "books-rpy.html",
-    "href": "books-rpy.html",
-    "title": "Libros",
-    "section": "",
-    "text": "R Para Ciencia de Datos\n\n\n\n\n\n\n\nPython for Data Analysis, 3E\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nFundamentals of Data Visualization\n\n\n\n\n\n\n\nggplot2: Elegant Graphics for Data Analysis\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nInteractive web-based data visualization with R, plotly, and shiny\n\n\n\n\n\n\n\nData Visualization A practical introduction\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nHands-On Programming with R\n\n\n\n\n\n\n\nAdvanced R\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNatural Language Processing with Python\n\n\n\n\n\n\n\nWelcome to Text Mining with R\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nR Markdown: The Definitive Guide\n\n\n\n\n\n\n\nMastering Shiny\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nForecasting: Principles and Practice (3rd ed)\n\n\n\n\n\n\n\nStatistical Inference via Data Science\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nSupervised Machine Learning for Text Analysis in R\n\n\n\n\n\n\n\nTidy Modeling with R\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nDeep Learning\n\n\n\n\n\n\n\nHands-On Machine Learning with Scikit-Learn and TensorFlow: Concepts, Tools, and Techniques to Build Intelligent Systems\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nDeep Learning with Python\n\n\n\n\n\n\n\nDeep Learning with R\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nDeep Learning for Coders with Fastai and PyTorch\n\n\n\n\n\n\n\nMastering Spark with R\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nSpatial Data Science with R and “terra”\n\n\n\n\n\n\n\nGeocomputation with R\n\n\n\n\n\n\n\nPágina web construida con Quarto - Código fuente en Github."
-  },
-  {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "Ciencia de Datos con R y Python",
-    "section": "",
-    "text": "Cualquier persona que tenga interés en aprender a utilizar los lenguajes de programación R y Python para análisis de datos. El semillero es totalmente abierto y no tiene ningún costo."
-  },
-  {
-    "objectID": "about.html#quién-puede-participar-en-el-semillero",
-    "href": "about.html#quién-puede-participar-en-el-semillero",
-    "title": "Ciencia de Datos con R y Python",
-    "section": "",
-    "text": "Cualquier persona que tenga interés en aprender a utilizar los lenguajes de programación R y Python para análisis de datos. El semillero es totalmente abierto y no tiene ningún costo."
-  },
-  {
-    "objectID": "about.html#propósitos-del-semillero",
-    "href": "about.html#propósitos-del-semillero",
-    "title": "Ciencia de Datos con R y Python",
-    "section": "Propósitos del semillero",
-    "text": "Propósitos del semillero\n\nFomentar la discusión de temas relacionados con estadística computacional aplicada .\nPromover la formulación y ejecución de proyectos de investigación con énfasis en métodos estadísticos aplicados.\nEstimular el uso de herramientas tecnológicas que viabilicen el ejercicio académico y profesional.\nImpulsar la utilización de herramientas de código abierto (software libre) para ejecutar análisis estadístico.\nFomentar la sinergía científica entre estudiantes, docentes y comunidad en general."
-  },
-  {
-    "objectID": "about.html#horario",
-    "href": "about.html#horario",
-    "title": "Ciencia de Datos con R y Python",
-    "section": "Horario",
-    "text": "Horario\n\nLugar: reuniones virtuales.\nCanal de Youtube: RPyCol- @rpycol"
-  },
-  {
-    "objectID": "about.html#dirección-del-semillero",
-    "href": "about.html#dirección-del-semillero",
-    "title": "Ciencia de Datos con R y Python",
-    "section": "Dirección del semillero",
-    "text": "Dirección del semillero\n\nEdimer David Jaramillo"
-  },
-  {
-    "objectID": "about.html#contacto",
-    "href": "about.html#contacto",
-    "title": "Ciencia de Datos con R y Python",
-    "section": "Contacto",
-    "text": "Contacto\n\nEscríbenos a cualquiera de estos correos:\n\nedavidja@unal.edu.co\nedimer.davidj@udea.edu.co\n\n\n\n\nPágina web construida con Quarto - Código fuente en Github."
-  },
-  {
-    "objectID": "ciclo1.html",
-    "href": "ciclo1.html",
-    "title": "Ciclo 01",
-    "section": "",
-    "text": "Este ciclo se desarrolló durante los años 2018 a 2022.\nLos temas principales fueron:\n\nInvestigación reproducible con R: Ecosistema R Markdown\nFundamentos de manipulación de datos con R: tidyverse\nFundamentos de visualización de datos con R: ggplot2\nGeneración de tableros con R: flexdashboard\nIntroducción al desarrollo de aplicaciones con R: shiny\nIntroducción al Machine Learning con R: tidymodels"
-  },
-  {
-    "objectID": "ciclo1.html#temas-desarrollados",
-    "href": "ciclo1.html#temas-desarrollados",
-    "title": "Ciclo 01",
-    "section": "",
-    "text": "Este ciclo se desarrolló durante los años 2018 a 2022.\nLos temas principales fueron:\n\nInvestigación reproducible con R: Ecosistema R Markdown\nFundamentos de manipulación de datos con R: tidyverse\nFundamentos de visualización de datos con R: ggplot2\nGeneración de tableros con R: flexdashboard\nIntroducción al desarrollo de aplicaciones con R: shiny\nIntroducción al Machine Learning con R: tidymodels"
-  },
-  {
-    "objectID": "ciclo1.html#material-de-apoyo---2019-01",
-    "href": "ciclo1.html#material-de-apoyo---2019-01",
-    "title": "Ciclo 01",
-    "section": "Material de apoyo - 2019-01",
-    "text": "Material de apoyo - 2019-01\n\nBienvenida\nIntroducción a R y RStudio\nEcosistema R Markdown (1/2)\nEcosistema R Markdown (2/2)\nMundo R + tidyverse (1/2)\nMundo R + tidyverse (2/2)"
-  },
-  {
-    "objectID": "ciclo1.html#material-de-apoyo---2019-02",
-    "href": "ciclo1.html#material-de-apoyo---2019-02",
-    "title": "Ciclo 01",
-    "section": "Material de apoyo - 2019-02",
-    "text": "Material de apoyo - 2019-02\n\nRepaso: R + tidyverse\nEjercicio\nCorrelaciones\nRegresión Lineal Simple\nEncuesta rday 2019"
-  },
-  {
-    "objectID": "ciclo1.html#material-de-apoyo---2021-01",
-    "href": "ciclo1.html#material-de-apoyo---2021-01",
-    "title": "Ciclo 01",
-    "section": "Material de apoyo - 2021-01",
-    "text": "Material de apoyo - 2021-01\n\nRepaso R-Markdown y Tidyverse\nNovedades en el tidyverse y bibliotecas auxiliares\nVisualización con R: parte 1\nVisualización con R: parte 2\nTableros: flexdashboard 1\nTableros: flexdashboard 2\nShiny: Introducción\nDescargar ejemplos .Rmd y datos"
-  },
-  {
-    "objectID": "ciclo1.html#material-de-apoyo---2022-01",
-    "href": "ciclo1.html#material-de-apoyo---2022-01",
-    "title": "Ciclo 01",
-    "section": "Material de apoyo - 2022-01",
-    "text": "Material de apoyo - 2022-01\n\nMachine Learning con R: introducción a tidymodels\nRemuestreo con rsample y modelos con parsnip\nAjuste de modelos con tune e Ingeniería de características con recipes\nOptimización de hiperparámetros con R: tune\nFlujos de trabajo para Machine Learning con R: workflow (pipelines)\nDescargar ejemplos .Rmd y datos\n\n\n\nPágina web construida con Quarto - Código fuente en Github."
-  },
-  {
-    "objectID": "ciclo3.html",
-    "href": "ciclo3.html",
-    "title": "Ciclo 03",
-    "section": "",
-    "text": "Introducción a la Ciencia de Datos\nFundamentos de R y Python - Parte 1\n\n\n\n\n\nColocaciones de Crédito Sector Agropecuario 2024"
-  },
-  {
-    "objectID": "ciclo3.html#material-de-apoyo---2024-01",
-    "href": "ciclo3.html#material-de-apoyo---2024-01",
-    "title": "Ciclo 03",
-    "section": "",
-    "text": "Introducción a la Ciencia de Datos\nFundamentos de R y Python - Parte 1\n\n\n\n\n\nColocaciones de Crédito Sector Agropecuario 2024"
-  },
-  {
-    "objectID": "ciclo3.html#la-ciencia-de-datos-tiene-que-ver-más-con-personas-que-con-datos",
-    "href": "ciclo3.html#la-ciencia-de-datos-tiene-que-ver-más-con-personas-que-con-datos",
-    "title": "Ciclo 03",
-    "section": "La Ciencia de Datos tiene que ver más con personas que con datos",
-    "text": "La Ciencia de Datos tiene que ver más con personas que con datos\n\n\n\n\nPágina web construida con Quarto - Código fuente en Github."
+    "text": "Generando repeticiones con listas\n\nrep(mi_lista, 3)\n\n[[1]]\n[1] \"América Latina\"\n\n[[2]]\n[1] 3.1416\n\n[[3]]\n[1] \"Hola mundo!\"\n\n[[4]]\n[1] TRUE\n\n[[5]]\n[1] \"2023-01-01\"\n\n[[6]]\n[1] \"América Latina\"\n\n[[7]]\n[1] 3.1416\n\n[[8]]\n[1] \"Hola mundo!\"\n\n[[9]]\n[1] TRUE\n\n[[10]]\n[1] \"2023-01-01\"\n\n[[11]]\n[1] \"América Latina\"\n\n[[12]]\n[1] 3.1416\n\n[[13]]\n[1] \"Hola mundo!\"\n\n[[14]]\n[1] TRUE\n\n[[15]]\n[1] \"2023-01-01\""
   },
   {
     "objectID": "code-example/ejemplos-r-py-202301/02-operadores-listas-vectores-R.html",
@@ -1085,109 +840,361 @@
     "text": "Diferencia (no igual)\n\na != b \n\n[1] TRUE\n\n\n\n2 != 3\n\n[1] TRUE"
   },
   {
-    "objectID": "code-example/ejemplos-r-py-202301/03-manipulando-listas-r.html",
-    "href": "code-example/ejemplos-r-py-202301/03-manipulando-listas-r.html",
-    "title": "Manipulando listas con R",
+    "objectID": "ciclo3.html",
+    "href": "ciclo3.html",
+    "title": "Ciclo 03",
     "section": "",
-    "text": "numero_decimal &lt;- 23.13\nnumero_entero &lt;- 73\ntexto &lt;- \"Hola mundo!\"\nbooleano &lt;- TRUE"
+    "text": "Introducción a la Ciencia de Datos\nFundamentos de R y Python - Parte 1\n\n\n\n\n\nColocaciones de Crédito Sector Agropecuario 2024\n\n\n\n\n\nGoogle Colab: ejemplo biblioteca dtale en Python\nScript: ejemplo biblioteca esquisse en R\nNotebook: ejemplo biblioteca dtale en Python"
   },
   {
-    "objectID": "code-example/ejemplos-r-py-202301/03-manipulando-listas-r.html#tipos-de-datos-básicos",
-    "href": "code-example/ejemplos-r-py-202301/03-manipulando-listas-r.html#tipos-de-datos-básicos",
-    "title": "Manipulando listas con R",
+    "objectID": "ciclo3.html#material-de-apoyo---2024-01",
+    "href": "ciclo3.html#material-de-apoyo---2024-01",
+    "title": "Ciclo 03",
     "section": "",
-    "text": "numero_decimal &lt;- 23.13\nnumero_entero &lt;- 73\ntexto &lt;- \"Hola mundo!\"\nbooleano &lt;- TRUE"
+    "text": "Introducción a la Ciencia de Datos\nFundamentos de R y Python - Parte 1\n\n\n\n\n\nColocaciones de Crédito Sector Agropecuario 2024\n\n\n\n\n\nGoogle Colab: ejemplo biblioteca dtale en Python\nScript: ejemplo biblioteca esquisse en R\nNotebook: ejemplo biblioteca dtale en Python"
   },
   {
-    "objectID": "code-example/ejemplos-r-py-202301/03-manipulando-listas-r.html#creando-una-lista",
-    "href": "code-example/ejemplos-r-py-202301/03-manipulando-listas-r.html#creando-una-lista",
-    "title": "Manipulando listas con R",
+    "objectID": "ciclo3.html#la-ciencia-de-datos-tiene-que-ver-más-con-personas-que-con-datos",
+    "href": "ciclo3.html#la-ciencia-de-datos-tiene-que-ver-más-con-personas-que-con-datos",
+    "title": "Ciclo 03",
+    "section": "La Ciencia de Datos tiene que ver más con personas que con datos",
+    "text": "La Ciencia de Datos tiene que ver más con personas que con datos\n\n\n\n\n\n\nPágina web construida con Quarto - Código fuente en Github."
+  },
+  {
+    "objectID": "ciclo1.html",
+    "href": "ciclo1.html",
+    "title": "Ciclo 01",
+    "section": "",
+    "text": "Este ciclo se desarrolló durante los años 2018 a 2022.\nLos temas principales fueron:\n\nInvestigación reproducible con R: Ecosistema R Markdown\nFundamentos de manipulación de datos con R: tidyverse\nFundamentos de visualización de datos con R: ggplot2\nGeneración de tableros con R: flexdashboard\nIntroducción al desarrollo de aplicaciones con R: shiny\nIntroducción al Machine Learning con R: tidymodels"
+  },
+  {
+    "objectID": "ciclo1.html#temas-desarrollados",
+    "href": "ciclo1.html#temas-desarrollados",
+    "title": "Ciclo 01",
+    "section": "",
+    "text": "Este ciclo se desarrolló durante los años 2018 a 2022.\nLos temas principales fueron:\n\nInvestigación reproducible con R: Ecosistema R Markdown\nFundamentos de manipulación de datos con R: tidyverse\nFundamentos de visualización de datos con R: ggplot2\nGeneración de tableros con R: flexdashboard\nIntroducción al desarrollo de aplicaciones con R: shiny\nIntroducción al Machine Learning con R: tidymodels"
+  },
+  {
+    "objectID": "ciclo1.html#material-de-apoyo---2019-01",
+    "href": "ciclo1.html#material-de-apoyo---2019-01",
+    "title": "Ciclo 01",
+    "section": "Material de apoyo - 2019-01",
+    "text": "Material de apoyo - 2019-01\n\nBienvenida\nIntroducción a R y RStudio\nEcosistema R Markdown (1/2)\nEcosistema R Markdown (2/2)\nMundo R + tidyverse (1/2)\nMundo R + tidyverse (2/2)"
+  },
+  {
+    "objectID": "ciclo1.html#material-de-apoyo---2019-02",
+    "href": "ciclo1.html#material-de-apoyo---2019-02",
+    "title": "Ciclo 01",
+    "section": "Material de apoyo - 2019-02",
+    "text": "Material de apoyo - 2019-02\n\nRepaso: R + tidyverse\nEjercicio\nCorrelaciones\nRegresión Lineal Simple\nEncuesta rday 2019"
+  },
+  {
+    "objectID": "ciclo1.html#material-de-apoyo---2021-01",
+    "href": "ciclo1.html#material-de-apoyo---2021-01",
+    "title": "Ciclo 01",
+    "section": "Material de apoyo - 2021-01",
+    "text": "Material de apoyo - 2021-01\n\nRepaso R-Markdown y Tidyverse\nNovedades en el tidyverse y bibliotecas auxiliares\nVisualización con R: parte 1\nVisualización con R: parte 2\nTableros: flexdashboard 1\nTableros: flexdashboard 2\nShiny: Introducción\nDescargar ejemplos .Rmd y datos"
+  },
+  {
+    "objectID": "ciclo1.html#material-de-apoyo---2022-01",
+    "href": "ciclo1.html#material-de-apoyo---2022-01",
+    "title": "Ciclo 01",
+    "section": "Material de apoyo - 2022-01",
+    "text": "Material de apoyo - 2022-01\n\nMachine Learning con R: introducción a tidymodels\nRemuestreo con rsample y modelos con parsnip\nAjuste de modelos con tune e Ingeniería de características con recipes\nOptimización de hiperparámetros con R: tune\nFlujos de trabajo para Machine Learning con R: workflow (pipelines)\nDescargar ejemplos .Rmd y datos\n\n\n\nPágina web construida con Quarto - Código fuente en Github."
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "Ciencia de Datos con R y Python",
+    "section": "",
+    "text": "Cualquier persona que tenga interés en aprender a utilizar los lenguajes de programación R y Python para análisis de datos. El semillero es totalmente abierto y no tiene ningún costo."
+  },
+  {
+    "objectID": "about.html#quién-puede-participar-en-el-semillero",
+    "href": "about.html#quién-puede-participar-en-el-semillero",
+    "title": "Ciencia de Datos con R y Python",
+    "section": "",
+    "text": "Cualquier persona que tenga interés en aprender a utilizar los lenguajes de programación R y Python para análisis de datos. El semillero es totalmente abierto y no tiene ningún costo."
+  },
+  {
+    "objectID": "about.html#propósitos-del-semillero",
+    "href": "about.html#propósitos-del-semillero",
+    "title": "Ciencia de Datos con R y Python",
+    "section": "Propósitos del semillero",
+    "text": "Propósitos del semillero\n\nFomentar la discusión de temas relacionados con estadística computacional aplicada .\nPromover la formulación y ejecución de proyectos de investigación con énfasis en métodos estadísticos aplicados.\nEstimular el uso de herramientas tecnológicas que viabilicen el ejercicio académico y profesional.\nImpulsar la utilización de herramientas de código abierto (software libre) para ejecutar análisis estadístico.\nFomentar la sinergía científica entre estudiantes, docentes y comunidad en general."
+  },
+  {
+    "objectID": "about.html#horario",
+    "href": "about.html#horario",
+    "title": "Ciencia de Datos con R y Python",
+    "section": "Horario",
+    "text": "Horario\n\nLugar: reuniones virtuales.\nCanal de Youtube: RPyCol- @rpycol"
+  },
+  {
+    "objectID": "about.html#dirección-del-semillero",
+    "href": "about.html#dirección-del-semillero",
+    "title": "Ciencia de Datos con R y Python",
+    "section": "Dirección del semillero",
+    "text": "Dirección del semillero\n\nEdimer David Jaramillo"
+  },
+  {
+    "objectID": "about.html#contacto",
+    "href": "about.html#contacto",
+    "title": "Ciencia de Datos con R y Python",
+    "section": "Contacto",
+    "text": "Contacto\n\nEscríbenos a cualquiera de estos correos:\n\nedavidja@unal.edu.co\nedimer.davidj@udea.edu.co\n\n\n\n\nPágina web construida con Quarto - Código fuente en Github."
+  },
+  {
+    "objectID": "books-rpy.html",
+    "href": "books-rpy.html",
+    "title": "Libros",
+    "section": "",
+    "text": "R Para Ciencia de Datos\n\n\n\n\n\n\n\nPython for Data Analysis, 3E\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nFundamentals of Data Visualization\n\n\n\n\n\n\n\nggplot2: Elegant Graphics for Data Analysis\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nInteractive web-based data visualization with R, plotly, and shiny\n\n\n\n\n\n\n\nData Visualization A practical introduction\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nHands-On Programming with R\n\n\n\n\n\n\n\nAdvanced R\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNatural Language Processing with Python\n\n\n\n\n\n\n\nWelcome to Text Mining with R\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nR Markdown: The Definitive Guide\n\n\n\n\n\n\n\nMastering Shiny\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nForecasting: Principles and Practice (3rd ed)\n\n\n\n\n\n\n\nStatistical Inference via Data Science\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nSupervised Machine Learning for Text Analysis in R\n\n\n\n\n\n\n\nTidy Modeling with R\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nDeep Learning\n\n\n\n\n\n\n\nHands-On Machine Learning with Scikit-Learn and TensorFlow: Concepts, Tools, and Techniques to Build Intelligent Systems\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nDeep Learning with Python\n\n\n\n\n\n\n\nDeep Learning with R\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nDeep Learning for Coders with Fastai and PyTorch\n\n\n\n\n\n\n\nMastering Spark with R\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nSpatial Data Science with R and “terra”\n\n\n\n\n\n\n\nGeocomputation with R\n\n\n\n\n\n\n\nPágina web construida con Quarto - Código fuente en Github."
+  },
+  {
+    "objectID": "ciclo2.html",
+    "href": "ciclo2.html",
+    "title": "Ciclo 02",
+    "section": "",
+    "text": "Bienvenida e Introducción\nEjemplo aplicado: Web Scraping con R\nEjemplo aplicado: Web Scraping con Python\nR + Python en la nube\nFundamentos básicos de R y Python\nOperadores, listas y vectores"
+  },
+  {
+    "objectID": "ciclo2.html#material-de-apoyo---2022-02",
+    "href": "ciclo2.html#material-de-apoyo---2022-02",
+    "title": "Ciclo 02",
+    "section": "",
+    "text": "Bienvenida e Introducción\nEjemplo aplicado: Web Scraping con R\nEjemplo aplicado: Web Scraping con Python\nR + Python en la nube\nFundamentos básicos de R y Python\nOperadores, listas y vectores"
+  },
+  {
+    "objectID": "ciclo2.html#ia-para-todos",
+    "href": "ciclo2.html#ia-para-todos",
+    "title": "Ciclo 02",
+    "section": "IA para todos",
+    "text": "IA para todos"
+  },
+  {
+    "objectID": "ciclo2.html#chatgpt",
+    "href": "ciclo2.html#chatgpt",
+    "title": "Ciclo 02",
+    "section": "ChatGPT",
+    "text": "ChatGPT\n\nSitio oficial OpenAI\n\n\n\n\n\nPágina web construida con Quarto - Código fuente en Github."
+  },
+  {
+    "objectID": "code-example/ejemplos-r-py-202301/02-operadores-listas-vectores-Py.html",
+    "href": "code-example/ejemplos-r-py-202301/02-operadores-listas-vectores-Py.html",
+    "title": "Operadores, listas y vectores",
+    "section": "",
+    "text": "Numéricos\nEnteros\nTexto\nBooleanos"
+  },
+  {
+    "objectID": "code-example/ejemplos-r-py-202301/02-operadores-listas-vectores-Py.html#suma",
+    "href": "code-example/ejemplos-r-py-202301/02-operadores-listas-vectores-Py.html#suma",
+    "title": "Operadores, listas y vectores",
+    "section": "Suma",
+    "text": "Suma\n\n2 + 2\n\n4\n\n\n\na = 10\nb = 20\na + b\n\n30\n\n\n\na + 100\n\n110"
+  },
+  {
+    "objectID": "code-example/ejemplos-r-py-202301/02-operadores-listas-vectores-Py.html#resta",
+    "href": "code-example/ejemplos-r-py-202301/02-operadores-listas-vectores-Py.html#resta",
+    "title": "Operadores, listas y vectores",
+    "section": "Resta",
+    "text": "Resta\n\na - 200\n\n-190"
+  },
+  {
+    "objectID": "code-example/ejemplos-r-py-202301/02-operadores-listas-vectores-Py.html#multiplicación",
+    "href": "code-example/ejemplos-r-py-202301/02-operadores-listas-vectores-Py.html#multiplicación",
+    "title": "Operadores, listas y vectores",
+    "section": "Multiplicación",
+    "text": "Multiplicación\n\na * b\n\n200"
+  },
+  {
+    "objectID": "code-example/ejemplos-r-py-202301/02-operadores-listas-vectores-Py.html#división",
+    "href": "code-example/ejemplos-r-py-202301/02-operadores-listas-vectores-Py.html#división",
+    "title": "Operadores, listas y vectores",
+    "section": "División",
+    "text": "División\n\na / b\n\n0.5"
+  },
+  {
+    "objectID": "code-example/ejemplos-r-py-202301/02-operadores-listas-vectores-Py.html#potencia",
+    "href": "code-example/ejemplos-r-py-202301/02-operadores-listas-vectores-Py.html#potencia",
+    "title": "Operadores, listas y vectores",
+    "section": "Potencia",
+    "text": "Potencia\n\n2 ** 2\n\n4"
+  },
+  {
+    "objectID": "code-example/ejemplos-r-py-202301/02-operadores-listas-vectores-Py.html#mayor-que",
+    "href": "code-example/ejemplos-r-py-202301/02-operadores-listas-vectores-Py.html#mayor-que",
+    "title": "Operadores, listas y vectores",
+    "section": "Mayor que",
+    "text": "Mayor que\n\na &gt; b\n\nFalse\n\n\n\na &gt; 5\n\nTrue"
+  },
+  {
+    "objectID": "code-example/ejemplos-r-py-202301/02-operadores-listas-vectores-Py.html#menor-que",
+    "href": "code-example/ejemplos-r-py-202301/02-operadores-listas-vectores-Py.html#menor-que",
+    "title": "Operadores, listas y vectores",
+    "section": "Menor que",
+    "text": "Menor que\n\na &lt; 10\n\nFalse"
+  },
+  {
+    "objectID": "code-example/ejemplos-r-py-202301/02-operadores-listas-vectores-Py.html#mayor-o-igual-que",
+    "href": "code-example/ejemplos-r-py-202301/02-operadores-listas-vectores-Py.html#mayor-o-igual-que",
+    "title": "Operadores, listas y vectores",
+    "section": "Mayor o igual que",
+    "text": "Mayor o igual que\n\na &gt;= 10\n\nTrue"
+  },
+  {
+    "objectID": "code-example/ejemplos-r-py-202301/02-operadores-listas-vectores-Py.html#menor-o-igual-que",
+    "href": "code-example/ejemplos-r-py-202301/02-operadores-listas-vectores-Py.html#menor-o-igual-que",
+    "title": "Operadores, listas y vectores",
+    "section": "Menor o igual que",
+    "text": "Menor o igual que\n\na &lt;= 10\n\nTrue"
+  },
+  {
+    "objectID": "code-example/ejemplos-r-py-202301/02-operadores-listas-vectores-Py.html#igualdad",
+    "href": "code-example/ejemplos-r-py-202301/02-operadores-listas-vectores-Py.html#igualdad",
+    "title": "Operadores, listas y vectores",
+    "section": "Igualdad",
+    "text": "Igualdad\n\na == b\n\nFalse\n\n\n\na == a\n\nTrue"
+  },
+  {
+    "objectID": "code-example/ejemplos-r-py-202301/02-operadores-listas-vectores-Py.html#diferencia-no-igual",
+    "href": "code-example/ejemplos-r-py-202301/02-operadores-listas-vectores-Py.html#diferencia-no-igual",
+    "title": "Operadores, listas y vectores",
+    "section": "Diferencia (no igual)",
+    "text": "Diferencia (no igual)\n\na != b\n\nTrue\n\n\n\n2 != 3\n\nTrue"
+  },
+  {
+    "objectID": "code-example/ejemplos-r-py-202301/03-manipulando-listas-python.html",
+    "href": "code-example/ejemplos-r-py-202301/03-manipulando-listas-python.html",
+    "title": "Manipulando listas con Python",
+    "section": "",
+    "text": "numero_decimal = 23.13\nnumero_entero = 73\ntexto = \"Hola mundo!\"\nbooleano = True"
+  },
+  {
+    "objectID": "code-example/ejemplos-r-py-202301/03-manipulando-listas-python.html#tipos-de-datos",
+    "href": "code-example/ejemplos-r-py-202301/03-manipulando-listas-python.html#tipos-de-datos",
+    "title": "Manipulando listas con Python",
+    "section": "",
+    "text": "numero_decimal = 23.13\nnumero_entero = 73\ntexto = \"Hola mundo!\"\nbooleano = True"
+  },
+  {
+    "objectID": "code-example/ejemplos-r-py-202301/03-manipulando-listas-python.html#creando-una-lista",
+    "href": "code-example/ejemplos-r-py-202301/03-manipulando-listas-python.html#creando-una-lista",
+    "title": "Manipulando listas con Python",
     "section": "Creando una lista",
-    "text": "Creando una lista\n\nmi_lista = list(numero_decimal, numero_entero, texto, booleano)\nmi_lista\n\n[[1]]\n[1] 23.13\n\n[[2]]\n[1] 73\n\n[[3]]\n[1] \"Hola mundo!\"\n\n[[4]]\n[1] TRUE"
+    "text": "Creando una lista\n\nmi_lista = [numero_decimal, numero_entero, texto, booleano]\nmi_lista\n\n[23.13, 73, 'Hola mundo!', True]\n\n\n\nmi_lista2 = list([numero_decimal, numero_entero, texto, booleano])\nmi_lista2\n\n[23.13, 73, 'Hola mundo!', True]"
   },
   {
-    "objectID": "code-example/ejemplos-r-py-202301/03-manipulando-listas-r.html#indexación-o-subconjuntos",
-    "href": "code-example/ejemplos-r-py-202301/03-manipulando-listas-r.html#indexación-o-subconjuntos",
-    "title": "Manipulando listas con R",
-    "section": "Indexación o subconjuntos",
-    "text": "Indexación o subconjuntos\n\nmi_lista[1]\n\n[[1]]\n[1] 23.13\n\n\n\nmi_lista[1:2]\n\n[[1]]\n[1] 23.13\n\n[[2]]\n[1] 73"
+    "objectID": "code-example/ejemplos-r-py-202301/03-manipulando-listas-python.html#indexación-o-sobconjuntos",
+    "href": "code-example/ejemplos-r-py-202301/03-manipulando-listas-python.html#indexación-o-sobconjuntos",
+    "title": "Manipulando listas con Python",
+    "section": "Indexación o sobconjuntos",
+    "text": "Indexación o sobconjuntos\n\nmi_lista[0]\n\n23.13\n\n\n\nmi_lista[-4]\n\n23.13\n\n\n\nmi_lista[0:3]\n\n[23.13, 73, 'Hola mundo!']"
   },
   {
-    "objectID": "code-example/ejemplos-r-py-202301/03-manipulando-listas-r.html#cambiando-elementos-de-la-lista",
-    "href": "code-example/ejemplos-r-py-202301/03-manipulando-listas-r.html#cambiando-elementos-de-la-lista",
-    "title": "Manipulando listas con R",
+    "objectID": "code-example/ejemplos-r-py-202301/03-manipulando-listas-python.html#cambiando-elementos-de-la-lista",
+    "href": "code-example/ejemplos-r-py-202301/03-manipulando-listas-python.html#cambiando-elementos-de-la-lista",
+    "title": "Manipulando listas con Python",
     "section": "Cambiando elementos de la lista",
-    "text": "Cambiando elementos de la lista\n\nmi_lista[1] &lt;- \"Colombia\"\nmi_lista\n\n[[1]]\n[1] \"Colombia\"\n\n[[2]]\n[1] 73\n\n[[3]]\n[1] \"Hola mundo!\"\n\n[[4]]\n[1] TRUE\n\n\n\nmi_lista[1:2] &lt;- list(\"América Latina\", 3.1416)\nmi_lista\n\n[[1]]\n[1] \"América Latina\"\n\n[[2]]\n[1] 3.1416\n\n[[3]]\n[1] \"Hola mundo!\"\n\n[[4]]\n[1] TRUE"
+    "text": "Cambiando elementos de la lista\n\nmi_lista[0] = \"Colombia\"\nmi_lista\n\n['Colombia', 73, 'Hola mundo!', True]\n\n\n\nmi_lista[0:2] = [\"América Latina\", 3.1416]\nmi_lista\n\n['América Latina', 3.1416, 'Hola mundo!', True]"
   },
   {
-    "objectID": "code-example/ejemplos-r-py-202301/03-manipulando-listas-r.html#agregando-elementos-a-la-lista",
-    "href": "code-example/ejemplos-r-py-202301/03-manipulando-listas-r.html#agregando-elementos-a-la-lista",
-    "title": "Manipulando listas con R",
+    "objectID": "code-example/ejemplos-r-py-202301/03-manipulando-listas-python.html#agregando-elementos-a-la-lista",
+    "href": "code-example/ejemplos-r-py-202301/03-manipulando-listas-python.html#agregando-elementos-a-la-lista",
+    "title": "Manipulando listas con Python",
     "section": "Agregando elementos a la lista",
-    "text": "Agregando elementos a la lista\n\nc(mi_lista, \"2023-01-01\")\n\n[[1]]\n[1] \"América Latina\"\n\n[[2]]\n[1] 3.1416\n\n[[3]]\n[1] \"Hola mundo!\"\n\n[[4]]\n[1] TRUE\n\n[[5]]\n[1] \"2023-01-01\"\n\n\n\nmi_lista[5] &lt;- \"2023-01-01\"\nmi_lista\n\n[[1]]\n[1] \"América Latina\"\n\n[[2]]\n[1] 3.1416\n\n[[3]]\n[1] \"Hola mundo!\"\n\n[[4]]\n[1] TRUE\n\n[[5]]\n[1] \"2023-01-01\""
+    "text": "Agregando elementos a la lista\n\nmi_lista + [\"2023-01-01\"]\n\n['América Latina', 3.1416, 'Hola mundo!', True, '2023-01-01']"
   },
   {
-    "objectID": "code-example/ejemplos-r-py-202301/03-manipulando-listas-r.html#concatenando-combinando-listas",
-    "href": "code-example/ejemplos-r-py-202301/03-manipulando-listas-r.html#concatenando-combinando-listas",
-    "title": "Manipulando listas con R",
+    "objectID": "code-example/ejemplos-r-py-202301/03-manipulando-listas-python.html#concatenando-combinando-listas",
+    "href": "code-example/ejemplos-r-py-202301/03-manipulando-listas-python.html#concatenando-combinando-listas",
+    "title": "Manipulando listas con Python",
     "section": "Concatenando (combinando) listas",
-    "text": "Concatenando (combinando) listas\n\notra_lista &lt;- list(0.1, 0.2, 0.3)\nc(mi_lista, otra_lista)\n\n[[1]]\n[1] \"América Latina\"\n\n[[2]]\n[1] 3.1416\n\n[[3]]\n[1] \"Hola mundo!\"\n\n[[4]]\n[1] TRUE\n\n[[5]]\n[1] \"2023-01-01\"\n\n[[6]]\n[1] 0.1\n\n[[7]]\n[1] 0.2\n\n[[8]]\n[1] 0.3"
+    "text": "Concatenando (combinando) listas\n\notra_lista = [0.1, 0.2, 0.3]\nmi_lista + otra_lista\n\n['América Latina', 3.1416, 'Hola mundo!', True, 0.1, 0.2, 0.3]"
   },
   {
-    "objectID": "code-example/ejemplos-r-py-202301/03-manipulando-listas-r.html#removiendo-elementos-de-la-lista",
-    "href": "code-example/ejemplos-r-py-202301/03-manipulando-listas-r.html#removiendo-elementos-de-la-lista",
-    "title": "Manipulando listas con R",
+    "objectID": "code-example/ejemplos-r-py-202301/03-manipulando-listas-python.html#removiendo-elementos-de-la-lista",
+    "href": "code-example/ejemplos-r-py-202301/03-manipulando-listas-python.html#removiendo-elementos-de-la-lista",
+    "title": "Manipulando listas con Python",
     "section": "Removiendo elementos de la lista",
-    "text": "Removiendo elementos de la lista\n\nmi_lista[-5]\n\n[[1]]\n[1] \"América Latina\"\n\n[[2]]\n[1] 3.1416\n\n[[3]]\n[1] \"Hola mundo!\"\n\n[[4]]\n[1] TRUE"
+    "text": "Removiendo elementos de la lista\n\ndel(mi_lista[0])\nmi_lista\n\n[3.1416, 'Hola mundo!', True]"
   },
   {
-    "objectID": "code-example/ejemplos-r-py-202301/03-manipulando-listas-r.html#generando-repeticiones-con-listas",
-    "href": "code-example/ejemplos-r-py-202301/03-manipulando-listas-r.html#generando-repeticiones-con-listas",
-    "title": "Manipulando listas con R",
+    "objectID": "code-example/ejemplos-r-py-202301/03-manipulando-listas-python.html#generando-repeticiones-con-listas",
+    "href": "code-example/ejemplos-r-py-202301/03-manipulando-listas-python.html#generando-repeticiones-con-listas",
+    "title": "Manipulando listas con Python",
     "section": "Generando repeticiones con listas",
-    "text": "Generando repeticiones con listas\n\nrep(mi_lista, 3)\n\n[[1]]\n[1] \"América Latina\"\n\n[[2]]\n[1] 3.1416\n\n[[3]]\n[1] \"Hola mundo!\"\n\n[[4]]\n[1] TRUE\n\n[[5]]\n[1] \"2023-01-01\"\n\n[[6]]\n[1] \"América Latina\"\n\n[[7]]\n[1] 3.1416\n\n[[8]]\n[1] \"Hola mundo!\"\n\n[[9]]\n[1] TRUE\n\n[[10]]\n[1] \"2023-01-01\"\n\n[[11]]\n[1] \"América Latina\"\n\n[[12]]\n[1] 3.1416\n\n[[13]]\n[1] \"Hola mundo!\"\n\n[[14]]\n[1] TRUE\n\n[[15]]\n[1] \"2023-01-01\""
+    "text": "Generando repeticiones con listas\n\nmi_lista * 3\n\n[3.1416,\n 'Hola mundo!',\n True,\n 3.1416,\n 'Hola mundo!',\n True,\n 3.1416,\n 'Hola mundo!',\n True]"
   },
   {
-    "objectID": "code-example/ejemplos-r-py-202301/sesiones-sincronicas/01-R-01-04-2023.html",
-    "href": "code-example/ejemplos-r-py-202301/sesiones-sincronicas/01-R-01-04-2023.html",
+    "objectID": "code-example/ejemplos-r-py-202301/sesiones-sincronicas/01-python-01-04-2023.html#funciones",
+    "href": "code-example/ejemplos-r-py-202301/sesiones-sincronicas/01-python-01-04-2023.html#funciones",
     "title": "Sesión sincrónica 01-04-2023",
-    "section": "",
-    "text": "a &lt;- list(2, 1, 4)\na\n\n[[1]]\n[1] 2\n\n[[2]]\n[1] 1\n\n[[3]]\n[1] 4\n\n\n\nlength(a)\n\n[1] 3\n\n\n\nclass(a)\n\n[1] \"list\"\n\n\n\nround(1.345, 1)\n\n[1] 1.3\n\n\n\nhelp(round)\n\nstarting httpd help server ... done"
+    "section": "Funciones",
+    "text": "Funciones\n\na = [2, 1, 4]\n\n\nlen(a)\n\n\ntype(a)\n\n\nround(1.345, 1)\n\n\nhelp(round)"
   },
   {
-    "objectID": "code-example/ejemplos-r-py-202301/sesiones-sincronicas/01-R-01-04-2023.html#vectores",
-    "href": "code-example/ejemplos-r-py-202301/sesiones-sincronicas/01-R-01-04-2023.html#vectores",
+    "objectID": "code-example/ejemplos-r-py-202301/sesiones-sincronicas/01-python-01-04-2023.html#métodos",
+    "href": "code-example/ejemplos-r-py-202301/sesiones-sincronicas/01-python-01-04-2023.html#métodos",
     "title": "Sesión sincrónica 01-04-2023",
-    "section": "Vectores",
-    "text": "Vectores\n\npeso_kg &lt;- c(65.3, 82.5, 57.5, 82, 77.7)\naltura_m &lt;- c(1.68, 1.75, 1.62, 1.80, 1.72)\n\npeso_kg / altura_m^2\n\n[1] 23.13634 26.93878 21.90977 25.30864 26.26420\n\n\n\naltura_m &gt; 1.70\n\n[1] FALSE  TRUE FALSE  TRUE  TRUE\n\n\n\naltura_m[altura_m &gt; 1.70]\n\n[1] 1.75 1.80 1.72"
+    "section": "Métodos",
+    "text": "Métodos\n\na.sort()\na\n\n\na.reverse()\na\n\n\ntexto = \"¡hola mundo cruel!\"\n\n\ntexto.upper()\n\n\ntexto.lower()\n\n\ntexto.capitalize()\n\n\ntexto.count(\"a\")\n\n\ntexto.count(\"l\")"
   },
   {
-    "objectID": "code-example/ejemplos-r-py-202301/sesiones-sincronicas/01-R-01-04-2023.html#diccionarios-listas",
-    "href": "code-example/ejemplos-r-py-202301/sesiones-sincronicas/01-R-01-04-2023.html#diccionarios-listas",
+    "objectID": "code-example/ejemplos-r-py-202301/sesiones-sincronicas/01-python-01-04-2023.html#arrays-con-numpy",
+    "href": "code-example/ejemplos-r-py-202301/sesiones-sincronicas/01-python-01-04-2023.html#arrays-con-numpy",
     "title": "Sesión sincrónica 01-04-2023",
-    "section": "Diccionarios (listas)",
-    "text": "Diccionarios (listas)\n\ndiccionario &lt;- list(\n  Nombre = c('Pepito', 'Juanita', 'Pepita', 'Bill', 'Jenny'),\n  Peso = peso_kg,\n  Altura = altura_m\n)\n\ndiccionario\n\n$Nombre\n[1] \"Pepito\"  \"Juanita\" \"Pepita\"  \"Bill\"    \"Jenny\"  \n\n$Peso\n[1] 65.3 82.5 57.5 82.0 77.7\n\n$Altura\n[1] 1.68 1.75 1.62 1.80 1.72\n\n\n\nnames(diccionario)\n\n[1] \"Nombre\" \"Peso\"   \"Altura\""
+    "section": "Arrays con numpy",
+    "text": "Arrays con numpy\n\nimport numpy as np\n\n\nArrays 1D (vectores) vs Listas\n\npeso_kg = [65.3, 82.5, 57.5, 82, 77.7]\naltura_m = [1.68, 1.75, 1.62, 1.80, 1.72]\n\nCalculemos el índice de masa corporal para estas tres personas:\n\npeso_kg / altura_m ** 2\n\n\npeso_kg_array = np.array(peso_kg)\naltura_m_array = np.array(altura_m)\n\npeso_kg_array / altura_m_array ** 2\n\n\n¿Cómo extraer sólo personas con alturas mayores a 1.70 m?\n\n\naltura_m &gt; 1.70\n\n\naltura_m_array &gt; 1.70\n\n\naltura_m_array[altura_m_array &gt; 1.70]"
   },
   {
-    "objectID": "code-example/ejemplos-r-py-202301/sesiones-sincronicas/01-R-01-04-2023.html#dataframes-desde-una-lista-diccionario",
-    "href": "code-example/ejemplos-r-py-202301/sesiones-sincronicas/01-R-01-04-2023.html#dataframes-desde-una-lista-diccionario",
+    "objectID": "code-example/ejemplos-r-py-202301/sesiones-sincronicas/01-python-01-04-2023.html#diccionarios",
+    "href": "code-example/ejemplos-r-py-202301/sesiones-sincronicas/01-python-01-04-2023.html#diccionarios",
     "title": "Sesión sincrónica 01-04-2023",
-    "section": "Dataframes desde una lista (diccionario)",
-    "text": "Dataframes desde una lista (diccionario)\n\ndata.frame(diccionario)\n\n   Nombre Peso Altura\n1  Pepito 65.3   1.68\n2 Juanita 82.5   1.75\n3  Pepita 57.5   1.62\n4    Bill 82.0   1.80\n5   Jenny 77.7   1.72\n\n\n\ntabla &lt;- data.frame(diccionario)\nhead(tabla, 2)\n\n   Nombre Peso Altura\n1  Pepito 65.3   1.68\n2 Juanita 82.5   1.75\n\n\n\nrownames(tabla) &lt;- c(\"P1\", \"P2\", \"P3\", \"P4\", \"P5\")\ntabla\n\n    Nombre Peso Altura\nP1  Pepito 65.3   1.68\nP2 Juanita 82.5   1.75\nP3  Pepita 57.5   1.62\nP4    Bill 82.0   1.80\nP5   Jenny 77.7   1.72\n\n\n\ncolnames(tabla)\n\n[1] \"Nombre\" \"Peso\"   \"Altura\""
+    "section": "Diccionarios",
+    "text": "Diccionarios\n\ndiccionario = {'Nombre': ['Pepito', 'Juanita', 'Pepita', 'Bill', 'Jenny'],\n               'Peso': peso_kg,\n               'Altura': altura_m}\n\ndiccionario\n\n\ndiccionario.keys()\n\n\ndiccionario.values()\n\n\ndiccionario.items()\n\n\ndiccionario[\"Peso\"]"
   },
   {
-    "objectID": "code-example/ejemplos-r-py-202301/sesiones-sincronicas/01-R-01-04-2023.html#dataframe-desde-un-archivo-.csv",
-    "href": "code-example/ejemplos-r-py-202301/sesiones-sincronicas/01-R-01-04-2023.html#dataframe-desde-un-archivo-.csv",
+    "objectID": "code-example/ejemplos-r-py-202301/sesiones-sincronicas/01-python-01-04-2023.html#introducción-a-pandas",
+    "href": "code-example/ejemplos-r-py-202301/sesiones-sincronicas/01-python-01-04-2023.html#introducción-a-pandas",
+    "title": "Sesión sincrónica 01-04-2023",
+    "section": "Introducción a pandas",
+    "text": "Introducción a pandas\n\nimport pandas as pd"
+  },
+  {
+    "objectID": "code-example/ejemplos-r-py-202301/sesiones-sincronicas/01-python-01-04-2023.html#dataframe-desde-un-diccionario",
+    "href": "code-example/ejemplos-r-py-202301/sesiones-sincronicas/01-python-01-04-2023.html#dataframe-desde-un-diccionario",
+    "title": "Sesión sincrónica 01-04-2023",
+    "section": "Dataframe desde un diccionario",
+    "text": "Dataframe desde un diccionario\n\nkeys: nombres o etiquetas de columnas\nvalues: valores (columna por columna)\n\n\npd.DataFrame(diccionario)\n\n\ntabla = pd.DataFrame(diccionario)\ntabla.head(2)\n\n\ntabla.index = [\"P1\", \"P2\", \"P3\", \"P4\", \"P5\"]\ntabla\n\n\ntabla.columns"
+  },
+  {
+    "objectID": "code-example/ejemplos-r-py-202301/sesiones-sincronicas/01-python-01-04-2023.html#dataframe-desde-un-archivo-.csv",
+    "href": "code-example/ejemplos-r-py-202301/sesiones-sincronicas/01-python-01-04-2023.html#dataframe-desde-un-archivo-.csv",
     "title": "Sesión sincrónica 01-04-2023",
     "section": "Dataframe desde un archivo .csv",
-    "text": "Dataframe desde un archivo .csv\n\n1000 Empresas más grandes de Colombia (2017-2018)\n\n\ndf_csv &lt;- read_csv(\"1000_Empresas_mas_grandes_del_pa_s.csv\")\nhead(df_csv)\n\n\nExportamos este archivo a excel:\n\n\nlibrary(writexl)\nwrite_xlsx(df_csv, \"empresas_colombia2.xlsx\")"
+    "text": "Dataframe desde un archivo .csv\n\n1000 Empresas más grandes de Colombia (2017-2018)\n\n\ndf_csv = pd.read_csv(\"1000_Empresas_mas_grandes_del_pa_s.csv\")\ndf_csv.head(5)\n\n\nExportemos este archivo a excel:\n\n\ndf_csv.to_excel(\"empresas_colombia.xlsx\")"
   },
   {
-    "objectID": "code-example/ejemplos-r-py-202301/sesiones-sincronicas/01-R-01-04-2023.html#dataframe-desde-un-archivo-de-excel",
-    "href": "code-example/ejemplos-r-py-202301/sesiones-sincronicas/01-R-01-04-2023.html#dataframe-desde-un-archivo-de-excel",
+    "objectID": "code-example/ejemplos-r-py-202301/sesiones-sincronicas/01-python-01-04-2023.html#dataframe-desde-un-archivo-de-excel",
+    "href": "code-example/ejemplos-r-py-202301/sesiones-sincronicas/01-python-01-04-2023.html#dataframe-desde-un-archivo-de-excel",
     "title": "Sesión sincrónica 01-04-2023",
     "section": "Dataframe desde un archivo de excel",
-    "text": "Dataframe desde un archivo de excel\n\nlibrary(readxl)\ndf_excel &lt;- read_excel(\"empresas_colombia2.xlsx\")\nhead(df_excel, 5)"
+    "text": "Dataframe desde un archivo de excel\n\ndf_excel = pd.read_excel(\"empresas_colombia.xlsx\")\ndf_excel.head(5)"
+  },
+  {
+    "objectID": "code-example/ejemplos-r-py-202301/sesiones-sincronicas/01-python-01-04-2023.html#resumen-descriptivo-rápido",
+    "href": "code-example/ejemplos-r-py-202301/sesiones-sincronicas/01-python-01-04-2023.html#resumen-descriptivo-rápido",
+    "title": "Sesión sincrónica 01-04-2023",
+    "section": "Resumen descriptivo rápido",
+    "text": "Resumen descriptivo rápido\n\ndf_csv.describe()\n\n\n# df_csv.describe(include = [float])\ndf_csv.describe(include = [np.number])\n\n\ndf_csv.describe(include = [object])"
+  },
+  {
+    "objectID": "code-example/ejemplos-r-py-202401/02-visualizacion-py-jupyter.html",
+    "href": "code-example/ejemplos-r-py-202401/02-visualizacion-py-jupyter.html",
+    "title": "Importando datos con pandas",
+    "section": "",
+    "text": "import pandas as pd\n\ndatos = pd.read_csv(\"datos/colocaciones_créditos_agropecuarios_2024.csv\")\ndatos.head()\n\n\n\n\n\n\n\n\nyear_es\nmes\nfuente_colocacion\ntipo_productor\nvalor_inversion\ndepartamento_inversion\nmunicipio_inversion\nmpio_posconflicto\nplazo\nlinea_de_produccion\ndestino_de_credito\ngenero\nlatitud\nlongitud\n\n\n\n\n0\n2024\n3\nREDESCUENTO\nPEQUEÑO PPIB\n22000000.0\nPUTUMAYO\nORITO\nS\n84\nSIEMBRAS (I)\n141430 Plátano\nH\n0.696667\n-76.874722\n\n\n1\n2024\n3\nREDESCUENTO\nPEQUEÑO PPIB\n17000000.0\nSANTANDER\nOIBA\nN\n81\nSIEMBRAS (I)\n141100 Café\nH\n6.300000\n-73.250000\n\n\n2\n2024\n3\nREDESCUENTO\nPEQUEÑO PPIB\n4000000.0\nHUILA\nLA ARGENTINA\nN\n63\nSIEMBRAS (I)\n141100 Café\nM\n2.250000\n-76.166667\n\n\n3\n2024\n3\nREDESCUENTO\nPEQUEÑO PPIB\n15000000.0\nANTIOQUIA\nURRAO\nS\n36\nSIEMBRAS (I)\n151360 Lulo\nH\n6.333333\n-76.416667\n\n\n4\n2024\n3\nREDESCUENTO\nPEQUEÑO PPIB\n31000000.0\nMETA\nGRANADA\nN\n24\nSIEMBRAS (I)\n141430 Plátano\nH\n3.538611\n-73.700556\n\n\n\n\n\n\n\n\nEjemplo con dtale\n\nPrimero debemos instalar la biblioteca dtale con el siguiente código: pip install dtale\nDespués importamos la biblioteca.\n\n\nimport dtale\n\n\nLo único que necesitamos es pasar el método show() sobre nuestros datos.\n\n\ndtale.show(datos)\n\n\n\ndtale en Google Colab\n\nPrimero debemos instalar las bibliotecas:\n\n\n!pip install pandas\n!pip install dtale\n\n\nConfigruación adicional para ejecutar dentro de Google Colab:\n\n\nimport dtale\nimport dtale.app as dtale_app\ndtale_app.USE_COLAB = True\n\n\nEjecutamos el método show sobre nuestros datos:\n\n\ndtale.show(datos)"
   },
   {
     "objectID": "examples-rpy.html",

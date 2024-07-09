@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Ciencia de Datos con R y Python</title>
+<title>Importando datos con pandas – Ciencia de Datos con R y Python</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,26 +20,60 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<link href="./favicon.png" rel="icon" type="image/png">
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../favicon.png" rel="icon" type="image/png">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -67,9 +101,12 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Buscar"
   }
 }</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
 
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="../../styles.css">
 </head>
 
 <body class="nav-fixed fullcontent">
@@ -79,7 +116,7 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">Ciencia de Datos con R y Python</span>
     </a>
   </div>
@@ -90,11 +127,11 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./index.html" aria-current="page"> 
+    <a class="nav-link" href="../../index.html"> 
 <span class="menu-text">Inicio</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./about.html"> 
+    <a class="nav-link" href="../../about.html"> 
 <span class="menu-text">Información</span></a>
   </li>  
   <li class="nav-item dropdown ">
@@ -103,15 +140,15 @@ ul.task-list li input[type="checkbox"] {
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-temas">    
         <li>
-    <a class="dropdown-item" href="./ciclo1.html">
+    <a class="dropdown-item" href="../../ciclo1.html">
  <span class="dropdown-text">Ciclo 01</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./ciclo2.html">
+    <a class="dropdown-item" href="../../ciclo2.html">
  <span class="dropdown-text">Ciclo 02</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./ciclo3.html">
+    <a class="dropdown-item" href="../../ciclo3.html">
  <span class="dropdown-text">Ciclo 03</span></a>
   </li>  
     </ul>
@@ -122,15 +159,15 @@ ul.task-list li input[type="checkbox"] {
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-documentación">    
         <li>
-    <a class="dropdown-item" href="./recursos-info.html">
+    <a class="dropdown-item" href="../../recursos-info.html">
  <span class="dropdown-text">Recursos Web</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./books-rpy.html">
+    <a class="dropdown-item" href="../../books-rpy.html">
  <span class="dropdown-text">Libros</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./guide-rpy.html">
+    <a class="dropdown-item" href="../../guide-rpy.html">
  <span class="dropdown-text">Guías - Herramientas</span></a>
   </li>  
     </ul>
@@ -162,46 +199,188 @@ ul.task-list li input[type="checkbox"] {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Importando datos con <code>pandas</code></h1>
+</div>
 
 
 
-<center>
-<h2 class="anchored">
-¡Bienvenidos al Semillero de Ciencia de Datos!
-</h2>
-</center>
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div id="cell-2" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>datos <span class="op">=</span> pd.read_csv(<span class="st">"datos/colocaciones_créditos_agropecuarios_2024.csv"</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>datos.head()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="1">
 <div>
 
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">year_es</th>
+<th data-quarto-table-cell-role="th">mes</th>
+<th data-quarto-table-cell-role="th">fuente_colocacion</th>
+<th data-quarto-table-cell-role="th">tipo_productor</th>
+<th data-quarto-table-cell-role="th">valor_inversion</th>
+<th data-quarto-table-cell-role="th">departamento_inversion</th>
+<th data-quarto-table-cell-role="th">municipio_inversion</th>
+<th data-quarto-table-cell-role="th">mpio_posconflicto</th>
+<th data-quarto-table-cell-role="th">plazo</th>
+<th data-quarto-table-cell-role="th">linea_de_produccion</th>
+<th data-quarto-table-cell-role="th">destino_de_credito</th>
+<th data-quarto-table-cell-role="th">genero</th>
+<th data-quarto-table-cell-role="th">latitud</th>
+<th data-quarto-table-cell-role="th">longitud</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>2024</td>
+<td>3</td>
+<td>REDESCUENTO</td>
+<td>PEQUEÑO PPIB</td>
+<td>22000000.0</td>
+<td>PUTUMAYO</td>
+<td>ORITO</td>
+<td>S</td>
+<td>84</td>
+<td>SIEMBRAS (I)</td>
+<td>141430 Plátano</td>
+<td>H</td>
+<td>0.696667</td>
+<td>-76.874722</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>2024</td>
+<td>3</td>
+<td>REDESCUENTO</td>
+<td>PEQUEÑO PPIB</td>
+<td>17000000.0</td>
+<td>SANTANDER</td>
+<td>OIBA</td>
+<td>N</td>
+<td>81</td>
+<td>SIEMBRAS (I)</td>
+<td>141100 Café</td>
+<td>H</td>
+<td>6.300000</td>
+<td>-73.250000</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>2024</td>
+<td>3</td>
+<td>REDESCUENTO</td>
+<td>PEQUEÑO PPIB</td>
+<td>4000000.0</td>
+<td>HUILA</td>
+<td>LA ARGENTINA</td>
+<td>N</td>
+<td>63</td>
+<td>SIEMBRAS (I)</td>
+<td>141100 Café</td>
+<td>M</td>
+<td>2.250000</td>
+<td>-76.166667</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>2024</td>
+<td>3</td>
+<td>REDESCUENTO</td>
+<td>PEQUEÑO PPIB</td>
+<td>15000000.0</td>
+<td>ANTIOQUIA</td>
+<td>URRAO</td>
+<td>S</td>
+<td>36</td>
+<td>SIEMBRAS (I)</td>
+<td>151360 Lulo</td>
+<td>H</td>
+<td>6.333333</td>
+<td>-76.416667</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>2024</td>
+<td>3</td>
+<td>REDESCUENTO</td>
+<td>PEQUEÑO PPIB</td>
+<td>31000000.0</td>
+<td>META</td>
+<td>GRANADA</td>
+<td>N</td>
+<td>24</td>
+<td>SIEMBRAS (I)</td>
+<td>141430 Plátano</td>
+<td>H</td>
+<td>3.538611</td>
+<td>-73.700556</td>
+</tr>
+</tbody>
+</table>
+
 </div>
-<div class="quarto-layout-panel" data-layout-ncol="2">
-<div class="quarto-layout-row">
-<div class="cell quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="images/pub.gif" class="quarto-figure quarto-figure-center figure-img" height="250"></p>
-</figure>
 </div>
 </div>
+<section id="ejemplo-con-dtale" class="level1">
+<h1>Ejemplo con <code>dtale</code></h1>
+<ul>
+<li><p>Primero debemos instalar la biblioteca <code>dtale</code> con el siguiente código: <code>pip install dtale</code></p></li>
+<li><p>Después importamos la biblioteca.</p></li>
+</ul>
+<div id="cell-6" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> dtale</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="images/gif_py.gif" class="quarto-figure quarto-figure-center figure-img" height="250"></p>
-</figure>
+<ul>
+<li>Lo único que necesitamos es pasar el método <code>show()</code> sobre nuestros datos.</li>
+</ul>
+<div id="cell-8" class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>dtale.show(datos)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+</section>
+<section id="dtale-en-google-colab" class="level1">
+<h1><code>dtale</code> en Google Colab</h1>
+<ul>
+<li>Primero debemos instalar las bibliotecas:</li>
+</ul>
+<div id="cell-11" class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>pip install pandas</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>pip install dtale</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<ul>
+<li>Configruación adicional para ejecutar dentro de Google Colab:</li>
+</ul>
+<div id="cell-13" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> dtale</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> dtale.app <span class="im">as</span> dtale_app</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>dtale_app.USE_COLAB <span class="op">=</span> <span class="va">True</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<ul>
+<li>Ejecutamos el método <code>show</code> sobre nuestros datos:</li>
+</ul>
+<div id="cell-15" class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>dtale.show(datos)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</div>
-<center>
-<p>
-Página web construida con Quarto - <a href="https://github.com/web-edimer/unal-semilleror-facca.github.io">Código fuente en Github.</a>
-</p>
-</center>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
