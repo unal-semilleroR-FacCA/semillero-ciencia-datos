@@ -8,16 +8,27 @@ title: "Ciclo 03"
 
 1. [Introducción a la *Ciencia de Datos*](https://edimer.quarto.pub/intro-semillero/#/title-slide)
 2. [Fundamentos de R y Python - Parte 1](https://edimer.quarto.pub/fundamentos-rpy-p1/#/title-slide)
+3. [Tipos de datos y visualización](https://edimer.quarto.pub/visualizacion-r-py/#/title-slide)
 
 ### Datos
 
 - [Colocaciones de Crédito Sector Agropecuario 2024](/code-example/ejemplos-r-py-202401/colocaciones_créditos_agropecuarios_2024.csv)
+- [Créditos agropecuarios en café](/code-example/ejemplos-r-py-202401/créditos_café_colombia.csv)
+- [Evaluaciones agropecuarias en café](/code-example/ejemplos-r-py-202401/evas_café.csv)
+
+## Plantillas
+
+- [Plantillas Quarto - Jupyter Notebook](/code-example/plantillas-r-python.zip)
 
 ### Ejemplos
 
 - [Google Colab: ejemplo biblioteca `dtale` en Python](https://colab.research.google.com/drive/1B1OtHDRmIT78h_K0F6yBQFl-266QL6L2?usp=sharing)
 - [Script: ejemplo biblioteca `esquisse` en R](https://github.com/unal-semilleroR-FacCA/semillero-ciencia-datos/blob/master/code-example/ejemplos-r-py-202401/01-ejemplo-esquisse.R)
 - [Notebook: ejemplo biblioteca `dtale` en Python](https://github.com/unal-semilleroR-FacCA/semillero-ciencia-datos/blob/master/code-example/ejemplos-r-py-202401/02-visualizacion-py-jupyter.ipynb)
+- [Ejemplo de visualización con R]()
+- [Ejemplo de visualización con Python]()
+- [Análisis exploratorio con R]()
+- [Análisis exploratorio con Python]()
 
 ## La Ciencia de Datos tiene que ver más con personas que con datos
 

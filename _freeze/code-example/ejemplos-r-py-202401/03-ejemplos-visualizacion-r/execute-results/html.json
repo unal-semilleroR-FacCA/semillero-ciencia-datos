@@ -1,0 +1,15 @@
+{
+  "hash": "a34d563bc94c269d8a6d720ed23b971f",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"Título\"\nsubtitle: \"Subtítulo\"\nauthor: \"Nombre Apellidos\"\nformat: \n    html:\n        toc: true\nexecute: \n  eval: false        \n---\n\n\n\n# Bibliotecas\n\n\n\n::: {.cell}\n\n```{.r .cell-code}\nlibrary(readr)\nlibrary(dplyr)\nlibrary(ggplot2)\n```\n:::\n\n\n\n# Importando datos\n\n\n\n::: {.cell}\n\n```{.r .cell-code}\ncreditos <- read_csv(\"../datos/colocaciones_créditos_agropecuarios_2024.csv\")\n```\n:::\n\n\n\n# Información de la base de datos\n\n\n\n::: {.cell}\n\n```{.r .cell-code}\nstr(creditos)\n```\n:::\n\n\n\n- Otra opción:\n\n\n\n::: {.cell}\n\n```{.r .cell-code}\nglimpse(creditos)\n```\n:::\n\n\n\n\n# Datos lógicos (logical)\n\n- TRUE\n- FALSE\n\n\n\n::: {.cell}\n\n```{.r .cell-code}\n2 > 3\n```\n:::\n\n::: {.cell}\n\n```{.r .cell-code}\n2 < 3\n```\n:::\n\n\n\n# Visualización\n\n- **Nota:** para insertar la tubería podemos usar la tecla CTRL + SHIFT + M\n\n\n\n::: {.cell}\n\n```{.r .cell-code}\ncreditos |> \n  ggplot(aes(y = valor_inversion)) +\n  geom_boxplot() +\n  scale_y_log10()\n```\n:::\n\n\n\n\n## Conteo de créditos por género\n\n- Tabla:\n\n\n\n::: {.cell}\n\n```{.r .cell-code}\ncreditos |> \n  count(genero)\n```\n:::\n\n\n\n\n- Gráfico:\n\n\n\n::: {.cell}\n\n```{.r .cell-code}\ncreditos |> \n  count(genero) |> \n  ggplot(aes(x = genero, y = n)) +\n  geom_col()\n```\n:::\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

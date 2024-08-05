@@ -1,0 +1,284 @@
+---
+title: "Resultados Dashboard con R"
+subtitle: "Créditos agropecuarios y evaluaciones agropecuarias en café"
+author: "Edimer David Jaramillo"
+format: 
+    html:
+        toc: true
+        number-sections: true
+        df-print: paged
+execute: 
+  warning: false
+  eval: false
+---
+
+# Importando bibliotecas
+
+```{r}
+library(readr)
+library(dplyr)
+library(ggplot2)
+```
+
+# Importando datos
+
+- [Créditos agropecuarios](https://upra.gov.co/es-co/Paginas/eva_2023.aspx)
+- [Evaluaciones agropecuarias](https://www.datos.gov.co/Agricultura-y-Desarrollo-Rural/Colocaciones-de-Cr-dito-Sector-Agropecuario-2021-2/w3uf-w9ey/about_data)
+
+::: {.panel-tabset}
+
+## Créditos agropecuarios
+
+```{r}
+# Datos de créditos agropecuarios en café
+creditos_cafe <- read_csv("datos/créditos_café_colombia.csv")
+creditos_cafe |> head()
+```
+
+## Evaluaciones agropecuarias
+
+```{r}
+# Datos de evaluaciones agropecuarias
+eva_cafe <- read_csv("datos/evas_café.csv")
+eva_cafe |> head()
+```
+
+:::
+
+# Municipios en ambas tablas
+
+- Primero identificamos a partir de cuáles variables podríamos unir las dos bases de datos.
+- ¿Unimos los créditos a las EVAs o las EVAs a los créditos? En este caso nos interesan municipios que estén en ambas bases de datos. 
+  - ¿Cuántos municipios hay en la base de datos de créditos?
+  - ¿Cuántos municipios hay en la base de datos de EVAs?
+  
+```{r}
+# Total de municipios direrentes
+mpios_unicos_creditos <-unique(creditos_cafe$id_munic)
+mpios_unicos_evas <- unique(eva_cafe$codigo_dane_municipio)
+
+length(mpios_unicos_creditos)
+length(mpios_unicos_evas)
+```
+- ¿Cuántos municipios comparten las dos bases de datos?
+
+```{r}
+sum(unique(creditos_cafe$id_munic) %in% unique(eva_cafe$codigo_dane_municipio))
+```
+
+# Resumen por municipio
+
+- Para simplificar el ejercicio vamos a calcular algunas métricas estadísticas por municipio.
+
+::: {.panel-tabset}
+
+## Resumen créditos
+
+```{r}
+resumen_creditos <-
+  creditos_cafe |>
+  group_by(id_depto,
+           departamento_inversion,
+           id_munic,
+           municipio_inversion) |>
+  reframe(
+    promedio_plazo = mean(plazo, na.rm = TRUE),
+    promedio_valor = mean(vlr_inic_garantia, na.rm = TRUE)
+  )
+
+resumen_creditos |> 
+  head()
+```
+
+## Resumen EVAs
+
+```{r}
+resumen_evas <-
+  eva_cafe |>
+  group_by(codigo_dane_departamento,
+           departamento,
+           codigo_dane_municipio,
+           municipio) |>
+  reframe(
+    promedio_rto = mean(rendimiento_t_ha, na.rm = TRUE),
+    promedio_pdn = mean(produccion_t, na.rm = TRUE)
+  )
+
+resumen_evas |> 
+  head()
+```
+
+:::
+
+# Unión de datos
+
+- Ahora unimos los dos resúmenes. La unión se realiza teniendo en cuenta la variable municipio, pero es importante tener en cuenta que tienen diferente nombre en cada tabla.
+
+```{r}
+names(resumen_creditos)
+names(resumen_evas)
+```
+
+- **Opcional:** para facilitar el proceso podemos hacer dos cosas antes de unir las bases de datos:
+  - Editar los nombres de la variable que es común en ambas tablas y a través de la cual realizamos la unión.
+  - Como el nombre del municipio y departamento está en ambas tablas, solo es necesario que lo mantengamos en una tabla, ya que se repetirá.
+  
+```{r}
+# Editando nombres y seleccionando columnas en evas
+resumen_evas2 <-
+  resumen_evas |>
+  select(id_munic = codigo_dane_municipio, promedio_rto, promedio_pdn)
+
+resumen_evas2 |> head()
+```
+  
+- Ahora unimos las dos tablas.
+
+```{r}
+df_completa <-
+  inner_join(resumen_creditos, resumen_evas2, by = "id_munic")
+
+df_completa |> head()
+```
+
+- ¿Cuál es la dimensión de esta nueva base de datos?
+
+```{r}
+df_completa |> dim()
+```
+
+
+# Visualizaciones
+
+::: {.panel-tabset}
+
+## Distribución de variables
+
+- **Plazo del crédito:**
+
+```{r}
+df_completa |> 
+  ggplot(aes(x = promedio_plazo)) +
+  geom_histogram(color = "black") +
+  labs(x = "Plazo (meses)",
+       y = "Frecuencia",
+       title = "Distribución del plazo en créditos agropecuarios",
+       subtitle = "Colombia") +
+  theme_minimal()
+```
+
+- **Valor del crédito:**
+
+```{r}
+df_completa |> 
+  ggplot(aes(x = promedio_valor)) +
+  geom_histogram(color = "black") +
+  labs(x = "Valor ($)",
+       y = "Frecuencia",
+       title = "Distribución del valor en créditos agropecuarios",
+       subtitle = "Colombia") +
+  theme_minimal()
+```
+
+- **Promedio de rendimiento:**
+
+```{r}
+df_completa |> 
+  ggplot(aes(x = promedio_rto)) +
+  geom_histogram(color = "black") +
+  labs(x = "Rendimiento (t/ha)",
+       y = "Frecuencia",
+       title = "Distribución del rendimiento promedio en café",
+       subtitle = "Colombia") +
+  theme_minimal()
+```
+
+- **Producción en toneladas del cultivo de café:**
+
+```{r}
+df_completa |> 
+  ggplot(aes(x = promedio_pdn)) +
+  geom_histogram(color = "black") +
+  labs(x = "Producción (t)",
+       y = "Frecuencia",
+       title = "Distribución de producción promedio en café",
+       subtitle = "Colombia") +
+  theme_minimal()
+```
+
+## Monto vs Rendimiento
+
+- ¿En qué departamentos se solicita mayor monto de créditos?
+
+```{r}
+df_completa |> 
+  ggplot(aes(x = departamento_inversion, y = promedio_valor)) +
+  geom_boxplot() +
+  labs(x = "Departamento",
+       y = "Valor ($)",
+       title = "Distribución de monto de crédito por departamento",
+       subtitle = "Colombia") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+```
+
+- ¿En qué departamentos hay mayores rendimientos?
+
+```{r}
+df_completa |> 
+  ggplot(aes(x = departamento_inversion, y = promedio_rto)) +
+  geom_boxplot() +
+  labs(x = "Departamento",
+       y = "Rendimiento (t/ha)",
+       title = "Distribución del rendimiento por departamento",
+       subtitle = "Colombia") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+```
+
+## Monto vs rendimiento
+
+- ¿Existe asociación entre el monto del crédito y el rendimiento?
+
+```{r}
+cor(df_completa$promedio_valor, df_completa$promedio_rto, use = "pairwise.complete.obs")
+```
+
+- Graficamos el diagrama de dispersión:
+
+```{r}
+df_completa |> 
+  # filter(promedio_valor <= 4e+07) |>
+  ggplot(aes(x = promedio_valor, y = promedio_rto)) +
+  geom_point() +
+  labs(x = "Valor ($)",
+       y = "Rendimiento (t/ha)",
+       title = "Monto del crédito vs rendimiento",
+       subtitle = "Colombia") +
+  theme_minimal()
+```
+
+## Monto vs producción
+
+- Ahora relacionamos el valor del crédito con la producción:
+
+```{r}
+cor(df_completa$promedio_valor, df_completa$promedio_pdn, use = "pairwise.complete.obs")
+```
+
+- Gráfico:
+
+```{r}
+df_completa |> 
+  # filter(promedio_valor <= 4e+07) |>
+  ggplot(aes(x = promedio_valor, y = promedio_pdn)) +
+  geom_point() +
+  labs(x = "Valor ($)",
+       y = "Producción (t)",
+       title = "Monto del crédito vs producción",
+       subtitle = "Colombia") +
+  theme_minimal() +
+  scale_y_log10()
+```
+
+:::

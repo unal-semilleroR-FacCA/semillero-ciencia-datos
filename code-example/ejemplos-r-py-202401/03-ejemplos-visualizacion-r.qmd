@@ -1,0 +1,82 @@
+---
+title: "Título"
+subtitle: "Subtítulo"
+author: "Nombre Apellidos"
+format: 
+    html:
+        toc: true
+execute: 
+  eval: false        
+---
+
+# Bibliotecas
+
+```{r}
+library(readr)
+library(dplyr)
+library(ggplot2)
+```
+
+# Importando datos
+
+```{r}
+creditos <- read_csv("../datos/colocaciones_créditos_agropecuarios_2024.csv")
+```
+
+# Información de la base de datos
+
+```{r}
+str(creditos)
+```
+
+- Otra opción:
+
+```{r}
+glimpse(creditos)
+```
+
+
+# Datos lógicos (logical)
+
+- TRUE
+- FALSE
+
+```{r}
+2 > 3
+```
+
+```{r}
+2 < 3
+```
+
+# Visualización
+
+- **Nota:** para insertar la tubería podemos usar la tecla CTRL + SHIFT + M
+
+```{r}
+creditos |> 
+  ggplot(aes(y = valor_inversion)) +
+  geom_boxplot() +
+  scale_y_log10()
+```
+
+
+## Conteo de créditos por género
+
+- Tabla:
+
+```{r}
+creditos |> 
+  count(genero)
+```
+
+
+- Gráfico:
+
+```{r}
+creditos |> 
+  count(genero) |> 
+  ggplot(aes(x = genero, y = n)) +
+  geom_col()
+```
+
