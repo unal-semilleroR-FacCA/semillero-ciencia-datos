@@ -25,10 +25,10 @@ title: "Ciclo 03"
 - [Google Colab: ejemplo biblioteca `dtale` en Python](https://colab.research.google.com/drive/1B1OtHDRmIT78h_K0F6yBQFl-266QL6L2?usp=sharing)
 - [Script: ejemplo biblioteca `esquisse` en R](https://github.com/unal-semilleroR-FacCA/semillero-ciencia-datos/blob/master/code-example/ejemplos-r-py-202401/01-ejemplo-esquisse.R)
 - [Notebook: ejemplo biblioteca `dtale` en Python](https://github.com/unal-semilleroR-FacCA/semillero-ciencia-datos/blob/master/code-example/ejemplos-r-py-202401/02-visualizacion-py-jupyter.ipynb)
-- [Ejemplo de visualización con R]()
-- [Ejemplo de visualización con Python]()
-- [Análisis exploratorio con R]()
-- [Análisis exploratorio con Python]()
+- [Ejemplo de visualización con R](https://github.com/unal-semilleroR-FacCA/semillero-ciencia-datos/blob/master/code-example/ejemplos-r-py-202401/03-ejemplos-visualizacion-r.qmd)
+- [Ejemplo de visualización con Python](https://github.com/unal-semilleroR-FacCA/semillero-ciencia-datos/blob/master/code-example/ejemplos-r-py-202401/04-ejemplos-visualizacion-python.ipynb)
+- [Análisis exploratorio con R](https://github.com/unal-semilleroR-FacCA/semillero-ciencia-datos/blob/master/code-example/ejemplos-r-py-202401/05-resultados-dashboard-r.qmd)
+- [Análisis exploratorio con Python](https://github.com/unal-semilleroR-FacCA/semillero-ciencia-datos/blob/master/code-example/ejemplos-r-py-202401/06-resultados-dashboard-py.ipynb)
 
 ## La Ciencia de Datos tiene que ver más con personas que con datos
 
